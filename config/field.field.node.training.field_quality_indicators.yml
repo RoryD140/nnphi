@@ -1,0 +1,28 @@
+uuid: 1a6a4063-f7c6-4c8d-b2e3-66590d32523e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_quality_indicators
+    - node.type.training
+    - taxonomy.vocabulary.quality_indicators
+id: node.training.field_quality_indicators
+field_name: field_quality_indicators
+entity_type: node
+bundle: training
+label: 'Quality Indicators'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      quality_indicators: quality_indicators
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

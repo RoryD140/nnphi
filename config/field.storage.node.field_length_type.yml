@@ -1,0 +1,30 @@
+uuid: 7381999a-21b3-44d8-a116-005f7ed09176
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_length_type
+field_name: field_length_type
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '0'
+      label: 'Total Time'
+    -
+      value: '1'
+      label: Modules
+    -
+      value: '2'
+      label: Self-Paced
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

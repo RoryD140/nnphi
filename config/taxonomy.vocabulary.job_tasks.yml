@@ -1,0 +1,9 @@
+uuid: 5de996d2-29a9-43f2-bb3a-2966cb73cc8b
+langcode: en
+status: true
+dependencies: {  }
+name: 'Job Tasks'
+vid: job_tasks
+description: 'Specific Job Tasks'
+hierarchy: 0
+weight: 0

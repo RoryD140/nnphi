@@ -1,0 +1,20 @@
+uuid: 595f211d-4adb-4eb5-b8bd-60476e620519
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_ceus_offered
+field_name: field_ceus_offered
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

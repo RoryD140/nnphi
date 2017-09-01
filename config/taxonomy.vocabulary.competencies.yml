@@ -1,0 +1,9 @@
+uuid: 384d49a8-48fc-4b75-9d29-2b6ac7f40ba7
+langcode: en
+status: true
+dependencies: {  }
+name: Competencies
+vid: competencies
+description: ''
+hierarchy: 0
+weight: 0

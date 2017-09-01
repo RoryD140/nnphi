@@ -1,0 +1,26 @@
+uuid: da9ffedb-f4be-4efe-8784-f65c536cda49
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.publisher.body
+    - node.type.publisher
+  module:
+    - text
+    - user
+id: node.publisher.default
+targetEntityType: node
+bundle: publisher
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden: {  }

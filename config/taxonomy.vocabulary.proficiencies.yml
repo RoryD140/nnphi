@@ -1,0 +1,9 @@
+uuid: be1a59b4-9376-4b75-8877-554a889551ca
+langcode: en
+status: true
+dependencies: {  }
+name: Proficiencies
+vid: proficiencies
+description: ''
+hierarchy: 0
+weight: 0

@@ -1,0 +1,23 @@
+uuid: 2c41f94f-834a-4311-903d-7363aa9bbb8f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_length_type
+    - node.type.training
+  module:
+    - options
+id: node.training.field_length_type
+field_name: field_length_type
+entity_type: node
+bundle: training
+label: 'Length Type'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: '0'
+default_value_callback: ''
+settings: {  }
+field_type: list_string

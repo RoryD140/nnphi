@@ -1,0 +1,28 @@
+uuid: bf7d6a18-2be2-4e67-90cc-4cebba1c4cca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_instructor
+    - node.type.instructor
+    - node.type.training
+id: node.training.field_instructor
+field_name: field_instructor
+entity_type: node
+bundle: training
+label: Instructor
+description: 'The instructors, presenters, or authors for this training. If they don''t already exist they''ll need to be created.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      instructor: instructor
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

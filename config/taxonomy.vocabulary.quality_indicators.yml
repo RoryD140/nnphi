@@ -1,0 +1,9 @@
+uuid: 1118c4ea-407c-420b-8f92-f3510597034a
+langcode: en
+status: true
+dependencies: {  }
+name: 'Quality Indicators'
+vid: quality_indicators
+description: ''
+hierarchy: 0
+weight: 0
