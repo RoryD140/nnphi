@@ -13,7 +13,9 @@ label: Cost
 description: 'Cost in U.S. Dollars. If left blank or 0 cost will display as "Free."'
 required: false
 translatable: false
-default_value: {  }
+default_value:
+  -
+    value: !!float 0
 default_value_callback: ''
 settings:
   min: !!float 0
