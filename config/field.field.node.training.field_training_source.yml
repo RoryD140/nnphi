@@ -1,0 +1,28 @@
+uuid: 344ee444-2cb0-4e6c-9e3b-2c737a54fe53
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_training_source
+    - node.type.publisher
+    - node.type.training
+id: node.training.field_training_source
+field_name: field_training_source
+entity_type: node
+bundle: training
+label: 'Training Source'
+description: 'Source or publisher of this training. If the source doesn''t already exist it needs to be created first.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      publisher: publisher
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,28 @@
+uuid: 182ed776-f7b8-4af1-8b79-8c34e8a13d7c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_training_job_tasks
+    - node.type.training
+    - taxonomy.vocabulary.job_tasks
+id: node.training.field_training_job_tasks
+field_name: field_training_job_tasks
+entity_type: node
+bundle: training
+label: 'Job Tasks'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      job_tasks: job_tasks
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

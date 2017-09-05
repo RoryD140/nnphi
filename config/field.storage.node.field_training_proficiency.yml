@@ -1,0 +1,20 @@
+uuid: 3c919d93-e7a7-4da9-89e8-9e6ef1fc3e7a
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_training_proficiency
+field_name: field_training_proficiency
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

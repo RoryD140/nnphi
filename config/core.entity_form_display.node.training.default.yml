@@ -3,29 +3,28 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.training.field_ceus_offered
-    - field.field.node.training.field_competencies
-    - field.field.node.training.field_cost
-    - field.field.node.training.field_course_type
-    - field.field.node.training.field_description
-    - field.field.node.training.field_expiration
-    - field.field.node.training.field_job_tasks
-    - field.field.node.training.field_learning_objectives
-    - field.field.node.training.field_length_type
-    - field.field.node.training.field_level
-    - field.field.node.training.field_module_length
-    - field.field.node.training.field_occupations
-    - field.field.node.training.field_proficiency
-    - field.field.node.training.field_quality_indicators
     - field.field.node.training.field_related_trainings
-    - field.field.node.training.field_source
-    - field.field.node.training.field_total_time
+    - field.field.node.training.field_training_ceus_offered
+    - field.field.node.training.field_training_competencies
+    - field.field.node.training.field_training_cost
+    - field.field.node.training.field_training_course_type
+    - field.field.node.training.field_training_description
+    - field.field.node.training.field_training_expiration
+    - field.field.node.training.field_training_indicators
     - field.field.node.training.field_training_instructor
+    - field.field.node.training.field_training_job_tasks
+    - field.field.node.training.field_training_length_type
+    - field.field.node.training.field_training_level
+    - field.field.node.training.field_training_module_length
+    - field.field.node.training.field_training_objectives
+    - field.field.node.training.field_training_occupations
+    - field.field.node.training.field_training_proficiency
+    - field.field.node.training.field_training_source
     - field.field.node.training.field_training_state
+    - field.field.node.training.field_training_total_time
     - field.field.node.training.field_training_url
     - node.type.training
   module:
-    - conditional_fields
     - datetime
     - link
     - paragraphs
@@ -42,32 +41,44 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_ceus_offered:
+  field_related_trainings:
+    weight: 24
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_training_ceus_offered:
     weight: 18
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
-  field_competencies:
+  field_training_competencies:
     weight: 19
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
-  field_cost:
+  field_training_cost:
     weight: 5
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
-  field_course_type:
-    weight: 9
-    settings: {  }
+  field_training_course_type:
+    weight: 7
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: options_select
+    type: entity_reference_autocomplete
     region: content
-  field_description:
+  field_training_description:
     weight: 10
     settings:
       rows: 9
@@ -76,50 +87,60 @@ content:
     third_party_settings: {  }
     type: text_textarea_with_summary
     region: content
-  field_expiration:
+  field_training_expiration:
     weight: 11
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
-  field_job_tasks:
+  field_training_indicators:
+    weight: 23
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_training_instructor:
+    type: entity_reference_paragraphs
+    weight: 8
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
+  field_training_job_tasks:
     weight: 20
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
-  field_learning_objectives:
-    weight: 12
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
-    type: text_textarea
-    region: content
-  field_length_type:
+  field_training_length_type:
     weight: 13
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
-  field_level:
+  field_training_level:
     weight: 16
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
-  field_module_length:
+  field_training_module_length:
     weight: 14
     settings:
       placeholder: ''
     third_party_settings:
       conditional_fields:
-        b7057b0d-e192-4045-9224-6857565ac040:
-          dependee: field_length_type
+        587a55ea-1ba9-4a60-9f8e-9921a3f44599:
+          dependee: field_training_length_type
           settings:
             state: visible
             condition: value
-            grouping: XOR
+            grouping: AND
             values_set: 1
             value: ''
             values: {  }
@@ -133,34 +154,27 @@ content:
           bundle: training
     type: number
     region: content
-  field_occupations:
+  field_training_objectives:
+    weight: 12
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_training_occupations:
     weight: 21
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
-  field_proficiency:
+  field_training_proficiency:
     weight: 17
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
-  field_quality_indicators:
-    weight: 22
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
-  field_related_trainings:
-    weight: 23
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
-  field_source:
+  field_training_source:
     weight: 6
     settings:
       match_operator: CONTAINS
@@ -169,31 +183,18 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
-  field_total_time:
-    weight: 15
-    settings:
-      placeholder: ''
-    third_party_settings:
-      conditional_fields: {  }
-    type: number
-    region: content
-  field_training_instructor:
-    type: entity_reference_paragraphs
-    weight: 7
-    settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: ''
-    third_party_settings: {  }
-    region: content
   field_training_state:
-    weight: 8
+    weight: 9
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
+  field_training_total_time:
+    weight: 15
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
     region: content
   field_training_url:
     weight: 4

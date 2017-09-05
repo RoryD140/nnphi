@@ -1,0 +1,28 @@
+uuid: 643a2dcb-140c-483b-9b75-d00b0e2aa23c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_training_proficiency
+    - node.type.training
+    - taxonomy.vocabulary.proficiencies
+id: node.training.field_training_proficiency
+field_name: field_training_proficiency
+entity_type: node
+bundle: training
+label: 'Training Proficiency'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      proficiencies: proficiencies
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
