@@ -1,0 +1,30 @@
+uuid: f07c3abe-acc1-4b3f-a3df-1f5d39e2b21f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_training_instructor
+    - node.type.training
+    - paragraphs.paragraphs_type.instructor
+  module:
+    - entity_reference_revisions
+id: node.training.field_training_instructor
+field_name: field_training_instructor
+entity_type: node
+bundle: training
+label: 'Training Instructor'
+description: 'Instructors for this training item'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      instructor: instructor
+    target_bundles_drag_drop:
+      instructor:
+        enabled: true
+        weight: 2
+field_type: entity_reference_revisions

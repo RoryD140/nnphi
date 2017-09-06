@@ -1,0 +1,9 @@
+uuid: aed480fc-0e74-43f8-af9e-bf4a75d9c026
+langcode: en
+status: true
+dependencies: {  }
+name: Occupations
+vid: occupations
+description: 'Occupations or community practice'
+hierarchy: 0
+weight: 0

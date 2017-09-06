@@ -1,0 +1,25 @@
+uuid: 0ed03a15-0a56-4cb5-99ce-b50c02802bda
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_training_cost
+    - node.type.training
+id: node.training.field_training_cost
+field_name: field_training_cost
+entity_type: node
+bundle: training
+label: Cost
+description: 'Cost in U.S. Dollars. If left blank or 0 cost will display as "Free."'
+required: false
+translatable: false
+default_value:
+  -
+    value: !!float 0
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: $
+  suffix: ''
+field_type: decimal

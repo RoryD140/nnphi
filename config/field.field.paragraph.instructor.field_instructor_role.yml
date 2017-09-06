@@ -1,0 +1,19 @@
+uuid: d6ce7730-0716-48aa-b6a7-453e315b1036
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_instructor_role
+    - paragraphs.paragraphs_type.instructor
+id: paragraph.instructor.field_instructor_role
+field_name: field_instructor_role
+entity_type: paragraph
+bundle: instructor
+label: 'Instructor Role'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

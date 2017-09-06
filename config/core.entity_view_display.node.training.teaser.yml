@@ -1,0 +1,18 @@
+uuid: 5a9f9a60-811d-4c54-8417-fe5a79a835f6
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.training
+  module:
+    - user
+id: node.training.teaser
+targetEntityType: node
+bundle: training
+mode: teaser
+content:
+  links:
+    weight: 100
+    region: content
+hidden: {  }

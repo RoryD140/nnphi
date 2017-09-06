@@ -1,0 +1,30 @@
+uuid: 6ab505b2-837b-4f63-b798-fd06e7477169
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.instructor.field_instructor_name
+    - field.field.paragraph.instructor.field_instructor_role
+    - paragraphs.paragraphs_type.instructor
+id: paragraph.instructor.default
+targetEntityType: paragraph
+bundle: instructor
+mode: default
+content:
+  field_instructor_name:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_instructor_role:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

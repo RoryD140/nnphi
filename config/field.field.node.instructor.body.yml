@@ -1,0 +1,22 @@
+uuid: 131e160c-fd78-4d70-92ff-da8f4d4a5977
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.instructor
+  module:
+    - text
+id: node.instructor.body
+field_name: body
+entity_type: node
+bundle: instructor
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary
