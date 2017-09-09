@@ -1,0 +1,13 @@
+uuid: cfd9ae5f-3932-49d1-a68f-9f129c002ccb
+langcode: en
+status: true
+dependencies:
+  module:
+    - search_api_algolia
+id: algolia
+name: Algolia
+description: ''
+backend: search_api_algolia
+backend_config:
+  application_id: M46066VS3S
+  api_key:

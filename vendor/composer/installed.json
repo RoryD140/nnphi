@@ -7448,5 +7448,178 @@
         "support": {
             "source": "http://cgit.drupalcode.org/paragraphs"
         }
+    },
+    {
+        "name": "algolia/algoliasearch-client-php",
+        "version": "1.20.0",
+        "version_normalized": "1.20.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/algolia/algoliasearch-client-php.git",
+            "reference": "3daee8d55c1d84eff227fd99054e78ddc196f309"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/algolia/algoliasearch-client-php/zipball/3daee8d55c1d84eff227fd99054e78ddc196f309",
+            "reference": "3daee8d55c1d84eff227fd99054e78ddc196f309",
+            "shasum": ""
+        },
+        "require": {
+            "ext-mbstring": "*",
+            "php": ">=5.3"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^4.8 || ^5.0",
+            "satooshi/php-coveralls": "0.6.*"
+        },
+        "time": "2017-08-30T08:28:40+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "AlgoliaSearch": "src/",
+                "AlgoliaSearch\\Tests": "tests/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Algolia Team",
+                "email": "contact@algolia.com"
+            },
+            {
+                "name": "Ryan T. Catlin",
+                "email": "ryan.catlin@gmail.com"
+            },
+            {
+                "name": "Jonathan H. Wage",
+                "email": "jonwage@gmail.com"
+            }
+        ],
+        "description": "Algolia Search API Client for PHP",
+        "homepage": "https://github.com/algolia/algoliasearch-client-php"
+    },
+    {
+        "name": "drupal/search_api",
+        "version": "1.4.0",
+        "version_normalized": "1.4.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupal.org/project/search_api",
+            "reference": "8.x-1.4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/search_api-8.x-1.4.zip",
+            "reference": "8.x-1.4",
+            "shasum": "750555dee199d8ab62a609b394fb11206b8fbe4c"
+        },
+        "require": {
+            "drupal/core": "^8.3"
+        },
+        "require-dev": {
+            "drupal/search_api_db": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.4",
+                "datestamp": "1504799343",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Thomas Seidl",
+                "homepage": "https://www.drupal.org/u/drunken-monkey"
+            },
+            {
+                "name": "Nick Veenhof",
+                "homepage": "https://www.drupal.org/u/nick_vh"
+            },
+            {
+                "name": "See other contributors",
+                "homepage": "https://www.drupal.org/node/790418/committers"
+            }
+        ],
+        "description": "Provides a generic framework for modules offering search capabilities.",
+        "homepage": "https://www.drupal.org/project/search_api",
+        "support": {
+            "source": "http://git.drupal.org/project/search_api.git",
+            "issues": "https://www.drupal.org/project/issues/search_api",
+            "irc": "irc://irc.freenode.org/drupal-search-api"
+        }
+    },
+    {
+        "name": "drupal/search_api_algolia",
+        "version": "dev-1.x",
+        "version_normalized": "dev-1.x",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupal.org/project/search_api_algolia",
+            "reference": "15a679a186cd186d995d5b06cc0b690e00b05031"
+        },
+        "require": {
+            "algolia/algoliasearch-client-php": ">=1.6.3",
+            "drupal/core": "~8.0",
+            "drupal/search_api": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.0-alpha1+5-dev",
+                "datestamp": "1493933285",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Dev releases are not covered by Drupal security advisories."
+                }
+            },
+            "patches_applied": {
+                "Add search fields and facets": "https://www.drupal.org/files/issues/search_api_algolia-map_index-2898673-2.patch",
+                "Map search_api index to Algolia index": "patches/contrib/search_api_algolia/search_api_algolia-list_indexes.patch"
+            }
+        },
+        "installation-source": "source",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Jens Beltofte",
+                "homepage": "https://www.drupal.org/u/beltofte"
+            },
+            {
+                "name": "Jonas Krat",
+                "homepage": "https://www.drupal.org/u/jonasdk"
+            },
+            {
+                "name": "mlbrgl",
+                "homepage": "https://www.drupal.org/user/489214"
+            }
+        ],
+        "description": "Provides integration with the Algolia search engine.",
+        "homepage": "https://www.drupal.org/project/search_api_algolia",
+        "support": {
+            "source": "http://git.drupal.org/project/search_api_algolia.git",
+            "issues": "https://www.drupal.org/project/issues/search_api_algolia"
+        }
     }
 ]

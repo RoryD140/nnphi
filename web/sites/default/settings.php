@@ -38,3 +38,23 @@ if (file_exists($local_settings)) {
  * See: tests/installer-features/installer.feature
  */
 $settings['install_profile'] = 'standard';
+
+/**
+ * Load Algolia credentials and settings.
+ */ 
+if (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
+  $json_text = file_get_contents('sites/default/files/private/keys/algolia.json');
+  $algolia_data = json_decode($json_text, TRUE);
+  $conf['search_api.server.algolia']['backend_config']['api_key'] = $algolia_data['key'];
+  // Switch to the correct Algolia index.
+  $index = 'dev_TRAINING';
+  $indexes = [
+    'live' => 'prod_TRAINING',
+    'test' => 'test_TRAINING',
+    'dev' => 'dev_TRAINING',
+  ];
+  if (isset($indexes[$_ENV['PANTHEON_ENVIRONMENT']])) {
+    $index = $indexes[$_ENV['PANTHEON_ENVIRONMENT']];
+  }
+  $conf['search_api.index.training']['options']['algolia_index_name'] = $index;
+}

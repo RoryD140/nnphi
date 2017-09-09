@@ -1,0 +1,458 @@
+diff --git a/search_api_algolia.module b/search_api_algolia.module
+index 73cc841..c34a2fd 100644
+--- a/search_api_algolia.module
++++ b/search_api_algolia.module
+@@ -46,3 +46,10 @@ function search_api_algolia_form_search_api_index_edit_form_alter(&$form, FormSt
+     }
+   }
+ }
++
++/**
++ * Implements hook_search_api_field_type_mapping_alter().
++ */
++function search_api_algolia_search_api_field_type_mapping_alter(array &$mapping) {
++  $mapping['algolia_option'] = 'map';
++}
+diff --git a/src/Plugin/search_api/backend/SearchApiAlgoliaBackend.php b/src/Plugin/search_api/backend/SearchApiAlgoliaBackend.php
+index f1f34f5..95c00af 100644
+--- a/src/Plugin/search_api/backend/SearchApiAlgoliaBackend.php
++++ b/src/Plugin/search_api/backend/SearchApiAlgoliaBackend.php
+@@ -359,6 +359,127 @@ class SearchApiAlgoliaBackend extends BackendPluginBase implements PluginFormInt
+   }
+ 
+   /**
++   * {@inheritdoc}
++   */
++  public function updateIndex(IndexInterface $index) {
++    $settings = [];
++    try {
++      $this->connect($index);
++      $ag_index = $this->getAlgoliaIndex();
++      if ($searchable = $this->getSearchableAttributes($index)) {
++        $settings['searchableAttributes'] = $searchable;
++      }
++      if ($facets = $this->getFacets($index)) {
++        $settings['attributesForFaceting'] = $facets;
++      }
++      $this->moduleHandler->alter('search_api_algolia_index_settings', $settings, $index);
++      $ag_index->setSettings($settings);
++    }
++    catch (AlgoliaException $algoliaException) {
++      $this->logger->error('Unable to set Algolia settings. Error: %err',
++        ['%err' => $algoliaException->getMessage()]);
++    }
++    catch (\Exception $exception) {
++      $this->logger->error('Unable to set Algolia settings. Error: %err',
++        ['%err' => $exception->getMessage()]);
++    }
++    parent::updateIndex($index);
++  }
++
++  /**
++   * Get a list of search attributes to send to Algolia.
++   *
++   * @param \Drupal\search_api\IndexInterface $index
++   *
++   * @return array|bool
++   */
++  protected function getSearchableAttributes(IndexInterface $index) {
++    $fields = $index->getFields();
++    $attribute_fields = $this->getFieldsHelper()
++      ->filterForPropertyPath($fields, NULL, 'searchable_attribute');
++    if (empty($attribute_fields)) {
++      return FALSE;
++    }
++    $attributes = [];
++    /** @var \Drupal\search_api\Item\FieldInterface $attribute_field */
++    foreach ($attribute_fields as $attribute_field) {
++      // Add attributes based on their selected position in the list.
++      $conf = $attribute_field->getConfiguration();
++      if (empty($conf['field'])) {
++        continue;
++      }
++      $ranking = $conf['ranking'];
++      $attribute = $conf['field'];
++      if ($conf['unordered']) {
++        $attribute = 'unordered(' . $attribute . ')';
++      }
++      if (isset($attributes[$ranking])) {
++        if (is_array($attributes[$ranking])) {
++          $attributes[$ranking][] = $attribute;
++        }
++        // This is the second attribute added at this position, turn it into an array.
++        else {
++          $attributes[$ranking] = [$attributes[$ranking], $attribute];
++        }
++      }
++      else {
++        $attributes[$ranking] = $attribute;
++      }
++    }
++    ksort($attributes);
++    // Convert attributes into a single-dimensional array according to Algolia docs.
++    $attribute_settings = [];
++    foreach ($attributes as $attribute_list) {
++      if (is_array($attribute_list)) {
++        $attribute_settings[] = implode(',', $attribute_list);
++      }
++      else {
++        $attribute_settings[] = $attribute_list;
++      }
++    }
++    if (empty($attribute_settings)) {
++      return FALSE;
++    }
++    return $attribute_settings;
++  }
++
++  /**
++   * Get a list of facets to send to Algolia.
++   *
++   * @param \Drupal\search_api\IndexInterface $index
++   *
++   * @return array|bool
++   */
++  protected function getFacets(IndexInterface $index) {
++    $fields = $index->getFields();
++    $facet_fields = $this->getFieldsHelper()
++      ->filterForPropertyPath($fields, NULL, 'facet_attribute');
++    if (empty($facet_fields)) {
++      return FALSE;
++    }
++    $facets = [];
++    /** @var \Drupal\search_api\Item\FieldInterface $facet_field */
++    foreach ($facet_fields as $facet_field) {
++      $conf = $facet_field->getConfiguration();
++      if (empty($conf['field'])) {
++        continue;
++      }
++      $facet = $conf['field'];
++      if ($conf['filter_only']) {
++        $facet = 'filterOnly(' . $facet . ')';
++      }
++      else if ($conf['searchable']) {
++        $facet = 'searchable(' . $facet . ')';
++      }
++      $facets[] = $facet;
++    }
++    if (empty($facets)) {
++      return FALSE;
++    }
++    return $facets;
++  }
++
++  /**
+    * Retrieves the logger to use.
+    *
+    * @return \Psr\Log\LoggerInterface
+diff --git a/src/Plugin/search_api/data_type/AlgoliaIndexOption.php b/src/Plugin/search_api/data_type/AlgoliaIndexOption.php
+new file mode 100644
+index 0000000..d334857
+--- /dev/null
++++ b/src/Plugin/search_api/data_type/AlgoliaIndexOption.php
+@@ -0,0 +1,20 @@
++<?php
++
++namespace Drupal\search_api_algolia\Plugin\search_api\data_type;
++
++use Drupal\search_api\DataType\DataTypePluginBase;
++
++/**
++ * Provides an attribute data type.
++ *
++ * @SearchApiDataType(
++ *   id = "algolia_option",
++ *   label = @Translation("Algolia index option"),
++ *   description = @Translation("Describes an indexing option within an Algolia index."),
++ *   default = "false"
++ * )
++ */
++class AlgoliaIndexOption extends DataTypePluginBase {
++
++}
++
+diff --git a/src/Plugin/search_api/processor/FacetAttribute.php b/src/Plugin/search_api/processor/FacetAttribute.php
+new file mode 100644
+index 0000000..590333a
+--- /dev/null
++++ b/src/Plugin/search_api/processor/FacetAttribute.php
+@@ -0,0 +1,45 @@
++<?php
++
++namespace Drupal\search_api_algolia\Plugin\search_api\processor;
++
++use Drupal\Core\Annotation\Translation;
++use Drupal\search_api\Annotation\SearchApiProcessor;
++use Drupal\search_api\Datasource\DatasourceInterface;
++use Drupal\search_api_algolia\Plugin\search_api\processor\Property\FacetAttributeProperty;
++
++/**
++ * Class FacetAttribute
++ *
++ * @SearchApiProcessor(
++ *   id = "facet_attribute",
++ *   label = @Translation("Algolia facet attribute"),
++ *   description = @Translation("Adds a facet attribute to the Algolia index"),
++ *   stages = {
++ *    "add_properties" = 0,
++ *   },
++ *   locked = true,
++ *   hidden = true,
++ * )
++ */
++class FacetAttribute extends SearchableAttribute {
++
++  /**
++   * {@inheritdoc}
++   */
++  public function getPropertyDefinitions(DatasourceInterface $datasource = NULL) {
++    $properties = [];
++
++    if (!$datasource) {
++      $definition = [
++        'label' => $this->t('Algolia facet attribute'),
++        'description' => $this->t('Add a field from the index to the list of facet attributes'),
++        'type' => 'algolia_option',
++        'processor_id' => $this->getPluginId(),
++      ];
++
++      $properties['facet_attribute'] = new FacetAttributeProperty($definition);
++    }
++
++    return $properties;
++  }
++}
+diff --git a/src/Plugin/search_api/processor/Property/FacetAttributeProperty.php b/src/Plugin/search_api/processor/Property/FacetAttributeProperty.php
+new file mode 100644
+index 0000000..94059b8
+--- /dev/null
++++ b/src/Plugin/search_api/processor/Property/FacetAttributeProperty.php
+@@ -0,0 +1,58 @@
++<?php
++
++namespace Drupal\search_api_algolia\Plugin\search_api\processor\Property;
++
++use Drupal\Core\Form\FormStateInterface;
++use Drupal\search_api\Item\FieldInterface;
++
++class FacetAttributeProperty extends SearchableAttributeProperty {
++
++  public function defaultConfiguration() {
++    return [
++      'field' => NULL,
++      'filter_only' => 0,
++      'searchable' => 0,
++    ];
++  }
++
++  public function buildConfigurationForm(FieldInterface $field, array $form, FormStateInterface $form_state) {
++    $configuration = $field->getConfiguration();
++    $index = $field->getIndex();
++    $form['#tree'] = TRUE;
++
++    $form['#field'] = $field;
++
++    $fields = $this->getFieldOptions($index);
++
++    $form['field'] = [
++      '#type' => 'select',
++      '#title' => $this->t('Field'),
++      '#options' => $fields,
++      '#required' => TRUE,
++      '#default_value' => $configuration['field'],
++    ];
++
++    $form['filter_only'] = [
++      '#type' => 'checkbox',
++      '#title' => $this->t('Filter only'),
++      '#default_value' => $configuration['filter_only'],
++    ];
++
++    $form['searchable'] = [
++      '#type' => 'checkbox',
++      '#title' => $this->t('Searchable'),
++      '#default_value' => $configuration['searchable'],
++    ];
++
++    return $form;
++  }
++
++  public function validateConfigurationForm(FieldInterface $field, array &$form, FormStateInterface $form_state) {
++    // A facet cannot be searchable and filter only at the same time.
++    if ($form_state->getValue('filter_only') && $form_state->getValue('searchable')) {
++      $form_state->setErrorByName('', $this->t('A facet cannot be searchable and filter only at the same time.'));
++    }
++    parent::validateConfigurationForm($field, $form, $form_state);
++  }
++
++}
+diff --git a/src/Plugin/search_api/processor/Property/SearchableAttributeProperty.php b/src/Plugin/search_api/processor/Property/SearchableAttributeProperty.php
+new file mode 100644
+index 0000000..3b487e0
+--- /dev/null
++++ b/src/Plugin/search_api/processor/Property/SearchableAttributeProperty.php
+@@ -0,0 +1,99 @@
++<?php
++
++namespace Drupal\search_api_algolia\Plugin\search_api\processor\Property;
++
++use Drupal\Core\Form\FormStateInterface;
++use Drupal\Core\StringTranslation\StringTranslationTrait;
++use Drupal\search_api\IndexInterface;
++use Drupal\search_api\Item\FieldInterface;
++use Drupal\search_api\Processor\ConfigurablePropertyBase;
++
++class SearchableAttributeProperty extends ConfigurablePropertyBase {
++
++  use StringTranslationTrait;
++
++  public function defaultConfiguration() {
++    return [
++      'field' => NULL,
++      'ranking' => 0,
++      'unordered' => 0,
++    ];
++  }
++
++  public function buildConfigurationForm(FieldInterface $field, array $form, FormStateInterface $form_state) {
++    $configuration = $field->getConfiguration();
++    $index = $field->getIndex();
++    $form['#tree'] = TRUE;
++
++    $form['#field'] = $field;
++
++    $field_options = $this->getFieldOptions($index);
++
++    $form['field'] = [
++      '#type' => 'select',
++      '#title' => $this->t('Field'),
++      '#options' => $field_options,
++      '#required' => TRUE,
++      '#default_value' => $configuration['field'],
++    ];
++
++    $form['ranking'] = [
++      '#type' => 'select',
++      '#options' => range(0, count($field_options)),
++      '#title' => $this->t('Ranking'),
++      '#default_value' => $configuration['ranking'],
++    ];
++
++    $form['unordered'] = [
++      '#type' => 'checkbox',
++      '#title' => $this->t('Unordered'),
++      '#default_value' => $configuration['unordered'],
++    ];
++
++    return $form;
++  }
++
++  public function validateConfigurationForm(FieldInterface $field, array &$form, FormStateInterface $form_state) {
++    $this->validateUniqueField($form_state);
++    parent::validateConfigurationForm($field, $form, $form_state);
++  }
++
++  protected function validateUniqueField(FormStateInterface $form_state) {
++    /** @var FieldInterface $field */
++    $field = $form_state->getCompleteForm()['#field'];
++    $searchable_field = $form_state->getValue('field');
++    // Make sure no other fields exist that use this configuration.
++    $index = $field->getIndex();
++    $fields = $index->getFields();
++    $current_id = $field->getFieldIdentifier();
++    $property = $field->getPropertyPath();
++    foreach ($fields as $index_field) {
++      if ($index_field->getFieldIdentifier() == $current_id) {
++        continue;
++      }
++      if ($index_field->getPropertyPath() == $property) {
++        // Check field configuration.
++        $config = $index_field->getConfiguration();
++        if ($config['field'] === $searchable_field) {
++          $form_state->setErrorByName('field', $this->t('This field is already being used for an @processor',
++            ['@processor' => $field->getDataDefinition()->getLabel()]));
++        }
++      }
++    }
++  }
++
++  protected function getFieldOptions(IndexInterface $index) {
++    $field_options = [];
++    $fields = $index->getFields();
++    foreach ($fields as $field) {
++      $type = $field->getDataDefinition()->getDataType();
++      if ($type == 'algolia_option') {
++        continue;
++      }
++      $field_options[$field->getFieldIdentifier()] = $field->getLabel();
++    }
++
++    return $field_options;
++  }
++
++}
+diff --git a/src/Plugin/search_api/processor/SearchableAttribute.php b/src/Plugin/search_api/processor/SearchableAttribute.php
+new file mode 100644
+index 0000000..cc24630
+--- /dev/null
++++ b/src/Plugin/search_api/processor/SearchableAttribute.php
+@@ -0,0 +1,58 @@
++<?php
++
++namespace Drupal\search_api_algolia\Plugin\search_api\processor;
++
++use Drupal\search_api\IndexInterface;
++use Drupal\search_api\Item\ItemInterface;
++use Drupal\search_api\Processor\ProcessorPluginBase;
++use Drupal\search_api\Datasource\DatasourceInterface;
++use Drupal\search_api_algolia\Plugin\search_api\processor\Property\SearchableAttributeProperty;
++
++/**
++ * Class SearchableAttribute
++ *
++ * @SearchApiProcessor(
++ *   id = "searchable_attribute",
++ *   label = @Translation("Algolia searchable attribute"),
++ *   description = @Translation("Adds a field from the index to the list of searchable attributes"),
++ *   stages = {
++ *     "add_properties" = 0,
++ *   },
++ *   locked = true,
++ *   hidden = true,
++ * )
++ */
++class SearchableAttribute extends ProcessorPluginBase {
++
++  /**
++   * {@inheritdoc}
++   */
++  public function getPropertyDefinitions(DatasourceInterface $datasource = NULL) {
++    $properties = [];
++
++    if (!$datasource) {
++      $definition = [
++        'label' => $this->t('Algolia searchable attribute'),
++        'description' => $this->t('Add a field from the index to the list of searchable attributes'),
++        'type' => 'algolia_option',
++        'processor_id' => $this->getPluginId(),
++      ];
++
++      $properties['searchable_attribute'] = new SearchableAttributeProperty($definition);
++    }
++
++    return $properties;
++  }
++
++  public function addFieldValues(ItemInterface $item) {
++    // Do nothing.
++  }
++
++  /**
++   * {@inheritdoc}
++   */
++  public function requiresReindexing(array $old_settings = NULL, array $new_settings = NULL) {
++    // Index will be rebuilt in Algolia, we don't need to send all the content again.
++    return FALSE;
++  }
++}
+\ No newline at end of file
