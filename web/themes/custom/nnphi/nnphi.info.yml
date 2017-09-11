@@ -1,0 +1,17 @@
+name: NNPHI
+type: theme
+description: NNPHI Theme
+package: NNPHI
+core: 8.x
+
+# Put regions here
+regions:
+  content: Content
+  header: Header
+  footer: Footer
+
+libraries:
+  - nnphi/base
+
+base theme: stable
+
