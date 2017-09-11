@@ -1,0 +1,197 @@
+uuid: f48c4e51-2e11-4bb0-82e2-6ddcd5bc9d93
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_training_description
+    - field.storage.node.field_training_job_tasks
+    - field.storage.node.field_training_module_length
+    - field.storage.node.field_training_cost
+    - field.storage.node.field_training_state
+    - field.storage.node.field_training_competencies
+    - field.storage.node.field_training_objectives
+    - field.storage.node.field_training_occupations
+    - search_api.server.algolia
+  module:
+    - taxonomy
+    - search_api
+    - search_api_algolia
+    - node
+id: training
+name: Training
+description: ''
+read_only: false
+field_settings:
+  url:
+    label: URI
+    property_path: search_api_url
+    type: string
+  title_attribute:
+    label: Title
+    property_path: searchable_attribute
+    type: boolean
+    configuration:
+      field: title
+      ranking: '0'
+      unordered: 0
+  description_attribute:
+    label: Description
+    property_path: searchable_attribute
+    type: boolean
+    configuration:
+      field: field_training_description
+      ranking: '1'
+      unordered: 0
+  objectives_attribute:
+    label: 'Learning objectives'
+    property_path: searchable_attribute
+    type: boolean
+    configuration:
+      field: training_objectives
+      ranking: '2'
+      unordered: 0
+  competencies_facet:
+    label: Competencies
+    property_path: facet_attribute
+    type: boolean
+    configuration:
+      field: competencies
+      filter_only: 0
+      searchable: 1
+  occupations_facet:
+    label: Occupations
+    property_path: facet_attribute
+    type: boolean
+    configuration:
+      field: occupations
+      filter_only: 0
+      searchable: 1
+  job_tasks_facet:
+    label: 'Job tasks'
+    property_path: facet_attribute
+    type: boolean
+    configuration:
+      field: job_tasks
+      filter_only: 0
+      searchable: 1
+  length_facet:
+    label: Length
+    property_path: facet_attribute
+    type: boolean
+    configuration:
+      field: field_training_module_length
+      filter_only: 0
+      searchable: 0
+  cost_facet:
+    label: Cost
+    property_path: facet_attribute
+    type: boolean
+    configuration:
+      field: field_training_cost
+      filter_only: 0
+      searchable: 0
+  state_facet:
+    label: State
+    property_path: facet_attribute
+    type: boolean
+    configuration:
+      field: field_training_state
+      filter_only: 0
+      searchable: 0
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: string
+  field_training_description:
+    label: Description
+    datasource_id: 'entity:node'
+    property_path: field_training_description
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_training_description
+  job_tasks:
+    label: 'Job tasks'
+    datasource_id: 'entity:node'
+    property_path: 'field_training_job_tasks:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_training_job_tasks
+      module:
+        - taxonomy
+  field_training_module_length:
+    label: 'Module Length'
+    datasource_id: 'entity:node'
+    property_path: field_training_module_length
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_training_module_length
+  field_training_cost:
+    label: Cost
+    datasource_id: 'entity:node'
+    property_path: field_training_cost
+    type: decimal
+    dependencies:
+      config:
+        - field.storage.node.field_training_cost
+  field_training_state:
+    label: 'Training State'
+    datasource_id: 'entity:node'
+    property_path: field_training_state
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_training_state
+  competencies:
+    label: Competencies
+    datasource_id: 'entity:node'
+    property_path: 'field_training_competencies:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_training_competencies
+      module:
+        - taxonomy
+  training_objectives:
+    label: 'Learning Objectives'
+    datasource_id: 'entity:node'
+    property_path: field_training_objectives
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_training_objectives
+  occupations:
+    label: Occupations
+    datasource_id: 'entity:node'
+    property_path: 'field_training_occupations:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_training_occupations
+      module:
+        - taxonomy
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: false
+      selected:
+        - training
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  rendered_item: {  }
+  facet_attribute: {  }
+  searchable_attribute: {  }
+tracker_settings:
+  default: {  }
+options:
+  index_directly: true
+  cron_limit: 50
+  algolia_index_name: dev_TRAINING
+server: algolia
