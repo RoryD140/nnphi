@@ -19,5 +19,5 @@ settings:
   min: null
   max: null
   prefix: ''
-  suffix: hour|hours
+  suffix: ' hour| hours'
 field_type: decimal

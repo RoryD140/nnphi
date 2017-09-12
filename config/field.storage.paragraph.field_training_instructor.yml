@@ -1,17 +1,16 @@
-uuid: a9f648b8-afd3-48c1-9b82-530018227255
+uuid: 6d2c2cbf-d8ed-419b-b965-5466d4cbfd00
 langcode: en
 status: true
 dependencies:
   module:
+    - node
     - paragraphs
-id: paragraph.field_instructor_name
-field_name: field_instructor_name
+id: paragraph.field_training_instructor
+field_name: field_training_instructor
 entity_type: paragraph
-type: string
+type: entity_reference
 settings:
-  max_length: 255
-  is_ascii: false
-  case_sensitive: false
+  target_type: node
 module: core
 locked: false
 cardinality: 1

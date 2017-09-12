@@ -3,29 +3,31 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.instructor.field_instructor_name
-    - field.field.paragraph.instructor.field_instructor_role
+    - field.field.paragraph.instructor.field_training_instructor
+    - field.field.paragraph.instructor.field_training_instructor_role
     - paragraphs.paragraphs_type.instructor
 id: paragraph.instructor.default
 targetEntityType: paragraph
 bundle: instructor
 mode: default
 content:
-  field_instructor_name:
-    weight: 0
+  field_training_instructor:
+    weight: 2
     settings:
+      match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: entity_reference_autocomplete
     region: content
-  field_instructor_role:
-    weight: 1
+  field_training_instructor_role:
+    weight: 3
     settings:
+      match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: entity_reference_autocomplete
     region: content
 hidden:
   created: true
