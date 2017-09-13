@@ -2,7 +2,9 @@
 
 namespace Drupal\search_api_algolia\Plugin\search_api\backend;
 
+use AlgoliaSearch\AlgoliaException;
 use AlgoliaSearch\Client;
+use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
@@ -12,6 +14,7 @@ use Drupal\search_api\Item\ItemInterface;
 use Drupal\search_api\IndexInterface;
 use Drupal\search_api\Plugin\PluginFormTrait;
 use Drupal\search_api\Query\QueryInterface;
+use Drupal\search_api\SearchApiException;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -329,12 +332,18 @@ class SearchApiAlgoliaBackend extends BackendPluginBase implements PluginFormInt
    */
   protected function connect($index = NULL) {
     if (!$this->getAlgolia()) {
-      $this->algoliaClient = new Client($this->getApplicationId(), $this->getApiKey());
+      try {
+        $this->algoliaClient = new Client($this->getApplicationId(), $this->getApiKey());
 
-      if ($index && $index instanceof IndexInterface) {
-        $indexId = ($index->getOption('algolia_index_name')) ? $index->getOption('algolia_index_name') : $index->get('id');
+        if ($index && $index instanceof IndexInterface) {
+          $indexId = ($index->getOption('algolia_index_name')) ? $index->getOption('algolia_index_name') : $index->get('id');
 
-        $this->setAlgoliaIndex($this->algoliaClient->initIndex($indexId));
+          $this->setAlgoliaIndex($this->algoliaClient->initIndex($indexId));
+        }
+      }
+      catch (\Exception $algoliaException) {
+        // Rethrow as a search_api exception.
+        throw new SearchApiException($algoliaException->getMessage(), $algoliaException->getCode(), $algoliaException);
       }
     }
   }
@@ -345,9 +354,9 @@ class SearchApiAlgoliaBackend extends BackendPluginBase implements PluginFormInt
    * return array
    */
   public function listIndexes() {
-    $algoliaClient = new Client($this->getApplicationId(), $this->getApiKey());
+    $this->connect();
 
-    $indexes = $algoliaClient->listIndexes();
+    $indexes = $this->algoliaClient->listIndexes();
     $indexes_list = [];
     if (isset($indexes['items'])) {
       foreach ($indexes['items'] as $index) {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d3e50e11165a1474a67dab4221fd134a",
+    "content-hash": "36c041dd693562c4fc3f1aa4e133002a",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2118,8 +2118,9 @@
                     }
                 },
                 "patches_applied": {
-                    "Add search fields and facets": "patches/contrib/search_api_algolia/search_api_algolia-facets_search.patch",
-                    "Map search_api index to Algolia index": "patches/contrib/search_api_algolia/search_api_algolia-list_indexes.patch"
+                    "Map search_api index to algolia index": "patches/contrib/search_api_algolia/search_api_algolia-map_index-2898673-2.patch",
+                    "Add search fields and facets": "patches/contrib/search_api_algolia/search_api_algolia-list_indexes.patch",
+                    "Fix fatal error with Algolia exception": "https://www.drupal.org/files/issues/fatal_error_thrown_when-2883037-2.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -2145,7 +2146,8 @@
             "support": {
                 "source": "http://git.drupal.org/project/search_api_algolia.git",
                 "issues": "https://www.drupal.org/project/issues/search_api_algolia"
-            }
+            },
+            "time": "2017-05-04 21:26:46"
         },
         {
             "name": "drupal/simple_block",

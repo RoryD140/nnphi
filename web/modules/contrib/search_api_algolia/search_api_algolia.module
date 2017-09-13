@@ -33,7 +33,7 @@ function search_api_algolia_form_search_api_index_edit_form_alter(&$form, FormSt
         '#default_value' => ($index->getOption('algolia_index_name')) ? $index->getOption('algolia_index_name') : '_none',
       ];
     }
-    catch (AlgoliaException $exception) {
+    catch (Exception $exception) {
       drupal_set_message(t('Unable to connect to Algolia.'), 'error');
       watchdog_exception('search_api_algolia', $exception, 'Unable to connect to Algolia.');
       if ($index_name = $index->getOption('algolia_index_name')) {

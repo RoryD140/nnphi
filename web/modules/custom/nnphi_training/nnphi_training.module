@@ -1,0 +1,38 @@
+<?php
+/**
+ * @file nnphi_training.module
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function nnphi_training_theme($existing, $type, $theme, $path) {
+  return [
+    'nnphi_training_search_page' => [
+      'variables' => [],
+      'template' => 'search-page',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function nnphi_training_preprocess_nnphi_training_search_page(&$variables) {
+  $variables['#attached']['library'][] = 'nnphi_training/instant-search';
+  $variables['#attached']['drupalSettings']['trainingSearch'] = nnphi_training_search_js_settings();
+}
+
+/**
+ * Get an array of javascript settings for Algolia training search.
+ *
+ * @return array
+ */
+function nnphi_training_search_js_settings() {
+  $config = \Drupal::config('nnphi_training.search.config');
+  return [
+    'api_key' => $config->get('api_key'),
+    'app_id' => $config->get('app_id'),
+    'index' => $config->get('index'),
+  ];
+}
