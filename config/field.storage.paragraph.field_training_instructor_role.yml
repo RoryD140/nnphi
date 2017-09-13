@@ -1,17 +1,16 @@
-uuid: 62e23645-9cf2-4ddd-a02a-d917ceb4f2ee
+uuid: b981d8ac-72a4-4adf-b73b-744b825d0c64
 langcode: en
 status: true
 dependencies:
   module:
     - paragraphs
-id: paragraph.field_instructor_role
-field_name: field_instructor_role
+    - taxonomy
+id: paragraph.field_training_instructor_role
+field_name: field_training_instructor_role
 entity_type: paragraph
-type: string
+type: entity_reference
 settings:
-  max_length: 255
-  is_ascii: false
-  case_sensitive: false
+  target_type: taxonomy_term
 module: core
 locked: false
 cardinality: 1

@@ -1,0 +1,28 @@
+uuid: 8abb81b4-a2a0-44b9-88b0-697c0b0c9aaa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_training_instructor
+    - node.type.instructor
+    - paragraphs.paragraphs_type.instructor
+id: paragraph.instructor.field_training_instructor
+field_name: field_training_instructor
+entity_type: paragraph
+bundle: instructor
+label: 'Training Instructor'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      instructor: instructor
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

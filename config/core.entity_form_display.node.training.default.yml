@@ -52,15 +52,21 @@ content:
     region: content
   field_training_ceus_offered:
     weight: 18
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: options_buttons
+    type: entity_reference_autocomplete
     region: content
   field_training_competencies:
     weight: 19
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: options_buttons
+    type: entity_reference_autocomplete
     region: content
   field_training_cost:
     weight: 5
@@ -113,9 +119,12 @@ content:
     region: content
   field_training_job_tasks:
     weight: 20
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: options_buttons
+    type: entity_reference_autocomplete
     region: content
   field_training_length_type:
     weight: 13
@@ -164,15 +173,21 @@ content:
     region: content
   field_training_occupations:
     weight: 21
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: options_buttons
+    type: entity_reference_autocomplete
     region: content
   field_training_proficiency:
     weight: 17
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: options_buttons
+    type: entity_reference_autocomplete
     region: content
   field_training_source:
     weight: 6

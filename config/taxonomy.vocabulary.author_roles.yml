@@ -1,0 +1,9 @@
+uuid: f9d41ec4-6caf-4886-9099-050b4793185b
+langcode: en
+status: true
+dependencies: {  }
+name: 'Author Roles'
+vid: author_roles
+description: ''
+hierarchy: 0
+weight: 0

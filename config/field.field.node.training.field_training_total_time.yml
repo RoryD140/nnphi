@@ -9,7 +9,7 @@ id: node.training.field_training_total_time
 field_name: field_training_total_time
 entity_type: node
 bundle: training
-label: 'Total Time'
+label: Length
 description: 'Total time in hours, e.g. "2.5"'
 required: false
 translatable: false
@@ -19,5 +19,5 @@ settings:
   min: null
   max: null
   prefix: ''
-  suffix: hour|hours
+  suffix: ' hour| hours'
 field_type: decimal

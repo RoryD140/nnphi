@@ -1,0 +1,28 @@
+uuid: 0faa888a-9d5c-421e-a80d-3526b976a2f9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_training_instructor_role
+    - paragraphs.paragraphs_type.instructor
+    - taxonomy.vocabulary.author_roles
+id: paragraph.instructor.field_training_instructor_role
+field_name: field_training_instructor_role
+entity_type: paragraph
+bundle: instructor
+label: 'Training Instructor Role'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      author_roles: author_roles
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: author_roles
+field_type: entity_reference
