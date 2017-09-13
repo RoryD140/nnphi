@@ -1,0 +1,15 @@
+nnphi_training.instant_search:
+  path: '/training/search'
+  defaults:
+    _controller: '\Drupal\nnphi_training\Controller\InstantSearch::page'
+    _title: 'Training search'
+  requirements:
+    _permission: 'access content'
+
+nnphi_training.search.config:
+  path: '/admin/config/search/training'
+  defaults:
+    _form: '\Drupal\nnphi_training\Form\SearchConfigForm'
+    _title: 'Training search configuration'
+  requirements:
+    _permission: 'administer site configuration'

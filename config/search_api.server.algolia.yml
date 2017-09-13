@@ -10,4 +10,4 @@ description: ''
 backend: search_api_algolia
 backend_config:
   application_id: M46066VS3S
-  api_key:
+  api_key: null

@@ -1,0 +1,13 @@
+nnphi_training.search.config:
+  type: config_object
+  label: 'Search page configuration'
+  mapping:
+    api_key:
+      type: text
+      label: 'Search only API key'
+    app_id:
+      type: text
+      label: 'Algolia App ID'
+    index:
+      type: text
+      label: 'Algolia index'

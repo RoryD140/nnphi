@@ -6128,30 +6128,6 @@
         "homepage": "http://vfs.bovigo.org/"
     },
     {
-        "name": "pantheon-systems/quicksilver-pushback",
-        "version": "1.0.0",
-        "version_normalized": "1.0.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/pantheon-systems/quicksilver-pushback.git",
-            "reference": "7d77e3ec46d8504a00dcf96c12a87d09050c5fed"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/pantheon-systems/quicksilver-pushback/zipball/7d77e3ec46d8504a00dcf96c12a87d09050c5fed",
-            "reference": "7d77e3ec46d8504a00dcf96c12a87d09050c5fed",
-            "shasum": ""
-        },
-        "time": "2017-03-09T21:36:10+00:00",
-        "type": "quicksilver-script",
-        "installation-source": "dist",
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "description": "Push commits made via the Pantheon dashboard back to original GitHub repository."
-    },
-    {
         "name": "phpunit/php-token-stream",
         "version": "1.4.11",
         "version_normalized": "1.4.11.0",
@@ -7565,6 +7541,30 @@
         }
     },
     {
+        "name": "pantheon-systems/quicksilver-pushback",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/pantheon-systems/quicksilver-pushback.git",
+            "reference": "7d77e3ec46d8504a00dcf96c12a87d09050c5fed"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/pantheon-systems/quicksilver-pushback/zipball/7d77e3ec46d8504a00dcf96c12a87d09050c5fed",
+            "reference": "7d77e3ec46d8504a00dcf96c12a87d09050c5fed",
+            "shasum": ""
+        },
+        "time": "2017-03-09T21:36:10+00:00",
+        "type": "quicksilver-script",
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "Push commits made via the Pantheon dashboard back to original GitHub repository."
+    },
+    {
         "name": "drupal/search_api_algolia",
         "version": "dev-1.x",
         "version_normalized": "dev-1.x",
@@ -7592,8 +7592,9 @@
                 }
             },
             "patches_applied": {
-                "Add search fields and facets": "https://www.drupal.org/files/issues/search_api_algolia-map_index-2898673-2.patch",
-                "Map search_api index to Algolia index": "patches/contrib/search_api_algolia/search_api_algolia-list_indexes.patch"
+                "Map search_api index to algolia index": "patches/contrib/search_api_algolia/search_api_algolia-map_index-2898673-2.patch",
+                "Add search fields and facets": "patches/contrib/search_api_algolia/search_api_algolia-list_indexes.patch",
+                "Fix fatal error with Algolia exception": "https://www.drupal.org/files/issues/fatal_error_thrown_when-2883037-2.patch"
             }
         },
         "installation-source": "source",

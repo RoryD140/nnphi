@@ -1,0 +1,5 @@
+nnphi_training.config:
+  title: 'Training search configuration'
+  description: 'Configure the training search page'
+  route_name: nnphi_training.search.config
+  parent: system.admin_config_search
