@@ -1,0 +1,33 @@
+section.training-text {
+  @extend .container;
+  padding-top: $padding-md;
+}
+
+.training-text-row {
+  @extend .row;
+}
+
+.training-text-row > div {
+  @extend .col-lg-6;
+}
+
+.training-text-overview > div:first-of-type {
+  margin-bottom: $padding-sm;
+}
+
+.paragraph--type--instructor {
+  display: flex;
+  flex-wrap: wrap;
+  // Role styles
+  > div:first-child {
+    text-transform: uppercase;
+    font-weight: $font-weight-bold;
+    width: 45%;
+    padding-right: 5%;
+    color: $gray-text;
+    @include media-breakpoint-down(sm) {
+      width: 100%;
+      padding-right: 0;
+    }
+  }
+}

@@ -2,3 +2,93 @@
 //
 // Copy variables from `_variables.scss` to this file to override default values
 // without modifying source files.
+
+
+// Colors
+//
+// Grayscale and brand colors for use across Bootstrap.
+$green: #85bf42;
+$blue: #009ed0;
+$blue-dark: #0e7aae;
+$gray-text: #959595;
+$gray-light: #e4e4e4;
+
+$brand-primary: $green;
+
+// Fonts
+//
+// Font, line-height, and color for body text, headings, and more.
+$font-family-lato: 'Lato', sans-serif;
+$font-family-work-sans: 'Work Sans', sans-serif;
+
+$font-family-sans-serif: $font-family-lato;
+
+// No, this isn't serif. Just making sure bootstrap doesn't pull a non-brand font
+$font-family-serif: $font-family-work-sans;
+$font-family-base: $font-family-lato;
+
+$headings-font-family: $font-family-work-sans;
+
+$line-height-base: 30/16;
+
+$font-size-lg: 30/16 * 1rem; // ~ 30px
+$font-size-md: 26/16 * 1rem; // ~ 26px
+$font-size-18: 18/16 * 1rem; // ~18px
+$font-size-sm: .875rem !default;
+$font-size-xs: .75rem !default;
+
+$font-weight-light: 200;
+$font-weight-bold: 500;
+
+
+$font-size-h1: 40/16 * 1rem; // ~40px
+$font-size-h2: 24/16 * 1rem; // ~24px
+$font-size-h3: 1.75rem !default;
+$font-size-h4: 1.5rem !default;
+$font-size-h5: 1.25rem !default;
+$font-size-h6: 1rem !default;
+
+
+// Links
+//
+// Style anchor elements.
+
+$link-color: $green;
+
+
+// Buttons
+//
+// For each of Bootstrap's buttons, define text, background and border color.
+$btn-primary-color: $white;
+$btn-primary-bg: $green;
+$btn-primary-border: $green;
+
+$btn-padding-x: 30px;
+$btn-padding-y: 20px;
+$btn-padding-x-sm: 20px;
+$btn-padding-y-sm: 10px;
+
+$btn-font-size: 18px;
+$btn-font-weight: 500;
+$btn-line-height: 1;
+
+// Dumb hack to make buttons have semi-circle radius
+$btn-border-radius: 100vw;
+$btn-border-radius-lg: $btn-border-radius;
+$btn-border-radius-sm: $btn-border-radius;
+
+// Likewise for inputs
+$input-border-radius: 100vw;
+$input-border-radius-lg: $input-border-radius;
+$input-border-radius-sm: $input-border-radius;
+
+
+// Various paddings
+$padding-sm: $grid-gutter-width-base/2;
+$padding-md: $grid-gutter-width-base;
+$padding-lg: 70px; // Used for heros and such
+
+
+// Arrow BG
+$left-arrow-bg: url('svg/arrow-left.svg');
+$right-arrow-bg: url('svg/arrow-right.svg');

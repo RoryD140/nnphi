@@ -1,0 +1,38 @@
+.site-footer {
+  padding-top: $padding-md;
+  padding-bottom: $padding-lg;
+}
+
+.site-footer-container {
+  @extend .container;
+}
+
+.footer-left {
+  @extend .col-md-4;
+}
+.footer-mid-left,
+.footer-mid-right {
+  @extend .col-md-3;
+}
+
+.footer-right {
+  @extend .col-md-2;
+}
+
+.site-footer ul {
+  @extend .list-unstyled;
+  margin: 0;
+  a {
+    color: #000;
+    font-weight: $font-weight-bold;
+  }
+}
+
+.site-footer h2 {
+  text-transform: uppercase;
+  color: $gray-text;
+  font-size: $font-size-18;
+  @include media-breakpoint-down(md) {
+    margin-top: $padding-md; // Gives padding between footer sections
+  }
+}

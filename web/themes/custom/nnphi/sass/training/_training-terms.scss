@@ -1,0 +1,23 @@
+section.training-terms {
+  @extend .container;
+  padding-bottom: $padding-md;
+}
+
+.training-terms-row {
+  @extend .row;
+  font-weight: $font-weight-light;
+}
+
+.training-terms-row > div {
+  @extend .col-md-4;
+  @include media-breakpoint-down(sm) {
+    margin-bottom: $padding-sm;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.training-terms h2.training-subtitle {
+  font-size: $font-size-base;
+}

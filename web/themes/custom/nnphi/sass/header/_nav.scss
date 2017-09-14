@@ -1,0 +1,8 @@
+.main-nav {
+  display: none; // hidden and shown through JS
+  &.main-nav-open {
+    display: flex;
+    position: absolute; // dev
+    top: 100%; // dev
+  }
+}

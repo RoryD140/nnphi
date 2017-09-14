@@ -5,3 +5,7 @@ base:
       style.css: {}
   js:
     scripts.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings

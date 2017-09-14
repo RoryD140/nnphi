@@ -1,0 +1,44 @@
+.training-details {
+  border-top: solid 2px $gray-light;
+  border-bottom: solid 2px $gray-light;
+  font-weight: $font-weight-light;
+}
+
+.training-details-container {
+  @extend .container;
+}
+
+.training-details-row {
+  @extend .row;
+}
+
+.training-details-row > div {
+  @extend .col-lg-2;
+  @extend .col-md-3;
+  @include media-breakpoint-down(md) {
+    margin-bottom: $grid-gutter-width-base;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.training-details h2 {
+  font-family: $font-family-lato;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-18;
+}
+
+.training-details-row > div.training-details-dates {
+  // Dates get a little extra room
+  @extend .col-lg-3;
+  @extend .col-md-12;
+  font-weight: $font-weight-light;
+  span {
+    font-weight: $font-weight-bold;
+  }
+}
+
+.training-details .module-length > span {
+  font-weight: $font-weight-bold;
+}

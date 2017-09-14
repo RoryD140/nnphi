@@ -1,0 +1,31 @@
+// Select all the user account menus. Since there are multiple, one has the block ID appended to the ID
+nav[id^=block-useraccountmenu] ul {
+  @extend .list-unstyled;
+  margin: 0;
+  li {
+    display: inline-block;
+    text-transform: uppercase;
+    a {
+      color: $blue;
+    }
+    a.register-link {
+      color: $green;
+      @extend .btn;
+      @extend .btn-outline-primary;
+      margin-left: $padding-md;
+    }
+  }
+}
+
+.site-footer nav[id^=block-useraccountmenu] ul {
+  li {
+    a {
+      color: #000;
+    }
+    a.register-link {
+      @extend .btn-sm;
+      // Will need to be abstracted if used elsewhere
+      @include button-variant(#000, transparent, #000);
+    }
+  }
+}

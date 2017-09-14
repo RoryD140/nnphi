@@ -13,7 +13,8 @@
   vertical-align: middle;
   user-select: none;
   border: $input-btn-border-width solid transparent;
-  @include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $btn-border-radius);
+  text-transform: uppercase;
+  @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-border-radius);
   @include transition($btn-transition);
 
   // Share hover and focus styles
@@ -131,6 +132,17 @@ fieldset[disabled] a.btn {
   }
 }
 
+//
+// Button Arrow (Custom)
+//
+.btn-arrow {
+  // Not using shorthand background property; it overrides inherited background color
+  background-repeat: no-repeat;
+  background-position: 90%;
+  background-size: 20px;
+  background-image: $right-arrow-bg;
+  padding-right: 100px;
+}
 
 //
 // Button Sizes
