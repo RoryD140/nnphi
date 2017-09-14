@@ -1,0 +1,7 @@
+nnphi_user.register:
+  weight: 10
+  menu_name: account
+  class: Drupal\nnphi_user\Plugin\Menu\RegisterMenuLink
+  options:
+      attributes:
+        class: register-link

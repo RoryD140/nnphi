@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains nnphi_user.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function nnphi_user_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the nnphi_user module.
+    case 'help.page.nnphi_user':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('User functionality for NNPHI') . '</p>';
+      return $output;
+
+    default:
+  }
+}

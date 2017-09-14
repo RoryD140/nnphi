@@ -1,0 +1,5 @@
+name: NNPHI User
+type: module
+description: User functionality for NNPHI
+core: 8.x
+package: NNPHI
