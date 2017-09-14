@@ -10,7 +10,7 @@ id: node.training.field_training_competencies
 field_name: field_training_competencies
 entity_type: node
 bundle: training
-label: Competencies
+label: 'Competency Terms'
 description: ''
 required: false
 translatable: false

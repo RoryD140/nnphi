@@ -25,6 +25,7 @@ dependencies:
     - field.field.node.training.field_training_url
     - node.type.training
   module:
+    - conditional_fields
     - datetime
     - link
     - paragraphs
@@ -144,7 +145,7 @@ content:
       placeholder: ''
     third_party_settings:
       conditional_fields:
-        587a55ea-1ba9-4a60-9f8e-9921a3f44599:
+        5bbd0726-3972-4a99-b18f-e43a3745b866:
           dependee: field_training_length_type
           settings:
             state: visible
@@ -208,7 +209,25 @@ content:
     weight: 15
     settings:
       placeholder: ''
-    third_party_settings: {  }
+    third_party_settings:
+      conditional_fields:
+        c0ad0be8-c00e-42f1-b024-a61e1d1e7eba:
+          dependee: field_training_length_type
+          settings:
+            state: visible
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: '2'
+            effect: show
+            effect_options: {  }
+            selector: ''
+          entity_type: node
+          bundle: training
     type: number
     region: content
   field_training_url:

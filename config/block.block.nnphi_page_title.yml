@@ -1,0 +1,20 @@
+uuid: cd5733d4-10bc-4bef-8fab-db83faf92da0
+langcode: en
+status: false
+dependencies:
+  theme:
+    - nnphi
+_core:
+  default_config_hash: 7rR9chwXvdM2H8OYMAYx9Zj3GGlPMrZp_M3ZA4thYTk
+id: nnphi_page_title
+theme: nnphi
+region: content
+weight: -7
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility: {  }

@@ -13,13 +13,13 @@ settings:
   allowed_values:
     -
       value: '0'
-      label: 'Total Time'
+      label: Self-Paced
     -
       value: '1'
       label: Modules
     -
       value: '2'
-      label: Self-Paced
+      label: 'Total Time'
   allowed_values_function: ''
 module: options
 locked: false
