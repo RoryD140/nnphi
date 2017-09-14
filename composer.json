@@ -37,7 +37,6 @@
     "jcalderonzumba/mink-phantomjs-driver": "^0.3.1",
     "drupal/drupal-extension": "^3.1",
     "drush-ops/behat-drush-endpoint": "^0.0.4",
-    "pantheon-systems/quicksilver-pushback": "~1",
     "phpunit/phpunit": "^4.8",
     "symfony/css-selector": "^2.8"
   },
@@ -104,8 +103,9 @@
     },
     "patches": {
       "drupal/search_api_algolia": {
-        "Add search fields and facets": "https://www.drupal.org/files/issues/search_api_algolia-map_index-2898673-2.patch",
-        "Map search_api index to Algolia index": "patches/contrib/search_api_algolia/search_api_algolia-list_indexes.patch"
+        "Map search_api index to algolia index": "patches/contrib/search_api_algolia/search_api_algolia-map_index-2898673-2.patch",
+        "Add search fields and facets": "patches/contrib/search_api_algolia/search_api_algolia-list_indexes.patch",
+        "Fix fatal error with Algolia exception": "https://www.drupal.org/files/issues/fatal_error_thrown_when-2883037-2.patch"
       }
     }
   },

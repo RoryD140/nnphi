@@ -18,7 +18,7 @@ dependencies:
 id: training
 name: Training
 description: ''
-read_only: false
+read_only: true
 field_settings:
   url:
     label: URI
@@ -115,7 +115,7 @@ processor_settings:
 tracker_settings:
   default: {  }
 options:
-  index_directly: true
+  index_directly: false
   cron_limit: 50
-  algolia_index_name: dev_TRAINING
-server: null
+  algolia_index_name: ''
+server: algolia

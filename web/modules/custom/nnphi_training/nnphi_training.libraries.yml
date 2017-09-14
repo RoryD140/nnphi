@@ -6,3 +6,16 @@ slider:
   dependencies:
    - core/jquery
    - core/jquery.once
+
+instant-search:
+  version: VERSION
+  css:
+    base:
+      https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.css: { type: external, minified: true }
+  js:
+    https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.js: { type: external, minified: true }
+    js/search.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings
+

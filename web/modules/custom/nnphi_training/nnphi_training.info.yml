@@ -1,5 +1,6 @@
 name: NNPHI Training
 type: module
-description: Functionality for training items
+description: NNPHI Training
 core: 8.x
-package: NNPHI
+package: Custom
+
