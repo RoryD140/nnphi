@@ -1,0 +1,32 @@
+@mixin logo($color) {
+  font-size: $font-size-18;
+  font-weight: $font-weight-light;
+  font-family: $font-family-work-sans;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  color: $color;
+  line-height: 1; // Gets the right spacing between items
+  span {
+    display: inline-block;
+  }
+  &:hover {
+    text-decoration: none;
+    color: lighten($color, 10%);
+  }
+}
+
+.site-logo {
+  @include logo(#000);
+}
+
+.site-logo-bottom {
+  font-weight: $font-weight-bold;
+  line-height: 1.1;
+}
+
+// Footer logo gets slightly different styles
+.site-footer .site-logo {
+  @include logo($gray-text);
+  margin-bottom: $padding-md;
+}

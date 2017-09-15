@@ -1,0 +1,179 @@
+section.training-related {
+  background: linear-gradient($green, $blue);
+  padding-top: $padding-lg;
+  padding-bottom: $padding-lg * 2; // Leaves room for arrows
+}
+
+
+.training-related .training-subtitle {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.training-related .training-node-teaser {
+  background: #fff;
+  padding: 30px 50px;
+  @include media-breakpoint-up(md) {
+    background: transparentize(#fff, .7);
+    height: 100%;
+  }
+}
+
+.training-node-teaser-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: $padding-md;
+  font-family: $font-family-work-sans;
+  font-size: 12px;
+  color: $gray-text;
+  text-transform: uppercase;
+  @include media-breakpoint-down(sm) {
+    flex-direction: column;
+  }
+}
+
+.training-node-teaser-top-left  {
+  display: flex;
+  flex-wrap: wrap;
+  > div {
+    padding-right: 10px;
+  }
+}
+
+.training-node-teaser-top-right {
+  display: flex;
+  flex-wrap: wrap;
+  > div {
+    padding-left: 10px;
+  }
+}
+
+.training-teaser-link-wrapper {
+  text-align: center;
+  padding-top: 15px;
+}
+
+.training-teaser-link {
+  @extend .btn;
+  @extend .btn-outline-primary;
+}
+
+
+// Slider
+// Will need to abstract if teaser is used elsewhere
+// Lot of this is just pulled from the slick slider library, modified slightly
+.slick-slide.slick-active {
+  background: #fff;
+}
+
+// Replace default arrows with SVG
+.slick-arrow {
+  font: 0/0 a;
+  background: transparent;
+  // dimensions of background arrows
+  width: 42px;
+  height: 30px;
+  background-repeat: no-repeat;
+  border: none;
+  position: absolute;
+  bottom: -70px;
+  left: 50%;
+
+  // Transforms position arrows centered with 125% gap between them
+  &.slick-next {
+    background-image: $right-arrow-bg;
+    transform: translateX(100%);
+  }
+  &.slick-prev {
+    background-image: $left-arrow-bg;
+    transform: translateX(-150%);
+  }
+  &:hover {
+    cursor: pointer;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.slick-slider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}
+.slick-list {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  margin: 0;
+  padding: 0;
+
+  &:focus {
+    outline: none;
+  }
+
+  &.dragging {
+    cursor: pointer;
+    cursor: hand;
+  }
+}
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+  transform: translate3d(0, 0, 0);
+}
+
+.slick-track {
+  position: relative;
+  left: 0;
+  top: 0;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+
+  .slick-loading & {
+    visibility: hidden;
+  }
+}
+.slick-slide {
+  float: left;
+  min-height: 1px;
+  width: 50vw;
+  padding-right: $grid-gutter-width-base;
+  padding-left: $grid-gutter-width-base;
+  display: none;
+  transition: all .3s ease-in-out; // For background transition
+  .slick-initialized & {
+    display: block;
+  }
+  .slick-loading & {
+    visibility: hidden;
+  }
+  .slick-vertical & {
+    display: block;
+    height: auto;
+    border: 1px solid transparent;
+  }
+}
+.slick-arrow.slick-hidden {
+  display: none;
+}

@@ -1,0 +1,52 @@
+// Specificity to override default section padding
+section.training-hero {
+  padding-top: $padding-lg;
+  padding-bottom: $padding-lg;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+}
+
+.training-hero-interior {
+  @extend .container;
+}
+
+.training-hero-text {
+  @extend .col-lg-8;
+  @extend .offset-lg-2;
+}
+
+.training-hero-interior h1 {
+  color: $blue;
+  margin-bottom: $padding-md;
+}
+
+.training-hero-source {
+  font-family: $font-family-work-sans;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-light;
+  color: $gray-text;
+  text-transform: uppercase;
+  margin-bottom: $padding-md;
+
+}
+
+.training-hero-subtitle {
+  font-family: $font-family-work-sans;
+  font-size: $font-size-md;
+  margin-bottom: 100px;
+  font-weight: $font-weight-light;
+  @include media-breakpoint-down(md) {
+    margin-bottom: $padding-md;
+  }
+  // Cost text
+  span {
+    font-weight: $font-weight-bold;
+  }
+}
+
+.training-hero-btn a {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-arrow;
+}

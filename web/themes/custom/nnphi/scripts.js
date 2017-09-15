@@ -1,0 +1,1 @@
+Drupal.behaviors.nnphiHeader={attach:function(context,settings){var navBtn=context.getElementById("js-menu-btn"),mainNav=context.getElementById("js-main-nav");null!==navBtn&&null!==mainNav&&navBtn.addEventListener("click",function(){navBtn.classList.toggle("menu-btn-open"),mainNav.classList.toggle("main-nav-open")})}};

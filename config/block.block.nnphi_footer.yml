@@ -1,0 +1,26 @@
+uuid: 1b288758-ead2-43b1-afd7-17dc59ddf531
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer
+  module:
+    - system
+  theme:
+    - nnphi
+_core:
+  default_config_hash: kkISXE1LT2FJEoYnqCrCpeFB-2pmGmMxMklVk7rQcfg
+id: nnphi_footer
+theme: nnphi
+region: footer_mid_left
+weight: -6
+provider: null
+plugin: 'system_menu_block:footer'
+settings:
+  id: 'system_menu_block:footer'
+  label: 'About Us'
+  provider: system
+  label_display: visible
+  level: 1
+  depth: 0
+visibility: {  }

@@ -1,0 +1,22 @@
+uuid: 6d8d4610-aee0-401d-b2b4-d48266a01bc1
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - nnphi
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: nnphi_messages
+theme: nnphi
+region: content
+weight: -3
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

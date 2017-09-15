@@ -1,7 +1,167 @@
 <?php
+
+
 /**
- * @file nnphi_training.module
+ * @file
+ * Contains nnphi_training.module.
  */
+
+use \Drupal\node\Entity\Node;
+use \Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use \IndefiniteArticle\IndefiniteArticle;
+
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ * @param array $build
+ * @param \Drupal\node\Entity\Node $node
+ * @param \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display
+ * @param $view_mode
+ */
+function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayInterface $display, $view_mode) {
+
+  if( $node->getType() !== 'training')  {
+    return;
+  }
+
+  // Adjust cost field markup to "Free" if value is 0
+  // Used on both teaser and full view modes
+  $cost_field = $node->get('field_training_cost');
+  if(!$cost_field->isEmpty()) {
+    if($cost_field->getValue()[0]['value'] === '0.00') {
+      $build['field_training_cost'][0]['#markup'] = t('Free');
+    }
+  }
+
+  if($view_mode !== 'full')  {
+    return;
+  }
+
+
+  // Attach slider library if there are values in related training field
+  if(!$node->get('field_related_trainings')->isEmpty()) {
+    $build['#attached']['library'][] = 'nnphi_training/slider';
+  }
+
+
+  $length_type = $node->get('field_training_length_type')->getValue();
+
+  if(empty($length_type) || $length_type[0]['value'] === '2') {
+    // if length type is empty or is total time, just display total time field
+  } elseif($length_type[0]['value'] === '0') {
+    // if length type is self paced, display self paced text
+    $build['field_training_total_time'][0]['#markup'] = t('Self Paced');
+  } elseif($length_type[0]['value'] === '1') {
+    // If length type is module, set attribute to use in template to display
+    // the module times from the module time field
+    $build['#attributes'] = array('display_module_times' => TRUE);
+  }
+
+
+  // Build the subtitle string. Only do this if we have proficiency or CEUS
+  if (
+    $display->getComponent('subtitle') &&
+    (!$node->get('field_training_ceus_offered')->isEmpty() || !$node->get('field_training_proficiency')->isEmpty())
+  ) {
+
+    // Use the modified cost string
+    if(!$node->get('field_training_cost')->isEmpty()) {
+      $cost = $build['field_training_cost'][0]['#markup'];
+    }
+
+    $proficiency = '';
+    if(!$node->get('field_training_proficiency')->isEmpty()) {
+      $proficiency = strtolower($build['field_training_proficiency'][0]['#plain_text']);
+
+      // Add appropriate a/an
+      $proficiency = IndefiniteArticle::A($proficiency);
+    }
+
+
+    // Build comma-separated list of CEUS with "and"
+
+    $ceu = '';
+    $offering = '';
+    $is = '';
+
+    if(!$node->get('field_training_ceus_offered')->isEmpty()) {
+      $ceus = $node->get('field_training_ceus_offered')->referencedEntities();
+
+      // Just use the single label if we only have one
+      if (count($ceus) === 1) {
+        $ceu = $ceus[0]->label();
+      }
+      else {
+        // Get the CEU labels
+        $ceu_labels = array_map(function ($item) {
+          return $item->label();
+        }, $ceus);
+
+
+        $last_element = array_pop($ceu_labels);
+
+        // Add "and" to last string
+        $last_string = t("and @last",
+          [
+            '@last' => $last_element,
+          ]
+        );
+
+        array_push($ceu_labels, $last_string);
+
+        // If there are just two items, no comma
+        $glue = (count($ceus) === 2) ? ' ' : ', ';
+        $ceu = implode($glue, $ceu_labels);
+      }
+
+
+      // Only add the "offering" string if we have CEUs. Change conjugation if
+      // there's not proficiency
+      if(isset($proficiencey)) {
+        $offering = t(' offering');
+        $is = t(' is');
+      } else {
+        $offering = t(' offers');
+      }
+
+    }
+
+    // Create translated string
+    $text = t("This@is @proficiency course@offering @ceu",
+      [
+        '@proficiency' => $proficiency,
+        '@ceu' => $ceu,
+        '@offering' => $offering,
+        '@is' => $is
+      ]
+    );
+
+    // Add variables to template
+    $build['subtitle'] = [
+      '#theme' => 'training_subtitle',
+      '#text' => $text,
+      '#cost' => $cost,
+    ];
+  }
+}
+
+
+
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function nnphi_training_entity_extra_field_info() {
+  $extra = [];
+  $extra['node']['training']['display']['subtitle'] = [
+    'label' => t('Subtitle'),
+    'description' => t('Sentence describing type of course, what it offers, and cost'),
+    'weight' => 1,
+    'visible' => TRUE,
+  ];
+
+  return $extra;
+}
+
 
 /**
  * Implements hook_theme().
@@ -11,6 +171,14 @@ function nnphi_training_theme($existing, $type, $theme, $path) {
     'nnphi_training_search_page' => [
       'variables' => [],
       'template' => 'search-page',
+    ],
+
+    'training_subtitle' => [
+      'variables' => [
+        'text' => '',
+        'cost' => ''
+      ],
+      'template' => 'training-subtitle',
     ],
   ];
 }

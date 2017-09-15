@@ -1,0 +1,13 @@
+// Temp sizes
+%section-padding {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.training-node section {
+  @extend %section-padding;
+}
+
+.training-subtitle {
+  text-transform: uppercase;
+}

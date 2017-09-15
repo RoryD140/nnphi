@@ -1,4 +1,24 @@
 @import "bootstrap/bootstrap"; // individual bootstrap components are imported in this file
 @import "base";
-@import "defaults"; // remove this if you want
 @import "components/tabfix";
+
+
+// Header
+@import "header/header";
+@import "header/nav";
+@import "header/menu-btn";
+
+// Footer
+@import "footer/footer";
+
+// Components
+@import "components/user-menu";
+@import "components/logo";
+
+// Training
+@import "training/training";
+@import "training/training-hero";
+@import "training/training-details";
+@import "training/training-text";
+@import "training/training-terms";
+@import "training/training-related";

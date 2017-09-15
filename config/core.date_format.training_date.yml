@@ -1,0 +1,8 @@
+uuid: 75700e05-939f-481b-975f-2e0cfec3046a
+langcode: en
+status: true
+dependencies: {  }
+id: training_date
+label: 'Training Date'
+locked: false
+pattern: m-d-y

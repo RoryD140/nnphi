@@ -11,7 +11,7 @@ field_name: field_training_instructor
 entity_type: paragraph
 bundle: instructor
 label: 'Training Instructor'
-description: ''
+description: 'Adding additional instructors to this item will list them under the selected role.'
 required: false
 translatable: false
 default_value: {  }

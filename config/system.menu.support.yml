@@ -1,0 +1,8 @@
+uuid: f6d34b92-6e4a-46c7-af82-297edc3a3a38
+langcode: en
+status: true
+dependencies: {  }
+id: support
+label: Support
+description: 'Menu for right footer section'
+locked: false

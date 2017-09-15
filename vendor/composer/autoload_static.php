@@ -100,6 +100,7 @@ class ComposerStaticInit1fbc8e18dabf8b3b55590abd199b9e85
         'I' => 
         array (
             'Interop\\Container\\' => 18,
+            'IndefiniteArticle\\' => 18,
         ),
         'G' => 
         array (
@@ -334,6 +335,10 @@ class ComposerStaticInit1fbc8e18dabf8b3b55590abd199b9e85
         'Interop\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container',
+        ),
+        'IndefiniteArticle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zachflower/indefinite-article/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (
@@ -3797,6 +3802,7 @@ class ComposerStaticInit1fbc8e18dabf8b3b55590abd199b9e85
         'GuzzleHttp\\RetryMiddleware' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/RetryMiddleware.php',
         'GuzzleHttp\\TransferStats' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/TransferStats.php',
         'GuzzleHttp\\UriTemplate' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/UriTemplate.php',
+        'IndefiniteArticle\\IndefiniteArticle' => __DIR__ . '/..' . '/zachflower/indefinite-article/src/IndefiniteArticle.php',
         'Interop\\Container\\ContainerInterface' => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container/ContainerInterface.php',
         'Interop\\Container\\Exception\\ContainerException' => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container/Exception/ContainerException.php',
         'Interop\\Container\\Exception\\NotFoundException' => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container/Exception/NotFoundException.php',

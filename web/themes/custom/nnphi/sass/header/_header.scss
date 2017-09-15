@@ -1,0 +1,26 @@
+.site-header-container {
+  @extend .container;
+  padding-top: $padding-sm;
+  padding-bottom: $padding-sm;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  > div {
+    margin-left: $padding-md;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
+
+//temporary styling
+.training-search-form {
+  flex: 1 1 auto;
+  form {
+    width: 100%;
+    input {
+      width: 100%;
+      @extend .form-control;
+    }
+  }
+}

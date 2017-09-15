@@ -57,6 +57,7 @@ module.exports = function(grunt) {
             // Add script paths here in the order you want them compiled
             // You have to manually request bootstrap scripts you want to use
             'js/src/base.js',
+            'js/src/header.js',
             'js/src/scripts.js'
           ],
           dest: 'dist/scripts.js'
