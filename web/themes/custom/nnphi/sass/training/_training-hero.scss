@@ -2,8 +2,9 @@
 section.training-hero {
   padding-top: $padding-lg;
   padding-bottom: $padding-lg;
-  background-size: cover; // This may need to be adjusted depending on how we want to use background images
+  background-size: 100% auto;
   background-repeat: no-repeat;
+  background-position: 0 100%;
 }
 
 .training-hero-interior {
