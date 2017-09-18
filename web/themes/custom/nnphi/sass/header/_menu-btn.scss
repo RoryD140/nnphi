@@ -3,13 +3,12 @@
   transform: rotate(0deg);
   transition: .25s ease-in-out;
   cursor: pointer;
-  padding: 20px;
 }
 
 .menu-btn-interior {
   position: relative;
-  height: 20px;
-  width: 20px;
+  height: 33px; // Dimensions per designs
+  width: 41px;
 }
 
 .menu-btn-interior span {
@@ -17,39 +16,60 @@
   position: absolute;
   height: 3px;
   width: 100%;
-  background: $gray;
-  border-radius: $border-radius;
+  background: #000;
   opacity: 1;
   left: 0;
   transform: rotate(0deg);
   transition: .25s ease-in-out;
 }
 
+// Special styles for close btn
+nav#block-nnphi-main-menu .menu-btn {
+  z-index: 100; // position above menu link if it overlaps
+  position: absolute;
+  top: $padding-sm;
+  right: $padding-sm;
+}
+
+nav#block-nnphi-main-menu .menu-btn-interior span {
+  background: transparent;
+}
+
+nav#block-nnphi-main-menu .menu-btn-open .menu-btn-interior span {
+  background: #fff;
+}
+
+
+// Menu button animation effects
 .menu-btn-interior span:nth-child(1) {
   top: 0;
 }
 
-.menu-btn-interior span:nth-child(2) {
+.menu-btn-interior span:nth-child(2),
+.menu-btn-interior span:nth-child(3) {
   top: 50%;
-  transform: translateY(-50%);
 }
 
-.menu-btn-interior span:nth-child(3) {
-  transform: translateY(-100%);
+.menu-btn-interior span:nth-child(4) {
   top: 100%;
 }
 
-.menu-btn-open .menu-btn-interior span:nth-child(1) {
+.menu-btn-open span:nth-child(1) {
   top: 50%;
-  transform: rotate(135deg);
+  width: 0;
+  left: 50%;
 }
 
-.menu-btn-open .menu-btn-interior span:nth-child(2) {
-  opacity: 0;
-  left: -100px;
+.menu-btn-open span:nth-child(2) {
+  transform: rotate(45deg);
 }
 
-.menu-btn-open .menu-btn-interior span:nth-child(3) {
+.menu-btn-open span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+.menu-btn-open span:nth-child(4) {
   top: 50%;
-  transform: rotate(-135deg);
+  width: 0;
+  left: 50%;
 }
