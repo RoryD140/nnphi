@@ -99,9 +99,13 @@
             <div>{{ 'Created on'|t }} <span>{{ node.getCreatedTime()|format_date('training_date') }}</span></div>
             <div>{{ 'Last Revised on'|t }} <span>{{ node.getRevisionCreationTime()|format_date('training_date') }}</span></div>
           </div>
-          {{ content.field_training_state }}
-          {{ content.field_training_cost }}
+          {% if content.field_training_state|render %}
+            <div class="training-details-state">
+             {{ content.field_training_state }}
+            </div>
+          {% endif %}
           {{ content.field_training_ceus_offered }}
+          {{ content.field_training_cost }}
 
           {# from nnphi_training.module #}
           {% if attributes.display_module_times %}
@@ -122,7 +126,7 @@
             {{ content.field_training_description }}
           </div>
         {% endif %}
-        <div>
+        <div class="training-text-objectives">
           {{ content.field_training_objectives }}
         </div>
       </div>
@@ -131,8 +135,16 @@
 
     <section class="training-terms">
       <div class="training-terms-row">
-        {{ content.field_training_competencies }}
-        {{ content.field_training_occupations }}
+        {% if content.field_training_competencies %}
+          <div class="training-competencies">
+            {{ content.field_training_competencies }}
+          </div>
+        {% endif %}
+        {% if content.field_training_occupations %}
+          <div class="training-occupations">
+            {{ content.field_training_occupations }}
+          </div>
+        {% endif %}
         {{ content.field_training_job_tasks }}
       </div>
     </section>
