@@ -33,6 +33,7 @@ class ComposerStaticInit1fbc8e18dabf8b3b55590abd199b9e85
         ),
         'Z' => 
         array (
+            'ZxcvbnPhp\\' => 10,
             'Zumba\\Mink\\Driver\\' => 18,
             'Zumba\\GastonJS\\' => 15,
             'Zend\\Stdlib\\' => 12,
@@ -151,6 +152,10 @@ class ComposerStaticInit1fbc8e18dabf8b3b55590abd199b9e85
         'cweagans\\Composer\\' => 
         array (
             0 => __DIR__ . '/..' . '/cweagans/composer-patches/src',
+        ),
+        'ZxcvbnPhp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/bjeavons/zxcvbn-php/src',
         ),
         'Zumba\\Mink\\Driver\\' => 
         array (
@@ -6297,6 +6302,22 @@ class ComposerStaticInit1fbc8e18dabf8b3b55590abd199b9e85
         'Zumba\\Mink\\Driver\\PhantomJSDriver' => __DIR__ . '/..' . '/jcalderonzumba/mink-phantomjs-driver/src/PhantomJSDriver.php',
         'Zumba\\Mink\\Driver\\SessionTrait' => __DIR__ . '/..' . '/jcalderonzumba/mink-phantomjs-driver/src/SessionTrait.php',
         'Zumba\\Mink\\Driver\\WindowTrait' => __DIR__ . '/..' . '/jcalderonzumba/mink-phantomjs-driver/src/WindowTrait.php',
+        'ZxcvbnPhp\\Matcher' => __DIR__ . '/..' . '/bjeavons/zxcvbn-php/src/Matcher.php',
+        'ZxcvbnPhp\\Matchers\\Bruteforce' => __DIR__ . '/..' . '/bjeavons/zxcvbn-php/src/Matchers/Bruteforce.php',
+        'ZxcvbnPhp\\Matchers\\DateMatch' => __DIR__ . '/..' . '/bjeavons/zxcvbn-php/src/Matchers/DateMatch.php',
+        'ZxcvbnPhp\\Matchers\\DictionaryMatch' => __DIR__ . '/..' . '/bjeavons/zxcvbn-php/src/Matchers/DictionaryMatch.php',
+        'ZxcvbnPhp\\Matchers\\DigitMatch' => __DIR__ . '/..' . '/bjeavons/zxcvbn-php/src/Matchers/DigitMatch.php',
+        'ZxcvbnPhp\\Matchers\\L33tMatch' => __DIR__ . '/..' . '/bjeavons/zxcvbn-php/src/Matchers/L33tMatch.php',
+        'ZxcvbnPhp\\Matchers\\Match' => __DIR__ . '/..' . '/bjeavons/zxcvbn-php/src/Matchers/Match.php',
+        'ZxcvbnPhp\\Matchers\\MatchInterface' => __DIR__ . '/..' . '/bjeavons/zxcvbn-php/src/Matchers/MatchInterface.php',
+        'ZxcvbnPhp\\Matchers\\RepeatMatch' => __DIR__ . '/..' . '/bjeavons/zxcvbn-php/src/Matchers/RepeatMatch.php',
+        'ZxcvbnPhp\\Matchers\\SequenceMatch' => __DIR__ . '/..' . '/bjeavons/zxcvbn-php/src/Matchers/SequenceMatch.php',
+        'ZxcvbnPhp\\Matchers\\SpatialMatch' => __DIR__ . '/..' . '/bjeavons/zxcvbn-php/src/Matchers/SpatialMatch.php',
+        'ZxcvbnPhp\\Matchers\\YearMatch' => __DIR__ . '/..' . '/bjeavons/zxcvbn-php/src/Matchers/YearMatch.php',
+        'ZxcvbnPhp\\Scorer' => __DIR__ . '/..' . '/bjeavons/zxcvbn-php/src/Scorer.php',
+        'ZxcvbnPhp\\ScorerInterface' => __DIR__ . '/..' . '/bjeavons/zxcvbn-php/src/ScorerInterface.php',
+        'ZxcvbnPhp\\Searcher' => __DIR__ . '/..' . '/bjeavons/zxcvbn-php/src/Searcher.php',
+        'ZxcvbnPhp\\Zxcvbn' => __DIR__ . '/..' . '/bjeavons/zxcvbn-php/src/Zxcvbn.php',
         'cweagans\\Composer\\PatchEvent' => __DIR__ . '/..' . '/cweagans/composer-patches/src/PatchEvent.php',
         'cweagans\\Composer\\PatchEvents' => __DIR__ . '/..' . '/cweagans/composer-patches/src/PatchEvents.php',
         'cweagans\\Composer\\Patches' => __DIR__ . '/..' . '/cweagans/composer-patches/src/Patches.php',

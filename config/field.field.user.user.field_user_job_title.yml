@@ -1,0 +1,29 @@
+uuid: 530abec2-e65e-41c5-848f-b638594bf800
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_user_job_title
+    - taxonomy.vocabulary.job_titles
+  module:
+    - user
+id: user.user.field_user_job_title
+field_name: field_user_job_title
+entity_type: user
+bundle: user
+label: 'Job Title'
+description: 'Start typing to see existing job titles. If your job title doesn''t already exist, enter it manually.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      job_titles: job_titles
+    sort:
+      field: _none
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "36c041dd693562c4fc3f1aa4e133002a",
+    "content-hash": "18c1b660069dc024ff50bbae4917d0d8",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -163,6 +163,51 @@
                 "stack"
             ],
             "time": "2016-08-01T12:05:04+00:00"
+        },
+        {
+            "name": "bjeavons/zxcvbn-php",
+            "version": "0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bjeavons/zxcvbn-php.git",
+                "reference": "331a88932d1a399c989967d3399a4a40eb182fd5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bjeavons/zxcvbn-php/zipball/331a88932d1a399c989967d3399a4a40eb182fd5",
+                "reference": "331a88932d1a399c989967d3399a4a40eb182fd5",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3 || ^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*",
+                "satooshi/php-coveralls": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ZxcvbnPhp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "See contributors",
+                    "homepage": "https://github.com/bjeavons/zxcvbn-php"
+                }
+            ],
+            "description": "Realistic password strength estimation PHP library based on Zxcvbn JS",
+            "homepage": "https://github.com/bjeavons/zxcvbn-php",
+            "keywords": [
+                "password",
+                "zxcvbn"
+            ],
+            "time": "2017-01-06T15:43:33+00:00"
         },
         {
             "name": "commerceguys/addressing",
@@ -1902,6 +1947,154 @@
             "time": "2017-05-03T17:12:42+00:00"
         },
         {
+            "name": "drupal/ctools",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/ctools",
+                "reference": "8.x-3.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/ctools-8.x-3.0.zip",
+                "reference": "8.x-3.0",
+                "shasum": "302e869ecd1e59fe55663673999fee2ccac5daa8"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-3.0",
+                    "datestamp": "1493401742",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Kris Vanderwater (EclipseGc)",
+                    "homepage": "https://www.drupal.org/u/eclipsegc",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Jakob Perry (japerry)",
+                    "homepage": "https://www.drupal.org/u/japerry",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Tim Plunkett (tim.plunkett)",
+                    "homepage": "https://www.drupal.org/u/timplunkett",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "James Gilliland (neclimdul)",
+                    "homepage": "https://www.drupal.org/u/neclimdul",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Daniel Wehner (dawehner)",
+                    "homepage": "https://www.drupal.org/u/dawehner",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "merlinofchaos",
+                    "homepage": "https://www.drupal.org/user/26979"
+                },
+                {
+                    "name": "neclimdul",
+                    "homepage": "https://www.drupal.org/user/48673"
+                },
+                {
+                    "name": "sdboyer",
+                    "homepage": "https://www.drupal.org/user/146719"
+                },
+                {
+                    "name": "sun",
+                    "homepage": "https://www.drupal.org/user/54136"
+                },
+                {
+                    "name": "tim.plunkett",
+                    "homepage": "https://www.drupal.org/user/241634"
+                }
+            ],
+            "description": "Provides a number of utility and helper APIs for Drupal developers and site builders.",
+            "homepage": "https://www.drupal.org/project/ctools",
+            "support": {
+                "source": "http://cgit.drupalcode.org/ctools",
+                "issues": "https://www.drupal.org/project/issues/ctools"
+            }
+        },
+        {
+            "name": "drupal/email_registration",
+            "version": "1.0.0-rc5",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/email_registration",
+                "reference": "8.x-1.0-rc5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/email_registration-8.x-1.0-rc5.zip",
+                "reference": "8.x-1.0-rc5",
+                "shasum": "8e068ad37077bb3937150155ce13617d98b9b6b1"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-rc5",
+                    "datestamp": "1491318182",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Herberte",
+                    "homepage": "https://www.drupal.org/user/1171"
+                },
+                {
+                    "name": "andypost",
+                    "homepage": "https://www.drupal.org/user/118908"
+                },
+                {
+                    "name": "greggles",
+                    "homepage": "https://www.drupal.org/user/36762"
+                },
+                {
+                    "name": "moshe weitzman",
+                    "homepage": "https://www.drupal.org/user/23"
+                }
+            ],
+            "description": "Allows users to register with an e-mail address as their username.",
+            "homepage": "https://www.drupal.org/project/email_registration",
+            "support": {
+                "source": "http://cgit.drupalcode.org/email_registration"
+            }
+        },
+        {
             "name": "drupal/entity_reference_revisions",
             "version": "1.3.0",
             "source": {
@@ -2032,6 +2225,135 @@
             }
         },
         {
+            "name": "drupal/password_policy",
+            "version": "3.0.0-alpha3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/password_policy",
+                "reference": "8.x-3.0-alpha3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/password_policy-8.x-3.0-alpha3.zip",
+                "reference": "8.x-3.0-alpha3",
+                "shasum": "efe3ac404276ab2274b29393e55f6a4b7fb58681"
+            },
+            "require": {
+                "drupal/core": "*",
+                "drupal/ctools": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-3.0-alpha3",
+                    "datestamp": "1488135183",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "AohRveTPV",
+                    "homepage": "https://www.drupal.org/user/2760115"
+                },
+                {
+                    "name": "deekayen",
+                    "homepage": "https://www.drupal.org/user/972"
+                },
+                {
+                    "name": "miglius",
+                    "homepage": "https://www.drupal.org/user/18741"
+                },
+                {
+                    "name": "nerdstein",
+                    "homepage": "https://www.drupal.org/user/1557710"
+                },
+                {
+                    "name": "shrop",
+                    "homepage": "https://www.drupal.org/user/14767"
+                }
+            ],
+            "description": "Sets up constraints and expiration of passwords.",
+            "homepage": "https://www.drupal.org/project/password_policy",
+            "support": {
+                "source": "http://cgit.drupalcode.org/password_policy"
+            }
+        },
+        {
+            "name": "drupal/password_strength",
+            "version": "2.0.0-alpha2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/password_strength",
+                "reference": "8.x-2.0-alpha2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/password_strength-8.x-2.0-alpha2.zip",
+                "reference": "8.x-2.0-alpha2",
+                "shasum": "9f4b309731c396306880b1085a87841ca8323ac4"
+            },
+            "require": {
+                "bjeavons/zxcvbn-php": "*",
+                "drupal/core": "~8.0",
+                "drupal/password_policy": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.0-alpha2",
+                    "datestamp": "1490306283",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "coltrane",
+                    "homepage": "https://www.drupal.org/user/91990"
+                },
+                {
+                    "name": "greggles",
+                    "homepage": "https://www.drupal.org/user/36762"
+                },
+                {
+                    "name": "jrbeeman",
+                    "homepage": "https://www.drupal.org/user/16734"
+                },
+                {
+                    "name": "nerdstein",
+                    "homepage": "https://www.drupal.org/user/1557710"
+                },
+                {
+                    "name": "scor",
+                    "homepage": "https://www.drupal.org/user/52142"
+                }
+            ],
+            "description": "Integrates the Password Strength into Drupal's Password Policy module.",
+            "homepage": "https://www.drupal.org/project/password_strength",
+            "support": {
+                "source": "http://cgit.drupalcode.org/password_strength"
+            }
+        },
+        {
             "name": "drupal/search_api",
             "version": "1.4.0",
             "source": {
@@ -2146,8 +2468,7 @@
             "support": {
                 "source": "http://git.drupal.org/project/search_api_algolia.git",
                 "issues": "https://www.drupal.org/project/issues/search_api_algolia"
-            },
-            "time": "2017-05-04 21:26:46"
+            }
         },
         {
             "name": "drupal/simple_block",
@@ -5263,6 +5584,45 @@
             "time": "2017-03-13T16:52:55+00:00"
         },
         {
+            "name": "zachflower/indefinite-article",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zachflower/php-indefinite-article.git",
+                "reference": "d979a43b53cb06318d4f193aaba8bad03d06a72e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zachflower/php-indefinite-article/zipball/d979a43b53cb06318d4f193aaba8bad03d06a72e",
+                "reference": "d979a43b53cb06318d4f193aaba8bad03d06a72e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">= 5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "IndefiniteArticle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD"
+            ],
+            "authors": [
+                {
+                    "name": "Zachary Flower",
+                    "email": "zach@zacharyflower.com"
+                }
+            ],
+            "description": "Library for programmatically determining the appropriate indefinite article to use (a/an)",
+            "time": "2016-09-01T18:15:28+00:00"
+        },
+        {
             "name": "zendframework/zend-diactoros",
             "version": "1.3.10",
             "source": {
@@ -7379,6 +7739,9 @@
     "minimum-stability": "alpha",
     "stability-flags": {
         "drupal/conditional_fields": 15,
+        "drupal/email_registration": 5,
+        "drupal/password_policy": 15,
+        "drupal/password_strength": 15,
         "drupal/search_api_algolia": 20,
         "drupal/simple_block": 10
     },
