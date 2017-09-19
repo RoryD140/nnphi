@@ -22,12 +22,45 @@ section.training-text {
   > div:first-child {
     text-transform: uppercase;
     font-weight: $font-weight-bold;
-    width: 45%;
+    width: 30%;
     padding-right: 5%;
     color: $gray-text;
     @include media-breakpoint-down(sm) {
       width: 100%;
       padding-right: 0;
     }
+  }
+}
+
+
+// Green checkmarks for overview text
+.training-text-overview ul li {
+  list-style-type: none;
+  position: relative;
+  &:before {
+    color: $green-dark;
+    /* unicode for bullet */
+    content: "\2022";
+    font-size: 1em;
+    padding-right: 1.1225em;
+    position: absolute;
+    top: 0;
+    left: -20px;
+  }
+}
+
+// Checkmark bullets for objectives text
+.training-text-objectives ul li {
+  list-style-type: none;
+  position: relative;
+  padding-bottom: $padding-md;
+  &:before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: -32px;// Magic numbers to get icon alignment to look right
+    top: 7px;
+    background-image: $checkmark-bg;
   }
 }

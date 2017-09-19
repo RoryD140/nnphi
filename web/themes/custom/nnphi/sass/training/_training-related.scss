@@ -4,7 +4,6 @@ section.training-related {
   padding-bottom: $padding-lg * 2; // Leaves room for arrows
 }
 
-
 .training-related .training-subtitle {
   color: #fff;
   text-align: center;
@@ -56,6 +55,7 @@ section.training-related {
 
 .training-teaser-link {
   @extend .btn;
+  @extend .btn-md;
   @extend .btn-outline-primary;
 }
 

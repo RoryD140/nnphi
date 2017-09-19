@@ -11,7 +11,7 @@ id: node.training.field_training_state
 field_name: field_training_state
 entity_type: node
 bundle: training
-label: 'Training State'
+label: 'Related Location'
 description: ''
 required: false
 translatable: false

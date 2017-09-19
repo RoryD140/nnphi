@@ -18,7 +18,7 @@ section.training-hero {
 
 .training-hero-interior h1 {
   color: $blue;
-  margin-bottom: $padding-md;
+  margin-bottom: 25px; // combines with line-heights to get correct spacing
 }
 
 .training-hero-source {
@@ -28,7 +28,7 @@ section.training-hero {
   color: $gray-text;
   text-transform: uppercase;
   margin-bottom: $padding-md;
-
+  line-height: 1.1; // Prevents unwanted spacing
 }
 
 .training-hero-subtitle {
@@ -36,12 +36,14 @@ section.training-hero {
   font-size: $font-size-md;
   margin-bottom: 100px;
   font-weight: $font-weight-light;
+  line-height: 1.1; // Prevents unwanted spacing
   @include media-breakpoint-down(md) {
     margin-bottom: $padding-md;
   }
   // Cost text
   span {
     font-weight: $font-weight-bold;
+    text-transform: uppercase;
   }
 }
 

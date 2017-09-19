@@ -43,6 +43,11 @@ function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayIn
     $build['#attached']['library'][] = 'nnphi_training/slider';
   }
 
+  // Set target to blank on training link
+  if(isset($build['field_training_url'])) {
+    $build['field_training_url'][0]['#attributes']['target'] = '_blank';
+  }
+
 
   $length_type = $node->get('field_training_length_type')->getValue();
 
@@ -61,7 +66,7 @@ function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayIn
   // Build the subtitle string. Only do this if we have proficiency or CEUS
   if (
     $display->getComponent('subtitle') &&
-    (!$node->get('field_training_ceus_offered')->isEmpty() || !$node->get('field_training_proficiency')->isEmpty())
+    (!$node->get('field_training_ceus_offered')->isEmpty() || !$node->get('field_training_level')->isEmpty())
   ) {
 
     // Use the modified cost string
@@ -70,8 +75,8 @@ function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayIn
     }
 
     $proficiency = '';
-    if(!$node->get('field_training_proficiency')->isEmpty()) {
-      $proficiency = strtolower($build['field_training_proficiency'][0]['#plain_text']);
+    if(!$node->get('field_training_level')->isEmpty()) {
+      $proficiency = strtolower($build['field_training_level'][0]['#title']);
 
       // Add appropriate a/an
       $proficiency = IndefiniteArticle::A($proficiency);
@@ -117,7 +122,7 @@ function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayIn
 
       // Only add the "offering" string if we have CEUs. Change conjugation if
       // there's not proficiency
-      if(isset($proficiencey)) {
+      if(isset($proficiency)) {
         $offering = t(' offering');
         $is = t(' is');
       } else {

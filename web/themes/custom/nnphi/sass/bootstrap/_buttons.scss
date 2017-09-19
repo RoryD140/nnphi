@@ -157,6 +157,11 @@ fieldset[disabled] a.btn {
   @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $font-size-sm, $btn-border-radius-sm);
 }
 
+// Custom button size for medium btns
+.btn-md {
+  @include button-size(15px, 30px, $font-size-base, $btn-border-radius);
+}
+
 
 //
 // Block button
