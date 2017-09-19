@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @file
+ * Contains nnphi_loop11.module.
+ */
+
+/**
+ * Implements hook_page_attachments().
+ */
+function nnphi_loop11_page_attachments(array &$attachments) {
+
+  if (\Drupal::currentUser()->hasPermission('administer content')) {
+    return;
+  }
+
+  $attachments['#attached']['library'][] = 'nnphi_loop11/loop11';
+}
