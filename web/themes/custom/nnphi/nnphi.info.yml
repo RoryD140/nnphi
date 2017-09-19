@@ -8,6 +8,7 @@ core: 8.x
 regions:
   content: Content
   header: Header
+  main_nav: Main Nav
   footer_left: Footer Left
   footer_mid_left: Footer Mid Left
   footer_mid_right: Footer Mid Right

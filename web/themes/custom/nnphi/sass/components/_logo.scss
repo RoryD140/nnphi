@@ -6,11 +6,11 @@
   display: flex;
   flex-direction: column;
   color: $color;
-  line-height: 1; // Gets the right spacing between items
+  line-height: 1.6; // Gets the right spacing between items
   span {
     display: inline-block;
   }
-  &:hover {
+  @include hover-focus-active {
     text-decoration: none;
     color: lighten($color, 10%);
   }
@@ -22,7 +22,6 @@
 
 .site-logo-bottom {
   font-weight: $font-weight-bold;
-  line-height: 1.1;
 }
 
 // Footer logo gets slightly different styles
