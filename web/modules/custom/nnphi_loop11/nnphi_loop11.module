@@ -15,4 +15,16 @@ function nnphi_loop11_page_attachments(array &$attachments) {
   }
 
   $attachments['#attached']['library'][] = 'nnphi_loop11/loop11';
+
+  // Loop 11 vars only work inline
+  $attachments['#attached']['html_head'][] = [
+    [
+      '#type' => 'html_tag',
+      '#tag' => 'script',
+      '#value' => 'window.loop11_key = "8ceb57653756bf6d420584116086504c79affb23";window.loop11_pp = [100, 40186];',
+    ],
+    // A key, to make it possible to recognize this HTML  element when altering.
+    'loop11',
+  ];
+
 }
