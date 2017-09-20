@@ -1,0 +1,34 @@
+//temporary styling
+.training-search-form {
+  flex: 1 1 auto;
+  position: relative;
+  form {
+    width: 100%;
+    .training-search-input {
+      width: 100%;
+      padding-left: 70px; // space for background image
+      background-image: $search-icon;
+      background-repeat: no-repeat;
+      background-position: 25px 50%;
+      background-size: 22px;
+      @extend .form-control;
+    }
+  }
+}
+
+.training-submit {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  bottom: 0;
+  width: 25px;
+  font: 0/0 a;
+  background-color: transparent;
+  border: none;
+  background-image: $right-arrow-bg;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  &:hover {
+    cursor: pointer;
+  }
+}

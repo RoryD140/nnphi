@@ -8,6 +8,7 @@
 //
 // Grayscale and brand colors for use across Bootstrap.
 $green: #85bf42;
+$green-dark: #089c89;
 $blue: #009ed0;
 $blue-dark: #0e7aae;
 $gray-text: #959595;
@@ -92,3 +93,6 @@ $padding-lg: 70px; // Used for heros and such
 // Arrow BG
 $left-arrow-bg: url('svg/arrow-left.svg');
 $right-arrow-bg: url('svg/arrow-right.svg');
+$right-arrow-bg-green: url('svg/arrow-right-green.svg');
+$search-icon: url('svg/search.svg');
+$checkmark-bg: url('svg/check-green.svg');

@@ -15,6 +15,10 @@
 .training-details-row > div {
   @extend .col-lg-2;
   @extend .col-md-3;
+  &.training-details-state {
+    @extend .col-md-3;
+    @extend .col-lg-3;
+  }
   @include media-breakpoint-down(md) {
     margin-bottom: $grid-gutter-width-base;
     &:last-child {

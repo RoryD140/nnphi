@@ -12,7 +12,7 @@ field_name: field_training_url
 entity_type: node
 bundle: training
 label: 'Training URL'
-description: 'The external URL for this training.'
+description: 'The button text that will be displayed to users.'
 required: false
 translatable: false
 default_value: {  }

@@ -46,16 +46,15 @@
 <div class="layout-container">
 
   <header role="banner" class="site-header">
+    {# main nav goes here so it can slide in and push content down #}
+    {{ page.main_nav }}
     <div class="site-header-container">
       {% include (base_path ~ directory ~ '/templates/components/logo.html.twig') %}
-      <div id="js-menu-btn" class="menu-btn">
-        <span class="visually-hidden">Show Menu</span>
-        <div class="menu-btn-interior">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
+      {% include (base_path ~ directory ~ '/templates/components/nav-close.html.twig')
+        with {
+         'id': 'js-menu-btn'
+        }
+      %}
 
       {# Placeholder for training search form #}
       <div class="training-search-form">

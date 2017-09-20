@@ -1,9 +1,8 @@
 section.training-related {
-  background: linear-gradient($green, $blue);
+  background: linear-gradient($green-dark, $blue-dark);
   padding-top: $padding-lg;
   padding-bottom: $padding-lg * 2; // Leaves room for arrows
 }
-
 
 .training-related .training-subtitle {
   color: #fff;
@@ -56,6 +55,7 @@ section.training-related {
 
 .training-teaser-link {
   @extend .btn;
+  @extend .btn-md;
   @extend .btn-outline-primary;
 }
 

@@ -1,8 +1,60 @@
+// Wrapper around main nav
+.site-header nav#block-nnphi-main-menu {
+  background: $green-dark;
+}
+
+// Top level UL
 .main-nav {
-  display: none; // hidden and shown through JS
+  box-sizing: content-box;
+  // Mimics container and row so we don't have to add additional markup
+  @extend .container;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  // JS show/hide is done with height so it pushes content down.
+  // Max-height is used because you can't animate height: auto
+  max-height: 0;
+  overflow: hidden;
+  transition: all 1s;
   &.main-nav-open {
-    display: flex;
-    position: absolute; // dev
-    top: 100%; // dev
+    max-height: 100vh;
+    @include media-breakpoint-up(md) {
+      max-height: 30vh;
+    }
   }
+  // Remove list style from all Subs
+  li {
+    list-style: none;
+
+  }
+  a {
+    color: #fff;
+    display: inline-flex;
+    width: 100%;
+    font-weight: $font-weight-light;
+  }
+}
+
+
+// First level items
+.main-nav > li.menu-item {
+  @extend .col-md-4;
+  padding-top: $padding-md;
+  padding-bottom: $padding-md;
+}
+
+.main-nav > li.menu-item > a {
+  font-size: $font-size-md;
+  margin-bottom: $padding-sm;
+  text-transform: uppercase;
+  border-bottom: solid 1px #fff;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+// Second level menus
+.main-nav > li.menu-item > ul {
+  margin: 0;
+  padding: 0;
 }

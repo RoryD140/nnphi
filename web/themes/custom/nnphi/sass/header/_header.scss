@@ -5,22 +5,25 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  > div {
-    margin-left: $padding-md;
+  @include media-breakpoint-down(md) {
+    flex-wrap: wrap;
+  }
+}
+
+.site-header-container > div {
+  @include media-breakpoint-up(lg) {
+    margin-left: 5%; // per designs
     &:first-child {
       margin-left: 0;
     }
   }
 }
 
-//temporary styling
-.training-search-form {
-  flex: 1 1 auto;
-  form {
-    width: 100%;
-    input {
-      width: 100%;
-      @extend .form-control;
-    }
+.site-header-container .training-search-form {
+  @include media-breakpoint-down(md) {
+    // At smaller screens search form takes up 100% width
+    flex: 1 1 100%;
+    margin-top: $padding-sm;
+    margin-bottom: $padding-sm;
   }
 }

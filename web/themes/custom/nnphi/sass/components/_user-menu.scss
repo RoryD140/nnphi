@@ -6,11 +6,13 @@ nav[id^=block-useraccountmenu] ul {
     display: inline-block;
     text-transform: uppercase;
     a {
-      color: $blue;
+      color: $green;
+      font-size: $font-size-sm;
     }
     a.register-link {
       color: $green;
       @extend .btn;
+      @extend .btn-sm;
       @extend .btn-outline-primary;
       margin-left: $padding-md;
     }
@@ -23,7 +25,6 @@ nav[id^=block-useraccountmenu] ul {
       color: #000;
     }
     a.register-link {
-      @extend .btn-sm;
       // Will need to be abstracted if used elsewhere
       @include button-variant(#000, transparent, #000);
     }

@@ -1,0 +1,4 @@
+loop11:
+  version: VERSION
+  js:
+   //cdn.loop11.com/my/loop11.js: { type: external, minified: true }

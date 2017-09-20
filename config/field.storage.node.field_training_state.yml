@@ -156,6 +156,9 @@ settings:
       value: WA
       label: Washington
     -
+      value: DC
+      label: 'Washington DC'
+    -
       value: WV
       label: 'West Virginia'
     -
