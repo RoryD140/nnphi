@@ -44,9 +44,9 @@ $settings['install_profile'] = 'standard';
  */
 $index = 'dev_TRAINING';
 if (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
-  $json_text = file_get_contents('sites/default/files/private/keys/algolia.json');
+  $json_text = file_get_contents($site_path . '/files/private/algolia.json');
   $algolia_data = json_decode($json_text, TRUE);
-  $conf['search_api.server.algolia']['backend_config']['api_key'] = $algolia_data['key'];
+  $config['search_api.server.algolia']['backend_config']['api_key'] = $algolia_data['key'];
   // Switch to the correct Algolia index.
   $index = 'dev_TRAINING';
   $indexes = [
@@ -56,10 +56,10 @@ if (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
   ];
   if (isset($indexes[$_ENV['PANTHEON_ENVIRONMENT']])) {
     // Indexing is disabled by default, enable on servers.
-    $conf['search_api.index.training']['read_only'] = TRUE;
+    $config['search_api.index.training']['read_only'] = FALSE;
     $index = $indexes[$_ENV['PANTHEON_ENVIRONMENT']];
   }
 }
 // Set the search_api and training search page index.
-$conf['search_api.index.training']['options']['algolia_index_name'] = $index;
-$conf['nnphi_training.search.config']['index'] = $index;
+$config['search_api.index.training']['options']['algolia_index_name'] = $index;
+$config['nnphi_training.search.config']['index'] = $index;
