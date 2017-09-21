@@ -193,6 +193,7 @@ function nnphi_training_theme($existing, $type, $theme, $path) {
  */
 function nnphi_training_preprocess_nnphi_training_search_page(&$variables) {
   $variables['#attached']['library'][] = 'nnphi_training/instant-search';
+  $variables['#attached']['library'][] = 'nnphi_training/moment';
   $variables['#attached']['drupalSettings']['trainingSearch'] = nnphi_training_search_js_settings();
 }
 
