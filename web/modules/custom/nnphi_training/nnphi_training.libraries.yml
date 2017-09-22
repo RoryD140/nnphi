@@ -17,6 +17,7 @@ instant-search:
     js/search.js: {}
   dependencies:
     - core/jquery
+    - core/jquery.once
     - core/drupalSettings
 
 moment:
