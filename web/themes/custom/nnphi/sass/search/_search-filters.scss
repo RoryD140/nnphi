@@ -33,11 +33,6 @@ section.search-results-hero {
   border-bottom: none;
 }
 
-
-.training-filters input {
-  display: none; // hiding the actual checkboxes so we can use the labels as target
-}
-
 .training-filters label {
   text-transform: uppercase;
   color: $gray-text;
