@@ -17,9 +17,10 @@
   overflow: hidden;
   transition: all 1s;
   &.main-nav-open {
+    // These are more or less arbitrary. Just have to be larger than the natural menu height
     max-height: 100vh;
     @include media-breakpoint-up(md) {
-      max-height: 30vh;
+      max-height: 80vh;
     }
   }
   // Remove list style from all Subs
