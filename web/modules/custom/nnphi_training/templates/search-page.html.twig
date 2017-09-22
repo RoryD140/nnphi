@@ -1,6 +1,16 @@
-<div class="container">
+{# Uses all the same training hero styles with different markup#}
+{# background is temporary until we decide which term we're using #}
+<section class="training-hero search-results-hero" style="background-image: url('/{{ base_path ~ directory ~ '/svg/header-bg.svg' }}');">
+  <div class="training-hero-interior">
+    <div class="training-hero-text">
+      <h1>{{ 'Training Search Results'|t }}</h1>
+    </div>
+  </div>
+</section>
+
+<div class="training-search-container">
   <div class="row">
-    <div class="col-4">
+    <div class="training-filters">
       <div id="ceus"></div>
       <div id="course-types"></div>
       <div id="levels"></div>
@@ -10,7 +20,7 @@
       <div id="job-tasks"></div>
       <div id="reset"></div>
     </div>
-    <div class="col-8">
+    <div class="training-results">
       <div id="search-box"></div>
       <div id="stats"></div>
       <div id="hits">{{ 'Enter search terms to get started.'|t }}</div>
