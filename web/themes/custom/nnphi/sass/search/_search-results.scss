@@ -1,0 +1,68 @@
+// Form uses same styles as header form
+.ais-search-box--input {
+  @extend %training-search-input;
+  text-transform: uppercase; // The placeholder here isn't actually a placeholder
+}
+
+.ais-search-box {
+  max-width: none; // override default so it can go full width
+}
+
+// Hide the default magnifier icon since we're using our own as a bg
+.ais-search-box--magnifier {
+  display: none;
+}
+
+// Adjustments to X button for resetting search field
+.ais-search-box--reset {
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  svg {
+    fill: $orange;
+  }
+}
+
+.ais-infinite-hits__empty {
+  color: #fff;
+}
+
+.training-results {
+  @extend .col-md-8;
+  background-image: linear-gradient(0deg, $pink, $orange);
+  padding: $padding-md;
+}
+
+.training-results #stats{
+  margin-bottom: $padding-md;
+  margin-top: $padding-md;
+  font-size: $font-size-sm;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.training-results article.training-node-teaser {
+  background: #fff;
+  padding: $padding-md;
+  margin-bottom: $padding-md;
+  .training-teaser-link-wrapper {
+    text-align: left;
+  }
+}
+
+
+.ais-infinite-hits--showmore {
+  text-align: center;
+  padding-top: $padding-md;
+  padding-bottom: $padding-md;
+}
+
+.ais-infinite-hits--showmore button {
+  @extend .btn;
+  @extend .btn-primary;
+}
+
+// Button is disabled when there are no more results to load, so we're just hiding it
+.ais-infinite-hits--showmore button:disabled {
+  display: none;
+}
