@@ -34,11 +34,12 @@
 }
 
 .training-results #stats{
-  margin-bottom: $padding-md;
-  margin-top: $padding-md;
+  margin-bottom: $padding-sm;
+  margin-top: $padding-sm;
   font-size: $font-size-sm;
   color: #fff;
   text-transform: uppercase;
+  text-align: right; // Will need adjusting if we add more than just the number of results to this area
 }
 
 .training-results article.training-node-teaser {

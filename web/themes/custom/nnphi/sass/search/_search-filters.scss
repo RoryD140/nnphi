@@ -25,11 +25,19 @@ section.search-results-hero {
   border-bottom: solid 1px $gray-light;
 }
 
-.training-filters > div:first-child > div {
+.training-filters h2 {
+  font-size: $font-size-sm;
+  text-transform: uppercase;
+  margin-top: $padding-md;
+  margin-bottom: $padding-md;
+  padding-left: $padding-md; // matches filter padding
+}
+
+.training-filters > div:first-of-type > div {
   border-top: none;
 }
 
-.training-filters > div:last-child > div {
+.training-filters > div:last-of-type > div {
   border-bottom: none;
 }
 
