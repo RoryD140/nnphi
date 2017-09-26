@@ -1,0 +1,82 @@
+section.search-results-hero {
+  padding-top: $padding-lg * 2;
+  padding-bottom: $padding-lg * 2;
+}
+
+.training-search-container {
+  @extend .container;
+}
+
+.training-filters {
+  @extend .col-md-4;
+  border-bottom: solid 1px $gray-light;
+  border-top: solid 1px $gray-light;
+  padding-left: 0; // padding is on actual filters so borders look right
+  padding-right: 0;
+}
+
+// The inner divs (the ones targeted here) get display: none if they're empty,
+// So all styles are applied there so that outer divs don't show if empty
+.training-filters > div > div {
+  font-weight: bold;
+  padding: $padding-sm $padding-md;
+  text-transform: uppercase;
+  border-top: solid 1px $gray-light;
+  border-bottom: solid 1px $gray-light;
+}
+
+.training-filters h2 {
+  font-size: $font-size-sm;
+  text-transform: uppercase;
+  margin-top: $padding-md;
+  margin-bottom: $padding-md;
+  padding-left: $padding-md; // matches filter padding
+}
+
+.training-filters > div:first-of-type > div {
+  border-top: none;
+}
+
+.training-filters > div:last-of-type > div {
+  border-bottom: none;
+}
+
+.training-filters label {
+  text-transform: uppercase;
+  color: $gray-text;
+  font-weight: $font-weight-light;
+  line-height: 1.4;
+  margin-bottom: 10px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+// Numbers after label
+.training-filters label span {
+  font-weight: bold;
+  font-size: $font-size-xs;
+  display: inline-flex;
+  color: orange;
+  vertical-align: text-bottom;
+  // Doing this instead of padding/margin so that it never wraps to its own line
+  position: relative;
+  left: 5px;
+}
+
+
+.training-filters .ais-show-more__inactive {
+  display: none;
+}
+
+.training-filters a.ais-show-more  {
+  color: $green;
+  &:hover {
+    cursor: pointer;
+    color: darken($green, 10%);
+  }
+}
+
+.training-filters .ais-clear-all a {
+  color: $gray-text;
+}
