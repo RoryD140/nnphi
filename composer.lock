@@ -4,11 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "content-hash": "18c1b660069dc024ff50bbae4917d0d8",
-=======
-    "content-hash": "363eb95bd545d3ab42767a1ff1c248b3",
->>>>>>> master
+    "content-hash": "5e4b321f0e2c43aee33980000548ae92",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2590,7 +2586,7 @@
                     "email": "marksonnabaum@gmail.com"
                 },
                 {
-                    "name": "Antoine Beaupré",
+                    "name": "Antoine BeauprÃ©",
                     "email": "anarcat@koumbit.org"
                 },
                 {
@@ -2598,7 +2594,7 @@
                     "email": "greg.1.anderson@greenknowe.org"
                 },
                 {
-                    "name": "Jonathan Araña Cruz",
+                    "name": "Jonathan AraÃ±a Cruz",
                     "email": "jonhattan@faita.net"
                 },
                 {
@@ -4099,7 +4095,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jean-François Simon",
+                    "name": "Jean-FranÃ§ois Simon",
                     "email": "jeanfrancois.simon@sensiolabs.com"
                 },
                 {
@@ -6858,7 +6854,7 @@
             ],
             "authors": [
                 {
-                    "name": "Juan Francisco Calderón Zumba",
+                    "name": "Juan Francisco CalderÃ³n Zumba",
                     "email": "juanfcz@gmail.com",
                     "homepage": "http://github.com/jcalderonzumba"
                 }
@@ -6915,7 +6911,7 @@
             ],
             "authors": [
                 {
-                    "name": "Juan Francisco Calderón Zumba",
+                    "name": "Juan Francisco CalderÃ³n Zumba",
                     "email": "juanfcz@gmail.com",
                     "homepage": "http://github.com/jcalderonzumba"
                 }
