@@ -1,0 +1,26 @@
+uuid: f780c386-ee05-40cc-9736-0a06d0548948
+langcode: en
+status: true
+dependencies:
+  module:
+    - nnphi_training
+    - system
+  theme:
+    - nnphi
+id: trainingsearch
+theme: nnphi
+region: header
+weight: 0
+provider: null
+plugin: nnphi_training_search_block
+settings:
+  id: nnphi_training_search_block
+  label: 'Training Search'
+  provider: nnphi_training
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: /training/search
+    negate: true
+    context_mapping: {  }
