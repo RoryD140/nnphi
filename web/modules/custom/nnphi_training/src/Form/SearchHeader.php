@@ -11,24 +11,15 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class SearchHeader extends FormBase {
 
   /**
-   * @var \Drupal\Core\Template\TwigEnvironment
+   * {@inheritdoc}
    */
-  protected $twig;
-
-  public function __construct(TwigEnvironment $twig) {
-    $this->twig = $twig;
-  }
-
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('twig')
-    );
-  }
-
   public function getFormId() {
     return 'nnphi_training_search_header';
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form['#attributes']['class'][] = 'training-search-form';
 
@@ -54,6 +45,9 @@ class SearchHeader extends FormBase {
     return $form;
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     parent::submitForm($form, $form_state);
   }
