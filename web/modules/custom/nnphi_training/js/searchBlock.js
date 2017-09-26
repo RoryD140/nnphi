@@ -31,6 +31,6 @@
           $('a.advanced-search', form).attr('href', $path + '?q=' + Drupal.encodePath(query));
         });
       });
-    },
+    }
   }
 })(jQuery, Drupal);
