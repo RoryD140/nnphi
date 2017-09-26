@@ -20,6 +20,13 @@ instant-search:
     - core/jquery.once
     - core/drupalSettings
 
+autocomplete:
+  version: VERSION
+  js:
+    https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js : {type: external, minified: true }
+    https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js : {type: external, minified: true }
+    js/searchBlock.js: {}
+
 moment:
   version: 2.18.1
   js:
