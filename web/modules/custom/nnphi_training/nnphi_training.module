@@ -51,12 +51,7 @@ function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayIn
 
   $length_type = $node->get('field_training_length_type')->getValue();
 
-  if(empty($length_type) || $length_type[0]['value'] === '2') {
-    // if length type is empty or is total time, just display total time field
-  } elseif($length_type[0]['value'] === '0') {
-    // if length type is self paced, display self paced text
-    $build['field_training_total_time'][0]['#markup'] = t('Self Paced');
-  } elseif($length_type[0]['value'] === '1') {
+  if(empty($length_type) || $length_type[0]['value'] === '1') {
     // If length type is module, set attribute to use in template to display
     // the module times from the module time field
     $build['#attributes'] = array('display_module_times' => TRUE);
@@ -193,6 +188,7 @@ function nnphi_training_theme($existing, $type, $theme, $path) {
  */
 function nnphi_training_preprocess_nnphi_training_search_page(&$variables) {
   $variables['#attached']['library'][] = 'nnphi_training/instant-search';
+  $variables['#attached']['library'][] = 'nnphi_training/moment';
   $variables['#attached']['drupalSettings']['trainingSearch'] = nnphi_training_search_js_settings();
 }
 

@@ -1,17 +1,22 @@
 //temporary styling
+
+%training-search-input {
+  width: 100%;
+  padding-left: 70px; // space for background image
+  background-image: $search-icon;
+  background-repeat: no-repeat;
+  background-position: 25px 50%;
+  background-size: 22px;
+  @extend .form-control;
+}
+
 .training-search-form {
   flex: 1 1 auto;
   position: relative;
   form {
     width: 100%;
     .training-search-input {
-      width: 100%;
-      padding-left: 70px; // space for background image
-      background-image: $search-icon;
-      background-repeat: no-repeat;
-      background-position: 25px 50%;
-      background-size: 22px;
-      @extend .form-control;
+      @extend %training-search-input;
     }
   }
 }

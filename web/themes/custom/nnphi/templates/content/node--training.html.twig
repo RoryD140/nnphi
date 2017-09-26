@@ -110,8 +110,10 @@
           {# from nnphi_training.module #}
           {% if attributes.display_module_times %}
             {{ content.field_training_module_length }}
-          {% else %}
+          {% elseif content.field_training_total_time|render %}
              {{ content.field_training_total_time }}
+          {% else %}
+            {{ content.field_training_length_type }}
           {% endif %}
         </div>
       </div>
@@ -135,12 +137,12 @@
 
     <section class="training-terms">
       <div class="training-terms-row">
-        {% if content.field_training_competencies %}
+        {% if content.field_training_competencies|render %}
           <div class="training-competencies">
             {{ content.field_training_competencies }}
           </div>
         {% endif %}
-        {% if content.field_training_occupations %}
+        {% if content.field_training_occupations|render %}
           <div class="training-occupations">
             {{ content.field_training_occupations }}
           </div>
