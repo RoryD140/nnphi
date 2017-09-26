@@ -1,3 +1,25 @@
+{# The mustache template used to render a search result item #}
+<script type="text/template" id="training-hit">
+  {% raw %}
+  <article class="training-node-teaser" role="article">
+    <div class="training-node-teaser-top">
+      <div class="training-node-teaser-top-left">
+        {{ headline }}
+      </div>
+      <div class="training-node-teaser-top-right">
+        {{ training_source }}
+        {{ date }}
+      </div>
+    </div>
+    <h3>{{{  _highlightResult.title.value }}}</h3>
+    {{{  _highlightResult.summary.value }}}
+    {% endraw %}
+    <div class="training-teaser-link-wrapper">
+      <a href="{{ '{{ url }}' }}" class="training-teaser-link">{{ 'View Training'|t }}</a>
+    </div>
+  </article>
+</script>
+
 {# Uses all the same training hero styles with different markup#}
 {# background is temporary until we decide which term we're using #}
 <section class="training-hero search-results-hero" style="background-image: url('/{{ base_path ~ directory ~ '/svg/header-bg.svg' }}');">
