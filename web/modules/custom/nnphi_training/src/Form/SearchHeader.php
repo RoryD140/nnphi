@@ -34,6 +34,14 @@ class SearchHeader extends FormBase {
       ],
     ];
 
+    $form['submit'] = [
+      '#type' => 'submit',
+      '#value' => $this->t('Search'),
+      '#attributes' => [
+        'class' => ['js-hide'],
+      ],
+    ];
+
     $form['footer_template'] = [
       '#type' => 'markup',
       '#theme' => 'training_autocomplete_footer',
@@ -49,7 +57,8 @@ class SearchHeader extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    parent::submitForm($form, $form_state);
+    $keys = $form_state->getValue('keys');
+    $form_state->setRedirect('nnphi_training.instant_search', [], ['query' => ['q' => $keys]]);
   }
 
 }
