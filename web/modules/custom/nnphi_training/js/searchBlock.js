@@ -8,7 +8,7 @@
         $('.training-search-input', this).autocomplete({ hint: false }, [
           {
             source: $.fn.autocomplete.sources.hits(index, { hitsPerPage: 5 }),
-            displayKey: 'my_attribute',
+            displayKey: 'title',
             templates: {
               suggestion: function(suggestion) {
                 return suggestion._highlightResult.title.value;
