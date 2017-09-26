@@ -145,6 +145,23 @@ function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayIn
   }
 }
 
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function nnphi_training_form_node_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $form_state->getFormObject()->getEntity();
+  if ($node->getType() !== 'training') {
+    return;
+  }
+  // Require the summary field.
+  $form['field_training_description']['widget'][0]['summary']['#required'] = TRUE;
+  $form['field_training_description']['widget'][0]['summary']['#description'] = t('The summary will be displayed in search results and where this training appears as a "related training."');
+  // Remove the JS that hides the summary.
+  $attached = array_search('text/drupal.text', $form['field_training_description']['widget'][0]['summary']['#attached']['library']);
+  unset($form['field_training_description']['widget'][0]['summary']['#attached']['library'][$attached]);
+}
+
 
 
 /**

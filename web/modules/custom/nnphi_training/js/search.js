@@ -18,14 +18,19 @@
         );
 
         // initialize hits widget
+        var hitTemplate = document.querySelector('#training-hit').innerHTML;
+
         search.addWidget(
           instantsearch.widgets.infiniteHits({
             container: '#hits',
             showMoreLabel: Drupal.t('Load More'),
             templates: {
               empty: Drupal.t('No results'),
+              item: hitTemplate
+            },
+            transformData: {
               item: function(item) {
-                return Drupal.theme('trainingSearchResult', item);
+                return Drupal.behaviors.nnphiTrainingSearch.prepareHit(item);
               }
             },
             escapeHits: true
@@ -54,7 +59,7 @@
               container: '#ceus',
               attributeName: 'ceu',
               operator: 'or',
-              limit: 5,
+              limit: 3,
               showMore: true,
               templates: {
                 header: Drupal.t('CEUS')
@@ -70,7 +75,7 @@
               container: '#course-types',
               attributeName: 'course_type',
               operator: 'or',
-              limit: 5,
+              limit: 3,
               showMore: true,
               templates: {
                 header: Drupal.t('Course Types')
@@ -86,7 +91,7 @@
               container: '#levels',
               attributeName: 'course_level',
               operator: 'or',
-              limit: 5,
+              limit: 3,
               showMore: true,
               templates: {
                 header: Drupal.t('Levels')
@@ -102,7 +107,7 @@
               container: '#locations',
               attributeName: 'field_training_state',
               operator: 'or',
-              limit: 5,
+              limit: 3,
               showMore: true,
               templates: {
                 header: Drupal.t('Related Location')
@@ -118,7 +123,7 @@
               container: '#competency',
               attributeName: 'competencies',
               operator: 'or',
-              limit: 5,
+              limit: 3,
               showMore: true,
               templates: {
                 header: Drupal.t('Competency Terms')
@@ -134,7 +139,7 @@
               container: '#occupation',
               attributeName: 'occupations',
               operator: 'or',
-              limit: 5,
+              limit: 3,
               showMore: true,
               templates: {
                 header: Drupal.t('Occupation')
@@ -150,7 +155,7 @@
               container: '#job-tasks',
               attributeName: 'job_tasks',
               operator: 'or',
-              limit: 5,
+              limit: 3,
               showMore: true,
               templates: {
                 header: Drupal.t('Specific Job Task Terms')
@@ -180,6 +185,47 @@
     },
 
     /**
+     * Prepare the hit object for use in the template.
+     * @param item
+     * @returns {*}
+     */
+    prepareHit: function(item) {
+      var headline = [];
+
+      if (item.hasOwnProperty('course_level')) {
+        headline.push(item.course_level);
+      }
+      if (item.hasOwnProperty('ceu')) {
+        if (typeof item.ceu === 'object') {
+          headline.push(item.ceu[0]);
+        }
+        else {
+          headline.push(item.ceu);
+        }
+      }
+      if (item.hasOwnProperty('course_type')) {
+        headline.push(item.course_type);
+      }
+      // Determine the cost.
+      if (item.hasOwnProperty('field_training_cost')) {
+        if (item.field_training_cost === 0) {
+          headline.push(Drupal.t('Free'));
+        }
+        else {
+          headline.push(item.cost);
+        }
+      }
+      item.headline = this.getTrainingString(headline);
+      item.date = moment.unix(item.created).format('MM-DD-YY');
+      if (item.url.indexOf('/') === 0){
+        item.url = item.url.substring(1);
+      }
+      item.url = Drupal.url(item.url);
+      return item;
+    },
+
+
+    /**
      * Return the course info string based on items.
      *
      * @param items
@@ -189,68 +235,6 @@
       return items.join(' ');
     }
 
-  };
-
-  /**
-   * Theme an individual Algolia search result.
-   *
-   * TODO: Is this output safe?
-   *
-   * @param item
-   * @returns {string}
-   */
-  Drupal.theme.trainingSearchResult = function (item) {
-    var headline = [];
-
-    if (item.hasOwnProperty('course_level')) {
-      headline.push(item.course_level);
-    }
-    if (item.hasOwnProperty('ceu')) {
-      if (typeof item.ceu === 'object') {
-        headline.push(item.ceu[0]);
-      }
-      else {
-        headline.push(item.ceu);
-      }
-    }
-    if (item.hasOwnProperty('course_type')) {
-      headline.push(item.course_type);
-    }
-    // Determine the cost.
-    if (item.hasOwnProperty('field_training_cost')) {
-      if (item.field_training_cost === 0) {
-        headline.push(Drupal.t('Free'));
-      }
-      else {
-        headline.push(item.cost);
-      }
-    }
-
-    var html = '<article class="training-node-teaser" role="article">';
-
-    html += '<div class="training-node-teaser-top">';
-
-    html += '<div class="training-node-teaser-top-left">';
-    html += Drupal.behaviors.nnphiTrainingSearch.getTrainingString(headline);
-    html += '</div>'; // teaser-top-left
-
-    html += '<div class="training-node-teaser-top-right">';
-    html += moment.unix(item.created).format('MM-DD-YY');
-    html += '<div>' + item.training_source + '</div>';
-    html += '</div>'; // teaser-top-right
-
-    html += '</div>'; // teaser-top
-
-    html += '<h3>' + item._highlightResult.title.value + '</h3>';
-    html += '<div>' + item.field_training_description + '</div>';
-
-    html += '<div class="training-teaser-link-wrapper">';
-    html += '<a class="training-teaser-link" href="' + item.url + '">' + Drupal.t('View Training') + '</a>';
-    html += '</div>';
-
-    html += '</article>';
-
-    return html;
   };
   
 })(jQuery, Drupal);
