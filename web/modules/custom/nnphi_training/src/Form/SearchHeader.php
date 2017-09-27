@@ -38,7 +38,7 @@ class SearchHeader extends FormBase {
       '#type' => 'submit',
       '#value' => $this->t('Search'),
       '#attributes' => [
-        'class' => ['js-hide'],
+        'class' => ['training-submit'],
       ],
     ];
 

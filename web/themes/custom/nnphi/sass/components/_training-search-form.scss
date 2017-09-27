@@ -1,5 +1,3 @@
-//temporary styling
-
 %training-search-input {
   width: 100%;
   padding-left: 70px; // space for background image
@@ -8,10 +6,11 @@
   background-position: 25px 50%;
   background-size: 22px;
   @extend .form-control;
+  margin-top: 0; // Overrides default form-text margin
 }
 
 .training-search-form {
-  flex: 1 1 auto;
+  flex: 1 1 300px; // Somewhat arbitrary, but keeps the form at a reasonable width
   position: relative;
   form {
     width: 100%;
