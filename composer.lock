@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5e4b321f0e2c43aee33980000548ae92",
+    "content-hash": "9ddf0cd9838627e0bfbf0202bb0e7db7",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -163,51 +163,6 @@
                 "stack"
             ],
             "time": "2016-08-01T12:05:04+00:00"
-        },
-        {
-            "name": "bjeavons/zxcvbn-php",
-            "version": "0.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bjeavons/zxcvbn-php.git",
-                "reference": "331a88932d1a399c989967d3399a4a40eb182fd5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bjeavons/zxcvbn-php/zipball/331a88932d1a399c989967d3399a4a40eb182fd5",
-                "reference": "331a88932d1a399c989967d3399a4a40eb182fd5",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.3 || ^7.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "*",
-                "satooshi/php-coveralls": "*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "ZxcvbnPhp\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "See contributors",
-                    "homepage": "https://github.com/bjeavons/zxcvbn-php"
-                }
-            ],
-            "description": "Realistic password strength estimation PHP library based on Zxcvbn JS",
-            "homepage": "https://github.com/bjeavons/zxcvbn-php",
-            "keywords": [
-                "password",
-                "zxcvbn"
-            ],
-            "time": "2017-01-06T15:43:33+00:00"
         },
         {
             "name": "commerceguys/addressing",
@@ -2289,32 +2244,20 @@
             }
         },
         {
-            "name": "drupal/password_strength",
-            "version": "2.0.0-alpha2",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/password_strength",
-                "reference": "8.x-2.0-alpha2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/password_strength-8.x-2.0-alpha2.zip",
-                "reference": "8.x-2.0-alpha2",
-                "shasum": "9f4b309731c396306880b1085a87841ca8323ac4"
-            },
+            "name": "drupal/password_policy_characters",
+            "version": "3.0.0-alpha3",
             "require": {
-                "bjeavons/zxcvbn-php": "*",
                 "drupal/core": "~8.0",
-                "drupal/password_policy": "*"
+                "drupal/password_policy": "self.version"
             },
-            "type": "drupal-module",
+            "type": "metapackage",
             "extra": {
                 "branch-alias": {
-                    "dev-2.x": "2.x-dev"
+                    "dev-3.x": "3.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-2.0-alpha2",
-                    "datestamp": "1490306283",
+                    "version": "8.x-3.0-alpha3",
+                    "datestamp": "1488135183",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Alpha releases are not covered by Drupal security advisories."
@@ -2327,30 +2270,83 @@
             ],
             "authors": [
                 {
-                    "name": "coltrane",
-                    "homepage": "https://www.drupal.org/user/91990"
+                    "name": "AohRveTPV",
+                    "homepage": "https://www.drupal.org/user/2760115"
                 },
                 {
-                    "name": "greggles",
-                    "homepage": "https://www.drupal.org/user/36762"
+                    "name": "deekayen",
+                    "homepage": "https://www.drupal.org/user/972"
                 },
                 {
-                    "name": "jrbeeman",
-                    "homepage": "https://www.drupal.org/user/16734"
+                    "name": "miglius",
+                    "homepage": "https://www.drupal.org/user/18741"
                 },
                 {
                     "name": "nerdstein",
                     "homepage": "https://www.drupal.org/user/1557710"
                 },
                 {
-                    "name": "scor",
-                    "homepage": "https://www.drupal.org/user/52142"
+                    "name": "shrop",
+                    "homepage": "https://www.drupal.org/user/14767"
                 }
             ],
-            "description": "Integrates the Password Strength into Drupal's Password Policy module.",
-            "homepage": "https://www.drupal.org/project/password_strength",
+            "description": "Identifies the number of specific character type in a password.",
+            "homepage": "https://www.drupal.org/project/password_policy",
             "support": {
-                "source": "http://cgit.drupalcode.org/password_strength"
+                "source": "http://cgit.drupalcode.org/password_policy"
+            }
+        },
+        {
+            "name": "drupal/password_policy_length",
+            "version": "3.0.0-alpha3",
+            "require": {
+                "drupal/core": "~8.0",
+                "drupal/password_policy": "self.version"
+            },
+            "type": "metapackage",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-3.0-alpha3",
+                    "datestamp": "1488135183",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "AohRveTPV",
+                    "homepage": "https://www.drupal.org/user/2760115"
+                },
+                {
+                    "name": "deekayen",
+                    "homepage": "https://www.drupal.org/user/972"
+                },
+                {
+                    "name": "miglius",
+                    "homepage": "https://www.drupal.org/user/18741"
+                },
+                {
+                    "name": "nerdstein",
+                    "homepage": "https://www.drupal.org/user/1557710"
+                },
+                {
+                    "name": "shrop",
+                    "homepage": "https://www.drupal.org/user/14767"
+                }
+            ],
+            "description": "Sets up a character length constraint for passwords.",
+            "homepage": "https://www.drupal.org/project/password_policy",
+            "support": {
+                "source": "http://cgit.drupalcode.org/password_policy"
             }
         },
         {
@@ -7920,7 +7916,8 @@
         "drupal/conditional_fields": 15,
         "drupal/email_registration": 5,
         "drupal/password_policy": 15,
-        "drupal/password_strength": 15,
+        "drupal/password_policy_characters": 15,
+        "drupal/password_policy_length": 15,
         "drupal/search_api_algolia": 20,
         "drupal/simple_block": 10
     },

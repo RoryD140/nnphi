@@ -50,5 +50,7 @@ content:
     type: string
     region: content
 hidden:
+  field_last_password_reset: true
+  field_password_expiration: true
   member_for: true
   user_picture: true
