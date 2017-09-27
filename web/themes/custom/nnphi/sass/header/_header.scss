@@ -10,7 +10,8 @@
   }
 }
 
-.site-header-container > div {
+.site-header-container > div,
+.site-header-container > nav {
   @include media-breakpoint-up(lg) {
     margin-left: 5%; // per designs
     &:first-child {
