@@ -36,3 +36,8 @@
     cursor: pointer;
   }
 }
+
+// Ensures that the wrapper around the form input is full width
+span.algolia-autocomplete {
+  width: 100%;
+}
