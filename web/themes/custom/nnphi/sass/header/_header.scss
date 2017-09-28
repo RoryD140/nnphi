@@ -3,7 +3,7 @@
   padding-top: $padding-sm;
   padding-bottom: $padding-sm;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   @include media-breakpoint-down(md) {
     flex-wrap: wrap;
@@ -20,6 +20,13 @@
   }
 }
 
+.site-header-container > nav {
+  @include media-breakpoint-down(md) {
+    flex: 1 1 auto; // Makes this take the appropriate amount of space at small screens
+    margin-left: 5%;
+  }
+}
+
 .site-header-container .training-search-form {
   @include media-breakpoint-down(md) {
     // At smaller screens search form takes up 100% width
@@ -27,4 +34,51 @@
     margin-top: $padding-sm;
     margin-bottom: $padding-sm;
   }
+}
+
+// Puts the menu button at the end of the flex container, i.e., the far right
+.site-header-container > .menu-btn {
+  @include media-breakpoint-up(lg) {
+    order: 2;
+  }
+}
+
+// At this breakpoint we want the order to go menu, menu button, search
+// There are more concise ways to write this ordering stuff, but this seems like the easiest way to grasp
+@include media-breakpoint-only(md) {
+  .site-header-container > nav {
+    order: 1;
+  }
+
+  .site-header-container > .menu-btn {
+    order: 2;
+  }
+
+  .site-header-container .training-search-form {
+    order: 3;
+  }
+}
+
+// At small breakpoints it goes menu button, menu, search, with menu and search on their own lines
+@include media-breakpoint-down(sm) {
+  .site-header-container > nav {
+    order: 3;
+    flex-basis: 100%;
+    padding-top: $padding-sm;
+  }
+
+  .site-header-container > .menu-btn {
+    order: 1;
+  }
+
+  .site-header-container .training-search-form {
+    order: 2;
+    flex-basis: 100%;
+  }
+}
+
+.site-header-container .site-logo {
+  // This is flexbox's way of overriding justify-content
+  // Keeps the logo at the start of the container despite the container having justify-content: flex-end
+  margin-right: auto;
 }

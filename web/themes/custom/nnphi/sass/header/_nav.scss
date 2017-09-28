@@ -42,6 +42,11 @@
   @extend .col-md-4;
   padding-top: $padding-md;
   padding-bottom: $padding-md;
+  &:first-child {
+    @include media-breakpoint-down(sm) {
+      margin-top: $padding-sm; // Leaves room for close button
+    }
+  }
 }
 
 .main-nav > li.menu-item > a {
