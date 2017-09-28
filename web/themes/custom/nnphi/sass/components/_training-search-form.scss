@@ -41,3 +41,24 @@
 span.algolia-autocomplete {
   width: 100%;
 }
+
+// Styles for autocomplete dropdown
+.aa-dropdown-menu {
+  background-color: #fff;
+  border-radius: $border-radius;
+  border: 1px solid $gray-light;
+  margin-top: $padding-sm;
+  padding-left: $padding-sm;
+  padding-right: $padding-sm;
+}
+
+// Styles for autocomplete suggestions
+.aa-suggestion {
+  padding-top: $padding-sm/2;
+  padding-bottom: $padding-sm/2;
+  cursor: pointer;
+  line-height: 1.2;
+  &:hover {
+    color: $blue;
+  }
+}
