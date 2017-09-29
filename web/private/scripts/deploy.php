@@ -16,4 +16,8 @@ echo "Import of configuration complete.\n";
 echo "Running entity updates...\n";
 passthru('drush entup -y');
 
+// Clear varnish.
+echo "Clearning edge cache...\n";
+passthru('drush -- cc all');
+
 echo "Deployment updates complete.\n";

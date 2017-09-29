@@ -1,0 +1,18 @@
+uuid: afb2d913-e925-4cf2-a80d-2faba54275d0
+langcode: en
+status: false
+dependencies: {  }
+id: development
+label: Development
+folder: ../config/development
+module:
+  dblog: 0
+  views_ui: 0
+  automated_cron: 0
+theme: {  }
+blacklist: {  }
+graylist:
+  - core.extension
+graylist_dependents: true
+graylist_skip_equal: true
+weight: 0

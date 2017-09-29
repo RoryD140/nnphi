@@ -20,7 +20,7 @@ include __DIR__ . "/settings.pantheon.php";
  * Place the config directory outside of the Drupal root.
  */
 $config_directories = array(
-  CONFIG_SYNC_DIRECTORY => dirname(DRUPAL_ROOT) . '/config',
+  CONFIG_SYNC_DIRECTORY => dirname(DRUPAL_ROOT) . '/config/default',
 );
 
 /**
@@ -59,6 +59,10 @@ if (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
     $config['search_api.index.training']['read_only'] = FALSE;
     $index = $indexes[$_ENV['PANTHEON_ENVIRONMENT']];
   }
+}
+else {
+  // Enable the development config_split
+  $config['config_split.config_split.development']['status'] = TRUE;
 }
 // Set the search_api and training search page index.
 $config['search_api.index.training']['options']['algolia_index_name'] = $index;
