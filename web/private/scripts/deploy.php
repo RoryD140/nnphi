@@ -17,7 +17,7 @@ echo "Running entity updates...\n";
 passthru('drush entup -y');
 
 // Clear varnish.
-echo "Clearning edge cache...\n";
+echo "Clearing edge cache...\n";
 passthru('drush -- cc all');
 
 echo "Deployment updates complete.\n";
