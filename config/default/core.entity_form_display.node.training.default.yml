@@ -18,6 +18,7 @@ dependencies:
     - field.field.node.training.field_training_module_length
     - field.field.node.training.field_training_objectives
     - field.field.node.training.field_training_occupations
+    - field.field.node.training.field_training_overall_rating
     - field.field.node.training.field_training_proficiency
     - field.field.node.training.field_training_source
     - field.field.node.training.field_training_state
@@ -180,6 +181,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  field_training_overall_rating:
+    weight: 26
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
     region: content
   field_training_proficiency:
     weight: 17
