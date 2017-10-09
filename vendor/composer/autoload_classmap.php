@@ -4248,6 +4248,7 @@ return array(
     'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => $vendorDir . '/sebastian/recursion-context/src/InvalidArgumentException.php',
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
     'SessionHandlerInterface' => $vendorDir . '/symfony/polyfill-php54/Resources/stubs/SessionHandlerInterface.php',
+    'Snipe\\BanBuilder\\CensorWords' => $vendorDir . '/snipe/banbuilder/src/CensorWords.php',
     'Stack\\Builder' => $vendorDir . '/stack/builder/src/Stack/Builder.php',
     'Stack\\StackedHttpKernel' => $vendorDir . '/stack/builder/src/Stack/StackedHttpKernel.php',
     'Stecman\\Component\\Symfony\\Console\\BashCompletion\\Completion' => $vendorDir . '/stecman/symfony-console-completion/src/Completion.php',

@@ -81,6 +81,7 @@ class ComposerStaticInit1fbc8e18dabf8b3b55590abd199b9e85
             'Symfony\\Cmf\\Component\\Routing\\' => 30,
             'Symfony\\Bridge\\PsrHttpMessage\\' => 30,
             'Stecman\\Component\\Symfony\\Console\\BashCompletion\\' => 49,
+            'Snipe\\BanBuilder\\' => 17,
         ),
         'R' => 
         array (
@@ -304,6 +305,10 @@ class ComposerStaticInit1fbc8e18dabf8b3b55590abd199b9e85
         'Stecman\\Component\\Symfony\\Console\\BashCompletion\\' => 
         array (
             0 => __DIR__ . '/..' . '/stecman/symfony-console-completion/src',
+        ),
+        'Snipe\\BanBuilder\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/snipe/banbuilder/src',
         ),
         'RedBeanPHP\\' => 
         array (
@@ -4863,6 +4868,7 @@ class ComposerStaticInit1fbc8e18dabf8b3b55590abd199b9e85
         'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => __DIR__ . '/..' . '/sebastian/recursion-context/src/InvalidArgumentException.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
         'SessionHandlerInterface' => __DIR__ . '/..' . '/symfony/polyfill-php54/Resources/stubs/SessionHandlerInterface.php',
+        'Snipe\\BanBuilder\\CensorWords' => __DIR__ . '/..' . '/snipe/banbuilder/src/CensorWords.php',
         'Stack\\Builder' => __DIR__ . '/..' . '/stack/builder/src/Stack/Builder.php',
         'Stack\\StackedHttpKernel' => __DIR__ . '/..' . '/stack/builder/src/Stack/StackedHttpKernel.php',
         'Stecman\\Component\\Symfony\\Console\\BashCompletion\\Completion' => __DIR__ . '/..' . '/stecman/symfony-console-completion/src/Completion.php',

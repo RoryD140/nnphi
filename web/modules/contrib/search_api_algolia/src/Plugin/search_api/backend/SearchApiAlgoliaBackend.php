@@ -330,7 +330,7 @@ class SearchApiAlgoliaBackend extends BackendPluginBase implements PluginFormInt
   /**
    * Creates a connection to the Algolia Search server as configured in $this->configuration.
    */
-  protected function connect($index = NULL) {
+  public function connect($index = NULL) {
     if (!$this->getAlgolia()) {
       try {
         $this->algoliaClient = new Client($this->getApplicationId(), $this->getApiKey());

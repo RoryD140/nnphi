@@ -1,0 +1,8 @@
+uuid: e953f3c7-5d52-437d-aff8-f54247cd35c1
+langcode: en
+status: true
+dependencies: {  }
+id: search_training
+label: 'Search training'
+revision: 0
+description: 'Training search autocomplete with fields for a description and links.'
