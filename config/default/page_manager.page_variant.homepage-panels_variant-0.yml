@@ -37,6 +37,15 @@ variant_settings:
       weight: 0
       uuid: 97e1ba1c-951a-4558-8376-32bdbf275ff9
       context_mapping: {  }
+    8042b401-425d-4ca8-be87-1ab0f179bd0b:
+      id: new_popular_trainings
+      label: 'New and popular trainings'
+      provider: nnphi_training
+      label_display: '0'
+      region: content
+      weight: 0
+      uuid: 8042b401-425d-4ca8-be87-1ab0f179bd0b
+      context_mapping: {  }
   id: panels_variant
   uuid: 3491f5ec-94f6-4075-b19e-b433be5f1222
   label: null

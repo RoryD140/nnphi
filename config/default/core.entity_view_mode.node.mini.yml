@@ -1,0 +1,10 @@
+uuid: f957c03c-a171-4370-aa1a-85769f6d67f1
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.mini
+label: Mini
+targetEntityType: node
+cache: true
