@@ -1,0 +1,23 @@
+uuid: b82e4184-a19e-40ba-8792-de90342830a7
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.search_training
+    - field.storage.block_content.field_search_training_link
+  module:
+    - link
+id: block_content.search_training.field_search_training_link
+field_name: field_search_training_link
+entity_type: block_content
+bundle: search_training
+label: Link
+description: 'Link to display at the bottom of the block.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link

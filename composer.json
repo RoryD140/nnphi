@@ -21,6 +21,8 @@
     "drupal/console": "~1.0",
     "drupal/core": "^8",
     "drupal/email_registration": "^1.0@RC",
+    "drupal/page_manager": "4.0-beta2",
+    "drupal/panels": "4.2",
     "drupal/pantheon_advanced_page_cache": "^1.0@alpha",
     "drupal/paragraphs": "^1.1",
     "drupal/password_policy": "^3.0@alpha",
@@ -31,6 +33,7 @@
     "drush/drush": "~8",
     "moment/moment": "^2.18",
     "rvtraveller/qs-composer-installer": "^1.1",
+    "snipe/banbuilder": "^2.2",
     "webflo/drupal-core-strict": "^8",
     "zachflower/indefinite-article": "^0.1.0"
   },
