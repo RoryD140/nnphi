@@ -87,7 +87,7 @@ class NewPopular extends BlockBase implements ContainerFactoryPluginInterface {
     if (empty($new_nids)) {
       return [
         '#cache' => [
-          'tags' => 'node_list',
+          'tags' => ['node_list'],
         ],
       ];
     }
