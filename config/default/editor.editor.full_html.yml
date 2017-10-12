@@ -40,6 +40,7 @@ settings:
         -
           name: 'Block Formatting'
           items:
+            - Styles
             - Format
         -
           name: Tools
@@ -50,7 +51,7 @@ settings:
     language:
       language_list: un
     stylescombo:
-      styles: ''
+      styles: "p.large-text|Large Text\r\np.large-text-bold|Large Text Bold\r\np.all-caps-text|All Caps Text"
 image_upload:
   status: true
   scheme: public

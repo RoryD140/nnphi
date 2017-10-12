@@ -1,0 +1,8 @@
+uuid: 44b9ae0d-2d52-4d43-ab91-3cbfd9cd1e6e
+langcode: en
+status: true
+dependencies: {  }
+id: link_block
+label: 'Link Block'
+revision: 0
+description: 'Block with text, a link and optional image/icon above link.'
