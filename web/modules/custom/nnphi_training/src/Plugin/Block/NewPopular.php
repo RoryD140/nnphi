@@ -53,19 +53,36 @@ class NewPopular extends BlockBase implements ContainerFactoryPluginInterface {
    */
   public function build() {
     $output = [];
+    $output['#attributes']['class'] = 'new-popular-block';
     $output['new'] = [
+      'wrapper-open' => [
+        '#type' => 'markup',
+        '#markup' => '<div class="new-popular-block-interior"><div class="new-trainings-wrapper">',
+      ],
       'header' => [
         '#type' => 'markup',
         '#markup' => '<h3>' . $this->t('New Trainings') . '</h3>',
       ],
       'nodes' => $this->getNewTrainings(),
+      'wrapper-close' => [
+        '#type' => 'markup',
+        '#markup' => '</div>',
+      ],
     ];
     $output['popular'] = [
+      'wrapper-open' => [
+        '#type' => 'markup',
+        '#markup' => '<div class="popular-trainings-wrapper">',
+      ],
       'header' => [
         '#type' => 'markup',
         '#markup' => '<h3>' . $this->t('Popular Trainings') . '</h3>',
       ],
       'nodes' => $this->getPopularTrainings(),
+      'wrapper-close' => [
+        '#type' => 'markup',
+        '#markup' => '</div></div>',
+      ],
     ];
     return $output;
   }

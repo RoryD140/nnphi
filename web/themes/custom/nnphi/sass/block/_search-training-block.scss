@@ -1,0 +1,41 @@
+.search-training-block {
+  padding-top: $padding-lg;
+  padding-bottom: $padding-lg;
+}
+
+.search-training-block-interior {
+  @extend .container;
+}
+
+.search-training-block-content {
+  @extend .col-lg-8;
+  @extend .offset-lg-2;
+}
+
+.search-training-block h1 {
+  @extend %white-heading;
+}
+
+.search-training-block-link {
+  text-align: center;
+}
+
+.search-training-block-link a {
+  @extend .btn;
+  @extend .btn-primary;
+}
+
+.search-training-block .training-search-input {
+  font-weight: 200;
+  color: $gray-text;
+  padding-top: $padding-sm;
+  padding-bottom: $padding-sm;
+  @include media-breakpoint-up(md) {
+    font-size: $font-size-md;
+  }
+}
+
+.search-training-block-text {
+  margin-top: $padding-md;
+  @extend %white-text;
+}

@@ -51,16 +51,5 @@ section.training-text {
 
 // Checkmark bullets for objectives text
 .training-text-objectives ul li {
-  list-style-type: none;
-  position: relative;
-  padding-bottom: $padding-md;
-  &:before {
-    content: '';
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    left: -32px;// Magic numbers to get icon alignment to look right
-    top: 7px;
-    background-image: $checkmark-bg;
-  }
+  @extend %checkmark-list;
 }

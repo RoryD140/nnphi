@@ -14,9 +14,10 @@
   position: relative;
   form {
     width: 100%;
-    .training-search-input {
-      @extend %training-search-input;
-    }
+  }
+  .training-search-input {
+    @extend %training-search-input;
+    text-transform: uppercase;
   }
 }
 

@@ -1,0 +1,41 @@
+.link-block {
+  @extend .container;
+  padding-top: $padding-lg;
+  padding-bottom: $padding-lg;
+}
+
+.link-block-interior {
+  @extend .row;
+}
+
+.link-block-left {
+  @extend .col-md-7;
+  @include media-breakpoint-up(md) {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.link-block-right {
+  @extend .offset-md-1;
+  @extend .col-md-4;
+  display: flex; // Aligns the interior div to the left
+}
+
+.link-block-right-interior {
+  text-align: center; // Content is centered within this div, but this div aligns to the left of its container
+}
+
+.link-block-right img {
+  margin-bottom: $padding-sm;
+}
+
+.link-block-right a {
+  @extend .btn;
+  @extend .btn-primary;
+}
+
+.link-block-outline .link-block-right a {
+  @extend .btn-outline-primary;
+}
