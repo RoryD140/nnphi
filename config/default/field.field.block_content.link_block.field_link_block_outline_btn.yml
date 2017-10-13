@@ -1,0 +1,23 @@
+uuid: cf56480c-8204-475e-904d-f4356289230a
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.link_block
+    - field.storage.block_content.field_link_block_outline_btn
+id: block_content.link_block.field_link_block_outline_btn
+field_name: field_link_block_outline_btn
+entity_type: block_content
+bundle: link_block
+label: 'Link Block Outline Btn'
+description: 'Check this box to use the outline button style instead of the solid button style'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

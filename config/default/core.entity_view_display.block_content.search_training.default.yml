@@ -1,4 +1,4 @@
-uuid: 96ca4d5e-3acb-427b-89b9-65fb425ef36b
+uuid: 904839a8-01c1-4379-a7b6-064416387df0
 langcode: en
 status: true
 dependencies:
@@ -8,7 +8,6 @@ dependencies:
     - field.field.block_content.search_training.field_search_training_bg
     - field.field.block_content.search_training.field_search_training_link
     - field.field.block_content.search_training.field_search_training_title
-    - image.style.thumbnail
   module:
     - image
     - link
@@ -19,44 +18,43 @@ bundle: search_training
 mode: default
 content:
   body:
-    type: text_textarea_with_summary
+    type: text_default
     weight: 2
-    settings:
-      rows: 9
-      summary_rows: 3
-      placeholder: ''
-    third_party_settings: {  }
     region: content
-  field_search_training_bg:
-    weight: 26
-    settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
+    label: hidden
+    settings: {  }
     third_party_settings: {  }
-    type: image_image
+  field_search_training_bg:
+    weight: 4
+    label: above
+    settings:
+      image_style: ''
+    third_party_settings: {  }
+    type: image_url
     region: content
   field_search_training_link:
+    type: link
     weight: 3
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-    type: link_default
     region: content
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
   field_search_training_title:
-    weight: 1
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  info:
-    type: string_textfield
+    type: string
     weight: 0
     region: content
+    label: hidden
     settings:
-      size: 60
-      placeholder: ''
+      link_to_entity: false
+    third_party_settings: {  }
+  search_form:
+    weight: 1
+    region: content
+    settings: {  }
     third_party_settings: {  }
 hidden: {  }

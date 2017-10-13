@@ -1,0 +1,8 @@
+uuid: aa337b52-63ad-475d-8f27-433115991e1c
+langcode: en
+status: true
+dependencies: {  }
+id: two_column_block
+label: 'Two Column Block'
+revision: 0
+description: 'Block with two text columns'
