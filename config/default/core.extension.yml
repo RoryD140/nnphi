@@ -9,6 +9,7 @@ module:
   conditional_fields: 0
   config: 0
   config_filter: 0
+  config_ignore: 0
   config_split: 0
   contact: 0
   contextual: 0
@@ -33,6 +34,7 @@ module:
   node: 0
   options: 0
   page_cache: 0
+  page_manager: 0
   pantheon_advanced_page_cache: 0
   password_policy: 0
   password_policy_characters: 0
