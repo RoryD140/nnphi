@@ -47,10 +47,9 @@ function nnphi_training_cron() {
     // Try and sanitize
     $sanitizer = new BanBuilder\CensorWords();
     $popular = [];
-    $count = 0;
     foreach ($analytics['topSearches'] as $analytic) {
       $sanitized = $sanitizer->censorString($analytic['query']);
-      if (empty($sanitized['matched']) && Unicode::strlen($sanitized['matched']) > 3) {
+      if (empty($sanitized['matched']) && Unicode::strlen($analytic['query']) > 3) {
         $popular[] = $analytic['query'];
       }
     }
