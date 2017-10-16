@@ -1,0 +1,154 @@
+.page-user-register main,
+.page-user-login main,
+.page-user-pass main {
+  @extend .container;
+}
+
+.page-user-register .layout-content,
+.page-user-login .layout-content,
+.page-user-pass .layout-content {
+  @extend .col-md-10;
+  @extend .offset-md-1;
+  margin-top: $padding-lg;
+  margin-bottom: $padding-lg;
+  padding: $padding-lg;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
+  @include media-breakpoint-down(sm) {
+    margin-top: $padding-sm;
+    margin-bottom: $padding-sm;
+    padding: $padding-sm;
+    box-shadow: none;
+  }
+}
+
+.page-user-register h1,
+.page-user-login h1,
+.page-user-pass h1 {
+  @extend %blue-heading;
+  margin-bottom: $padding-md;
+}
+
+.user-register-form .form-item,
+.user-login-form .form-item,
+.user-pass .form-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  margin-bottom: $padding-md;
+}
+
+.user-register-form .form-item label,
+.user-login-form .form-item label,
+.user-pass .form-item label {
+  text-transform: uppercase;
+  font-weight: bold;
+  flex: 1 1 30%;
+  margin-bottom: 0; // overrides default label margin
+  @include media-breakpoint-down(sm) {
+    flex: 1 1 100%;
+  }
+}
+
+.user-register-form .form-item input,
+.user-login-form .form-item input,
+.user-pass .form-item input {
+  flex: 1 1 70%;
+  @extend .form-control;
+  @include media-breakpoint-down(sm) {
+    flex: 1 1 100%;
+  }
+}
+
+// Algolia autocomplete span sometimes has another .algolia-autocomplete span inside it,
+// so this restricts it to just the outer one
+.user-register-form .form-item > .algolia-autocomplete {
+  flex: 1 1 70%;
+  @include media-breakpoint-down(sm) {
+    flex: 1 1 100%;
+  }
+}
+
+.user-register-form .form-submit,
+.user-login-form .form-submit,
+.user-pass .form-submit {
+  @extend .btn;
+  @extend .btn-sm;
+  @extend .btn-primary;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+
+.user-register-form .password-suggestions {
+  display: none !important; // Overrides javascript inline style. We're using password_policy for password suggestions
+}
+
+.user-register-form .password-strength {
+  flex: 0 1 70%;
+  margin-left: auto;
+  display: flex;
+  @include media-breakpoint-down(sm) {
+    flex: 1 1 100%;
+  }
+}
+
+.password-strength__title {
+  flex: 1 1 30%;
+  @include media-breakpoint-down(sm) {
+    flex: 1 1 100%;
+  }
+}
+
+.password-strength__meter {
+  flex: 1 1 70%;
+  order: 1; // Reverses order of title and meter
+  background: $red;
+  @include media-breakpoint-down(sm) {
+    flex: 1 1 100%;
+  }
+}
+
+.password-strength__indicator {
+  background: linear-gradient(to right, $green, $green 80%, $red);
+}
+
+.password-strength__text {
+  display: none;
+}
+
+// Hide all descriptions per designs
+.user-register-form .description {
+  display: none;
+}
+
+#password-policy-status {
+  margin-bottom: $padding-md;
+}
+
+#password-policy-status thead {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+#password-policy-status tr {
+  @include media-breakpoint-down(md) {
+    // Fix the table at small screen sizes
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $padding-sm;
+  }
+}
+
+#password-policy-status td {
+  padding: 5px 15px 5px 0;
+  @include media-breakpoint-down(md) {
+    width: 100%;
+  }
+}
+
+// Hide the first column of table, which just says "user password" in each cell
+#password-policy-status tr td:first-of-type {
+  display: none;
+}

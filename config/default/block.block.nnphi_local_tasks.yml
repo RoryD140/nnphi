@@ -2,6 +2,8 @@ uuid: c7a16fd9-d7f3-46a3-83cf-e027797db009
 langcode: en
 status: true
 dependencies:
+  module:
+    - system
   theme:
     - nnphi
 _core:
@@ -19,4 +21,9 @@ settings:
   label_display: '0'
   primary: true
   secondary: true
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    pages: "/user/register\r\n/user/login"
+    negate: true
+    context_mapping: {  }

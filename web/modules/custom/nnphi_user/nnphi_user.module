@@ -5,20 +5,66 @@
  * Contains nnphi_user.module.
  */
 
-use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Implements hook_help().
+ * Implements hook_module_implements_alter()
+ * @param $implementations
+ * @param $hook
  */
-function nnphi_user_help($route_name, RouteMatchInterface $route_match) {
-  switch ($route_name) {
-    // Main module help for the nnphi_user module.
-    case 'help.page.nnphi_user':
-      $output = '';
-      $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('User functionality for NNPHI') . '</p>';
-      return $output;
+function nnphi_user_module_implements_alter(&$implementations, $hook) {
 
-    default:
+  // we use hook_form_FORM_ID_alter() to alter a form element created in
+  // password_policy.module, so this ensures that our hook runs after that element
+  // is created in password_policy_form_user_form_alter
+  if($hook === 'form_alter') {
+    if (isset($implementations['nnphi_user'])) {
+      // Move nnphi_user to the end of the array
+      unset($implementations['nnphi_user']);
+      $implementations['nnphi_user'] = FALSE;
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_html().
+ * @param $variables
+ */
+function nnphi_user_preprocess_html(&$variables) {
+
+  // Use route to create an additional page class so that we can target specific
+  // user pages, e.g., page-user-register
+  $route = \Drupal::routeMatch()->getRouteName();
+  $variables['page_class'] = HTML::cleanCssIdentifier('page-' . $route, ['.' => '-']);
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function nnphi_user_preprocess_page(&$variables) {
+
+  $route = \Drupal::routeMatch()->getRouteName();
+  // Create custom title for user login pages so that it can be within
+  // the layout-container in page.html.twig
+ if($route === 'user.register') {
+   $variables['custom_title'] = t('Register');
+ } elseif($route === 'user.login') {
+   $variables['custom_title'] = t('Log In');
+ } elseif($route === 'user.pass') {
+   $variables['custom_title'] = t('Reset Your Password');
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nnphi_user_form_user_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  // Rewrite the table headers on the password_policy table so they're more useful
+  if(isset($form['account']['password_policy_status']['#header'])) {
+    $form['account']['password_policy_status']['#header'][0] = t('Password Requirements');
+    unset($form['account']['password_policy_status']['#header'][1]);
+    unset($form['account']['password_policy_status']['#header'][2]);
   }
 }
