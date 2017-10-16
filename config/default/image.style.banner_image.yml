@@ -1,0 +1,15 @@
+uuid: 73e02067-d608-49b2-b552-bac1099cae6f
+langcode: en
+status: true
+dependencies: {  }
+name: banner_image
+label: 'Banner Image'
+effects:
+  30c71498-9bc6-40ef-912f-805ec3c1a4b8:
+    uuid: 30c71498-9bc6-40ef-912f-805ec3c1a4b8
+    id: image_scale
+    weight: 1
+    data:
+      width: 1300
+      height: null
+      upscale: false
