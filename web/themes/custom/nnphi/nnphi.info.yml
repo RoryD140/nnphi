@@ -17,5 +17,8 @@ regions:
 libraries:
   - nnphi/base
 
+ckeditor_stylesheets:
+  - style.css
+
 base theme: stable
 

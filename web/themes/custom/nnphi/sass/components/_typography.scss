@@ -1,0 +1,51 @@
+%white-heading {
+  font-weight: 200;
+  color: #fff;
+  text-align: center;
+  margin-bottom: $padding-lg;
+  margin-top: 0;
+}
+
+%white-text {
+  color: #fff;
+  line-height: 1.6; // per designs
+  font-weight: 200;
+}
+
+// Green checks. Apply this to LIs
+%checkmark-list {
+  list-style-type: none;
+  position: relative;
+  padding-bottom: $padding-md;
+  &:before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: -32px;// Magic numbers to get icon alignment to look right
+    top: 7px;
+    background-image: $checkmark-bg;
+  }
+}
+
+/* Styles used in CKEditor/ */
+.large-text {
+  font-family: $font-family-work-sans;
+  font-weight: 200;
+  font-size: $font-size-h1;
+  line-height: 1.6;
+}
+
+.large-text-bold {
+  @extend .large-text;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.all-caps-text {
+  font-family: $font-family-work-sans;
+  font-weight: 500;
+  font-size: $font-size-lg;
+  text-transform: uppercase;
+  line-height: 1.6;
+}

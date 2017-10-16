@@ -20,8 +20,3 @@ a {
   height: 1px; width: 1px;
   margin: -1px; padding: 0; border: 0;
 }
-
-// Temporary way of applying container to default pages so they're not ugly during development
-body:not(.page-node-type-training) .layout-content {
-  @extend .container;
-}

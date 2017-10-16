@@ -1,0 +1,24 @@
+.two-column-block {
+  @extend .container;
+  padding-top: $padding-lg;
+  padding-bottom: $padding-lg;
+}
+
+.two-column-block h2 {
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: $padding-lg;
+}
+
+.two-column-block-interior {
+  @extend .row;
+}
+
+.two-column-block-interior > div {
+  @extend .col-md-6;
+}
+
+.two-column-block-interior ul li {
+  @extend %checkmark-list;
+}

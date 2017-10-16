@@ -1,0 +1,27 @@
+.new-popular-block {
+  background: linear-gradient($blue, $purple);
+  padding-top: $padding-lg;
+  padding-bottom: $padding-lg;
+}
+
+.new-popular-block h3 {
+  color: #fff;
+}
+
+.new-popular-block-interior {
+  @extend .container;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.new-trainings-wrapper,
+.popular-trainings-wrapper {
+  @extend .col-md-6;
+  @include media-breakpoint-down(md) {
+    padding-bottom: $padding-md;
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+}
+

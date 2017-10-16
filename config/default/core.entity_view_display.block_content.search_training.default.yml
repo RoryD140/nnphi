@@ -8,6 +8,7 @@ dependencies:
     - field.field.block_content.search_training.field_search_training_bg
     - field.field.block_content.search_training.field_search_training_link
     - field.field.block_content.search_training.field_search_training_title
+    - image.style.banner_image
   module:
     - image
     - link
@@ -26,9 +27,9 @@ content:
     third_party_settings: {  }
   field_search_training_bg:
     weight: 4
-    label: above
+    label: hidden
     settings:
-      image_style: ''
+      image_style: banner_image
     third_party_settings: {  }
     type: image_url
     region: content

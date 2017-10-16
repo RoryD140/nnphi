@@ -1,6 +1,7 @@
 @import "bootstrap/bootstrap"; // individual bootstrap components are imported in this file
 @import "base";
 @import "components/tabfix";
+@import "components/typography";
 
 
 // Header
@@ -16,6 +17,7 @@
 @import "components/logo";
 @import "components/training-search-form";
 
+
 // Training
 @import "training/training";
 @import "training/training-hero";
@@ -23,7 +25,14 @@
 @import "training/training-text";
 @import "training/training-terms";
 @import "training/training-related";
+@import "training/training-mini";
 
 // Search
 @import "search/search-filters";
 @import "search/search-results";
+
+// Block
+@import "block/search-training-block";
+@import "block/two-column-block";
+@import "block/link-block";
+@import "block/new-popular-trainings";

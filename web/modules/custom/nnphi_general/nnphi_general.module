@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * @file
+ * Contains nnphi_general.module.
+ */
+
+use \Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use \Drupal\block_content\BlockContentInterface;
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ */
+function nnphi_general_block_content_view(array &$build, BlockContentInterface $block, EntityViewDisplayInterface $display, $view_mode) {
+
+  // Add class to link block if boolean is checked to make button outline
+  if ($block->bundle() === 'link_block') {
+    
+    // Add block class here instead of in template since we're adding classes anyway
+    $build['#attributes']['class'][] = 'link-block';
+
+    $block_outline_field = $block->get('field_link_block_outline_btn');
+    if(!$block_outline_field->isEmpty()) {
+      $value = $block_outline_field->getValue();
+      if($value[0]['value'] === '1') {
+        $build['#attributes']['class'][] = 'link-block-outline';
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for form templates.
+ * @param array $suggestions
+ * @param array $variables
+ */
+function nnphi_general_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  // Block suggestions for custom block bundles.
+  if (isset($variables['elements']['content']['#block_content'])) {
+    array_splice($suggestions, 1, 0, 'block__' . $variables['elements']['content']['#block_content']->bundle());
+  }
+}
