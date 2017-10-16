@@ -1,0 +1,31 @@
+uuid: e186c2c6-d778-4d47-9878-0058ad334101
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:666dfb43-3bed-42cb-8b94-3553e06e23eb'
+  module:
+    - block_content
+    - system
+  theme:
+    - nnphi
+id: signintext
+theme: nnphi
+region: content
+weight: -4
+provider: null
+plugin: 'block_content:666dfb43-3bed-42cb-8b94-3553e06e23eb'
+settings:
+  id: 'block_content:666dfb43-3bed-42cb-8b94-3553e06e23eb'
+  label: 'Sign in text'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: /user/register
+    negate: false
+    context_mapping: {  }

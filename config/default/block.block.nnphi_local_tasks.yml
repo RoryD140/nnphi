@@ -11,7 +11,7 @@ _core:
 id: nnphi_local_tasks
 theme: nnphi
 region: content
-weight: -6
+weight: -8
 provider: null
 plugin: local_tasks_block
 settings:
@@ -24,6 +24,6 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: "/user/register\r\n/user/login"
+    pages: "/user/register\r\n/user/login\r\n/user/password"
     negate: true
     context_mapping: {  }
