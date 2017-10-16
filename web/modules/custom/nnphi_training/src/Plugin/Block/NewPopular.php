@@ -53,7 +53,6 @@ class NewPopular extends BlockBase implements ContainerFactoryPluginInterface {
    */
   public function build() {
     $output = [];
-    $output['#attributes']['class'] = 'new-popular-block';
     $output['new'] = [
       'wrapper-open' => [
         '#type' => 'markup',

@@ -26,22 +26,13 @@
  */
 #}
 
-<div{{ attributes.addClass(content['#attributes'].class) }}>
-  <div class="link-block-interior">
-    {% if content.body|render %}
-      <div class="link-block-left">
-        <div class="link-block-left-interior">
-          {{ content.body }}
-        </div>
-      </div>
-    {% endif %}
-    {% if content.field_link_block_image|render or content.field_link_block_link|render %}
-      <div class="link-block-right">
-        <div class="link-block-right-interior">
-          {{ content.field_link_block_image }}
-          {{ content.field_link_block_link }}
-        </div>
-      </div>
-    {% endif %}
-  </div>
+<div{{ attributes.addClass('new-popular-block') }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  {% block content %}
+    {{ content }}
+  {% endblock %}
 </div>

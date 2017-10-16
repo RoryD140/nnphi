@@ -1,6 +1,9 @@
 .search-training-block {
   padding-top: $padding-lg;
   padding-bottom: $padding-lg;
+  // Background added inline in twig template from image field
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .search-training-block-interior {
@@ -23,6 +26,11 @@
 .search-training-block-link a {
   @extend .btn;
   @extend .btn-primary;
+  // Allow button to wrap at small breakpoints
+  @include media-breakpoint-down(sm) {
+    white-space: normal;
+    line-height: 1.2;
+  }
 }
 
 .search-training-block .training-search-input {
@@ -31,7 +39,7 @@
   padding-top: $padding-sm;
   padding-bottom: $padding-sm;
   @include media-breakpoint-up(md) {
-    font-size: $font-size-md;
+    font-size: $font-size-base;
   }
 }
 

@@ -17,5 +17,11 @@
 .new-trainings-wrapper,
 .popular-trainings-wrapper {
   @extend .col-md-6;
+  @include media-breakpoint-down(md) {
+    padding-bottom: $padding-md;
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
 }
 
