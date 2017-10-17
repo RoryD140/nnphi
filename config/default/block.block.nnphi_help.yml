@@ -11,7 +11,7 @@ _core:
 id: nnphi_help
 theme: nnphi
 region: content
-weight: -5
+weight: -7
 provider: null
 plugin: help_block
 settings:

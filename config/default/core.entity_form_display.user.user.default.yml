@@ -59,7 +59,7 @@ content:
     settings:
       match_operator: CONTAINS
       size: 60
-      placeholder: ''
+      placeholder: 'Start typing to see existing job titles'
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content

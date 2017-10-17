@@ -28,6 +28,12 @@
   }
 }
 
+%blue-heading {
+  text-transform: uppercase;
+  color: $blue;
+  font-size: $font-size-lg;
+}
+
 /* Styles used in CKEditor/ */
 .large-text {
   font-family: $font-family-work-sans;
