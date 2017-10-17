@@ -11,7 +11,7 @@ id: user.user.field_user_job_title
 field_name: field_user_job_title
 entity_type: user
 bundle: user
-label: 'Job Title'
+label: Occupation
 description: 'Start typing to see existing job titles. If your job title doesn''t already exist, enter it manually.'
 required: false
 translatable: false
