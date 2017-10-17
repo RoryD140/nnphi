@@ -10,7 +10,6 @@ dependencies:
     - field.field.node.training.field_training_course_type
     - field.field.node.training.field_training_description
     - field.field.node.training.field_training_expiration
-    - field.field.node.training.field_training_indicators
     - field.field.node.training.field_training_instructor
     - field.field.node.training.field_training_job_tasks
     - field.field.node.training.field_training_length_type
@@ -100,12 +99,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
-    region: content
-  field_training_indicators:
-    weight: 23
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
     region: content
   field_training_instructor:
     type: entity_reference_paragraphs
