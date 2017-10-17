@@ -1,3 +1,7 @@
+// Set algolia noconflict.
+var autocomplete = jQuery.fn.autocomplete.noConflict();
+jQuery.fn.agAutocomplete = autocomplete;
+
 (function ($, Drupal) {
   Drupal.behaviors.nnphiTrainingSearchBlock = {
     attach: function(context, settings) {
@@ -5,9 +9,9 @@
         var client = algoliasearch(settings.trainingSearch.app_id, settings.trainingSearch.api_key)
         var index = client.initIndex(settings.trainingSearch.index);
         var form = $(this);
-        $('.training-search-input', this).autocomplete({ hint: false }, [
+        $('.training-search-input', this).agAutocomplete({ hint: false }, [
           {
-            source: $.fn.autocomplete.sources.hits(index, { hitsPerPage: 5 }),
+            source: $.fn.agAutocomplete.sources.hits(index, { hitsPerPage: 5 }),
             displayKey: 'title',
             templates: {
               suggestion: function(suggestion) {

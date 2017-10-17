@@ -11,7 +11,6 @@ dependencies:
     - field.field.node.training.field_training_course_type
     - field.field.node.training.field_training_description
     - field.field.node.training.field_training_expiration
-    - field.field.node.training.field_training_indicators
     - field.field.node.training.field_training_instructor
     - field.field.node.training.field_training_job_tasks
     - field.field.node.training.field_training_length_type
@@ -19,6 +18,7 @@ dependencies:
     - field.field.node.training.field_training_module_length
     - field.field.node.training.field_training_objectives
     - field.field.node.training.field_training_occupations
+    - field.field.node.training.field_training_overall_rating
     - field.field.node.training.field_training_proficiency
     - field.field.node.training.field_training_source
     - field.field.node.training.field_training_state
@@ -89,13 +89,13 @@ hidden:
   field_training_competencies: true
   field_training_course_type: true
   field_training_expiration: true
-  field_training_indicators: true
   field_training_instructor: true
   field_training_job_tasks: true
   field_training_length_type: true
   field_training_module_length: true
   field_training_objectives: true
   field_training_occupations: true
+  field_training_overall_rating: true
   field_training_state: true
   field_training_total_time: true
   field_training_url: true
