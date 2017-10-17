@@ -5,10 +5,8 @@ dependencies:
   config:
     - field.field.user.user.field_last_password_reset
     - field.field.user.user.field_password_expiration
-    - field.field.user.user.field_user_employer
-    - field.field.user.user.field_user_first_name
     - field.field.user.user.field_user_job_title
-    - field.field.user.user.field_user_last_name
+    - field.field.user.user.field_user_zipcode
     - field.field.user.user.user_picture
   module:
     - datetime
@@ -38,24 +36,8 @@ content:
       display_label: true
     third_party_settings: {  }
     region: content
-  field_user_employer:
-    weight: 4
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_user_first_name:
-    weight: 1
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_user_job_title:
-    weight: 3
+    weight: 2
     settings:
       match_operator: CONTAINS
       size: 60
@@ -63,8 +45,8 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
-  field_user_last_name:
-    weight: 2
+  field_user_zipcode:
+    weight: 1
     settings:
       size: 60
       placeholder: ''
