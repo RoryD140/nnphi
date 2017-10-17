@@ -6,6 +6,11 @@
   @extend .row;
 }
 
+.popular-searches-block h2 {
+  text-transform: uppercase;
+  font-weight: 200;
+}
+
 .popular-searches-left,
 .popular-searches-right {
   @extend .col-md-6;
@@ -19,4 +24,8 @@
 
 .popular-searches-block ul {
   @extend .list-unstyled;
+}
+
+.popular-searches-block a {
+  color: $black;
 }

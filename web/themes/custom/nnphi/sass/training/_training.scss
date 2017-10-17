@@ -1,11 +1,10 @@
-// Temp sizes
 %section-padding {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: $padding-sm;
+  padding-bottom: $padding-sm;
 }
 
 .training-node section {
-
+  @extend %section-padding;
 }
 
 .training-subtitle {
