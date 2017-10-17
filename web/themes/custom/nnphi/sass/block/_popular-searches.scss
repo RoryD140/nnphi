@@ -1,0 +1,22 @@
+.popular-searches-block {
+  @extend .container;
+}
+
+.popular-searches-interior {
+  @extend .row;
+}
+
+.popular-searches-left,
+.popular-searches-right {
+  @extend .col-md-6;
+  @include media-breakpoint-down(md) {
+    padding-bottom: $padding-md;
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+}
+
+.popular-searches-block ul {
+  @extend .list-unstyled;
+}
