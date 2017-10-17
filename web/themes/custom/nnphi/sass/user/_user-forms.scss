@@ -1,3 +1,19 @@
+// Label and input widths are used on a few different selectors
+%label-width {
+  flex: 1 1 20%;
+  @include media-breakpoint-down(sm) {
+    flex: 1 1 100%;
+  }
+}
+
+%input-width {
+  flex: 1 80%;
+  @include media-breakpoint-down(sm) {
+    flex: 1 1 100%;
+  }
+}
+
+
 .page-user-register main,
 .page-user-login main,
 .page-user-pass main {
@@ -7,8 +23,8 @@
 .page-user-register .layout-content,
 .page-user-login .layout-content,
 .page-user-pass .layout-content {
-  @extend .col-md-10;
-  @extend .offset-md-1;
+  @extend .col-md-8;
+  @extend .offset-md-2;
   margin-top: $padding-lg;
   margin-bottom: $padding-lg;
   padding: $padding-lg;
@@ -38,35 +54,44 @@
   margin-bottom: $padding-md;
 }
 
+.user-pass .form-item {
+  margin-bottom: 0;
+}
+
+  // Remove space between confirm password and password requirements
+.user-register-form .form-item.form-item-pass-pass2 {
+  margin-bottom: 0;
+}
+
 .user-register-form .form-item label,
 .user-login-form .form-item label,
 .user-pass .form-item label {
   text-transform: uppercase;
   font-weight: bold;
-  flex: 1 1 30%;
   margin-bottom: 0; // overrides default label margin
-  @include media-breakpoint-down(sm) {
-    flex: 1 1 100%;
+  @extend %label-width;
+
+}
+.user-register-form .form-item label.form-required,
+.user-login-form .form-item label.form-required,
+.user-pass .form-item label.form-required {
+  &:after {
+    content: '*';
+    position: absolute;
   }
 }
 
 .user-register-form .form-item input,
 .user-login-form .form-item input,
 .user-pass .form-item input {
-  flex: 1 1 70%;
+  @extend %input-width;
   @extend .form-control;
-  @include media-breakpoint-down(sm) {
-    flex: 1 1 100%;
-  }
 }
 
 // Algolia autocomplete span sometimes has another .algolia-autocomplete span inside it,
 // so this restricts it to just the outer one
 .user-register-form .form-item > .algolia-autocomplete {
-  flex: 1 1 70%;
-  @include media-breakpoint-down(sm) {
-    flex: 1 1 100%;
-  }
+  @extend %input-width;
 }
 
 .user-register-form .form-submit,
@@ -80,38 +105,40 @@
   }
 }
 
+.user-register-form .password-confirm .ok {
+  color: $green;
+}
+
+.user-register-form .password-confirm .error {
+  color: $red;
+}
 
 .user-register-form .password-suggestions {
   display: none !important; // Overrides javascript inline style. We're using password_policy for password suggestions
 }
 
 .user-register-form .password-strength {
-  flex: 0 1 70%;
+  @extend %input-width;
   margin-left: auto;
   display: flex;
-  @include media-breakpoint-down(sm) {
-    flex: 1 1 100%;
-  }
 }
 
 .password-strength__title {
-  flex: 1 1 30%;
-  @include media-breakpoint-down(sm) {
-    flex: 1 1 100%;
-  }
+  @extend %label-width;
 }
 
 .password-strength__meter {
-  flex: 1 1 70%;
   order: 1; // Reverses order of title and meter
   background: $red;
-  @include media-breakpoint-down(sm) {
-    flex: 1 1 100%;
-  }
+  @extend %input-width;
 }
 
 .password-strength__indicator {
   background: linear-gradient(to right, $green, $green 80%, $red);
+  &.is-strong {
+    background: $green;
+    width: 100% !important; // Overrides js inline style, which only sets the width to 87.5% max
+  }
 }
 
 .password-strength__text {
@@ -119,7 +146,8 @@
 }
 
 // Hide all descriptions per designs
-.user-register-form .description {
+.user-register-form .description,
+.user-login-form .description {
   display: none;
 }
 
