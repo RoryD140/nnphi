@@ -1,9 +1,9 @@
-uuid: e186c2c6-d778-4d47-9878-0058ad334101
+uuid: f4a11e91-6cca-462c-84fe-055881a00c9c
 langcode: en
 status: true
 dependencies:
   content:
-    - 'block_content:basic:666dfb43-3bed-42cb-8b94-3553e06e23eb'
+    - 'block_content:basic:a2d7aa12-037f-481b-b324-a9fb702dc775'
   module:
     - block_content
     - system
@@ -12,11 +12,11 @@ dependencies:
 id: signintext
 theme: nnphi
 region: content
-weight: -4
+weight: -3
 provider: null
-plugin: 'block_content:666dfb43-3bed-42cb-8b94-3553e06e23eb'
+plugin: 'block_content:a2d7aa12-037f-481b-b324-a9fb702dc775'
 settings:
-  id: 'block_content:666dfb43-3bed-42cb-8b94-3553e06e23eb'
+  id: 'block_content:a2d7aa12-037f-481b-b324-a9fb702dc775'
   label: 'Sign in text'
   provider: block_content
   label_display: '0'
