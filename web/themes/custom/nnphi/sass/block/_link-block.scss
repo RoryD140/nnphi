@@ -27,6 +27,8 @@
   text-align: center; // Content is centered within this div, but this div aligns to the left of its container
   display: flex;
   align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .link-block-right img {
