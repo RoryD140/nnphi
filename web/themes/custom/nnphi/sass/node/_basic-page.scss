@@ -1,0 +1,19 @@
+.basic-page-node {
+  padding-top: $padding-lg;
+  padding-bottom: $padding-lg;
+  @extend .container;
+}
+
+.basic-page-node-interior {
+  @extend .row;
+}
+
+.basic-page-content {
+  @extend .col-md-8;
+}
+
+.basic-page-node h1 {
+  @extend %blue-heading;
+  margin-bottom: $padding-md;
+}
+

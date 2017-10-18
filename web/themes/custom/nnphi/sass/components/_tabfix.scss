@@ -3,6 +3,8 @@
   @extend .container;
   margin-top: $padding-sm;
   margin-bottom: $padding-sm;
+  margin-right: auto; // These are set in .container, but there's some specificity that this needs to override
+  margin-left: auto;
 
   ul {
     @extend .btn-group;
