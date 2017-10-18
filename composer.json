@@ -31,9 +31,7 @@
     "drupal/password_policy_length": "^3.0@alpha",
     "drupal/search_api_algolia": "1.x-dev#15a679a186cd186d995d5b06cc0b690e00b05031",
     "drupal/simple_block": "^1.0@beta",
-    "drush/drush": "~8",
     "moment/moment": "^2.18",
-    "rvtraveller/qs-composer-installer": "^1.1",
     "snipe/banbuilder": "^2.2",
     "webflo/drupal-core-strict": "^8",
     "zachflower/indefinite-article": "^0.1.0"

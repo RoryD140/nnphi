@@ -2216,6 +2216,7 @@ return array(
     'Drupal\\Core\\Field\\Annotation\\FieldType' => $baseDir . '/web/core/lib/Drupal/Core/Field/Annotation/FieldType.php',
     'Drupal\\Core\\Field\\Annotation\\FieldWidget' => $baseDir . '/web/core/lib/Drupal/Core/Field/Annotation/FieldWidget.php',
     'Drupal\\Core\\Field\\BaseFieldDefinition' => $baseDir . '/web/core/lib/Drupal/Core/Field/BaseFieldDefinition.php',
+    'Drupal\\Core\\Field\\BaseFieldOverrideAccessControlHandler' => $baseDir . '/web/core/lib/Drupal/Core/Field/BaseFieldOverrideAccessControlHandler.php',
     'Drupal\\Core\\Field\\BaseFieldOverrideStorage' => $baseDir . '/web/core/lib/Drupal/Core/Field/BaseFieldOverrideStorage.php',
     'Drupal\\Core\\Field\\ChangedFieldItemList' => $baseDir . '/web/core/lib/Drupal/Core/Field/ChangedFieldItemList.php',
     'Drupal\\Core\\Field\\EntityReferenceFieldItemList' => $baseDir . '/web/core/lib/Drupal/Core/Field/EntityReferenceFieldItemList.php',
@@ -2805,6 +2806,7 @@ return array(
     'Drupal\\Core\\Test\\AssertMailTrait' => $baseDir . '/web/core/lib/Drupal/Core/Test/AssertMailTrait.php',
     'Drupal\\Core\\Test\\FunctionalTestSetupTrait' => $baseDir . '/web/core/lib/Drupal/Core/Test/FunctionalTestSetupTrait.php',
     'Drupal\\Core\\Test\\HttpClientMiddleware\\TestHttpClientMiddleware' => $baseDir . '/web/core/lib/Drupal/Core/Test/HttpClientMiddleware/TestHttpClientMiddleware.php',
+    'Drupal\\Core\\Test\\ObjectSerialization' => $baseDir . '/web/core/lib/Drupal/Core/Test/ObjectSerialization.php',
     'Drupal\\Core\\Test\\TestDatabase' => $baseDir . '/web/core/lib/Drupal/Core/Test/TestDatabase.php',
     'Drupal\\Core\\Test\\TestKernel' => $baseDir . '/web/core/lib/Drupal/Core/Test/TestKernel.php',
     'Drupal\\Core\\Test\\TestRunnerKernel' => $baseDir . '/web/core/lib/Drupal/Core/Test/TestRunnerKernel.php',
@@ -5737,6 +5739,4 @@ return array(
     'phpDocumentor\\Reflection\\Types\\String_' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/String_.php',
     'phpDocumentor\\Reflection\\Types\\This' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/This.php',
     'phpDocumentor\\Reflection\\Types\\Void_' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/Void_.php',
-    'rvtraveller\\QuicksilverComposerInstaller\\QuicksilverComposerInstaller' => $vendorDir . '/rvtraveller/qs-composer-installer/src/QuicksilverComposerInstaller.php',
-    'rvtraveller\\QuicksilverComposerInstaller\\QuicksilverComposerInstallerPlugin' => $vendorDir . '/rvtraveller/qs-composer-installer/src/QuicksilverComposerInstallerPlugin.php',
 );

@@ -24,10 +24,6 @@ class ComposerStaticInit1fbc8e18dabf8b3b55590abd199b9e85
     );
 
     public static $prefixLengthsPsr4 = array (
-        'r' => 
-        array (
-            'rvtraveller\\QuicksilverComposerInstaller\\' => 41,
-        ),
         'p' => 
         array (
             'phpDocumentor\\Reflection\\' => 25,
@@ -147,10 +143,6 @@ class ComposerStaticInit1fbc8e18dabf8b3b55590abd199b9e85
     );
 
     public static $prefixDirsPsr4 = array (
-        'rvtraveller\\QuicksilverComposerInstaller\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/rvtraveller/qs-composer-installer/src',
-        ),
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
@@ -2816,6 +2808,7 @@ class ComposerStaticInit1fbc8e18dabf8b3b55590abd199b9e85
         'Drupal\\Core\\Field\\Annotation\\FieldType' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Field/Annotation/FieldType.php',
         'Drupal\\Core\\Field\\Annotation\\FieldWidget' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Field/Annotation/FieldWidget.php',
         'Drupal\\Core\\Field\\BaseFieldDefinition' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Field/BaseFieldDefinition.php',
+        'Drupal\\Core\\Field\\BaseFieldOverrideAccessControlHandler' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Field/BaseFieldOverrideAccessControlHandler.php',
         'Drupal\\Core\\Field\\BaseFieldOverrideStorage' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Field/BaseFieldOverrideStorage.php',
         'Drupal\\Core\\Field\\ChangedFieldItemList' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Field/ChangedFieldItemList.php',
         'Drupal\\Core\\Field\\EntityReferenceFieldItemList' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Field/EntityReferenceFieldItemList.php',
@@ -3405,6 +3398,7 @@ class ComposerStaticInit1fbc8e18dabf8b3b55590abd199b9e85
         'Drupal\\Core\\Test\\AssertMailTrait' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Test/AssertMailTrait.php',
         'Drupal\\Core\\Test\\FunctionalTestSetupTrait' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Test/FunctionalTestSetupTrait.php',
         'Drupal\\Core\\Test\\HttpClientMiddleware\\TestHttpClientMiddleware' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Test/HttpClientMiddleware/TestHttpClientMiddleware.php',
+        'Drupal\\Core\\Test\\ObjectSerialization' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Test/ObjectSerialization.php',
         'Drupal\\Core\\Test\\TestDatabase' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Test/TestDatabase.php',
         'Drupal\\Core\\Test\\TestKernel' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Test/TestKernel.php',
         'Drupal\\Core\\Test\\TestRunnerKernel' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Test/TestRunnerKernel.php',
@@ -6337,8 +6331,6 @@ class ComposerStaticInit1fbc8e18dabf8b3b55590abd199b9e85
         'phpDocumentor\\Reflection\\Types\\String_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/String_.php',
         'phpDocumentor\\Reflection\\Types\\This' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/This.php',
         'phpDocumentor\\Reflection\\Types\\Void_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Void_.php',
-        'rvtraveller\\QuicksilverComposerInstaller\\QuicksilverComposerInstaller' => __DIR__ . '/..' . '/rvtraveller/qs-composer-installer/src/QuicksilverComposerInstaller.php',
-        'rvtraveller\\QuicksilverComposerInstaller\\QuicksilverComposerInstallerPlugin' => __DIR__ . '/..' . '/rvtraveller/qs-composer-installer/src/QuicksilverComposerInstallerPlugin.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
