@@ -27,6 +27,10 @@
 
 namespace AlgoliaSearch;
 
+
+use AlgoliaSearch\Iterators\RuleIterator;
+use AlgoliaSearch\Iterators\SynonymIterator;
+
 /*
  * Contains all the functions related to one index
  * You should use Client.initIndex(indexName) to retrieve this object
@@ -632,7 +636,8 @@ class Index
                 'page' => 0,
                 'attributesToRetrieve' => array(),
                 'attributesToHighlight' => array(),
-                'attributesToSnippet' => array()
+                'attributesToSnippet' => array(),
+                'analytics' => false
             );
 
             $additionalParams['facetFilters'] = $this->getAlgoliaFiltersArrayWithoutCurrentRefinement($facetFilters, $facetName . ':');
@@ -1509,6 +1514,16 @@ class Index
     }
 
     /**
+     * @param int $batchSize
+     *
+     * @return SynonymIterator
+     */
+    public function initSynonymIterator($batchSize = 1000)
+    {
+        return new SynonymIterator($this, $batchSize);
+    }
+
+    /**
      * @deprecated Please use searchForFacetValues instead
      * @param $facetName
      * @param $facetQuery
@@ -1654,6 +1669,16 @@ class Index
             $this->context->connectTimeout,
             $this->context->readTimeout
         );
+    }
+
+    /**
+     * @param int $batchSize
+     *
+     * @return RuleIterator
+     */
+    public function initRuleIterator($batchSize = 500)
+    {
+        return new RuleIterator($this, $batchSize);
     }
 
     /**

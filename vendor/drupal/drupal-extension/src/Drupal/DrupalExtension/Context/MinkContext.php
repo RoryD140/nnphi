@@ -17,7 +17,7 @@ class MinkContext extends MinkExtension implements TranslatableContext {
    * @return array
    */
   public static function getTranslationResources() {
-    return glob(__DIR__ . '/../../../../i18n/*.xliff');
+    return self::getMinkTranslationResources() + glob(__DIR__ . '/../../../../i18n/*.xliff');
   }
 
   /**
@@ -82,9 +82,14 @@ class MinkContext extends MinkExtension implements TranslatableContext {
   /**
    * For javascript enabled scenarios, always wait for AJAX before clicking.
    *
-   * @BeforeStep @javascript
+   * @BeforeStep
    */
   public function beforeJavascriptStep($event) {
+    /** @var \Behat\Behat\Hook\Scope\BeforeStepScope $event */
+    $tags = $event->getFeature()->getTags();
+    if (!in_array('javascript', $tags)) {
+      return;
+    }
     $text = $event->getStep()->getText();
     if (preg_match('/(follow|press|click|submit)/i', $text)) {
       $this->iWaitForAjaxToFinish();
@@ -94,9 +99,14 @@ class MinkContext extends MinkExtension implements TranslatableContext {
   /**
    * For javascript enabled scenarios, always wait for AJAX after clicking.
    *
-   * @AfterStep @javascript
+   * @AfterStep
    */
   public function afterJavascriptStep($event) {
+    /** @var \Behat\Behat\Hook\Scope\BeforeStepScope $event */
+    $tags = $event->getFeature()->getTags();
+    if (!in_array('javascript', $tags)) {
+      return;
+    }
     $text = $event->getStep()->getText();
     if (preg_match('/(follow|press|click|submit)/i', $text)) {
       $this->iWaitForAjaxToFinish();
@@ -106,12 +116,29 @@ class MinkContext extends MinkExtension implements TranslatableContext {
   /**
    * Wait for AJAX to finish.
    *
+   * @see \Drupal\FunctionalJavascriptTests\JSWebAssert::assertWaitOnAjaxRequest()
+   *
    * @Given I wait for AJAX to finish
    */
   public function iWaitForAjaxToFinish() {
-    $this->getSession()->wait(5000, '(typeof(jQuery)=="undefined" || (0 === jQuery.active && 0 === jQuery(\':animated\').length))');
+    $condition = <<<JS
+    (function() {
+      function isAjaxing(instance) {
+        return instance && instance.ajaxing === true;
+      }
+      return (
+        // Assert no AJAX request is running (via jQuery or Drupal) and no
+        // animation is running.
+        (typeof jQuery === 'undefined' || (jQuery.active === 0 && jQuery(':animated').length === 0)) &&
+        (typeof Drupal === 'undefined' || typeof Drupal.ajax === 'undefined' || !Drupal.ajax.instances.some(isAjaxing))
+      );
+    }());
+JS;
+    $result = $this->getSession()->wait(5000, $condition);
+    if (!$result) {
+      throw new \RuntimeException('Unable to complete AJAX request.');
+    }
   }
-
   /**
    * Presses button with specified id|name|title|alt|value.
    *
@@ -305,6 +332,18 @@ class MinkContext extends MinkExtension implements TranslatableContext {
     $buttonObj = $element->findButton($button);
     if (empty($buttonObj)) {
       throw new \Exception(sprintf("The button '%s' was not found on the page %s", $button, $this->getSession()->getCurrentUrl()));
+    }
+  }
+
+  /**
+   * @Then I should not see the button :button
+   * @Then I should not see the :button button
+   */
+  public function assertNotButton($button) {
+    $element = $this->getSession()->getPage();
+    $buttonObj = $element->findButton($button);
+    if (!empty($buttonObj)) {
+      throw new \Exception(sprintf("The button '%s' was found on the page %s", $button, $this->getSession()->getCurrentUrl()));
     }
   }
 
