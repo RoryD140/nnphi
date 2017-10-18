@@ -51,7 +51,7 @@ settings:
     language:
       language_list: un
     stylescombo:
-      styles: "p.large-text|Large Text\r\np.large-text-bold|Large Text Bold\r\np.all-caps-text|All Caps Text"
+      styles: "p.large-text|Large Text\r\np.large-text-bold|Large Text Bold\r\np.all-caps-text|All Caps Text\r\np.green-links|Green Links Text"
 image_upload:
   status: true
   scheme: public

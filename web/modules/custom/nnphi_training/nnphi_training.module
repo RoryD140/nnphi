@@ -86,115 +86,130 @@ function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayIn
     }
   }
 
-  if($view_mode !== 'full')  {
-    return;
+  // Add classes to create star rating on overall rating field
+  if( $display->getComponent('field_training_overall_rating')) {
+
+    // Adds 'star' and (e.g.) 'star-5' classes to field
+    if(isset($build['field_training_overall_rating'][0]['#markup'])) {
+
+      // Round rating to whole number
+      $rating = round($build['field_training_overall_rating'][0]['#markup']);
+
+      $build['field_training_overall_rating']['#attributes']['class'][] = 'star';
+      $build['field_training_overall_rating']['#attributes']['class'][] = 'star-' . $rating;
+    }
   }
 
-
-  // Attach slider library if there are values in related training field
-  if(!$node->get('field_related_trainings')->isEmpty()) {
-    $build['#attached']['library'][] = 'nnphi_training/slider';
-  }
-
-  // Set target to blank on training link
-  if(isset($build['field_training_url'])) {
-    $build['field_training_url'][0]['#attributes']['target'] = '_blank';
-  }
+  if($view_mode === 'full') {
 
 
-  $length_type = $node->get('field_training_length_type')->getValue();
-
-  if(empty($length_type) || $length_type[0]['value'] === '1') {
-    // If length type is module, set attribute to use in template to display
-    // the module times from the module time field
-    $build['#attributes'] = array('display_module_times' => TRUE);
-  }
-
-
-  // Build the subtitle string. Only do this if we have proficiency or CEUS
-  if (
-    $display->getComponent('subtitle') &&
-    (!$node->get('field_training_ceus_offered')->isEmpty() || !$node->get('field_training_level')->isEmpty())
-  ) {
-
-    // Use the modified cost string
-    if(!$node->get('field_training_cost')->isEmpty()) {
-      $cost = $build['field_training_cost'][0]['#markup'];
+    // Attach slider library if there are values in related training field
+    if (!$node->get('field_related_trainings')->isEmpty()) {
+      $build['#attached']['library'][] = 'nnphi_training/slider';
     }
 
-    $proficiency = '';
-    if(!$node->get('field_training_level')->isEmpty()) {
-      $proficiency = strtolower($build['field_training_level'][0]['#title']);
-
-      // Add appropriate a/an
-      $proficiency = IndefiniteArticle::A($proficiency);
+    // Set target to blank on training link
+    if (isset($build['field_training_url'])) {
+      $build['field_training_url'][0]['#attributes']['target'] = '_blank';
     }
 
 
-    // Build comma-separated list of CEUS with "and"
+    $length_type = $node->get('field_training_length_type')->getValue();
 
-    $ceu = '';
-    $offering = '';
-    $is = '';
-
-    if(!$node->get('field_training_ceus_offered')->isEmpty()) {
-      $ceus = $node->get('field_training_ceus_offered')->referencedEntities();
-
-      // Just use the single label if we only have one
-      if (count($ceus) === 1) {
-        $ceu = $ceus[0]->label();
-      }
-      else {
-        // Get the CEU labels
-        $ceu_labels = array_map(function ($item) {
-          return $item->label();
-        }, $ceus);
-
-
-        $last_element = array_pop($ceu_labels);
-
-        // Add "and" to last string
-        $last_string = t("and @last",
-          [
-            '@last' => $last_element,
-          ]
-        );
-
-        array_push($ceu_labels, $last_string);
-
-        // If there are just two items, no comma
-        $glue = (count($ceus) === 2) ? ' ' : ', ';
-        $ceu = implode($glue, $ceu_labels);
-      }
-
-
-      // Only add the "offering" string if we have CEUs. Change conjugation if
-      // there's not proficiency
-      if(isset($proficiency)) {
-        $offering = t(' offering');
-        $is = t(' is');
-      } else {
-        $offering = t(' offers');
-      }
-
+    if (empty($length_type) || $length_type[0]['value'] === '1') {
+      // If length type is module, set attribute to use in template to display
+      // the module times from the module time field
+      $build['#attributes'] = ['display_module_times' => TRUE];
     }
 
-    // Create translated string
-    $text = t("This@is @proficiency course@offering @ceu",
-      [
-        '@proficiency' => $proficiency,
-        '@ceu' => $ceu,
-        '@offering' => $offering,
-        '@is' => $is
-      ]
-    );
 
-    // Add variables to template
-    $build['subtitle'] = [
-      '#theme' => 'training_subtitle',
-      '#text' => $text,
-      '#cost' => $cost,
-    ];
+    // Build the subtitle string. Only do this if we have proficiency or CEUS
+    if (
+      $display->getComponent('subtitle') &&
+      (!$node->get('field_training_ceus_offered')
+          ->isEmpty() || !$node->get('field_training_level')->isEmpty())
+    ) {
+
+      // Use the modified cost string
+      if (!$node->get('field_training_cost')->isEmpty()) {
+        $cost = $build['field_training_cost'][0]['#markup'];
+      }
+
+      $proficiency = '';
+      if (!$node->get('field_training_level')->isEmpty()) {
+        $proficiency = strtolower($build['field_training_level'][0]['#title']);
+
+        // Add appropriate a/an
+        $proficiency = IndefiniteArticle::A($proficiency);
+      }
+
+
+      // Build comma-separated list of CEUS with "and"
+
+      $ceu = '';
+      $offering = '';
+      $is = '';
+
+      if (!$node->get('field_training_ceus_offered')->isEmpty()) {
+        $ceus = $node->get('field_training_ceus_offered')->referencedEntities();
+
+        // Just use the single label if we only have one
+        if (count($ceus) === 1) {
+          $ceu = $ceus[0]->label();
+        }
+        else {
+          // Get the CEU labels
+          $ceu_labels = array_map(function ($item) {
+            return $item->label();
+          }, $ceus);
+
+
+          $last_element = array_pop($ceu_labels);
+
+          // Add "and" to last string
+          $last_string = t("and @last",
+            [
+              '@last' => $last_element,
+            ]
+          );
+
+          array_push($ceu_labels, $last_string);
+
+          // If there are just two items, no comma
+          $glue = (count($ceus) === 2) ? ' ' : ', ';
+          $ceu = implode($glue, $ceu_labels);
+        }
+
+
+        // Only add the "offering" string if we have CEUs. Change conjugation if
+        // there's not proficiency
+        if (isset($proficiency)) {
+          $offering = t(' offering');
+          $is = t(' is');
+        }
+        else {
+          $offering = t(' offers');
+        }
+
+      }
+
+      // Create translated string
+      $text = t("This@is @proficiency course@offering @ceu",
+        [
+          '@proficiency' => $proficiency,
+          '@ceu' => $ceu,
+          '@offering' => $offering,
+          '@is' => $is
+        ]
+      );
+
+      // Add variables to template
+      $build['subtitle'] = [
+        '#theme' => 'training_subtitle',
+        '#text' => $text,
+        '#cost' => $cost,
+      ];
+    }
   }
 }
 

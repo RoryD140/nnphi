@@ -1,3 +1,6 @@
+// Setting the star size for the rating field
+$star-size: 20px;
+
 .training-node-mini {
   background: #fff;
   padding: $padding-md;
@@ -10,4 +13,23 @@
 
 .training-node-mini h5 a {
   color: $black;
+}
+
+// In nnphi_training.module, the overall rating field is assigned a class based on the rating, e.g. star-2 or star-5
+// To create the actual stars, we're using a repeating background image that has the appropriate width and height
+// A three star background, for example, would be 20px by 60px wide (if our star is 20px by 20px)
+.training-node-mini .star {
+  font: 0/0 a; // Leaves the actual number rating accessibly hidden
+  background-image: $star-bg;
+  background-size: $star-size;
+  height: $star-size;
+  margin-top: $padding-sm;
+  width: 0;
+}
+
+// Creates selectors for star-1 through star-5
+@for $i from 1 to 6 {
+  .training-node-mini .star.star-#{$i} {
+    width: $star-size * $i;
+  }
 }
