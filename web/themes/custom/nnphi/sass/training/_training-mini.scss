@@ -3,3 +3,11 @@
   padding: $padding-md;
   margin-top: $padding-md; // Matches gutter width so grid looks even
 }
+
+.training-node-mini .training-node-teaser-top {
+  margin-bottom: $padding-sm; // Slightly smaller padding than used elsewhere
+}
+
+.training-node-mini h5 a {
+  color: $black;
+}
