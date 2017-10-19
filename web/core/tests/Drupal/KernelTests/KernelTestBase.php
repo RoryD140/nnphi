@@ -18,10 +18,12 @@ use Drupal\Core\Language\Language;
 use Drupal\Core\Site\Settings;
 use Drupal\Core\Test\TestDatabase;
 use Drupal\simpletest\AssertContentTrait;
-use Drupal\simpletest\AssertHelperTrait;
+use Drupal\Tests\AssertHelperTrait;
 use Drupal\Tests\ConfigTestTrait;
 use Drupal\Tests\RandomGeneratorTrait;
+use Drupal\Tests\TestRequirementsTrait;
 use Drupal\simpletest\TestServiceProvider;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpFoundation\Request;
 use org\bovigo\vfs\vfsStream;
@@ -45,17 +47,15 @@ use org\bovigo\vfs\visitor\vfsStreamPrintVisitor;
  *
  * @see \Drupal\Tests\KernelTestBase::$modules
  * @see \Drupal\Tests\KernelTestBase::enableModules()
- *
- * @todo Extend ::setRequirementsFromAnnotation() and ::checkRequirements() to
- *   account for '@requires module'.
  */
-abstract class KernelTestBase extends \PHPUnit_Framework_TestCase implements ServiceProviderInterface {
+abstract class KernelTestBase extends TestCase implements ServiceProviderInterface {
 
   use AssertLegacyTrait;
   use AssertContentTrait;
   use AssertHelperTrait;
   use RandomGeneratorTrait;
   use ConfigTestTrait;
+  use TestRequirementsTrait;
 
   /**
    * {@inheritdoc}
@@ -69,8 +69,10 @@ abstract class KernelTestBase extends \PHPUnit_Framework_TestCase implements Ser
   /**
    * {@inheritdoc}
    *
-   * Kernel tests are run in separate processes to prevent collisions between
-   * code that may be loaded by tests.
+   * Kernel tests are run in separate processes because they allow autoloading
+   * of code from extensions. Running the test in a separate process isolates
+   * this behavior from other tests. Subclasses should not override this
+   * property.
    */
   protected $runTestInSeparateProcess = TRUE;
 
@@ -129,11 +131,6 @@ abstract class KernelTestBase extends \PHPUnit_Framework_TestCase implements Ser
    * @var \Drupal\Core\DependencyInjection\ContainerBuilder
    */
   protected $container;
-
-  /**
-   * @var \Drupal\Core\DependencyInjection\ContainerBuilder
-   */
-  private static $initialContainerBuilder;
 
   /**
    * Modules to enable.
@@ -212,15 +209,6 @@ abstract class KernelTestBase extends \PHPUnit_Framework_TestCase implements Ser
 
     // Change the current dir to DRUPAL_ROOT.
     chdir(static::getDrupalRoot());
-  }
-
-  /**
-   * Returns the drupal root directory.
-   *
-   * @return string
-   */
-  protected static function getDrupalRoot() {
-    return dirname(dirname(substr(__DIR__, 0, -strlen(__NAMESPACE__))));
   }
 
   /**
@@ -343,23 +331,13 @@ abstract class KernelTestBase extends \PHPUnit_Framework_TestCase implements Ser
       // PHPUnit's @test annotations are intentionally ignored/not supported.
       return strpos($method->getName(), 'test') === 0;
     }));
-    if ($test_method_count > 1 && !$this->isTestInIsolation()) {
-      // Clone a precompiled, empty ContainerBuilder instance for each test.
-      $container = $this->getCompiledContainerBuilder($modules);
-    }
 
     // Bootstrap the kernel. Do not use createFromRequest() to retain Settings.
     $kernel = new DrupalKernel('testing', $this->classLoader, FALSE);
     $kernel->setSitePath($this->siteDirectory);
-    // Boot the precompiled container. The kernel will enhance it with synthetic
-    // services.
-    if (isset($container)) {
-      $kernel->setContainer($container);
-      unset($container);
-    }
     // Boot a new one-time container from scratch. Ensure to set the module list
     // upfront to avoid a subsequent rebuild.
-    elseif ($modules && $extensions = $this->getExtensionsForModules($modules)) {
+    if ($modules && $extensions = $this->getExtensionsForModules($modules)) {
       $kernel->updateModules($extensions, $extensions);
     }
     // DrupalKernel::boot() is not sufficient as it does not invoke preHandle(),
@@ -467,68 +445,6 @@ abstract class KernelTestBase extends \PHPUnit_Framework_TestCase implements Ser
       }
     }
     return $connection_info;
-  }
-
-  /**
-   * Prepares a precompiled ContainerBuilder for all tests of this class.
-   *
-   * Avoids repetitive calls to ContainerBuilder::compile(), which is very slow.
-   *
-   * Based on the (always identical) list of $modules to enable, an initial
-   * container is compiled, all instantiated services are reset/removed, and
-   * this precompiled container is stored in a static class property. (Static,
-   * because PHPUnit instantiates a new class instance for each test *method*.)
-   *
-   * This method is not invoked if there is only a single test method. It is
-   * also not invoked for tests running in process isolation (since each test
-   * method runs in a separate process).
-   *
-   * The ContainerBuilder is not dumped into the filesystem (which would yield
-   * an actually compiled Container class), because
-   *
-   * 1. PHP code cannot be unloaded, so e.g. 900 tests would load 900 different,
-   *    full Container classes into memory, quickly exceeding any sensible
-   *    memory consumption (GigaBytes).
-   * 2. Dumping a Container class requires to actually write to the system's
-   *    temporary directory. This is not really easy with vfs, because vfs
-   *    doesn't support yet "include 'vfs://container.php'.". Maybe we could fix
-   *    that upstream.
-   * 3. PhpDumper is very slow on its own.
-   *
-   * @param string[] $modules
-   *   The list of modules to enable.
-   *
-   * @return \Drupal\Core\DependencyInjection\ContainerBuilder
-   *   A clone of the precompiled, empty service container.
-   */
-  private function getCompiledContainerBuilder(array $modules) {
-    if (!isset(self::$initialContainerBuilder)) {
-      $kernel = new DrupalKernel('testing', $this->classLoader, FALSE);
-      $kernel->setSitePath($this->siteDirectory);
-      if ($modules && $extensions = $this->getExtensionsForModules($modules)) {
-        $kernel->updateModules($extensions, $extensions);
-      }
-      $kernel->boot();
-      self::$initialContainerBuilder = $kernel->getContainer();
-
-      // Remove all instantiated services, so the container is safe for cloning.
-      // Technically, ContainerBuilder::set($id, NULL) removes each definition,
-      // but the container is compiled/frozen already.
-      foreach (self::$initialContainerBuilder->getServiceIds() as $id) {
-        self::$initialContainerBuilder->set($id, NULL);
-      }
-
-      // Destruct and trigger garbage collection.
-      \Drupal::unsetContainer();
-      $kernel->shutdown();
-      $kernel = NULL;
-      // @see register()
-      $this->container = NULL;
-    }
-
-    $container = clone self::$initialContainerBuilder;
-
-    return $container;
   }
 
   /**
@@ -747,15 +663,6 @@ abstract class KernelTestBase extends \PHPUnit_Framework_TestCase implements Ser
     foreach (Database::getAllConnectionInfo() as $key => $targets) {
       Database::removeConnection($key);
     }
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function tearDownAfterClass() {
-    // Free up memory: Precompiled container.
-    self::$initialContainerBuilder = NULL;
-    parent::tearDownAfterClass();
   }
 
   /**
@@ -1072,13 +979,20 @@ abstract class KernelTestBase extends \PHPUnit_Framework_TestCase implements Ser
   }
 
   /**
-   * Returns whether the current test runs in isolation.
+   * Returns whether the current test method is running in a separate process.
+   *
+   * Note that KernelTestBase will run in a separate process by default.
    *
    * @return bool
    *
+   * @see \Drupal\KernelTests\KernelTestBase::$runTestInSeparateProcess
    * @see https://github.com/sebastianbergmann/phpunit/pull/1350
+   *
+   * @deprecated in Drupal 8.4.x, for removal before the Drupal 9.0.0 release.
+   *   KernelTestBase tests are always run in isolated processes.
    */
   protected function isTestInIsolation() {
+    @trigger_error(__CLASS__ . '::' . __FUNCTION__ . '() is deprecated in Drupal 8.4.x, for removal before the Drupal 9.0.0 release. KernelTestBase tests are always run in isolated processes.', E_USER_DEPRECATED);
     return function_exists('__phpunit_run_isolated_test');
   }
 

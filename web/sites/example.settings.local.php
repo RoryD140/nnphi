@@ -113,9 +113,3 @@ $settings['rebuild_access'] = TRUE;
  * directory.
  */
 $settings['skip_permissions_hardening'] = TRUE;
-
-/**
- * Enter an Algolia API to perform index changes on Algolia.
- */
-# $conf['search_api.server.algolia']['backend_config']['api_key'] = '';
-
