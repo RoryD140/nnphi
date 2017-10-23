@@ -13,3 +13,11 @@ nnphi_training.search.config:
     _title: 'Training search configuration'
   requirements:
     _permission: 'administer site configuration'
+
+nnphi_training.training_preview:
+  path: '/node/{node}/preview'
+  defaults:
+    _controller: '\Drupal\nnphi_training\Controller\TrainingPreview::preview'
+  requirements:
+    node: \d+
+    _entity_access: 'node.view'

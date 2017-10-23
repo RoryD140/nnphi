@@ -179,6 +179,12 @@
         }
         catch (err) {}
 
+        // Attach Drupal.behaviors to the rendered content.
+        search.on('render', function() {
+          var $new_content = $('#hits').contents();
+          Drupal.attachBehaviors($new_content.get(0), settings);
+        })
+
         search.start();
       })
 
@@ -236,5 +242,28 @@
     }
 
   };
+
+  Drupal.behaviors.nnphiTrainingSearchPreview = {
+    attach: function(context, settings) {
+      $('a.training-preview', context).once('training-preview').each(function() {
+        var $this = $(this);
+        $this.qtip({
+          show: 'click',
+          hide: 'unfocus',
+          content: {
+            text: Drupal.t('Loading...'),
+            ajax: {
+              url: Drupal.url('node/' + $this.data('nid') + '/preview'),
+              type: 'GET',
+              data: {},
+              success: function(data, status) {
+                this.set('content.text', data.content)
+              }
+            }
+          }
+        }).bind('click', function(event){ event.preventDefault(); return false; });
+      });
+    }
+  }
   
 })(jQuery, Drupal);
