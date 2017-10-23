@@ -1,0 +1,22 @@
+uuid: 08b58d12-7cac-4115-97e1-00980435a4f9
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: training_aliases
+label: 'Training Aliases'
+type: 'canonical_entities:node'
+pattern: '/training/[node:title]'
+selection_criteria:
+  20467fa8-7d80-40c2-8e6e-0eeff9c8e8fc:
+    id: node_type
+    bundles:
+      training: training
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 20467fa8-7d80-40c2-8e6e-0eeff9c8e8fc
+selection_logic: and
+weight: -10
+relationships: {  }

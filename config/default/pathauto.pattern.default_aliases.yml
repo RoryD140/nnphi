@@ -1,0 +1,25 @@
+uuid: f1fc1855-8fca-44e7-8149-5ea841b542fc
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: default_aliases
+label: 'Default Aliases'
+type: 'canonical_entities:node'
+pattern: '/[node:title]'
+selection_criteria:
+  4a92277a-cfc0-4948-8e58-5b5e6105491a:
+    id: node_type
+    bundles:
+      article: article
+      instructor: instructor
+      page: page
+      publisher: publisher
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 4a92277a-cfc0-4948-8e58-5b5e6105491a
+selection_logic: and
+weight: -9
+relationships: {  }
