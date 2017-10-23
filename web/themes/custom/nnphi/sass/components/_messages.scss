@@ -1,0 +1,7 @@
+// Targets the messages section
+.layout-container div[role=contentinfo][aria-label] {
+  @extend .container;
+  font-size: $font-size-md;
+  padding-top: $padding-sm;
+  padding-bottom: $padding-sm;
+}
