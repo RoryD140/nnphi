@@ -115,6 +115,10 @@
         "Map search_api index to algolia index": "patches/contrib/search_api_algolia/search_api_algolia-map_index-2898673-2.patch",
         "Add search fields and facets": "patches/contrib/search_api_algolia/search_api_algolia-list_indexes.patch",
         "Fix fatal error with Algolia exception": "https://www.drupal.org/files/issues/fatal_error_thrown_when-2883037-2.patch"
+      },
+      "drupal/panels": {
+        "Add a hook to alter available blocks in the IPE": "https://www.drupal.org/files/issues/allow-alter-block-content-types-2915161-2.patch",
+        "Pass context for block altering": "https://www.drupal.org/files/issues/panels-hook-blocks-alter-context-2886230-2.patch"
       }
     }
   },
