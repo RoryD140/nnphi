@@ -37,7 +37,6 @@ module:
   options: 0
   page_cache: 0
   page_manager: 0
-  page_manager_ui: 0
   panels: 0
   panels_ipe: 0
   pantheon_advanced_page_cache: 0
