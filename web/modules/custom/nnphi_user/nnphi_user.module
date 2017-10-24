@@ -55,3 +55,23 @@ function nnphi_user_form_user_form_alter(&$form, FormStateInterface $form_state,
     unset($form['account']['password_policy_status']['#header'][2]);
   }
 }
+
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nnphi_user_form_user_login_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  // Add submit handler to set redirect.
+  $form['#submit'][] = '_nnphi_user_user_login_form_submit';
+}
+
+
+/**
+ * Custom submit handler for login form.
+ */
+function _nnphi_user_user_login_form_submit($form, FormStateInterface $form_state) {
+  // Set redirect to front page
+  $form_state->setRedirect('<front>');
+  drupal_set_message(t('Log in successful.'), 'status');
+}
