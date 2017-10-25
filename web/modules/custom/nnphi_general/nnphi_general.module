@@ -8,6 +8,7 @@
 use \Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use \Drupal\block_content\BlockContentInterface;
 use \Drupal\Component\Utility\Html;
+use \Drupal\panels\Plugin\DisplayVariant\PanelsDisplayVariant;
 
 /**
  * Implements hook_ENTITY_TYPE_view().
@@ -52,4 +53,22 @@ function nnphi_general_preprocess_html(&$variables) {
   // pages, e.g., page-user-register
   $route = \Drupal::routeMatch()->getRouteName();
   $variables['page_class'] = HTML::cleanCssIdentifier('page-' . $route, ['.' => '-']);
+}
+
+/**
+ * Implements hook_panels_ipe_blocks_alter().
+ */
+function nnphi_general_panels_ipe_blocks_alter(array &$blocks = [], PanelsDisplayVariant $panels_display) {
+  if ($panels_display->getConfiguration()['storage_id'] !== 'homepage-panels_variant-0') {
+    return;
+  }
+  $providers = [
+    'nnphi_training',
+    'block_content',
+  ];
+  foreach ($blocks as $delta => $block) {
+    if (!in_array($block['provider'], $providers) ) {
+      unset($blocks[$delta]);
+    }
+  }
 }
