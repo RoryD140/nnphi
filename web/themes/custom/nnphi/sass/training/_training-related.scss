@@ -38,6 +38,10 @@ section.training-related {
   flex-wrap: wrap;
   > div {
     padding-right: 10px;
+    display: flex;
+    > div:first-child:not(:last-child) {
+      padding-right: 5px; // Targets multiple CEU Items
+    }
   }
 }
 
@@ -51,13 +55,28 @@ section.training-related {
 
 .training-teaser-link-wrapper {
   text-align: center;
-  padding-top: 15px;
+  padding-top: $padding-sm;
+  display: flex;
+  flex-direction: column;
+  @include media-breakpoint-up(lg) {
+    flex-direction: row;
+  }
 }
 
 .training-teaser-link {
   @extend .btn;
   @extend .btn-md;
+  @extend .btn-primary;
+}
+
+.training-preview-link {
+  @extend .btn;
+  @extend .btn-md;
   @extend .btn-outline-primary;
+  margin: $padding-sm 0 0 0;
+  @include media-breakpoint-up(lg) {
+    margin: 0 0 0 $padding-sm;
+  }
 }
 
 

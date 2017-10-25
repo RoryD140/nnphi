@@ -245,11 +245,19 @@
 
   Drupal.behaviors.nnphiTrainingSearchPreview = {
     attach: function(context, settings) {
-      $('a.training-preview', context).once('training-preview').each(function() {
+      $('a.training-preview-link', context).once('training-preview').each(function() {
         var $this = $(this);
         $this.qtip({
-          show: 'click',
-          hide: 'unfocus',
+          show: {
+            event: 'click',
+            modal: {
+              on: true
+            }
+          },
+          hide: {
+            event: false,
+            effect: 'fade'
+          },
           content: {
             text: Drupal.t('Loading...'),
             ajax: {
@@ -257,9 +265,31 @@
               type: 'GET',
               data: {},
               success: function(data, status) {
-                this.set('content.text', data.content)
+                this.set('content.text', data.content);
+
+                // Add a class so that we can remove loading padding
+                $(this.elements.content).addClass('qtip-content-loaded');
+
+                // Assign the hide event listener to the close button
+                $(this.elements.content).find('.training-node-preview-close').click(function() {
+                    $this.qtip('hide');
+                  }
+                );
               }
             }
+          },
+          position: {
+            my: 'center', // Center within window
+            at: 'center',
+            target: $(window),
+            adjust: {
+              method: 'none',
+              resize: true
+            }
+          },
+          style: {
+            classes: 'nnphi-qtip-wrapper',
+            def: false // Remove the default styling
           }
         }).bind('click', function(event){ event.preventDefault(); return false; });
       });
