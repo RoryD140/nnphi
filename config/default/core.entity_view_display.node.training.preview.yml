@@ -88,10 +88,9 @@ content:
   field_training_objectives:
     weight: 4
     label: hidden
-    settings:
-      trim_length: 140
+    settings: {  }
     third_party_settings: {  }
-    type: text_trimmed
+    type: text_default
     region: content
   field_training_overall_rating:
     weight: 10
