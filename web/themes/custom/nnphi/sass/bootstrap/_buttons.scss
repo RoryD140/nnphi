@@ -144,6 +144,19 @@ fieldset[disabled] a.btn {
   padding-right: 100px;
 }
 
+
+//
+// Button Eye (Custom)
+//
+.btn-eye {
+  // Not using shorthand background property; it overrides inherited background color
+  background-repeat: no-repeat;
+  background-position: 10%;
+  background-size: 30px; // Numbers are more or less magic to get this looking right
+  background-image: $eye-bg;
+  padding-left: 60px;
+}
+
 //
 // Button Sizes
 //

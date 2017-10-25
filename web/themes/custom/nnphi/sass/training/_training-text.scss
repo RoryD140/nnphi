@@ -35,18 +35,7 @@ section.training-text {
 
 // Green checkmarks for overview text
 .training-text-overview ul li {
-  list-style-type: none;
-  position: relative;
-  &:before {
-    color: $green-dark;
-    /* unicode for bullet */
-    content: "\2022";
-    font-size: 1em;
-    padding-right: 1.1225em;
-    position: absolute;
-    top: 0;
-    left: -20px;
-  }
+  @extend %green-dot-list;
 }
 
 // Checkmark bullets for objectives text

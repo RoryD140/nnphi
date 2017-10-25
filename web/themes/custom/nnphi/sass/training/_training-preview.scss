@@ -1,0 +1,135 @@
+// Size of wrapper for close button
+$close-btn-size: 30px;
+
+#qtip-overlay > div {
+  background: #fff; // Override default qtip black overlay. Opacity is correct by default
+}
+
+.nnphi-qtip-wrapper.qtip {
+  background: #fff;
+  width: 100vw;
+  max-width: none;
+  max-height: none;
+  font-size: $font-size-base; // Unset default qtip font size
+  line-height: $line-height-base;
+  box-shadow: $box-shadow;
+  @include media-breakpoint-up(md) {
+    width: 50vw;
+  }
+}
+
+.nnphi-qtip-wrapper .qtip-content {
+  padding: $padding-sm; // Override default qtip padding
+}
+
+.nnphi-qtip-wrapper .qtip-content.qtip-content-loaded {
+  padding: 0;
+}
+
+.training-node-preview-top {
+  padding: $padding-md;
+  padding-right: $close-btn-size + ($padding-sm * 2); // Leave space for close button
+  position: relative; // For positioning close button
+}
+
+// Overrides for training-hero-subtitle style
+.training-node-preview-top .training-hero-subtitle {
+  text-transform: uppercase;
+  color: $gray-text;
+  margin-top: $padding-md;
+  margin-bottom: 0;
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  span {
+    color: #000;
+  }
+}
+
+// Close button
+.training-node-preview-close {
+  position: absolute;
+  top: $padding-sm;
+  right: $padding-sm;
+  width: $close-btn-size;
+  height: $close-btn-size;
+  font: 0/0 a; // keep text invisible but accessible
+  // Uses pseudo elements to make the X
+  &:hover {
+    cursor: pointer;
+  }
+  &:after,
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    background: $gray-dark;
+  }
+  &:before {
+    transform: rotateZ(45deg);
+
+  }
+  &:after {
+    transform: rotateZ(-45deg);
+  }
+}
+
+.training-node-preview-source {
+  @extend .training-hero-source; // Same style used on full training node
+  font-size: $font-size-base;
+  margin-bottom: $padding-sm;
+}
+
+.training-node-preview-bottom {
+  border-top: solid 1px $gray-light;
+  padding: $padding-md;
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: $font-weight-light;
+}
+
+.training-node-preview-bottom-left,
+.training-node-preview-bottom-right {
+  @extend .col-xl-6; // The modal only takes up 50vw, so we want these to stack at most screen sizes
+  padding-bottom: $padding-md;
+}
+
+.training-node-preview-btn {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-eye;
+}
+
+.training-node-preview-rating-ceu {
+  display: flex;
+  align-items: center;
+}
+
+.training-node-preview-ceu {
+  display: flex;
+  align-items: center;
+  span {
+    font-weight: $font-weight-bold;
+    padding-right: $padding-sm/2;
+  }
+  // Puts padding between multiple items
+  div {
+    display: flex;
+    padding-right: $padding-sm/2;
+  }
+}
+
+.training-node-preview-rating-ceu .training-node-star {
+  margin-top: 0; // override star margin
+}
+
+.training-node-preview-bottom-left ul li {
+  @extend %green-dot-list;;
+}
+
+.training-node-preview-bottom-right ul li {
+  @extend %checkmark-list;
+}
