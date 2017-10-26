@@ -10,12 +10,18 @@
 
 .messages-error .messages-interior {
   background: $red;
+  a {
+    color: #fff;
+  }
 }
 
 .messages-warning .messages-interior {
-  background: $orange;
+  background: $yellow;
 }
 
 .messages-status .messages-interior {
   background: $green;
+  a {
+    color: #fff;
+  }
 }
