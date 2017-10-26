@@ -331,7 +331,7 @@ class PanelsIPEPageController extends ControllerBase {
 
     // Trigger hook_panels_ipe_blocks_alter(). Allows other modules to change
     // the list of blocks that are visible.
-    \Drupal::moduleHandler()->alter('panels_ipe_blocks', $blocks);
+    \Drupal::moduleHandler()->alter('panels_ipe_blocks', $blocks, $panels_display);
     // We need to re-index our return value, in case a hook unset a block.
     $blocks = array_values($blocks);
 
@@ -417,6 +417,12 @@ class PanelsIPEPageController extends ControllerBase {
         'description' => $definition->getDescription(),
       ];
     }
+
+    // Trigger hook_panels_ipe_block_content_types_alter(). Allows other modules
+    // to change the list of block types that may be created.
+    \Drupal::moduleHandler()->alter('panels_ipe_block_content_types', $data);
+    // We need to re-index our return value, in case a hook unset a block.
+    $data = array_values($data);
 
     return $data;
   }

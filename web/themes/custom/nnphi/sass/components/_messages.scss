@@ -1,7 +1,21 @@
-// Targets the messages section
-.layout-container div[role=contentinfo][aria-label] {
+.messages {
   @extend .container;
-  font-size: $font-size-md;
-  padding-top: $padding-sm;
-  padding-bottom: $padding-sm;
+  margin-top: $padding-sm;
+  margin-bottom: $padding-sm;
+}
+
+.messages-interior {
+  padding: $padding-sm;
+}
+
+.messages-error .messages-interior {
+  background: $red;
+}
+
+.messages-warning .messages-interior {
+  background: $orange;
+}
+
+.messages-status .messages-interior {
+  background: $green;
 }
