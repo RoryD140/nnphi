@@ -28,6 +28,22 @@
   }
 }
 
+// Green dots. Apply this to LIs
+%green-dot-list {
+  list-style-type: none;
+  position: relative;
+  &:before {
+    color: $green-dark;
+    /* unicode for bullet */
+    content: "\2022";
+    font-size: 1em;
+    padding-right: 1.1225em;
+    position: absolute;
+    top: 0;
+    left: -20px;
+  }
+}
+
 %blue-heading {
   text-transform: uppercase;
   color: $blue;

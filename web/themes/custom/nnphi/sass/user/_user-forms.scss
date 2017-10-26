@@ -28,7 +28,7 @@
   margin-top: $padding-lg;
   margin-bottom: $padding-lg;
   padding: $padding-lg;
-  box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
+  box-shadow: $box-shadow;
   @include media-breakpoint-down(sm) {
     margin-top: $padding-sm;
     margin-bottom: $padding-sm;

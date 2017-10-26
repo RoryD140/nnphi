@@ -6,6 +6,7 @@ id: development
 label: Development
 folder: ../config/development
 module:
+  page_manager_ui: 0
   dblog: 0
   views_ui: 0
   automated_cron: 0

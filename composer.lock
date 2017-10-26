@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2dad95361c83620e97062b86e52ec090",
+    "content-hash": "5fd7e5d5c8cb6170c4f98602461471ad",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2356,6 +2356,10 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "patches_applied": {
+                    "Add a hook to alter available blocks in the IPE": "https://www.drupal.org/files/issues/allow-alter-block-content-types-2915161-2.patch",
+                    "Pass context for block altering": "https://www.drupal.org/files/issues/panels-hook-blocks-alter-context-2886230-2.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
