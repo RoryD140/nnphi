@@ -1,0 +1,27 @@
+.messages {
+  @extend .container;
+  margin-top: $padding-sm;
+  margin-bottom: $padding-sm;
+}
+
+.messages-interior {
+  padding: $padding-sm;
+}
+
+.messages-error .messages-interior {
+  background: $red;
+  a {
+    color: #fff;
+  }
+}
+
+.messages-warning .messages-interior {
+  background: $yellow;
+}
+
+.messages-status .messages-interior {
+  background: $green;
+  a {
+    color: #fff;
+  }
+}
