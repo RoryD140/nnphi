@@ -37,18 +37,20 @@ module:
   options: 0
   page_cache: 0
   page_manager: 0
-  page_manager_ui: 0
   panels: 0
+  panels_ipe: 0
   pantheon_advanced_page_cache: 0
   password_policy: 0
   password_policy_characters: 0
   password_policy_length: 0
   path: 0
+  pathauto: 0
   quickedit: 0
   rdf: 0
   search_api: 0
   search_api_algolia: 0
   shortcut: 0
+  smart_trim: 0
   system: 0
   taxonomy: 0
   text: 0
@@ -58,7 +60,6 @@ module:
   update: 0
   user: 0
   menu_link_content: 1
-  pathauto: 1
   views: 10
   paragraphs: 11
   standard: 1000
