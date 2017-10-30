@@ -1,0 +1,22 @@
+uuid: aa73fc01-35fd-4237-b2fc-78312d9beffe
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.splash_page_contact
+id: contact_message.splash_page_contact.default
+targetEntityType: contact_message
+bundle: splash_page_contact
+mode: default
+content:
+  mail:
+    weight: 0
+    region: content
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: email_mailto
+hidden:
+  message: true
+  name: true
+  subject: true

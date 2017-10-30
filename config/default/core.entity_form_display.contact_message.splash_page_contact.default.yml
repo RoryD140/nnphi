@@ -1,0 +1,22 @@
+uuid: 4f098c66-125f-46f4-99ac-0442f41a77c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.splash_page_contact
+id: contact_message.splash_page_contact.default
+targetEntityType: contact_message
+bundle: splash_page_contact
+mode: default
+content:
+  mail:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  copy: true
+  message: true
+  name: true
+  preview: true
+  subject: true
