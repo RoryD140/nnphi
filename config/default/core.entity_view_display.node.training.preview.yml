@@ -27,6 +27,7 @@ dependencies:
     - node.type.training
   module:
     - options
+    - smart_trim
     - text
     - user
 id: node.training.preview
@@ -88,9 +89,18 @@ content:
   field_training_objectives:
     weight: 4
     label: hidden
-    settings: {  }
+    settings:
+      trim_length: '30'
+      trim_type: words
+      trim_suffix: ...
+      more_link: '0'
+      more_text: More
+      trim_options:
+        text: 0
+      more_class: more-link
+      summary_handler: full
     third_party_settings: {  }
-    type: text_default
+    type: smart_trim
     region: content
   field_training_overall_rating:
     weight: 10
