@@ -1,0 +1,74 @@
+.maintenance-page-content {
+  @extend .container;
+  @include media-breakpoint-up(lg) {
+    background-image: $oval-bg;
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+    background-size: 50%;
+    display: flex;
+    min-height: 100vh;
+  }
+}
+
+.maintenance-page-text {
+  @extend .col-xl-5;
+  @extend .col-lg-6;
+  @extend .col-12;
+  padding-top: $padding-lg;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh; // Sticky footer
+}
+
+.maintenance-page-text main {
+  flex: 1; // sticky footer
+}
+
+.maintenance-page-summary {
+  margin-bottom: $padding-lg;
+  font-weight: $font-weight-light;
+}
+
+.maintenance-page-text .site-logo {
+  font-size: $font-size-lg;
+  margin-bottom: $padding-lg;
+}
+
+.maintenance-page-subtitle {
+  @extend .h1;
+  font-weight: $font-weight-light;
+  margin-bottom: $padding-lg;
+}
+
+// Removes container padding from maintenance page messages, since they're within a column
+// May need to address this globally if it comes up elsewhere
+.maintenance-page-summary .messages {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+
+// Form styles
+.contact-message-splash-page-contact-form .button {
+  @extend .btn;
+  @extend .btn-primary;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.contact-message-splash-page-contact-form label {
+  @extend .visually-hidden;
+}
+
+.contact-message-splash-page-contact-form .form-email {
+  @extend .form-control;
+  margin-bottom: $padding-sm;
+}
+
+.maintenance-page-footer {
+  padding-top: $padding-md;
+  padding-bottom: $padding-md;
+}
+

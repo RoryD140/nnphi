@@ -1,0 +1,96 @@
+uuid: b040d5d9-426e-4a95-bb79-11f7fc6fccda
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.homepage
+  content:
+    - 'block_content:link_block:8243c807-b430-4ef0-a6f6-48df41a1fc30'
+    - 'block_content:link_block:9a67bb4a-d505-48fb-acd6-10f784405d6c'
+    - 'block_content:search_training:2594541c-95ba-4540-84a8-dff32228bc10'
+    - 'block_content:two_column_block:0449d5f7-125f-4f58-aea4-9e0690659da9'
+  module:
+    - block_content
+    - nnphi_training
+id: homepage-block_display-0
+label: Homepage
+variant: block_display
+variant_settings:
+  blocks:
+    5ab6f4c2-e449-4064-9764-8068da9628ed:
+      id: 'block_content:2594541c-95ba-4540-84a8-dff32228bc10'
+      label: 'Homepage Search Block'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: -10
+      uuid: 5ab6f4c2-e449-4064-9764-8068da9628ed
+      context_mapping: {  }
+    835ef4ec-035d-433a-950a-f2d5a81d1759:
+      id: 'block_content:0449d5f7-125f-4f58-aea4-9e0690659da9'
+      label: 'Homepage How It Works'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: -9
+      uuid: 835ef4ec-035d-433a-950a-f2d5a81d1759
+      context_mapping: {  }
+    233e1b6c-2315-4921-bd15-5be539dca1c3:
+      id: popular_searches
+      label: 'Popular searches'
+      provider: nnphi_training
+      label_display: visible
+      limit: '6'
+      region: top
+      weight: -6
+      uuid: 233e1b6c-2315-4921-bd15-5be539dca1c3
+      context_mapping: {  }
+    fd48b06d-e68f-4d04-85aa-8429267ce2b5:
+      id: new_popular_trainings
+      label: 'New and popular trainings'
+      provider: nnphi_training
+      label_display: '0'
+      region: top
+      weight: -8
+      uuid: fd48b06d-e68f-4d04-85aa-8429267ce2b5
+      context_mapping: {  }
+    3b8f05f8-19bd-4ae9-a483-e904b488e119:
+      id: 'block_content:9a67bb4a-d505-48fb-acd6-10f784405d6c'
+      label: 'Homepage Librarian Link'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: -7
+      uuid: 3b8f05f8-19bd-4ae9-a483-e904b488e119
+      context_mapping: {  }
+    73064ec5-d80a-4f4b-bd57-be907fc63ed3:
+      id: 'block_content:8243c807-b430-4ef0-a6f6-48df41a1fc30'
+      label: 'Homepage Register Link'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: -5
+      uuid: 73064ec5-d80a-4f4b-bd57-be907fc63ed3
+      context_mapping: {  }
+  id: block_display
+  uuid: 5986fccb-e277-454c-ab36-85adaf8082c5
+  label: null
+  weight: 0
+  page_title: Homepage
+page: homepage
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

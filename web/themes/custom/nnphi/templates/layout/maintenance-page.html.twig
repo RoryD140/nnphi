@@ -1,0 +1,44 @@
+{#
+/**
+ * @file
+ * Theme override to display a single Drupal page while offline.
+ *
+ * All available variables are mirrored in page.html.twig.
+ * Some may be blank but they are provided for consistency.
+ *
+ * @see template_preprocess_maintenance_page()
+ */
+#}
+
+<div class="layout-content maintenance-page-content">
+  <div class="maintenance-page-text">
+    <header role="banner">
+      {% include (base_path ~ directory ~ '/templates/components/logo.html.twig') %}
+    </header>
+    <main role="main">
+      <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+      <div class="maintenance-page-summary">
+
+        {# Set in nnphi_general.module. Displays status messages so that form confirmation message displays #}
+        {{ messages }}
+
+
+        {# Placeholder while we wait for content #}
+        <p>
+          Etiam sollicitudin, ipsum eu pulvinar rutrum, tellus ipsum laoreet sapien, quis venenatis ante odio sit amet eros. Suspendisse enim turpis, dictum sed, iaculis a, condimentum nec, nisi. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Phasellus volutpat, metus eget egestas mollis, lacus lacus blandit dui, id egestas quam mauris ut lacus. Etiam feugiat lorem non metus. In auctor lobortis lacus.
+        </p>
+      </div>
+
+      <p class="maintenance-page-subtitle">{{ 'Coming May 2018'|t }}</p>
+
+      {# Set in nnphi_general.module. Renders contact form #}
+      {{ splash_form }}
+
+    </main>
+    <footer class="maintenance-page-footer">
+      <a href="https://nnphi.org/">
+        <img src="{{ base_path ~ directory ~ '/images/phln-logo.png' }}" alt="{{ 'Public Health Learning Network Logo'|t }}" />
+      </a>
+    </footer>
+  </div>
+</div>

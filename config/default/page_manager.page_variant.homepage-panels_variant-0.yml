@@ -5,9 +5,12 @@ dependencies:
   config:
     - page_manager.page.homepage
   content:
+    - 'block_content:link_block:9a67bb4a-d505-48fb-acd6-10f784405d6c'
+    - 'block_content:search_training:2594541c-95ba-4540-84a8-dff32228bc10'
     - 'block_content:two_column_block:0449d5f7-125f-4f58-aea4-9e0690659da9'
   module:
     - block_content
+    - nnphi_training
     - panels
 id: homepage-panels_variant-0
 label: Homepage
@@ -23,9 +26,52 @@ variant_settings:
       info: ''
       view_mode: full
       region: content
-      weight: 0
+      weight: 2
       uuid: 8202b5e8-5419-42da-af17-e869b31aa703
       context_mapping: {  }
+    79a3cf24-5df3-4a1e-9006-e350a7e79d83:
+      id: 'block_content:2594541c-95ba-4540-84a8-dff32228bc10'
+      label: 'Homepage Search Block'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      context_mapping: {  }
+      region: content
+      uuid: 79a3cf24-5df3-4a1e-9006-e350a7e79d83
+      weight: 1
+    8d3fb386-e7d6-4e16-884c-5d264858292d:
+      id: new_popular_trainings
+      label: 'New and popular trainings'
+      provider: nnphi_training
+      label_display: '0'
+      context_mapping: {  }
+      region: content
+      uuid: 8d3fb386-e7d6-4e16-884c-5d264858292d
+      weight: 3
+    b3895ec0-de5e-41da-acb9-30ae649e3f9b:
+      id: popular_searches
+      label: 'Popular searches'
+      provider: nnphi_training
+      label_display: visible
+      limit: '4'
+      context_mapping: {  }
+      region: content
+      uuid: b3895ec0-de5e-41da-acb9-30ae649e3f9b
+      weight: 5
+    a22df202-d183-4ddf-84d0-a46db1ec1c37:
+      id: 'block_content:9a67bb4a-d505-48fb-acd6-10f784405d6c'
+      label: 'Homepage Librarian Link'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      context_mapping: {  }
+      region: content
+      uuid: a22df202-d183-4ddf-84d0-a46db1ec1c37
+      weight: 4
   id: panels_variant
   uuid: 6095c19b-b7bc-42b4-9abc-67e5ea42b585
   label: null
