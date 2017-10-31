@@ -4,41 +4,47 @@
     background-image: $oval-bg;
     background-repeat: no-repeat;
     background-position: 100% 100%;
-    background-size: 50%;
+    background-size: 45%;
     display: flex;
     min-height: 100vh;
   }
+  @include media-breakpoint-up(xl) {
+    background-size: 50%;
+  }
+}
+
+.maintenance-page-interior {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .maintenance-page-text {
   @extend .col-xl-5;
   @extend .col-lg-6;
   @extend .col-12;
-  padding-top: $padding-lg;
+  padding-top: $padding-md;
   display: flex;
   flex-direction: column;
   justify-content: center;
   min-height: 100vh; // Sticky footer
 }
 
-.maintenance-page-text main {
-  flex: 1; // sticky footer
-}
-
 .maintenance-page-summary {
-  margin-bottom: $padding-lg;
+  margin-bottom: $padding-md;
   font-weight: $font-weight-light;
 }
 
 .maintenance-page-text .site-logo {
   font-size: $font-size-lg;
-  margin-bottom: $padding-lg;
+  margin-bottom: $padding-md;
 }
 
 .maintenance-page-subtitle {
   @extend .h1;
   font-weight: $font-weight-light;
-  margin-bottom: $padding-lg;
+  margin-bottom: $padding-md;
 }
 
 // Removes container padding from maintenance page messages, since they're within a column
@@ -64,11 +70,25 @@
 
 .contact-message-splash-page-contact-form .form-email {
   @extend .form-control;
-  margin-bottom: $padding-sm;
+  margin-bottom: $padding-md;
 }
 
 .maintenance-page-footer {
   padding-top: $padding-md;
   padding-bottom: $padding-md;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.maintenance-page-footer a {
+  display: flex;
+  align-items: center;
+  padding: $padding-sm/2; // Padding between images
+}
+
+.maintenance-page-footer img {
+  width: 100%;
+  max-width: 178px; // width of PHLN logo. Keeps SVG the same size
 }
 
