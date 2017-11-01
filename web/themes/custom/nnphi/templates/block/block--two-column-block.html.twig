@@ -31,12 +31,16 @@
   {% endif %}
   <div class="two-column-block-interior">
   {% block content %}
-    <div class="two-column-block-left">
-    {{ content.body }}
-    </div>
-    <div class="two-column-block-right">
-      {{ content.field_two_column_block_right_col }}
-    </div>
+    {% if content.body|render %}
+      <div class="two-column-block-left">
+      {{ content.body }}
+      </div>
+    {% endif %}
+    {% if content.field_two_column_block_right_col|render %}
+      <div class="two-column-block-right">
+        {{ content.field_two_column_block_right_col }}
+      </div>
+    {% endif %}
   {% endblock %}
   </div>
 </div>
