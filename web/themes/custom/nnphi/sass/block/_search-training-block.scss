@@ -36,8 +36,8 @@
 .search-training-block .training-search-input {
   font-weight: 200;
   color: $gray-text;
-  padding-top: $padding-sm;
-  padding-bottom: $padding-sm;
+  padding: $padding-sm $padding-lg;
+  text-align: center;
   @include media-breakpoint-up(md) {
     font-size: $font-size-md;
   }
@@ -45,5 +45,6 @@
 
 .search-training-block-text {
   margin-top: $padding-md;
+  text-align: center;
   @extend %white-text;
 }

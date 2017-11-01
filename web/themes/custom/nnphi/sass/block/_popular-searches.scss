@@ -1,9 +1,14 @@
 .popular-searches-block {
   @extend .container;
+  padding-top: $padding-lg;
+  padding-bottom: $padding-lg;
 }
 
 .popular-searches-interior {
-  @extend .row;
+  // Basically row behavior, but without the negative margins
+  // Makes it line up better with the new/popular trainings block
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .popular-searches-block h2 {

@@ -18,8 +18,27 @@
 
 .two-column-block-interior > div {
   @extend .col-md-6;
+  // If there's only one column in the two column div, this centers it within the row
+  // But we also want the div within this div to be centered (but not text-align center)
+  // So this centers the div within it as well. Basically makes lists look not terrible
+  &:first-child:last-child {
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    > div {
+      margin: 0 auto;
+    }
+  }
 }
 
 .two-column-block-interior ul li {
   @extend %checkmark-list;
+  @extend .h5;
+  // Adjusts size of checkmarks. Might need to make a checkmark-list mixin if we end up having multiple sizes
+  &:before {
+    width: 30px;
+    height: 30px;
+    left: -40px;
+    top: -4px;
+  }
 }
