@@ -43,6 +43,10 @@ $settings['install_profile'] = 'standard';
  * Load Algolia credentials and settings.
  */
 $index = 'dev_TRAINING';
+
+// Set GA account ID empty by default so that only prod is tracked
+$config['google_analytics.settings']['account'] = '';
+
 if (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
   $json_text = file_get_contents($site_path . '/files/private/algolia.json');
   $algolia_data = json_decode($json_text, TRUE);
@@ -58,6 +62,11 @@ if (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
     // Indexing is disabled by default, enable on servers.
     $config['search_api.index.training']['read_only'] = FALSE;
     $index = $indexes[$_ENV['PANTHEON_ENVIRONMENT']];
+  }
+
+  // Set Google Analytics ID on Prod
+  if ($_ENV['PANTHEON_ENVIRONMENT'] === 'live') {
+    $config['google_analytics.settings']['account'] = 'UA-109080080-1';
   }
 }
 else {
