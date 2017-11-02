@@ -33,7 +33,7 @@
   {% endif %}
   {% block content %}
     {{ content|without('keywords') }}
-    <div class="row">
+    <div class="training-categories-row">
       {% for keyword_list in content.keywords %}
         <div class="col-md-6">
           {{ keyword_list }}
