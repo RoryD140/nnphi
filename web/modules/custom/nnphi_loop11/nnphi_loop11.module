@@ -21,7 +21,7 @@ function nnphi_loop11_page_attachments(array &$attachments) {
     [
       '#type' => 'html_tag',
       '#tag' => 'script',
-      '#value' => 'window.loop11_key = "93f07726ed0ca8774dee69db21d32cdc1b53036b";window.loop11_pp = [100, 40857];',
+      '#value' => 'window.loop11_key = "93f07726ed0ca8774dee69db21d32cdc1b53036b";window.loop11_pp = [100, 41350];',
     ],
     // A key, to make it possible to recognize this HTML  element when altering.
     'loop11',
