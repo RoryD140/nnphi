@@ -1,5 +1,4 @@
 .basic-page-node {
-  padding-top: $padding-lg;
   padding-bottom: $padding-lg;
   @extend .container;
 }
@@ -8,13 +7,25 @@
   @extend .row;
 }
 
-.basic-page-content {
-  @extend .col-md-8;
-  @extend .offset-md-2;
+.basic-page-hero {
+  background-image: $line-bg;
+  margin-bottom: $padding-md;
+  // This is the same as section.training-hero, so may need to be abstracted if we keep using it
+  padding-top: $padding-lg;
+  padding-bottom: $padding-lg;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
 }
 
 .basic-page-node h1 {
   @extend %blue-heading;
   margin-bottom: $padding-md;
+  @extend .col-md-8; // matches content
+  @extend .offset-md-2;
 }
 
+.basic-page-content {
+  @extend .col-md-8;
+  @extend .offset-md-2;
+}
