@@ -75,16 +75,26 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  @include media-breakpoint-up(md) {
+    flex-wrap: nowrap;
+  }
 }
 
 .maintenance-page-footer a {
   display: flex;
   align-items: center;
-  padding: $padding-sm/2; // Padding between images
+  @include media-breakpoint-down(sm) {
+    padding: $padding-sm;
+  }
+  @include media-breakpoint-up(md) {
+    &:first-child {
+      padding-right: $padding-md;
+    }
+  }
 }
 
 .maintenance-page-footer img {
   width: 100%;
-  max-width: 178px; // width of PHLN logo. Keeps SVG the same size
+  max-width: 211px; // width of PHLN logo. Keeps SVG the same size
 }
 
