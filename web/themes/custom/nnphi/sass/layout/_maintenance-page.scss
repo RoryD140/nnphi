@@ -56,7 +56,7 @@
 
 
 // Form styles
-.contact-message-splash-page-contact-form .button {
+.maintenance-page-signup-form .button {
   @extend .btn;
   @extend .btn-primary;
   &:hover {
@@ -64,11 +64,7 @@
   }
 }
 
-.contact-message-splash-page-contact-form label {
-  @extend .visually-hidden;
-}
-
-.contact-message-splash-page-contact-form .form-email {
+.maintenance-page-signup-form .email {
   @extend .form-control;
   margin-bottom: $padding-md;
 }
