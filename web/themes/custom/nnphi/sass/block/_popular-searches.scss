@@ -28,3 +28,8 @@
 .training-categories-block a {
   color: $black;
 }
+
+.training-categories-row {
+  @extend .row;
+  width: 100%; // Ensure that columns take up full 50%
+}
