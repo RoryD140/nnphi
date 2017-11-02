@@ -91,7 +91,7 @@ class TrainingCategories extends BlockBase implements ContainerFactoryPluginInte
    * {@inheritdoc}
    */
   public function validateConfigurationForm(array &$form, FormStateInterface $form_state) {
-    $vals = explode("\n", $form_state->getValue('keywords'));
+    $vals = explode("\n", trim($form_state->getValue('keywords')));
     $form_state->setValue('keywords', $vals);
     parent::validateConfigurationForm($form, $form_state);
   }

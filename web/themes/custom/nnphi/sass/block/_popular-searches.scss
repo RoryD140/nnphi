@@ -1,36 +1,35 @@
-.popular-searches-block {
-  @extend .container;
+.popular-searches-block,
+.training-categories-block{
   padding-top: $padding-lg;
   padding-bottom: $padding-lg;
-}
-
-.popular-searches-interior {
   // Basically row behavior, but without the negative margins
   // Makes it line up better with the new/popular trainings block
   display: flex;
   flex-wrap: wrap;
+  @include media-breakpoint-down(md) {
+    padding-top: $padding-md;
+    padding-bottom: $padding-md;
+  }
 }
 
-.popular-searches-block h2 {
+.popular-searches-block h2,
+.training-categories-block h2 {
+  width: 100%;
   text-transform: uppercase;
   font-weight: 200;
 }
 
-.popular-searches-left,
-.popular-searches-right {
-  @extend .col-md-6;
-  @include media-breakpoint-down(md) {
-    padding-bottom: $padding-md;
-    &:last-child {
-      padding-bottom: 0;
-    }
-  }
-}
-
-.popular-searches-block ul {
+.popular-searches-block ul,
+.training-categories-block ul{
   @extend .list-unstyled;
 }
 
-.popular-searches-block a {
+.popular-searches-block a,
+.training-categories-block a {
   color: $black;
+}
+
+.training-categories-row {
+  @extend .row;
+  width: 100%; // Ensure that columns take up full 50%
 }

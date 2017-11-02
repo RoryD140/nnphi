@@ -71,9 +71,13 @@
  */
 #}
 <article{{ attributes.addClass('basic-page-node') }}>
+  <div class="basic-page-hero">
+    <div class="row">
+      <h1>{{ label }}</h1>
+    </div>
+  </div>
   <div class="basic-page-node-interior">
     <div{{ content_attributes.addClass('basic-page-content') }}>
-      <h1>{{ label }}</h1>
       {{ content }}
     </div>
   </div>
