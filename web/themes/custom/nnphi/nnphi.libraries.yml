@@ -7,5 +7,6 @@ base:
     scripts.js: {}
   dependencies:
     - core/jquery
+    - core/jquery.once
     - core/drupal
     - core/drupalSettings
