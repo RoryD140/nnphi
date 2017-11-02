@@ -1,0 +1,9 @@
+.layout-col-container {
+  @extend .container;
+  display: flex; // Row behavior without the negative margins so that everything lines up
+  flex-wrap: wrap;
+}
+
+.layout-col-container .layout__region {
+  @extend .col-lg-6;
+}

@@ -27,38 +27,13 @@
 #}
 <div{{ attributes.addClass('popular-searches-block') }}>
   <div class="popular-searches-interior">
-    <div class="popular-searches-left">
-      {# This is stubbed in until we have the category functionality developed/sorted out#}
-      <h2>Find Trainings by Category</h2>
-      <div class="row">
-        <div class="col-md-6">
-          <ul>
-            <li><a href="#">Lorem Ipsum</a></li>
-            <li><a href="#">Lorem Ipsum</a></li>
-            <li><a href="#">Lorem Ipsum</a></li>
-            <li><a href="#">Lorem Ipsum</a></li>
-          </ul>
-        </div>
-        <div class="col-md-6">
-          <ul>
-            <li><a href="#">Lorem Ipsum</a></li>
-            <li><a href="#">Lorem Ipsum</a></li>
-            <li><a href="#">Lorem Ipsum</a></li>
-            <li><a href="#">Lorem Ipsum</a></li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-    <div class="popular-searches-right">
-      {{ title_prefix }}
-      {% if label %}
-        <h2{{ title_attributes }}>{{ label }}</h2>
-      {% endif %}
-      {{ title_suffix }}
-      {% block content %}
-        {{ content }}
-      {% endblock %}
-    </div>
+    {{ title_prefix }}
+    {% if label %}
+      <h2{{ title_attributes }}>{{ label }}</h2>
+    {% endif %}
+    {{ title_suffix }}
+    {% block content %}
+      {{ content }}
+    {% endblock %}
   </div>
 </div>
