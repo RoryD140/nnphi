@@ -85,39 +85,3 @@ function nnphi_general_panels_ipe_blocks_alter(array &$blocks = [], PanelsDispla
   }
 }
 
-/**
- * Implements hook_preprocess_maintenance_page().
- */
-function nnphi_general_preprocess_maintenance_page(&$variables) {
-
-
-  // Get the rendered splash page contact form
-  $entity_type = 'contact_form';
-  $entity_id = 'splash_page_contact';
-  $view_mode = 'default';
-
-  $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->load($entity_id);
-  $view_builder = \Drupal::entityTypeManager()->getViewBuilder($entity_type);
-  $pre_render = $view_builder->view($entity, $view_mode);
-  $form = \Drupal::service('renderer')->render($pre_render);
-
-
-  $variables['splash_form'] = $form;
-
-
-  // Gets status messages so that form confirmation message displays
-  // By default maintenance page doesn't display status messages in page.content.
-  $variables['messages'] = StatusMessages::renderMessages('status');
-
-}
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-function nnphi_general_form_contact_message_splash_page_contact_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-
-  // Make the form title the placeholder
-  if(isset($form['mail'])) {
-    $form['mail']['#placeholder'] = $form['mail']['#title'];
-  }
-}
