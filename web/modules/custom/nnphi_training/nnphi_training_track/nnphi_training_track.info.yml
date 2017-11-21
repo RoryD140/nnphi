@@ -1,0 +1,9 @@
+name: NNPHI Training Tracker
+type: module
+description: 'Tracks views for users of trainings.'
+package: NNPHI
+version: VERSION
+core: 8.x
+dependencies:
+  - node
+  - redis

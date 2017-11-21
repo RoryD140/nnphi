@@ -1,0 +1,8 @@
+track:
+  version: VERSION
+  js:
+    js/tracker.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
