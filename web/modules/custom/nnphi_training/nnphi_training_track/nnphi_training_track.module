@@ -1,0 +1,32 @@
+<?php
+/**
+ * @file nnphi_training_track.module
+ */
+
+use Drupal\node\NodeInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ */
+function nnphi_training_track_node_view(array &$build, NodeInterface $node, EntityViewDisplayInterface $display, $view_mode) {
+  if ($node->getType() === 'training' && !$node->isNew() && $view_mode === 'full' && node_is_page($node) && empty($node->in_preview)) {
+    $build['#attached']['library'][] = 'nnphi_training_track/track';
+    $settings = ['data' => ['nid' => $node->id()], 'url' => Url::fromUri('base:' . drupal_get_path('module', 'nnphi_training_track') . '/track.php')->toString()];
+    $build['#attached']['drupalSettings']['nnphi_training_track'] = $settings;
+  }
+}
+
+/**
+ * Implements hook_user_cancel().
+ */
+function nnphi_training_track_user_cancel($edit, $account, $method) {
+  try {
+    \Drupal::service('nnphi_training_track.view_tracker')->deleteUserData($account->id());
+  }
+  catch (\Exception $exception) {
+    watchdog_exception('nnphi_training_track', $exception);
+    \Drupal::logger('nnphi_training_track')->error('Unable to delete user viewed training date.');
+  }
+}

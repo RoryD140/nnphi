@@ -62,6 +62,7 @@ return array(
     'GuzzleHttp\\Promise\\' => array($vendorDir . '/guzzlehttp/promises/src'),
     'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
     'Goutte\\' => array($vendorDir . '/fabpot/goutte/Goutte'),
+    'Drupal\\redis\\' => array($baseDir . '/web/modules/contrib/redis/src'),
     'Drupal\\Driver\\' => array($baseDir . '/web/drivers/lib/Drupal/Driver'),
     'Drupal\\Core\\' => array($baseDir . '/web/core/lib/Drupal/Core'),
     'Drupal\\Console\\Dotenv\\' => array($vendorDir . '/drupal/console-dotenv/src'),

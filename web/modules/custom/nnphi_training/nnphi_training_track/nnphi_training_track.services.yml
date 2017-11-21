@@ -1,0 +1,4 @@
+services:
+  nnphi_training_track.view_tracker:
+    class: Drupal\nnphi_training_track\TrainingViewTracker
+    arguments: ['@request_stack', '@redis.factory', '@datetime.time']
