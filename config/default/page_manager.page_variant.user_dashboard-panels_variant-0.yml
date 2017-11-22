@@ -1,0 +1,47 @@
+uuid: 2eb1c706-d1e4-4e46-ba9b-9eb2fd94e190
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.user_dashboard
+  module:
+    - nnphi_user
+    - panels
+    - user
+id: user_dashboard-panels_variant-0
+label: 'Authenticated User'
+variant: panels_variant
+variant_settings:
+  blocks:
+    0f926905-c237-4f23-8984-26b93043541c:
+      id: user_banner
+      label: 'User banner'
+      provider: nnphi_user
+      label_display: '0'
+      region: banner
+      weight: 0
+      uuid: 0f926905-c237-4f23-8984-26b93043541c
+      context_mapping:
+        user: user
+  id: panels_variant
+  uuid: b0addbdc-161c-4208-953b-9d995687f4c5
+  label: null
+  weight: 0
+  layout: nnphi_dashboard
+  layout_settings: {  }
+  page_title: 'My Dashboard'
+  storage_type: page_manager
+  storage_id: user_dashboard-panels_variant-0
+  builder: standard
+page: user_dashboard
+weight: 0
+selection_criteria:
+  -
+    id: user_role
+    roles:
+      authenticated: authenticated
+    negate: false
+    context_mapping:
+      user: user
+selection_logic: and
+static_context: {  }
