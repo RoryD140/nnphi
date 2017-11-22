@@ -1,0 +1,15 @@
+nnphi_dashboard:
+  label: 'Dashboard'
+  category: 'NNPHI'
+  template: templates/layout/dashboard-layout
+  default_region: main
+  regions:
+    banner:
+      label: 'Banner (full width)'
+    left_column_first:
+      label: 'First Left Column (half width)'
+    right_column_first:
+      label: 'First Right Column (half width)'
+    main:
+      label: 'Main (full width)'
+

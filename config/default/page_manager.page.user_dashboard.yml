@@ -1,0 +1,12 @@
+uuid: ec15a476-24c0-459f-82d3-313783949b35
+langcode: en
+status: true
+dependencies: {  }
+id: user_dashboard
+label: 'User dashboard'
+description: ''
+use_admin_theme: false
+path: '/user/{user}'
+access_logic: and
+access_conditions: {  }
+parameters: {  }
