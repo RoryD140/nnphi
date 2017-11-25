@@ -1,0 +1,29 @@
+uuid: 2e7edd0c-36ca-4c27-b2f7-d6253b3e3cba
+langcode: en
+status: true
+dependencies: {  }
+id: bookmark
+label: Bookmark
+bundles:
+  - training
+entity_type: node
+global: false
+weight: 0
+flag_short: Bookmark
+flag_long: ''
+flag_message: 'Bookmark saved'
+unflag_short: 'Remove bookmark'
+unflag_long: ''
+unflag_message: 'Bookmark removed'
+unflag_denied_text: ''
+flag_type: 'entity:node'
+link_type: ajax_link
+flagTypeConfig:
+  show_in_links:
+    full: full
+  show_as_field: true
+  show_on_form: false
+  show_contextual_link: false
+  extra_permissions:
+    owner: '0'
+linkTypeConfig: {  }

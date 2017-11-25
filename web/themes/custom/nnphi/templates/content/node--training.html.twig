@@ -124,6 +124,9 @@
         {% if content.field_training_instructor|render or content.field_training_description|render %}
           <div class="training-text-overview">
             <h2 class="training-subtitle">{{ 'Overview'|t }}</h2>
+            {% if content.flag_bookmark|render %}
+              {{ content.flag_bookmark }}
+            {% endif %}
             {{ content.field_training_instructor }}
             {{ content.field_training_description }}
           </div>
