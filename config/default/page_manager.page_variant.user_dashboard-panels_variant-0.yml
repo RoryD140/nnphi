@@ -23,6 +23,16 @@ variant_settings:
       uuid: 0f926905-c237-4f23-8984-26b93043541c
       context_mapping:
         user: user
+    d1f1b309-be18-4e39-953c-b9765cd24fc6:
+      id: bookmarked_trainings
+      label: 'Bookmarked Trainings'
+      provider: nnphi_user
+      label_display: visible
+      region: right_column_first
+      weight: 0
+      uuid: d1f1b309-be18-4e39-953c-b9765cd24fc6
+      context_mapping:
+        user: user
   id: panels_variant
   uuid: b0addbdc-161c-4208-953b-9d995687f4c5
   label: null
