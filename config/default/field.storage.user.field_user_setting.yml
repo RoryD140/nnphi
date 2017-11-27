@@ -1,0 +1,20 @@
+uuid: af05a9d4-52e6-4418-8d79-b323f5e84469
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+    - user
+id: user.field_user_setting
+field_name: field_user_setting
+entity_type: user
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

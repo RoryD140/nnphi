@@ -5,3 +5,4 @@ config:
   site: nnphi
   id: 74ca8106-d163-40b3-b7ce-d7d82d1272d6
   xdebug: true
+  web_docroot: true

@@ -33,6 +33,16 @@ variant_settings:
       uuid: d1f1b309-be18-4e39-953c-b9765cd24fc6
       context_mapping:
         user: user
+    cd3df3ec-faa8-4b69-a011-7fa9aff29589:
+      id: user_profile
+      label: Profile
+      provider: nnphi_user
+      label_display: visible
+      region: left_column_first
+      weight: 0
+      uuid: cd3df3ec-faa8-4b69-a011-7fa9aff29589
+      context_mapping:
+        user: user
   id: panels_variant
   uuid: b0addbdc-161c-4208-953b-9d995687f4c5
   label: null
