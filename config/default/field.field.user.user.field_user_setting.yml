@@ -1,0 +1,30 @@
+uuid: 1a4cd1c4-1df2-4dc6-8feb-4a9ad443620f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_user_setting
+    - taxonomy.vocabulary.ceus
+  module:
+    - user
+id: user.user.field_user_setting
+field_name: field_user_setting
+entity_type: user
+bundle: user
+label: Setting
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      ceus: ceus
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

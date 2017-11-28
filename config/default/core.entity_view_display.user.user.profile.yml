@@ -1,14 +1,12 @@
-uuid: 67323009-5e77-4a09-b36a-4dc88f3c5620
+uuid: d940a584-9f75-4f7f-9786-6c912575625c
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.user.profile
     - field.field.user.user.field_last_password_reset
     - field.field.user.user.field_password_expiration
-    - field.field.user.user.field_user_interests
     - field.field.user.user.field_user_job_title
-    - field.field.user.user.field_user_role
-    - field.field.user.user.field_user_setting
     - field.field.user.user.field_user_zipcode
     - field.field.user.user.user_picture
   module:
@@ -16,46 +14,22 @@ dependencies:
     - user
 _core:
   default_config_hash: V51QPCKkgNREKtSmB9Iu2wmAMEpktVpnzklWaZV8UYo
-id: user.user.default
+id: user.user.profile
 targetEntityType: user
 bundle: user
-mode: default
+mode: profile
 content:
-  field_user_interests:
-    weight: 5
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: content
   field_user_job_title:
     weight: 1
-    label: hidden
+    label: inline
     settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: content
-  field_user_role:
-    weight: 3
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: content
-  field_user_setting:
-    weight: 4
-    label: above
-    settings:
-      link: true
+      link: false
     third_party_settings: {  }
     type: entity_reference_label
     region: content
   field_user_zipcode:
     weight: 2
-    label: hidden
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }

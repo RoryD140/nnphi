@@ -75,3 +75,13 @@ function _nnphi_user_user_login_form_submit($form, FormStateInterface $form_stat
   $form_state->setRedirect('<front>');
   drupal_set_message(t('Log in successful.'), 'status');
 }
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function nnphi_user_theme_suggestions_user(array $variables) {
+  // Add view mode to user template suggestions.
+  if (!empty($variables['elements']['#view_mode'])) {
+    return ['user__' . $variables['elements']['#view_mode']];
+  }
+}
