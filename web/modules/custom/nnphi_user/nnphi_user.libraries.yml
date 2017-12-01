@@ -1,0 +1,7 @@
+bookmarks:
+  version: VERSION
+  js:
+    js/bookmarks.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
