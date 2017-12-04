@@ -12,4 +12,7 @@ nnphi_dashboard:
       label: 'First Right Column (half width)'
     main:
       label: 'Main (full width)'
+    main_container:
+      label: 'Main (container)'
+
 

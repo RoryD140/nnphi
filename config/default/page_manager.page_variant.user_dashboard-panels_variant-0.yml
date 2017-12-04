@@ -19,7 +19,7 @@ variant_settings:
       provider: nnphi_user
       label_display: '0'
       region: banner
-      weight: 0
+      weight: -10
       uuid: 0f926905-c237-4f23-8984-26b93043541c
       context_mapping:
         user: user
@@ -43,6 +43,26 @@ variant_settings:
       uuid: cd3df3ec-faa8-4b69-a011-7fa9aff29589
       context_mapping:
         user: user
+    7434d2c0-407c-48b3-94e0-feed14b025d6:
+      id: user_training_suggestions
+      label: 'Suggested Trainings'
+      provider: nnphi_user
+      label_display: visible
+      region: right_column_first
+      weight: 0
+      uuid: 7434d2c0-407c-48b3-94e0-feed14b025d6
+      context_mapping:
+        user: current_user
+    3d5aaf6e-e3e4-4d62-be55-a83d5aede7b2:
+      id: user_recently_viewed
+      label: 'Recently Viewed Trainings'
+      provider: nnphi_user
+      label_display: '0'
+      region: main
+      weight: -2
+      uuid: 3d5aaf6e-e3e4-4d62-be55-a83d5aede7b2
+      context_mapping:
+        user: current_user
   id: panels_variant
   uuid: b0addbdc-161c-4208-953b-9d995687f4c5
   label: null
