@@ -5,3 +5,12 @@
  * Functions to support theming in the nnphi theme.
  */
 
+use Drupal\Component\Utility\Html;
+
+function nnphi_preprocess_block(&$variables) {
+  if (!isset($variables['plugin_id'])) {
+    return;
+  }
+  // Add an outer class for the block ID.
+  $variables['attributes']['class'][] = Html::cleanCssIdentifier('block-' . $variables['plugin_id']);
+}
