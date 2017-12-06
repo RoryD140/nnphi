@@ -22,6 +22,13 @@ class TrainingSuggestions {
     $this->db = $connection;
   }
 
+  /**
+   * Get a list of suggested nodes for an account.
+   *
+   * @param \Drupal\Core\Session\AccountInterface $account
+   *
+   * @return array|NodeInterface
+   */
   public function getSuggestionsForUser(AccountInterface $account) {
     /** @var \Drupal\user\UserInterface $account */
     $account = $this->userStorage()->load($account->id());
@@ -29,7 +36,7 @@ class TrainingSuggestions {
     $interests = $account->get('field_user_interests');
     $job_title = $account->get('field_user_job_title');
     if ($interests->isEmpty() && $job_title->isEmpty()) {
-      return;
+      return [];
     }
     $terms = $interests->getValue() + $job_title->getValue();
     $tids = array_column($terms, 'target_id');
@@ -66,6 +73,14 @@ class TrainingSuggestions {
                                 ", [':tids[]' => $tids, ':np' => NodeInterface::PUBLISHED])->fetchCol();
   }
 
+  /**
+   * Reduce suggested NIDs by a users flaggings.
+   *
+   * @param array $nids
+   * @param $uid
+   *
+   * @return array
+   */
   protected function reduceByFlaggings(array $nids, $uid) {
     // Find differences between flaggings and the NIDs found in the query.
     $bookmarks = $this->db->query("SELECT entity_id FROM {flagging}
@@ -80,6 +95,15 @@ class TrainingSuggestions {
     return array_diff($nids, $bookmarks);
   }
 
+  /**
+   * Get "users who bookmarked this also bookmarked" for trainings.
+   *
+   * @param array $nids
+   * @param $uid
+   *  UID of flaggings to exclude.
+   *
+   * @return array
+   */
   protected function relatedFlaggings(array $nids, $uid) {
     $related_flags = $this->db->query("SELECT L2.entity_id, COUNT(L2.uid) as num_users from {flagging} L1
                                               INNER JOIN {node_field_data} n ON n.nid = L1.entity_id
@@ -97,6 +121,14 @@ class TrainingSuggestions {
     return $related_flags;
   }
 
+  /**
+   * Return a list of nodes the user has flagged
+   * with the "bookmark" flag.
+   *
+   * @param $uid
+   *
+   * @return mixed
+   */
   protected function userFlaggings($uid) {
     return $this->db->query("SELECT entity_id FROM {flagging}
                                     WHERE entity_type = 'node'
@@ -106,6 +138,14 @@ class TrainingSuggestions {
                                     LIMIT 0, 10", [':uid' => $uid])->fetchCol();
   }
 
+  /**
+   * Reduce a list of NIDs by the nodes a user has recently viewed.
+   * 
+   * @param $nids
+   * @param $uid
+   *
+   * @return array
+   */
   protected function reduceByRecent($nids, $uid) {
     // Find differences between recently viewed nodes and the NIDs found in the query.
     $recent = $this->db->query("SELECT nid FROM {history}
