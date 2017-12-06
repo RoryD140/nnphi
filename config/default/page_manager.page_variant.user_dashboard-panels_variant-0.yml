@@ -63,6 +63,15 @@ variant_settings:
       uuid: c1cc3dfa-fe21-4f48-ad99-88956662ba0e
       context_mapping:
         user: user
+    d7114569-1d3c-4e32-8c9a-6fda1806439c:
+      id: announcements
+      label: Announcements
+      provider: nnphi_user
+      label_display: visible
+      region: main_container
+      weight: 0
+      uuid: d7114569-1d3c-4e32-8c9a-6fda1806439c
+      context_mapping: {  }
   id: panels_variant
   uuid: b0addbdc-161c-4208-953b-9d995687f4c5
   label: null
