@@ -53,6 +53,16 @@ variant_settings:
       uuid: 3d5aaf6e-e3e4-4d62-be55-a83d5aede7b2
       context_mapping:
         user: current_user
+    c1cc3dfa-fe21-4f48-ad99-88956662ba0e:
+      id: user_training_suggestions
+      label: 'Suggested Trainings'
+      provider: nnphi_user
+      label_display: visible
+      region: right_column_first
+      weight: 0
+      uuid: c1cc3dfa-fe21-4f48-ad99-88956662ba0e
+      context_mapping:
+        user: user
   id: panels_variant
   uuid: b0addbdc-161c-4208-953b-9d995687f4c5
   label: null

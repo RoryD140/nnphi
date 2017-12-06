@@ -1,0 +1,4 @@
+services:
+  nnphi_training.suggestions:
+    class: '\Drupal\nnphi_training\TrainingSuggestions'
+    arguments: ['@entity_type.manager', '@database']

@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.storage.user.field_user_interests
-    - taxonomy.vocabulary.ceus
     - taxonomy.vocabulary.competencies
   module:
     - user
@@ -22,7 +21,6 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      ceus: ceus
       competencies: competencies
     sort:
       field: name
