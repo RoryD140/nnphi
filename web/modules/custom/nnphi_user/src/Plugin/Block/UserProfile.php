@@ -7,6 +7,7 @@ use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -60,22 +61,7 @@ class UserProfile extends BlockBase implements ContainerFactoryPluginInterface {
     $build['profile'] = $this->userViewer->view($account, 'profile');
     CacheableMetadata::createFromObject($account)
       ->applyTo($build);
-    // Add an edit link of the profile is not complete.
-    $edit_access = FALSE;
-    $profile_fields = [
-      'user_picture',
-      'field_user_job_title',
-      'field_user_zipcode',
-      'field_user_interests',
-      'field_user_setting',
-      'field_user_role',
-    ];
-    foreach ($profile_fields as $profile_field) {
-      if ($account->get($profile_field)->isEmpty()) {
-        $edit_access = TRUE;
-        break;
-      }
-    }
+    $edit_access = self::accountIsIncomplete($account);
     /** @var \Drupal\Core\Routing\RedirectDestinationInterface $redirect_service */
     $redirect_service = \Drupal::service('redirect.destination');
     $build['edit_link'] = [
@@ -89,6 +75,31 @@ class UserProfile extends BlockBase implements ContainerFactoryPluginInterface {
     $build['#cache']['contexts'][] = 'user';
     $build['#cache']['keys'] = ['user', 'user_profile'];
     return $build;
+  }
+
+  /**
+   * @param \Drupal\Core\Session\AccountInterface $account
+   *
+   * @return bool
+   */
+  public static function accountIsIncomplete(AccountInterface $account) {
+    // Add an edit link of the profile is not complete.
+    $complete = FALSE;
+    $profile_fields = [
+      'user_picture',
+      'field_user_job_title',
+      'field_user_zipcode',
+      'field_user_interests',
+      'field_user_setting',
+      'field_user_role',
+    ];
+    foreach ($profile_fields as $profile_field) {
+      if ($account->get($profile_field)->isEmpty()) {
+        $complete = TRUE;
+        break;
+      }
+    }
+    return $complete;
   }
 
 }
