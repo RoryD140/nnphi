@@ -13,13 +13,14 @@
   }
 }
 
-
+.page-entity-user-edit_form main,
 .page-user-register main,
 .page-user-login main,
 .page-user-pass main {
   @extend .container;
 }
 
+.page-entity-user-edit_form .layout-content,
 .page-user-register .layout-content,
 .page-user-login .layout-content,
 .page-user-pass .layout-content {
@@ -37,6 +38,7 @@
   }
 }
 
+.page-entity-user-edit_form h1,
 .page-user-register h1,
 .page-user-login h1,
 .page-user-pass h1 {
@@ -44,6 +46,7 @@
   margin-bottom: $padding-md;
 }
 
+.user-form .form-item,
 .user-register-form .form-item,
 .user-login-form .form-item,
 .user-pass .form-item {
@@ -59,10 +62,12 @@
 }
 
   // Remove space between confirm password and password requirements
+.user-form .form-item.form-item-pass-pass2,
 .user-register-form .form-item.form-item-pass-pass2 {
   margin-bottom: 0;
 }
 
+.user-form .form-item label,
 .user-register-form .form-item label,
 .user-login-form .form-item label,
 .user-pass .form-item label {
@@ -72,6 +77,8 @@
   @extend %label-width;
 
 }
+
+.user-form .form-item label.form-required,
 .user-register-form .form-item label.form-required,
 .user-login-form .form-item label.form-required,
 .user-pass .form-item label.form-required {
@@ -81,6 +88,7 @@
   }
 }
 
+.user-form .form-item input,
 .user-register-form .form-item input,
 .user-login-form .form-item input,
 .user-pass .form-item input {
@@ -90,10 +98,12 @@
 
 // Algolia autocomplete span sometimes has another .algolia-autocomplete span inside it,
 // so this restricts it to just the outer one
+.user-form .form-item > .algolia-autocomplete,
 .user-register-form .form-item > .algolia-autocomplete {
   @extend %input-width;
 }
 
+.user-form .form-submit,
 .user-register-form .form-submit,
 .user-login-form .form-submit,
 .user-pass .form-submit {
@@ -105,18 +115,22 @@
   }
 }
 
+.user-form .password-confirm .ok,
 .user-register-form .password-confirm .ok {
   color: $green;
 }
 
+.user-form .password-confirm .error,
 .user-register-form .password-confirm .error {
   color: $red;
 }
 
+.user-form .password-suggestions,
 .user-register-form .password-suggestions {
   display: none !important; // Overrides javascript inline style. We're using password_policy for password suggestions
 }
 
+.user-form .password-strength,
 .user-register-form .password-strength {
   @extend %input-width;
   margin-left: auto;
@@ -146,6 +160,7 @@
 }
 
 // Hide all descriptions per designs
+.user-form .description,
 .user-register-form .description,
 .user-login-form .description {
   display: none;
