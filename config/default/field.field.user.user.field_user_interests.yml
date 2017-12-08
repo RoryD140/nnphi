@@ -12,7 +12,7 @@ field_name: field_user_interests
 entity_type: user
 bundle: user
 label: Interests
-description: ''
+description: 'This information will be used to provide you with suggested trainings.'
 required: false
 translatable: false
 default_value: {  }
