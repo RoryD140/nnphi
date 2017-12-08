@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function nnphi_bookmark_entity_extra_field_info() {
+  $extra = [];
+
+  $extra['bookmark_folder']['bookmark_folder']['display']['nodes'] = [
+    'label' => t('Trainings'),
+    'description' => t('Bookmarked trainings that belong to this folder'),
+    'weight' => 0,
+    'visible' => TRUE,
+  ];
+
+  return $extra;
+}

@@ -1,0 +1,5 @@
+#services:
+#  nnphi_bookmark.route_subscriber:
+#    class: Drupal\nnphi_bookmark\Routing\RouteSubscriber
+#    tags:
+#      - { name: event_subscriber }

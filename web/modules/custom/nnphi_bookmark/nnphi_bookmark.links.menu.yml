@@ -1,0 +1,14 @@
+
+# Bookmark folder menu items definition
+#entity.bookmark_folder.collection:
+#  title: 'Bookmark folder list'
+#  route_name: entity.bookmark_folder.collection
+#  description: 'List Bookmark folder entities'
+#  parent: system.admin_structure
+#  weight: 100
+
+bookmark_folder.admin.structure.settings:
+  title: Bookmark folder settings
+  description: 'Configure Bookmark folder entities'
+  route_name: bookmark_folder.settings
+  parent: system.admin_structure

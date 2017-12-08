@@ -1,0 +1,21 @@
+uuid: df40fc70-9cd5-442c-9ca2-05566108c6f3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.flagging.bookmark.field_bookmark_folder
+    - flag.flag.bookmark
+id: flagging.bookmark.default
+targetEntityType: flagging
+bundle: bookmark
+mode: default
+content:
+  field_bookmark_folder:
+    weight: 0
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+hidden: {  }

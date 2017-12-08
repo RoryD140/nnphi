@@ -1,0 +1,7 @@
+nnphi_bookmark.testing:
+  path: '/bookmark-test'
+  defaults:
+    _form: 'Drupal\nnphi_bookmark\Form\Test'
+    _title: 'Bookmark folder testing'
+  requirements:
+    _permission: 'access content'

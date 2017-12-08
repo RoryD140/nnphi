@@ -1,0 +1,22 @@
+uuid: 62abb918-c633-4b39-8a89-1fc819e27ea4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.flagging.bookmark.field_bookmark_folder
+    - flag.flag.bookmark
+id: flagging.bookmark.default
+targetEntityType: flagging
+bundle: bookmark
+mode: default
+content:
+  field_bookmark_folder:
+    weight: 0
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+hidden: {  }

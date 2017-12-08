@@ -1,0 +1,21 @@
+uuid: d8b91a01-959b-4d6c-a527-dbf10fbc1267
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.flagging.field_bookmark_folder
+    - flag.flag.bookmark
+id: flagging.bookmark.field_bookmark_folder
+field_name: field_bookmark_folder
+entity_type: flagging
+bundle: bookmark
+label: Folder
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:bookmark_folder'
+  handler_settings: {  }
+field_type: entity_reference
