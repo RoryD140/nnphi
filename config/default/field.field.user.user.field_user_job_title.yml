@@ -12,7 +12,7 @@ field_name: field_user_job_title
 entity_type: user
 bundle: user
 label: Occupation
-description: 'Start typing to see existing job titles. If your job title doesn''t already exist, enter it manually.'
+description: 'Start typing to see existing job titles. This information will be used to provide you with suggested trainings.'
 required: false
 translatable: false
 default_value: {  }
@@ -24,6 +24,6 @@ settings:
       job_titles: job_titles
     sort:
       field: _none
-    auto_create: true
+    auto_create: false
     auto_create_bundle: ''
 field_type: entity_reference

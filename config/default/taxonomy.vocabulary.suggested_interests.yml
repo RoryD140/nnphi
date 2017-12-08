@@ -1,0 +1,9 @@
+uuid: 365f0ff9-ea44-45f8-8bc2-d6b3d88b4983
+langcode: en
+status: true
+dependencies: {  }
+name: 'Suggested interests'
+vid: suggested_interests
+description: 'Interests suggested by users from their profile.'
+hierarchy: 0
+weight: 0

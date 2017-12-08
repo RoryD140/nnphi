@@ -13,6 +13,7 @@ dependencies:
     - field.field.user.user.user_picture
     - image.style.thumbnail
   module:
+    - cshs
     - datetime
     - image
     - path
@@ -43,41 +44,41 @@ content:
     third_party_settings: {  }
     region: content
   field_user_interests:
-    type: entity_reference_autocomplete_tags
-    weight: 7
-    region: content
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_user_job_title:
-    type: entity_reference_autocomplete
-    weight: 8
-    region: content
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_user_role:
-    type: entity_reference_autocomplete
     weight: 9
+    settings:
+      parent: 0
+      level_labels: ''
+      force_deepest: false
+    third_party_settings: {  }
+    type: cshs
     region: content
+  field_user_job_title:
+    weight: 11
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_user_setting:
     type: entity_reference_autocomplete
-    weight: 10
     region: content
+  field_user_role:
+    weight: 7
     settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+      parent: 0
+      level_labels: ''
+      force_deepest: false
     third_party_settings: {  }
+    type: cshs
+    region: content
+  field_user_setting:
+    weight: 8
+    settings:
+      parent: 0
+      level_labels: ''
+      force_deepest: false
+    third_party_settings: {  }
+    type: cshs
+    region: content
   field_user_zipcode:
     weight: 2
     settings:
@@ -94,6 +95,16 @@ content:
   path:
     type: path
     weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  suggest_terms:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  suggest_title:
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }

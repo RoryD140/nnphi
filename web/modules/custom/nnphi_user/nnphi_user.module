@@ -44,6 +44,21 @@ function nnphi_user_preprocess_page(&$variables) {
 }
 
 /**
+ * Implements hook_entity_extra_field_info().
+ */
+function nnphi_user_entity_extra_field_info() {
+  $extra = [];
+
+  $extra['user']['user']['form']['suggest_terms'] = [
+    'label' => t('Suggest terms'),
+    'description' => t('Field for user suggesting interest terms'),
+    'weight' => 0,
+  ];
+
+  return $extra;
+}
+
+/**
  * Implements hook_form_FORM_ID_alter().
  */
 function nnphi_user_form_user_form_alter(&$form, FormStateInterface $form_state, $form_id) {
@@ -54,6 +69,44 @@ function nnphi_user_form_user_form_alter(&$form, FormStateInterface $form_state,
     unset($form['account']['password_policy_status']['#header'][1]);
     unset($form['account']['password_policy_status']['#header'][2]);
   }
+
+  // Add the suggest job title field.
+  $form['suggest_terms'] = [
+    '#type' => 'textfield',
+    '#title' => t('Suggest interests'),
+    '#description' => t("Don't see your interest listed? Please enter it here."),
+  ];
+  
+  $form['actions']['submit']['#submit'][] = 'nnphi_user_register_form_submit';
+
+  $form['#after_build'][] = 'nnphi_user_register_form_after_build';
+}
+
+/**
+ * Extra submit callback for the user register form.
+ */
+function nnphi_user_register_form_submit($form, FormStateInterface $form_state) {
+  if (!$form_state->getValue('suggest_terms')) {
+    return;
+  }
+  // Create a term for the user's suggested job title.
+  $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')
+    ->create([
+      'vid' => 'suggested_interests',
+      'name' => $form_state->getValue('suggest_terms'),
+      'uid' => $form_state->get('user')->id()
+    ]);
+  $term->save();
+}
+
+/**
+ * User register/profile form after_build callback.
+ */
+function nnphi_user_register_form_after_build($element) {
+  if (isset($element['field_user_interests']['widget'])) {
+    $element['field_user_interests']['widget']['add_more']['#value'] = t('Add another topic');
+  }
+  return $element;
 }
 
 
