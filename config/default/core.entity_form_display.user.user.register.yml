@@ -75,5 +75,6 @@ hidden:
   field_user_role: true
   field_user_setting: true
   language: true
+  suggest_terms: true
   timezone: true
   user_picture: true
