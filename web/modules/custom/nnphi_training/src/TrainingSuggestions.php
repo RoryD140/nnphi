@@ -47,6 +47,9 @@ class TrainingSuggestions {
         $nids += $this->relatedFlaggings($flagged_nids, $account->id());
       }
     }
+    if (empty($nids)) {
+      return [];
+    }
     $nids = $this->reduceByFlaggings($nids, $account->id());
     $nids = $this->reduceByRecent($nids, $account->id());
     if (!empty($nids)) {
