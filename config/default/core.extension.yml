@@ -13,6 +13,7 @@ module:
   config_split: 0
   contact: 0
   contextual: 0
+  cshs: 0
   ctools: 0
   datetime: 0
   dynamic_page_cache: 0
@@ -32,7 +33,6 @@ module:
   link: 0
   menu_ui: 0
   nnphi_general: 0
-  nnphi_loop11: 0
   nnphi_training: 0
   nnphi_training_track: 0
   nnphi_user: 0

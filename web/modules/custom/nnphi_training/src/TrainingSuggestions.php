@@ -47,7 +47,13 @@ class TrainingSuggestions {
         $nids += $this->relatedFlaggings($flagged_nids, $account->id());
       }
     }
+    if (empty($nids)) {
+      return [];
+    }
     $nids = $this->reduceByFlaggings($nids, $account->id());
+    if (empty($nids)) {
+      return [];
+    }
     $nids = $this->reduceByRecent($nids, $account->id());
     if (!empty($nids)) {
       return $this->nodeStorage()->loadMultiple($nids);

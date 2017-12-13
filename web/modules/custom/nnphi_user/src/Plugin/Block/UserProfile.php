@@ -61,7 +61,7 @@ class UserProfile extends BlockBase implements ContainerFactoryPluginInterface {
     $build['profile'] = $this->userViewer->view($account, 'profile');
     CacheableMetadata::createFromObject($account)
       ->applyTo($build);
-    $edit_access = self::accountIsIncomplete($account);
+    $edit_access = !self::accountIsComplete($account);
     /** @var \Drupal\Core\Routing\RedirectDestinationInterface $redirect_service */
     $redirect_service = \Drupal::service('redirect.destination');
     $build['edit_link'] = [
@@ -82,9 +82,8 @@ class UserProfile extends BlockBase implements ContainerFactoryPluginInterface {
    *
    * @return bool
    */
-  public static function accountIsIncomplete(AccountInterface $account) {
-    // Add an edit link of the profile is not complete.
-    $complete = FALSE;
+  public static function accountIsComplete(AccountInterface $account) {
+    $complete = TRUE;
     $profile_fields = [
       'user_picture',
       'field_user_job_title',
@@ -95,7 +94,7 @@ class UserProfile extends BlockBase implements ContainerFactoryPluginInterface {
     ];
     foreach ($profile_fields as $profile_field) {
       if ($account->get($profile_field)->isEmpty()) {
-        $complete = TRUE;
+        $complete = FALSE;
         break;
       }
     }

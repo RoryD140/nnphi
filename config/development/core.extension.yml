@@ -13,6 +13,7 @@ module:
   config_split: 0
   contact: 0
   contextual: 0
+  cshs: 0
   ctools: 0
   datetime: 0
   dynamic_page_cache: 0
@@ -23,6 +24,7 @@ module:
   field_ui: 0
   file: 0
   filter: 0
+  flag: 0
   google_analytics: 0
   help: 0
   history: 0
@@ -31,13 +33,14 @@ module:
   link: 0
   menu_ui: 0
   nnphi_general: 0
-  nnphi_loop11: 0
   nnphi_training: 0
+  nnphi_training_track: 0
   nnphi_user: 0
   node: 0
   options: 0
   page_cache: 0
   page_manager: 0
+  page_manager_ui: 0
   panels: 0
   panels_ipe: 0
   pantheon_advanced_page_cache: 0
@@ -48,6 +51,7 @@ module:
   pathauto: 0
   quickedit: 0
   rdf: 0
+  redis: 0
   search_api: 0
   search_api_algolia: 0
   shortcut: 0
