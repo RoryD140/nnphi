@@ -4,7 +4,6 @@ namespace Drupal\nnphi_user\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\user\UserInterface;
-use Drupal\Component\Utility\Xss;
 
 /**
  * Controller routines for user routes.
@@ -21,6 +20,6 @@ class CustomUserController extends ControllerBase {
      *
      */
     public function userTitle(UserInterface $user = NULL) {
-        return ['#markup' => $this->t('Complete Your Profile'), '#allowed_tags' => Xss::getHtmlTagList()];
+        return $this->t('Edit Your Profile');
     }
 }
