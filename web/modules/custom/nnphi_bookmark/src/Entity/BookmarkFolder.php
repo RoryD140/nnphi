@@ -39,14 +39,13 @@ use Drupal\user\UserInterface;
  *     "id" = "id",
  *     "label" = "name",
  *     "uuid" = "uuid",
- *     "uid" = "user_id",
+ *     "uid" = "uid",
  *   },
  *   links = {
  *     "canonical" = "/user/{user}/bookmarks/{bookmark_folder}",
  *     "add-form" = "/user/{user}/bookmarks/add",
  *     "edit-form" = "/user/{user}/bookmarks/{bookmark_folder}/edit",
  *     "delete-form" = "/user/{user}/bookmarks/{bookmark_folder}/delete",
- *     "collection" = "/user/{user}/bookmarks",
  *   },
  *   field_ui_base_route = "bookmark_folder.settings"
  * )
@@ -103,21 +102,21 @@ class BookmarkFolder extends ContentEntityBase implements BookmarkFolderInterfac
    * {@inheritdoc}
    */
   public function getOwner() {
-    return $this->get('user_id')->entity;
+    return $this->get('uid')->entity;
   }
 
   /**
    * {@inheritdoc}
    */
   public function getOwnerId() {
-    return $this->get('user_id')->target_id;
+    return $this->get('uid')->target_id;
   }
 
   /**
    * {@inheritdoc}
    */
   public function setOwnerId($uid) {
-    $this->set('user_id', $uid);
+    $this->set('uid', $uid);
     return $this;
   }
 
@@ -125,7 +124,7 @@ class BookmarkFolder extends ContentEntityBase implements BookmarkFolderInterfac
    * {@inheritdoc}
    */
   public function setOwner(UserInterface $account) {
-    $this->set('user_id', $account->id());
+    $this->set('uid', $account->id());
     return $this;
   }
 
@@ -144,7 +143,10 @@ class BookmarkFolder extends ContentEntityBase implements BookmarkFolderInterfac
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
 
-    $fields['user_id'] = BaseFieldDefinition::create('entity_reference')
+    $fields['uid'] = BaseFieldDefinition::create('entity_reference')
+      ->setPropertyConstraints('target_id', ['Range' => ['min' => 1]])
+      ->setRequired(TRUE)
+      ->setDefaultValueCallback(static::class . '::getCurrentUserId')
       ->setLabel(t('Owner'))
       ->setDescription(t('The user ID of user that owns the bookmark folder.'))
       ->setRevisionable(TRUE)
@@ -170,6 +172,7 @@ class BookmarkFolder extends ContentEntityBase implements BookmarkFolderInterfac
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['name'] = BaseFieldDefinition::create('string')
+      ->setRequired(TRUE)
       ->setLabel(t('Name'))
       ->setDescription(t('The name of the Bookmark folder.'))
       ->setSettings([
@@ -189,6 +192,24 @@ class BookmarkFolder extends ContentEntityBase implements BookmarkFolderInterfac
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
+    $fields['description'] = BaseFieldDefinition::create('string_long')
+      ->setLabel(t('Description'))
+      ->setRequired(FALSE)
+      ->setDisplayOptions('form', [
+        'type' => 'string_textarea',
+        'weight' => 0,
+        'settings' => [
+          'rows' => 4,
+        ],
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('view', [
+        'type' => 'string',
+        'weight' => 0,
+        'label' => 'above',
+      ])
+      ->setDisplayConfigurable('view', TRUE);
+
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))
       ->setDescription(t('The time that the entity was created.'));
@@ -198,6 +219,29 @@ class BookmarkFolder extends ContentEntityBase implements BookmarkFolderInterfac
       ->setDescription(t('The time that the entity was last edited.'));
 
     return $fields;
+  }
+
+  /**
+   * Default value callback for 'uid' base field definition.
+   *
+   * @see ::baseFieldDefinitions()
+   *
+   * @return int[]
+   *   An array of default values.
+   */
+  public static function getCurrentUserId() {
+    if ($user = \Drupal::routeMatch()->getParameter('user')) {
+      $uid = $user;
+    }
+    else {
+      $uid = \Drupal::currentUser()->id();
+    }
+    return [$uid];
+  }
+
+  public function postSave(EntityStorageInterface $storage, $update = TRUE) {
+    \Drupal::service('cache_tags.invalidator')->invalidateTags(['user_bookmark_folders:' . $this->getOwnerId()]);
+    parent::postSave($storage, $update);
   }
 
 }

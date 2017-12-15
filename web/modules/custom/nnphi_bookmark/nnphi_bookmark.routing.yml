@@ -1,7 +1,10 @@
-nnphi_bookmark.testing:
-  path: '/bookmark-test'
+nnphi_bookmark.user_list:
+  path: '/user/{user}/bookmarks'
   defaults:
-    _form: 'Drupal\nnphi_bookmark\Form\Test'
-    _title: 'Bookmark folder testing'
+    _controller: '\Drupal\nnphi_bookmark\Controller\UserBookmarkFolders::page'
+    _title: 'Bookmark Folders'
   requirements:
-    _permission: 'access content'
+    _custom_access: 'Drupal\nnphi_bookmark\Controller\UserBookmarkFolders::checkAccess'
+  options:
+    user: \d+
+

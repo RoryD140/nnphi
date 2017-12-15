@@ -1,5 +1,4 @@
-#services:
-#  nnphi_bookmark.route_subscriber:
-#    class: Drupal\nnphi_bookmark\Routing\RouteSubscriber
-#    tags:
-#      - { name: event_subscriber }
+services:
+  nnphi_bookmark.folder:
+    class: Drupal\nnphi_bookmark\BookmarkFolderService
+    arguments: ['@current_user', '@entity_type.manager']

@@ -21,6 +21,8 @@ class BookmarkFolderForm extends ContentEntityForm {
 
     $entity = $this->entity;
 
+    $form['uid']['#access'] = $this->currentUser()->hasPermission('administer bookmark folder entities');
+
     return $form;
   }
 
@@ -28,23 +30,24 @@ class BookmarkFolderForm extends ContentEntityForm {
    * {@inheritdoc}
    */
   public function save(array $form, FormStateInterface $form_state) {
+    /** @var \Drupal\nnphi_bookmark\Entity\BookmarkFolderInterface $entity */
     $entity = &$this->entity;
 
     $status = parent::save($form, $form_state);
 
     switch ($status) {
       case SAVED_NEW:
-        drupal_set_message($this->t('Created the %label Bookmark folder.', [
+        drupal_set_message($this->t('Created the %label folder.', [
           '%label' => $entity->label(),
         ]));
         break;
 
       default:
-        drupal_set_message($this->t('Saved the %label Bookmark folder.', [
+        drupal_set_message($this->t('Saved the %label folder.', [
           '%label' => $entity->label(),
         ]));
     }
-    $form_state->setRedirect('entity.bookmark_folder.canonical', ['bookmark_folder' => $entity->id()]);
+    $form_state->setRedirect('nnphi_bookmark.user_list', ['user' => $entity->getOwnerId()]);
   }
 
 }

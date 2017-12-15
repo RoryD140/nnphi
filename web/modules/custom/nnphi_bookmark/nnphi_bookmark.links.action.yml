@@ -1,5 +1,5 @@
-#entity.bookmark_folder.add_form:
-#  route_name: entity.bookmark_folder.add_form
-#  title: 'Add Bookmark folder'
-#  appears_on:
-#    - entity.bookmark_folder.collection
+entity.bookmark_folder.add_form:
+  route_name: entity.bookmark_folder.add_form
+  title: 'Add Bookmark folder'
+  appears_on:
+    - nnphi_bookmark.user_list

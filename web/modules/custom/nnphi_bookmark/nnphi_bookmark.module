@@ -1,5 +1,8 @@
 <?php
 
+use Drupal\user\UserInterface;
+use Drupal\flag\FlagInterface;
+
 /**
  * Implements hook_entity_extra_field_info().
  */
@@ -14,4 +17,66 @@ function nnphi_bookmark_entity_extra_field_info() {
   ];
 
   return $extra;
+}
+
+/**
+ * Implements hook_user_cancel().
+ */
+function nnphi_bookmark_user_cancel($edit, $account, $method) {
+  \Drupal::service('nnphi_bookmark.folder')->userFolderRemoval($account);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete().
+ */
+function nnphi_bookmark_user_delete(UserInterface $account) {
+  // Delete any folders associated with the account.
+  try {
+    $folder_storage = \Drupal::entityTypeManager()
+      ->getStorage('bookmark_folder');
+    $folder_ids = $folder_storage->getQuery()
+      ->condition('uid', $account->id())
+      ->execute();
+    if (empty($folder_ids)) {
+      return;
+    }
+    $folders = $folder_storage->loadMultiple($folder_ids);
+    $folder_storage->delete($folders);
+  }
+  catch (Exception $exception) {
+    watchdog_exception('nnphi_bookmark', $exception);
+    \Drupal::logger('nnphi_bookmark')->error('Unable to delete bookmark folders for account @uid',
+      ['@uid' => $account->id()]);
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert().
+ */
+function nnphi_bookmark_flag_insert(FlagInterface $flag) {
+  nnphi_bookmark_clear_bookmark_folder_cache($flag);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update().
+ */
+function nnphi_bookmark_flag_update(FlagInterface $flag) {
+  nnphi_bookmark_clear_bookmark_folder_cache($flag);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete().
+ */
+function nnphi_bookmark_flag_delete(FlagInterface $flag) {
+  nnphi_bookmark_clear_bookmark_folder_cache($flag);
+}
+
+function nnphi_bookmark_clear_bookmark_folder_cache(FlagInterface $flag) {
+  if (!$flag->hasField('field_bookmark_folder') || $flag->get('field_bookmark_folder')->isEmpty()) {
+    return;
+  }
+  $folder_id = $flag->field_bookmark_folder->target_id;
+  if ($folder_id) {
+    \Drupal::service('cache_tags.invalidator')->invalidateTags(['bookmark_folder:' . $folder_id]);
+  }
 }

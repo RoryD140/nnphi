@@ -20,3 +20,8 @@ entity.bookmark_folder.delete_form:
   title: Delete
   weight: 10
 
+nnphi_bookmark.user_list:
+  route_name: nnphi_bookmark.user_list
+  base_route: entity.user.canonical
+  title: Bookmarks
+
