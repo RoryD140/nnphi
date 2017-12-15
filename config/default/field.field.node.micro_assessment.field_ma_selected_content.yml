@@ -1,0 +1,28 @@
+uuid: eacca8d2-f870-421a-abe2-30d492552b88
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ma_selected_content
+    - node.type.micro_assessment
+    - node.type.training
+id: node.micro_assessment.field_ma_selected_content
+field_name: field_ma_selected_content
+entity_type: node
+bundle: micro_assessment
+label: 'Selected Content'
+description: 'Relevant content to display to the user.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      training: training
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

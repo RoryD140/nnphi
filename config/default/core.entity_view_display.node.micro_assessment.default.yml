@@ -1,0 +1,71 @@
+uuid: d9740ef6-6a03-4cc1-982f-0b7ea56831d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.micro_assessment.body
+    - field.field.node.micro_assessment.field_ma_answers
+    - field.field.node.micro_assessment.field_ma_correct_text
+    - field.field.node.micro_assessment.field_ma_incorrect_text
+    - field.field.node.micro_assessment.field_ma_question
+    - field.field.node.micro_assessment.field_ma_selected_content
+    - node.type.micro_assessment
+  module:
+    - nnphi_micro_assessment
+    - text
+    - user
+id: node.micro_assessment.default
+targetEntityType: node
+bundle: micro_assessment
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_ma_answers:
+    weight: 106
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: assessment_answer_formatter
+    region: content
+  field_ma_correct_text:
+    weight: 103
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_ma_incorrect_text:
+    weight: 104
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_ma_question:
+    weight: 102
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_ma_selected_content:
+    weight: 105
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

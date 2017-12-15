@@ -34,6 +34,7 @@ module:
   menu_ui: 0
   nnphi_bookmark: 0
   nnphi_general: 0
+  nnphi_micro_assessment: 0
   nnphi_training: 0
   nnphi_training_track: 0
   nnphi_user: 0

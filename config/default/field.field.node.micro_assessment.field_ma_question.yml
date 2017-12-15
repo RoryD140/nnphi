@@ -1,0 +1,19 @@
+uuid: b97b8fad-c339-44c3-a0e8-528017f19ebe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ma_question
+    - node.type.micro_assessment
+id: node.micro_assessment.field_ma_question
+field_name: field_ma_question
+entity_type: node
+bundle: micro_assessment
+label: Question
+description: 'The question to be presented to the user.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,6 @@
+nnphi_micro_assessment.test:
+  path: '/assessment/{node}'
+  defaults:
+    _controller: '\Drupal\nnphi_micro_assessment\Controller\MicroAssessmentTest::testPage'
+  requirements:
+    _permission: 'access content'

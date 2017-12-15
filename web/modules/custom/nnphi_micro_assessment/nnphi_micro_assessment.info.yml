@@ -1,0 +1,5 @@
+name: NNPHI Micro Assessment
+type: module
+description: Allows users to take micro-assessments
+core: 8.x
+package: Custom

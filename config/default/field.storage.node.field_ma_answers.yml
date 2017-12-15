@@ -1,0 +1,22 @@
+uuid: b04acd2e-2e3b-4e58-b89f-51c820f20f7a
+langcode: en
+status: true
+dependencies:
+  module:
+    - nnphi_micro_assessment
+    - node
+id: node.field_ma_answers
+field_name: field_ma_answers
+entity_type: node
+type: assessment_answer
+settings:
+  max_length: '255'
+  is_ascii: false
+  case_sensitive: false
+module: nnphi_micro_assessment
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
