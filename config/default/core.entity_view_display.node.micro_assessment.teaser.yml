@@ -35,6 +35,14 @@ content:
       more_class: more-link
     third_party_settings: {  }
     region: content
+  field_ma_question:
+    type: string
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
   form:
     weight: 1
     region: content
@@ -44,6 +52,5 @@ hidden:
   field_ma_answers: true
   field_ma_correct_text: true
   field_ma_incorrect_text: true
-  field_ma_question: true
   field_ma_selected_content: true
   links: true
