@@ -93,8 +93,8 @@ class TrainingSuggestions extends BlockBase implements ContainerFactoryPluginInt
       ->applyTo($build);
 
     $build['#cache']['max-age'] = 900;
-    $build['#cache']['contexts'] = Cache::mergeContexts(parent::getCacheContexts(), []);
-    $build['#cache']['keys'] = ['user_training_suggestions'];
+    $build['#cache']['contexts'] = [];
+    $build['#cache']['keys'] = ['user', 'user_training_suggestions', $account->id()];
 
     return $build;
   }

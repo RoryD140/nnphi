@@ -45,7 +45,7 @@ class UserBookmarkFolders extends ControllerBase {
     // Add user metadata to cache array.
     CacheableMetadata::createFromObject($user)
       ->applyTo($build);
-    $build['#cache']['keys'] = ['user_bookmark_folder_list', $user->id()];
+    $build['#cache']['keys'] = ['user', 'user_bookmark_folder_list', $user->id()];
     $build['#cache']['contexts'] = [];
     $build['#cache']['tags'][] = 'user_bookmark_folders:' . $user->id();
 

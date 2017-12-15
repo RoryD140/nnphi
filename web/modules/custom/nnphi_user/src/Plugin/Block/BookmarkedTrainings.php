@@ -114,8 +114,8 @@ class BookmarkedTrainings extends BlockBase implements ContainerFactoryPluginInt
     // Expensive rendering (nodes and flags) is cached,
     // but caching this block for every user would be counterproductive.
     $build['#cache'] = [
-      'keys' => 'bookmarked_trainings',
-      'contexts' => ['user'],
+      'keys' => [],
+      'contexts' => [],
       'tags' => [],
       'max-age' => 0,
     ];

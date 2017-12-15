@@ -72,8 +72,7 @@ class UserProfile extends BlockBase implements ContainerFactoryPluginInterface {
     ];
     CacheableMetadata::createFromObject($account)
       ->applyTo($build);
-    $build['#cache']['contexts'][] = 'user';
-    $build['#cache']['keys'] = ['user', 'user_profile'];
+    $build['#cache']['keys'] = ['user', 'user_profile', $account->id()];
     return $build;
   }
 
