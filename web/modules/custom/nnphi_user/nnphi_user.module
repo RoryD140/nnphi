@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\nnphi_user\Plugin\Block\UserProfile;
 
 /**
  * Implements hook_module_implements_alter()
@@ -42,6 +43,33 @@ function nnphi_user_preprocess_page(&$variables) {
     $variables['custom_title'] = t('Reset Your Password');
   } elseif($route === 'entity.user.edit_form') {
     $variables['custom_title'] = $variables['page']['#title'];
+  }
+}
+
+/**
+ * Implements hook_link_alter().
+ */
+function nnphi_user_link_alter(&$variables) {
+  /** @var \Drupal\Core\Url $url */
+  $url = $variables['url'];
+  if (!$url->isRouted()) {
+    return;
+  }
+  $route_name = $url->getRouteName();
+  if ($route_name === 'entity.user.edit_form') {
+    $params = $url->getRouteParameters();
+    $account = \Drupal::entityTypeManager()->getStorage('user')->load($params['user']);
+    // Admins should get the "edit" link.
+    if (\Drupal::currentUser()->id() !== $account->id()) {
+      return;
+    }
+    // Logged in users should get the correct title.
+    if (!UserProfile::accountIsComplete($account)) {
+      $variables['text'] = t('Complete Your Profile');
+    }
+    else {
+      $variables['text'] = t('Edit Your Profile');
+    }
   }
 }
 
