@@ -195,3 +195,32 @@
 #password-policy-status tr td:first-of-type {
   display: none;
 }
+
+.block-user-banner {
+  padding-top: 50px;
+  padding-bottom: 270px;
+  background-image: url(/themes/custom/nnphi/svg/swirls.svg);
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+}
+
+.block-user-banner h1 {
+  color: $blue;
+}
+
+.block-user-profile {
+  border: 1px solid $gray-light;
+  margin-top: $padding-sm;
+}
+
+.block-user-profile h1 {
+  border-bottom: 1px solid $gray-light;
+  padding: 1rem;
+  text-transform: uppercase;
+}
+
+.block-user-profile article,
+.block-user-profile article + a {
+  margin: 1rem;
+}
