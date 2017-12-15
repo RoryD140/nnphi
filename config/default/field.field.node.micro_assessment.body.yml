@@ -1,0 +1,22 @@
+uuid: 5ecd195b-54f9-4a45-8132-8936a6f0705f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.micro_assessment
+  module:
+    - text
+id: node.micro_assessment.body
+field_name: body
+entity_type: node
+bundle: micro_assessment
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

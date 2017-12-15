@@ -1,0 +1,56 @@
+uuid: 097902e2-648b-44a9-9c54-705e52eb7f27
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.micro_assessment.body
+    - field.field.node.micro_assessment.field_ma_answers
+    - field.field.node.micro_assessment.field_ma_correct_text
+    - field.field.node.micro_assessment.field_ma_incorrect_text
+    - field.field.node.micro_assessment.field_ma_question
+    - field.field.node.micro_assessment.field_ma_selected_content
+    - node.type.micro_assessment
+  module:
+    - smart_trim
+    - user
+id: node.micro_assessment.teaser
+targetEntityType: node
+bundle: micro_assessment
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: smart_trim
+    weight: 0
+    settings:
+      trim_length: '600'
+      trim_type: chars
+      trim_suffix: ''
+      more_link: '0'
+      more_text: More
+      summary_handler: full
+      trim_options:
+        text: 0
+      more_class: more-link
+    third_party_settings: {  }
+    region: content
+  field_ma_question:
+    type: string
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  form:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_ma_answers: true
+  field_ma_correct_text: true
+  field_ma_incorrect_text: true
+  field_ma_selected_content: true
+  links: true

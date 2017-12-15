@@ -1,0 +1,21 @@
+uuid: e4f44213-1dc6-4080-855c-9f7099515eca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ma_answers
+    - node.type.micro_assessment
+  module:
+    - nnphi_micro_assessment
+id: node.micro_assessment.field_ma_answers
+field_name: field_ma_answers
+entity_type: node
+bundle: micro_assessment
+label: Answers
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: assessment_answer

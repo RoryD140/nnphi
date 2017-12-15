@@ -1,0 +1,56 @@
+uuid: 440937b6-13f3-49aa-8044-b52acb428f7b
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.micro_assessment.body
+    - field.field.node.micro_assessment.field_ma_answers
+    - field.field.node.micro_assessment.field_ma_correct_text
+    - field.field.node.micro_assessment.field_ma_incorrect_text
+    - field.field.node.micro_assessment.field_ma_question
+    - field.field.node.micro_assessment.field_ma_selected_content
+    - node.type.micro_assessment
+  module:
+    - text
+    - user
+id: node.micro_assessment.full
+targetEntityType: node
+bundle: micro_assessment
+mode: full
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_ma_correct_text:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_ma_incorrect_text:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_ma_selected_content:
+    weight: 3
+    label: hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+hidden:
+  field_ma_answers: true
+  field_ma_question: true
+  form: true
+  links: true

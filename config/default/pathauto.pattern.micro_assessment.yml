@@ -1,0 +1,22 @@
+uuid: 11de6fb8-5713-444d-8564-3163c8ce1b9b
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: micro_assessment
+label: 'Micro Assessment'
+type: 'canonical_entities:node'
+pattern: '/assessment/[node:title]'
+selection_criteria:
+  68c0d910-b774-4bb3-889b-593eb80429b3:
+    id: node_type
+    bundles:
+      micro_assessment: micro_assessment
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 68c0d910-b774-4bb3-889b-593eb80429b3
+selection_logic: and
+weight: -5
+relationships: {  }

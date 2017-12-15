@@ -1,0 +1,21 @@
+uuid: a6426990-a0c6-442c-89fc-4e42e9716f00
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ma_correct_text
+    - node.type.micro_assessment
+  module:
+    - text
+id: node.micro_assessment.field_ma_correct_text
+field_name: field_ma_correct_text
+entity_type: node
+bundle: micro_assessment
+label: 'Correct Text'
+description: 'Text to display when the user chooses the correct answer.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,53 @@
+<?php
+/**
+ * @file nnphi_micro_assessment.module
+ */
+
+use Drupal\node\NodeInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function nnphi_micro_assessment_entity_extra_field_info() {
+  $extra = [];
+
+  $extra['node']['micro_assessment']['display']['form'] = [
+    'label' => t('Form'),
+    'description' => t('Micro assessment form'),
+    'weight' => 1,
+    'visible' => FALSE,
+  ];
+
+  return $extra;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view_alter().
+ */
+function nnphi_micro_assessment_node_view_alter(array &$build, NodeInterface $node, EntityViewDisplayInterface $display) {
+  if ($node->bundle() !== 'micro_assessment' || $build['#view_mode'] !== 'full') {
+    return;
+  }
+  $selected = \Drupal::request()->get('choice');
+  if (null === $selected || !is_numeric($selected)) {
+    $build['field_ma_correct_text']['#access'] = FALSE;
+    $build['field_ma_incorrect_text']['#access'] = FALSE;
+  }
+  else {
+    // Check if the answer is correct.
+    $answer = $node->get('field_ma_answers')->get($selected);
+    if (!$answer) {
+      $build['field_ma_incorrect_text']['#access']= FALSE;
+      $build['field_ma_correct_text']['#access']= FALSE;
+    }
+    else if ($answer->correct) {
+      $build['field_ma_incorrect_text']['#access']= FALSE;
+    }
+    else {
+      $build['field_ma_correct_text']['#access']= FALSE;
+    }
+  }
+  // Alter the cache to vary by the URL.
+  $build['#cache']['contexts'][] = 'url.query_args:choice';
+}

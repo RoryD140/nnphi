@@ -1,0 +1,22 @@
+uuid: 3b751aa4-9b48-4275-8e0b-e9b62f6320fe
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.micro_assessment
+id: node.micro_assessment.promote
+field_name: promote
+entity_type: node
+bundle: micro_assessment
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

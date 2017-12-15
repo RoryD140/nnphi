@@ -19,7 +19,6 @@ use Drupal\user\UserInterface;
  *   label = @Translation("Bookmark folder"),
  *   handlers = {
  *     "view_builder" = "Drupal\nnphi_bookmark\BookmarkFolderViewBuilder",
- *     "list_builder" = "Drupal\nnphi_bookmark\BookmarkFolderListBuilder",
  *     "views_data" = "Drupal\nnphi_bookmark\Entity\BookmarkFolderViewsData",
  *
  *     "form" = {
