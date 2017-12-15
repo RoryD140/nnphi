@@ -105,9 +105,9 @@ class RecentlyViewed extends BlockBase implements ContainerFactoryPluginInterfac
 
     $build['#cache'] = [
       'max-age' => 0,
-      'contexts' => ['user'],
+      'contexts' => [],
       'tags' => [],
-      'keys' => ['user_recently_viewed'],
+      'keys' => [],
     ];
 
     return $build;

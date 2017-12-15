@@ -46,7 +46,7 @@ class UserBanner extends BlockBase implements ContainerFactoryPluginInterface {
     ];
     $data = CacheableMetadata::createFromObject($account);
     $data->applyTo($build);
-    $build['#cache']['contexts'][] = 'user';
+    $build['#cache']['keys'] = ['user', 'user_banner', $account->id()];
     return $build;
   }
 }
