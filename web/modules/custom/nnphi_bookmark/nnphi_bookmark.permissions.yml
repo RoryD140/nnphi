@@ -1,0 +1,7 @@
+add bookmark folder entities:
+  title: 'Create new Bookmark folder entities'
+
+administer bookmark folder entities:
+  title: 'Administer Bookmark folder entities'
+  description: 'Allow to access the administration form to configure Bookmark folder entities.'
+  restrict access: true

@@ -32,6 +32,7 @@ module:
   layout_discovery: 0
   link: 0
   menu_ui: 0
+  nnphi_bookmark: 0
   nnphi_general: 0
   nnphi_training: 0
   nnphi_training_track: 0

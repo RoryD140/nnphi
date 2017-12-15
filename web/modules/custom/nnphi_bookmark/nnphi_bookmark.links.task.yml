@@ -1,0 +1,27 @@
+# Bookmark folder routing definition
+bookmark_folder.settings_tab:
+  route_name: bookmark_folder.settings
+  title: 'Settings'
+  base_route: bookmark_folder.settings
+
+entity.bookmark_folder.canonical:
+  route_name: entity.bookmark_folder.canonical
+  base_route: entity.bookmark_folder.canonical
+  title: 'View'
+
+entity.bookmark_folder.edit_form:
+  route_name: entity.bookmark_folder.edit_form
+  base_route: entity.bookmark_folder.canonical
+  title: 'Edit'
+
+entity.bookmark_folder.delete_form:
+  route_name:  entity.bookmark_folder.delete_form
+  base_route:  entity.bookmark_folder.canonical
+  title: Delete
+  weight: 10
+
+nnphi_bookmark.user_list:
+  route_name: nnphi_bookmark.user_list
+  base_route: entity.user.canonical
+  title: Bookmarks
+

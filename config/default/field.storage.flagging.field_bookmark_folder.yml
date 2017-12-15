@@ -1,0 +1,20 @@
+uuid: 5e0a9820-0c77-42c8-88e0-eb00e8502e7a
+langcode: en
+status: true
+dependencies:
+  module:
+    - flag
+    - nnphi_bookmark
+id: flagging.field_bookmark_folder
+field_name: field_bookmark_folder
+entity_type: flagging
+type: entity_reference
+settings:
+  target_type: bookmark_folder
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

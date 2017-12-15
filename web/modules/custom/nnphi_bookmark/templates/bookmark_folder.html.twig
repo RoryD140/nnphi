@@ -1,0 +1,22 @@
+{#
+/**
+ * @file bookmark_folder.html.twig
+ * Default theme implementation to present Bookmark folder data.
+ *
+ * This template is used when viewing Bookmark folder pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_bookmark_folder()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('bookmark_folder') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>
