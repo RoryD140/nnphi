@@ -18,12 +18,27 @@
 #}
 <article{{ attributes.addClass('profile') }}>
   {% if content %}
-    {#{{- content -}}#}
     <div class="media">
-      {{ content.user_picture }}
+      {% if content.user_picture|render %}
+        <div class="profile-picture">
+          {{ content.user_picture }}
+        </div>
+      {% endif %}
       <div class="media-body">
-        {{ 'Email' | t }}: {{ user.get('mail').value }}
-        {{ content|without('user_picture') }}
+        <div class="field">
+          <div class="field-label">{{ 'Name' | t }}</div>
+          <div class="field-value">{{ user.get('name').value }}</div>
+        </div>
+        <div class="field">
+          <div class="field-label">{{ 'Email' | t }}</div>
+          <div class="field-value">{{ user.get('mail').value }}</div>
+        </div>
+        {% if content.field_user_zipcode|render %}
+          {{ content.field_user_zipcode }}
+        {% endif %}
+        {% if content.field_user_job_title|render %}
+          {{ content.field_user_job_title }}
+        {% endif %}
       </div>
     </div>
   {% endif %}

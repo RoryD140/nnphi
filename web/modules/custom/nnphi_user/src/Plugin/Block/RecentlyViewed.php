@@ -62,6 +62,7 @@ class RecentlyViewed extends BlockBase implements ContainerFactoryPluginInterfac
 
   public function build() {
     $build = [];
+    $build['#attached']['library'][] = 'nnphi_training/slider';
 
     // Get the user's history.
     $result = $this->db->query("SELECT nid FROM {history} WHERE uid = :uid ORDER BY timestamp DESC", [

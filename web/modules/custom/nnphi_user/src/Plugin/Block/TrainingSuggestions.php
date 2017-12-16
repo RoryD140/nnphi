@@ -72,6 +72,8 @@ class TrainingSuggestions extends BlockBase implements ContainerFactoryPluginInt
    */
   public function build() {
     $build = [];
+    $build['#prefix'] = '<div class="block-content">';
+    $build['#suffix'] = '</div>';
 
     $account = $this->getContextValue('user');
     if (!$this->canSuggest($account)) {
@@ -80,7 +82,6 @@ class TrainingSuggestions extends BlockBase implements ContainerFactoryPluginInt
     else {
       /** @var \Drupal\user\UserInterface $nodes */
       $nodes = $this->recommendationService->getSuggestionsForUser($account);
-
       if (empty($nodes)) {
         $build['content'] = $this->emptyContent($account);
       }
@@ -155,7 +156,7 @@ class TrainingSuggestions extends BlockBase implements ContainerFactoryPluginInt
   protected function emptyContent(AccountInterface $account) {
     return [
       '#type' => 'markup',
-      '#markup' => '<p>' . $this->t('There are no suggested trainings available. Please check back again later.') . '</p>',
+      '#markup' => '<p>' . $this->t('Complete your profile to view selected trainings.') . '</p>',
     ];
   }
 }

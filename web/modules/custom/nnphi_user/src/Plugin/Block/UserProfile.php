@@ -58,12 +58,17 @@ class UserProfile extends BlockBase implements ContainerFactoryPluginInterface {
     /** @var \Drupal\user\UserInterface $account */
     $account = $this->getContextValue('user');
     $build = [];
+    $redirect_service = \Drupal::service('redirect.destination');
+    $build['edit_button'] = [
+      '#type' => 'link',
+      '#url' => Url::fromRoute('entity.user.edit_form', ['user' => $account->id()], ['query' => ['destination' => $redirect_service->get()]]),
+      '#title' => $this->t('Edit'),
+    ];
     $build['profile'] = $this->userViewer->view($account, 'profile');
     CacheableMetadata::createFromObject($account)
       ->applyTo($build);
     $edit_access = !self::accountIsComplete($account);
     /** @var \Drupal\Core\Routing\RedirectDestinationInterface $redirect_service */
-    $redirect_service = \Drupal::service('redirect.destination');
     $build['edit_link'] = [
       '#type' => 'link',
       '#url' => Url::fromRoute('entity.user.edit_form', ['user' => $account->id()], ['query' => ['destination' => $redirect_service->get()]]),
