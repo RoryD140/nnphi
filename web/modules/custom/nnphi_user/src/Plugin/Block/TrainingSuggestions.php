@@ -156,7 +156,7 @@ class TrainingSuggestions extends BlockBase implements ContainerFactoryPluginInt
   protected function emptyContent(AccountInterface $account) {
     return [
       '#type' => 'markup',
-      '#markup' => '<p>' . $this->t('Complete your profile to view selected trainings.') . '</p>',
+      '#markup' => '<p>' . $this->t('There are no suggested trainings available. Please check back again later.') . '</p>',
     ];
   }
 }
