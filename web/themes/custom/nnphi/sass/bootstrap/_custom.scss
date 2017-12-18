@@ -15,6 +15,8 @@ $gray-text: #959595;
 $gray-light: #e4e4e4;
 $orange: #ec942e;
 $pink: #ac255e;
+$violet: #743f86;
+$carmine: #df4f45;
 
 $brand-primary: $green;
 
@@ -102,6 +104,17 @@ $star-bg: url('svg/star.svg');
 $eye-bg: url('svg/eye.svg');
 $oval-bg: url('images/oval-bg.png');
 $line-bg: url('svg/header-bg.svg');
+
+// Icons
+$bookmark: url('/themes/custom/nnphi/svg/bookmark.svg');
+$learning-plans: url('/themes/custom/nnphi/svg/learning-plans.svg');
+$profile: url('/themes/custom/nnphi/svg/profile-icon.svg');
+$speech-bubble: url('/themes/custom/nnphi/svg/suggested.svg');
+$pencil: url('/themes/custom/nnphi/svg/pencil.svg');
+
+
+
+
 
 // Box shadow used in multiple places
 $box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);

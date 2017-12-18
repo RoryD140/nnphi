@@ -10,6 +10,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Routing\RedirectDestinationInterface;
 
 /**
  * Class UserProfile
@@ -32,11 +33,17 @@ class UserProfile extends BlockBase implements ContainerFactoryPluginInterface {
   private $userViewer;
 
   /**
+   * @var \Drupal\Core\Routing\RedirectDestinationInterface
+   */
+  private $redirectService;
+
+  /**
    * {@inheritdoc}
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entityTypeManager) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entityTypeManager, RedirectDestinationInterface $redirectDestination) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->userViewer = $entityTypeManager->getViewBuilder('user');
+    $this->redirectService = $redirectDestination;
   }
 
   /**
@@ -47,7 +54,8 @@ class UserProfile extends BlockBase implements ContainerFactoryPluginInterface {
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('entity_type.manager')
+      $container->get('entity_type.manager'),
+      $container->get('redirect.destination')
     );
   }
 
@@ -58,15 +66,19 @@ class UserProfile extends BlockBase implements ContainerFactoryPluginInterface {
     /** @var \Drupal\user\UserInterface $account */
     $account = $this->getContextValue('user');
     $build = [];
+    $build['edit_button'] = [
+      '#type' => 'link',
+      '#url' => Url::fromRoute('entity.user.edit_form', ['user' => $account->id()], ['query' => ['destination' => $this->redirectService->get()]]),
+      '#title' => $this->t('Edit'),
+    ];
     $build['profile'] = $this->userViewer->view($account, 'profile');
     CacheableMetadata::createFromObject($account)
       ->applyTo($build);
     $edit_access = !self::accountIsComplete($account);
     /** @var \Drupal\Core\Routing\RedirectDestinationInterface $redirect_service */
-    $redirect_service = \Drupal::service('redirect.destination');
     $build['edit_link'] = [
       '#type' => 'link',
-      '#url' => Url::fromRoute('entity.user.edit_form', ['user' => $account->id()], ['query' => ['destination' => $redirect_service->get()]]),
+      '#url' => Url::fromRoute('entity.user.edit_form', ['user' => $account->id()], ['query' => ['destination' => $this->redirectService->get()]]),
       '#title' => $this->t('Complete Your Profile'),
       '#access' => $edit_access,
     ];

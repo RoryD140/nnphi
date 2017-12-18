@@ -83,7 +83,9 @@ class BookmarkedTrainings extends BlockBase implements ContainerFactoryPluginInt
       // Empty content.
       $build['empty'] = [
         '#type' => 'markup',
+        '#prefix' => '<div class="block-content">',
         '#markup' => $this->t('You have not bookmarked any trainings.'),
+        '#suffix' => '</div>',
       ];
     }
     else {

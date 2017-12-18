@@ -11,6 +11,7 @@ dependencies:
     - field.field.user.user.field_user_setting
     - field.field.user.user.field_user_zipcode
     - field.field.user.user.user_picture
+    - image.style.thumbnail
   module:
     - image
     - user
@@ -67,7 +68,7 @@ content:
     region: content
     label: hidden
     settings:
-      image_style: ''
+      image_style: thumbnail
       image_link: ''
     third_party_settings: {  }
 hidden:
