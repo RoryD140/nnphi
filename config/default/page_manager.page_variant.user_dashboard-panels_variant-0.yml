@@ -4,7 +4,10 @@ status: true
 dependencies:
   config:
     - page_manager.page.user_dashboard
+  content:
+    - 'block_content:link_block:95b0113b-a73c-457e-84c0-8ee801d10add'
   module:
+    - block_content
     - nnphi_user
     - panels
     - user
@@ -39,7 +42,7 @@ variant_settings:
       provider: nnphi_user
       label_display: visible
       region: left_column_first
-      weight: 0
+      weight: -3
       uuid: cd3df3ec-faa8-4b69-a011-7fa9aff29589
       context_mapping:
         user: user
@@ -72,6 +75,28 @@ variant_settings:
       weight: 0
       uuid: d7114569-1d3c-4e32-8c9a-6fda1806439c
       context_mapping: {  }
+    812e8df5-0ae9-4377-be02-a5099bfc07a3:
+      id: 'block_content:95b0113b-a73c-457e-84c0-8ee801d10add'
+      label: 'Homepage Librarian Link'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: main_container
+      weight: 0
+      uuid: 812e8df5-0ae9-4377-be02-a5099bfc07a3
+      context_mapping: {  }
+    657c1738-6240-4ce2-b39d-28d362719666:
+      id: user_assessment
+      label: 'Assessment banner'
+      provider: nnphi_user
+      label_display: '0'
+      region: left_column_first
+      weight: -2
+      uuid: 657c1738-6240-4ce2-b39d-28d362719666
+      context_mapping:
+        user: current_user
   id: panels_variant
   uuid: b0addbdc-161c-4208-953b-9d995687f4c5
   label: null

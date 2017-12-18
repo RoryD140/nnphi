@@ -74,7 +74,9 @@
 #}
 <article{{ attributes.addClass('announcement-node-teaser') }}>
 
-  {{ node.getCreatedTime()|format_date('training_date') }}
+  <div class="date">
+    {{ node.getCreatedTime()|format_date('training_date') }}
+  </div>
 
   {{ title_prefix }}
   {% if not page %}

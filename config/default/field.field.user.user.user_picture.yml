@@ -23,7 +23,7 @@ settings:
   file_directory: 'pictures/profile/[date:custom:Y]-[date:custom:m]'
   file_extensions: 'png gif jpg jpeg'
   max_filesize: '2 mb'
-  max_resolution: 85x85
+  max_resolution: 150x150
   min_resolution: ''
   alt_field: false
   alt_field_required: false
