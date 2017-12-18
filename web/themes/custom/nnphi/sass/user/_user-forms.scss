@@ -195,3 +195,72 @@
 #password-policy-status tr td:first-of-type {
   display: none;
 }
+
+// User picture
+.image-widget {
+  width: 80%;
+  display: inherit;
+}
+
+.file--image,
+.file-size {
+  display: none;
+}
+
+input[id^="edit-user-picture"] {
+  width: 50%;
+  height: 36px;
+}
+
+input[id^="edit-user-picture-0-remove-button"] {
+  margin-top: 4rem;
+}
+
+.tabledrag-toggle-weight-wrapper,
+.field-multiple-drag {
+  display: none;
+}
+
+// Interests
+.field-user-interests-values h4.label {
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 0;
+  font-size: 1rem;
+}
+
+// Global select styles
+.select-wrapper {
+  width: 80%;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  margin-right: 0;
+  font-size: 1rem;
+  line-height: 1.25;
+  color: #464a4c;
+  background-color: #fff;
+  background-image: none;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 100vw;
+  transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+}
+
+select {
+  width: 100%;
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.25;
+  color: #464a4c;
+  background-color: #fff;
+  background-image: none;
+  background-clip: padding-box;
+  border: 0 solid rgba(0,0,0,0.15);
+  border-radius: 100vw;
+}
+
+.form-file {
+  @extend .btn-primary;
+}

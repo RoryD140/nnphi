@@ -126,7 +126,6 @@
 .field.user-picture img,
 .image-widget img {
   @extend .rounded-circle;
-  border: 1px solid $gray-light;
   padding: 1rem;
   box-sizing: content-box;
   margin: 1rem 0;
