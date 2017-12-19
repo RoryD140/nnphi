@@ -44,7 +44,7 @@ class AssessmentBanner extends BlockBase implements ContainerFactoryPluginInterf
       // Todo: change this once I know where this goes.
       //'#url' => Url::fromRoute('entity.user.edit_form', ['user' => $account->id()], ['query' => ['destination' => $this->redirectService->get()]]),
     ];
-    $data = CacheableMetadata::createFromObject($account);
+    $data = CacheableMetadata::createFromObject($this->getContextValue('user'));
     $data->applyTo($build);
     $build['#cache']['contexts'][] = 'user';
     return $build;

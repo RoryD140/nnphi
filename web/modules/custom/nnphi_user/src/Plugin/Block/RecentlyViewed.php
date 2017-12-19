@@ -89,7 +89,7 @@ class RecentlyViewed extends BlockBase implements ContainerFactoryPluginInterfac
 //    $build['#attached']['library'][] = 'nnphi_training/slider';
 
     $build['#prefix'] = '<section class="training-related">';
-    $build['#suffix'] = '</div>';
+    $build['#suffix'] = '</section>';
 
     $build['header'] = [
       '#type' => 'html_tag',
