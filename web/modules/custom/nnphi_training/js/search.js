@@ -56,6 +56,22 @@
         try {
           search.addWidget(
             instantsearch.widgets.refinementList({
+              container: '#content-type',
+              attributeName: 'content_type',
+              operator: 'or',
+              limit: 2,
+              showMore: false,
+              templates: {
+                header: Drupal.t('Type')
+              }
+            })
+          );
+        }
+        catch (err) {}
+
+        try {
+          search.addWidget(
+            instantsearch.widgets.refinementList({
               container: '#ceus',
               attributeName: 'ceu',
               operator: 'or',
