@@ -127,6 +127,14 @@ field_settings:
       field: summary
       ranking: '4'
       unordered: 0
+  content_type_facet:
+    label: 'Content type'
+    property_path: facet_attribute
+    type: boolean
+    configuration:
+      field: content_type
+      filter_only: 0
+      searchable: 0
   title:
     label: Title
     datasource_id: 'entity:node'
@@ -268,11 +276,17 @@ field_settings:
     datasource_id: 'entity:node'
     property_path: nid
     type: integer
+  content_type:
+    label: Type
+    datasource_id: 'entity:node'
+    property_path: type
+    type: string
 datasource_settings:
   'entity:node':
     bundles:
       default: false
       selected:
+        - curriculum
         - training
     languages:
       default: true
@@ -288,5 +302,5 @@ tracker_settings:
 options:
   index_directly: false
   cron_limit: 50
-  algolia_index_name: ''
+  algolia_index_name: dev_TRAINING
 server: algolia
