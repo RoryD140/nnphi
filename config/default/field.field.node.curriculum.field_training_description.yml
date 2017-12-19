@@ -1,0 +1,22 @@
+uuid: 5ff7018f-0683-447f-b76f-f796cf5a94f9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_training_description
+    - node.type.curriculum
+  module:
+    - text
+id: node.curriculum.field_training_description
+field_name: field_training_description
+entity_type: node
+bundle: curriculum
+label: Description
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

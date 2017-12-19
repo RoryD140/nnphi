@@ -1,0 +1,19 @@
+uuid: 8b1d689a-23f3-405c-8390-5eb83cdcf4c4
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_curriculum_trainings
+field_name: field_curriculum_trainings
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

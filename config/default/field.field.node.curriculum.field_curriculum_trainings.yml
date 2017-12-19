@@ -1,0 +1,29 @@
+uuid: bb861914-6208-49ad-8ae3-a32545422fbd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_curriculum_trainings
+    - node.type.curriculum
+    - node.type.training
+id: node.curriculum.field_curriculum_trainings
+field_name: field_curriculum_trainings
+entity_type: node
+bundle: curriculum
+label: Trainings
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      training: training
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
