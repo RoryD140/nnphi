@@ -68,6 +68,13 @@ class MostBookmarked extends BlockBase implements ContainerFactoryPluginInterfac
     $build['#prefix'] = '<section class="training-related">';
     $build['#suffix'] = '</section>';
 
+    $build['header'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'h2',
+      '#attributes' => ['class' => ['training-subtitle']],
+      '#value' => $this->t('Most Bookmarked Trainings'),
+    ];
+
     $build['nodes'] = [
       '#prefix' => '<div class="slick-slider">',
       '#suffix' => '</div>',
@@ -77,7 +84,7 @@ class MostBookmarked extends BlockBase implements ContainerFactoryPluginInterfac
     $build['#cache'] = [
       'max-age' => 900,
       'contexts' => [],
-      'keys' => ['node', 'teaser'] + array_values($nids),
+      'keys' => array_merge(['node', 'teaser'], array_values($nids)),
       'tags' => ['node_list'],
     ];
 
