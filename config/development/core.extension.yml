@@ -33,6 +33,7 @@ module:
   link: 0
   menu_ui: 0
   nnphi_bookmark: 0
+  nnphi_curriculum: 0
   nnphi_general: 0
   nnphi_micro_assessment: 0
   nnphi_training: 0
