@@ -5,7 +5,8 @@
  * Contains nnphi_curriculum.module.
  */
 
-use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\node\NodeInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter().
@@ -22,4 +23,51 @@ function nnphi_curriculum_form_node_form_alter(&$form, \Drupal\Core\Form\FormSta
   // Remove the JS that hides the summary.
   $attached = array_search('text/drupal.text', $form['field_training_description']['widget'][0]['summary']['#attached']['library']);
   unset($form['field_training_description']['widget'][0]['summary']['#attached']['library'][$attached]);
+}
+
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function nnphi_curriculum_entity_extra_field_info() {
+  $extra = [];
+
+  $extra['node']['curriculum']['display']['curriculum_enroll'] = [
+    'label' => t('Curriculum enrollment link'),
+    'description' => t('Link for user to enroll in a curriculum'),
+    'weight' => 10,
+    'visible' => FALSE,
+  ];
+
+  return $extra;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ */
+function nnphi_curriculum_node_view(array &$build, NodeInterface $node, EntityViewDisplayInterface $display, $view_mode) {
+  if (!$display->getComponent('curriculum_enroll') || $node->getType() !== 'curriculum') {
+    return;
+  }
+
+  $build['#cache']['contexts'][] = 'user.permissions';
+  $build['#attached']['library'][] = 'core/drupal.ajax';
+
+  $build['curriculum_enroll'] = [
+    '#lazy_builder' => ['nnphi_curriculum.link_builder:curriculum', [
+      $node->id(),
+    ]],
+    '#create_placeholder' => TRUE,
+  ];
+
+}
+
+/**
+ * Implements hook_theme().
+ */
+function nnphi_curriculum_theme($existing, $type, $theme, $path) {
+  return [
+    'curriculum_enroll' => [
+      'variables' => ['attributes' => [], 'title' => []],
+    ],
+  ];
 }

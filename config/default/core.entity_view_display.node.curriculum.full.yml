@@ -21,6 +21,11 @@ targetEntityType: node
 bundle: curriculum
 mode: full
 content:
+  curriculum_enroll:
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_curriculum_trainings:
     weight: 7
     label: hidden

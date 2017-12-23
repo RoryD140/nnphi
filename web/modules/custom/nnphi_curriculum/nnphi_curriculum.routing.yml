@@ -1,0 +1,7 @@
+nnphi_curriculum.enroll.curriculum:
+  path: '/curriculum/enroll/{node}'
+  defaults:
+    _controller: '\Drupal\nnphi_curriculum\Controller\EnrollmentController::curriculum'
+  requirements:
+    _entity_access: 'node.view'
+    _permission: 'enroll in curricula'

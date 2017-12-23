@@ -1,0 +1,194 @@
+<?php
+/**
+ * @file nnphi_curriculum.install
+ */
+
+use Drupal\Core\Database\Database;
+
+/**
+ * Implements hook_schema().
+ */
+function nnphi_curriculum_schema() {
+  $schema = [];
+
+  $schema['nnphi_curriculum_enrollment'] = [
+    'description' => 'Tracks enrollment of users in curricula',
+    'fields' => [
+      'uid' => [
+        'description' => 'The {users}.uid that is enrolled',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'curriculum_nid' => [
+        'description' => 'The {node}.nid of the curriculum node',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'created' => [
+        'description' => 'The unix timestamp of the enrollment',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'completed' => [
+        'description' => 'The unix timestap the enrollment was completed',
+        'type' => 'int',
+        'not null' => FALSE,
+      ],
+    ],
+    'primary key' => ['uid', 'curriculum_nid'],
+    'foreign keys' => [
+      'user' => [
+        'table' => 'users',
+        'columns' => ['uid' => 'uid'],
+      ],
+      'curriculum_node' => [
+        'table' => 'node',
+        'columns' => ['curriculum_nid' => 'nid'],
+      ],
+    ],
+  ];
+
+  $schema['nnphi_curriculum_progress'] = [
+    'description' => 'Tracks progress of users through curricula',
+    'fields' => [
+      'uid' => [
+        'description' => 'The {users}.uid that is enrolled',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'curriculum_nid' => [
+        'description' => 'The {node}.nid of the curriculum node',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'training_nid' => [
+        'description' => 'The {node}.nid of the training node',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'completed' => [
+        'description' => 'The unix timestamp of the training completion',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+    ],
+    'primary key' => ['uid', 'curriculum_nid', 'training_nid'],
+    'foreign keys' => [
+      'user' => [
+        'table' => 'users',
+        'columns' => ['uid' => 'uid'],
+      ],
+      'curriculum_node' => [
+        'table' => 'node',
+        'columns' => ['curriculum_nid' => 'nid'],
+      ],
+      'training_node' => [
+        'table' => 'node',
+        'columns' => ['training_nid' => 'nid'],
+      ],
+    ],
+  ];
+
+  return $schema;
+}
+
+/**
+ * Add curriculum enrollment and progress tracking tables.
+ */
+function nnphi_curriculum_update_8001() {
+  $enrollment = [
+    'description' => 'Tracks enrollment of users in curricula',
+    'fields' => [
+      'uid' => [
+        'description' => 'The {users}.uid that is enrolled',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'curriculum_nid' => [
+        'description' => 'The {node}.nid of the curriculum node',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'created' => [
+        'description' => 'The unix timestamp of the enrollment',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'completed' => [
+        'description' => 'The unix timestap the enrollment was completed',
+        'type' => 'int',
+        'not null' => FALSE,
+      ],
+    ],
+    'primary key' => ['uid', 'curriculum_nid'],
+    'foreign keys' => [
+      'user' => [
+        'table' => 'users',
+        'columns' => ['uid' => 'uid'],
+      ],
+      'curriculum_node' => [
+        'table' => 'node',
+        'columns' => ['curriculum_nid' => 'nid'],
+      ],
+    ],
+  ];
+
+  Database::getConnection()->schema()->createTable('nnphi_curriculum_enrollment', $enrollment);
+
+  $progress = [
+    'description' => 'Tracks progress of users through curricula',
+    'fields' => [
+      'uid' => [
+        'description' => 'The {users}.uid that is enrolled',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'curriculum_nid' => [
+        'description' => 'The {node}.nid of the curriculum node',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'training_nid' => [
+        'description' => 'The {node}.nid of the training node',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'completed' => [
+        'description' => 'The unix timestamp of the training completion',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+    ],
+    'primary key' => ['uid', 'curriculum_nid', 'training_nid'],
+    'foreign keys' => [
+      'user' => [
+        'table' => 'users',
+        'columns' => ['uid' => 'uid'],
+      ],
+      'curriculum_node' => [
+        'table' => 'node',
+        'columns' => ['curriculum_nid' => 'nid'],
+      ],
+      'training_node' => [
+        'table' => 'node',
+        'columns' => ['training_nid' => 'nid'],
+      ],
+    ],
+  ];
+
+  Database::getConnection()->schema()->createTable('nnphi_curriculum_progress', $progress);
+}
