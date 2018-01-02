@@ -1,0 +1,29 @@
+uuid: ce832d7c-3ddb-4a00-bb4f-06ed1ac34efb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_training_job_tasks
+    - node.type.curriculum
+    - taxonomy.vocabulary.job_tasks
+id: node.curriculum.field_training_job_tasks
+field_name: field_training_job_tasks
+entity_type: node
+bundle: curriculum
+label: 'Specific Job Task Terms'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      job_tasks: job_tasks
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

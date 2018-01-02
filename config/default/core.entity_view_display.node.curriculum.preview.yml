@@ -1,0 +1,59 @@
+uuid: 4ed465ba-a4cf-4d72-a34b-2f730eb34cee
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.preview
+    - field.field.node.curriculum.field_curriculum_trainings
+    - field.field.node.curriculum.field_training_competencies
+    - field.field.node.curriculum.field_training_description
+    - field.field.node.curriculum.field_training_job_tasks
+    - field.field.node.curriculum.field_training_objectives
+    - field.field.node.curriculum.field_training_occupations
+    - node.type.curriculum
+  module:
+    - smart_trim
+    - text
+    - user
+id: node.curriculum.preview
+targetEntityType: node
+bundle: curriculum
+mode: preview
+content:
+  field_training_competencies:
+    weight: 1
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_training_description:
+    weight: 2
+    label: hidden
+    settings:
+      trim_length: 140
+    third_party_settings: {  }
+    type: text_summary_or_trimmed
+    region: content
+  field_training_objectives:
+    weight: 0
+    label: hidden
+    settings:
+      trim_length: '30'
+      trim_type: words
+      trim_suffix: ...
+      more_link: '0'
+      more_text: More
+      trim_options:
+        text: 0
+      more_class: more-link
+      summary_handler: full
+    third_party_settings: {  }
+    type: smart_trim
+    region: content
+hidden:
+  field_curriculum_trainings: true
+  field_training_job_tasks: true
+  field_training_occupations: true
+  links: true

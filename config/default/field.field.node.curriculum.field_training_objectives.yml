@@ -1,0 +1,21 @@
+uuid: c280347e-444f-403f-a0c6-25fbc5b82ff3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_training_objectives
+    - node.type.curriculum
+  module:
+    - text
+id: node.curriculum.field_training_objectives
+field_name: field_training_objectives
+entity_type: node
+bundle: curriculum
+label: 'Learning Objectives'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

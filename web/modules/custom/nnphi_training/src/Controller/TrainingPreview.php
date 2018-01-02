@@ -35,7 +35,8 @@ class TrainingPreview extends ControllerBase {
   }
 
   public function preview(NodeInterface $node) {
-    if ($node->getType() !== 'training') {
+    $type = $node->getType();
+    if ($type !== 'training' && $type !== 'curriculum') {
       throw new NotFoundHttpException();
     }
     $view = $this->entityTypeManager()->getViewBuilder('node')

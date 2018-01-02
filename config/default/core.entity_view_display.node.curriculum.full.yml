@@ -1,0 +1,85 @@
+uuid: 03b43f67-2b57-4381-90da-86961af134e2
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.curriculum.field_curriculum_trainings
+    - field.field.node.curriculum.field_curriculum_updated
+    - field.field.node.curriculum.field_training_competencies
+    - field.field.node.curriculum.field_training_description
+    - field.field.node.curriculum.field_training_job_tasks
+    - field.field.node.curriculum.field_training_objectives
+    - field.field.node.curriculum.field_training_occupations
+    - node.type.curriculum
+  module:
+    - datetime
+    - text
+    - user
+id: node.curriculum.full
+targetEntityType: node
+bundle: curriculum
+mode: full
+content:
+  field_curriculum_trainings:
+    weight: 7
+    label: hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_curriculum_updated:
+    type: datetime_default
+    weight: 1
+    region: content
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: training_date
+    third_party_settings: {  }
+  field_training_competencies:
+    weight: 4
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_training_description:
+    type: text_default
+    weight: 2
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_training_job_tasks:
+    weight: 6
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_training_objectives:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_training_occupations:
+    weight: 5
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

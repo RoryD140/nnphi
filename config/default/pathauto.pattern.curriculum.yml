@@ -1,0 +1,22 @@
+uuid: 4852efbe-3879-413c-9eb0-11ff6340a1bc
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: curriculum
+label: Curriculum
+type: 'canonical_entities:node'
+pattern: 'curriculum/[node:title]'
+selection_criteria:
+  7715dfce-87c6-463c-aad3-2d27e4769f67:
+    id: node_type
+    bundles:
+      curriculum: curriculum
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 7715dfce-87c6-463c-aad3-2d27e4769f67
+selection_logic: and
+weight: -5
+relationships: {  }
