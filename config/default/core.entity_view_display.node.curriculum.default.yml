@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.curriculum.field_curriculum_trainings
+    - field.field.node.curriculum.field_curriculum_updated
     - field.field.node.curriculum.field_training_competencies
     - field.field.node.curriculum.field_training_description
     - field.field.node.curriculum.field_training_job_tasks
@@ -11,6 +12,7 @@ dependencies:
     - field.field.node.curriculum.field_training_occupations
     - node.type.curriculum
   module:
+    - datetime
     - text
     - user
 id: node.curriculum.default
@@ -25,6 +27,15 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
+  field_curriculum_updated:
+    weight: 108
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
     region: content
   field_training_competencies:
     weight: 103

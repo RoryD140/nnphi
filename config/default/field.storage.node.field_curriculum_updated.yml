@@ -1,0 +1,20 @@
+uuid: d2be3c8e-7532-47b8-ad98-3082efd15cbe
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - node
+id: node.field_curriculum_updated
+field_name: field_curriculum_updated
+entity_type: node
+type: datetime
+settings:
+  datetime_type: datetime
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
