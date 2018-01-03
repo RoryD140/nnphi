@@ -10,7 +10,7 @@ dependencies:
 id: trainingsearch
 theme: nnphi
 region: header
-weight: -7
+weight: -9
 provider: null
 plugin: nnphi_training_search_block
 settings:
