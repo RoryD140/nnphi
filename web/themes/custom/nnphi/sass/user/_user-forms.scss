@@ -303,8 +303,11 @@ select {
 
 .page-entity-user-edit_form .user-form {
   border: solid 1px $gray-light;
-  margin: 2rem 19rem 3rem;
+  margin: 2rem 25% 3rem;
   @include media-breakpoint-down(lg) {
+    margin: 0 20% 3rem;
+  }
+  @include media-breakpoint-down(md) {
     margin: 0 2rem 3rem;
   }
 }
