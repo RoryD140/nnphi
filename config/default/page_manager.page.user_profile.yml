@@ -1,0 +1,12 @@
+uuid: 3d9d55da-a74b-4453-a811-8f88b6935ad8
+langcode: en
+status: true
+dependencies: {  }
+id: user_profile
+label: 'User Profile'
+description: ''
+use_admin_theme: false
+path: '/user/{user}/edit'
+access_logic: and
+access_conditions: {  }
+parameters: {  }
