@@ -13,14 +13,14 @@
   }
 }
 
-.page-entity-user-edit_form main,
+//.page-entity-user-edit_form main,
 .page-user-register main,
 .page-user-login main,
 .page-user-pass main {
   @extend .container;
 }
 
-.page-entity-user-edit_form .layout-content,
+//.page-entity-user-edit_form .layout-content,
 .page-user-register .layout-content,
 .page-user-login .layout-content,
 .page-user-pass .layout-content {
@@ -61,7 +61,7 @@
   margin-bottom: 0;
 }
 
-  // Remove space between confirm password and password requirements
+// Remove space between confirm password and password requirements
 .user-form .form-item.form-item-pass-pass2,
 .user-register-form .form-item.form-item-pass-pass2 {
   margin-bottom: 0;
@@ -191,6 +191,11 @@
   }
 }
 
+.password-strength__meter {
+  margin: 1rem;
+  border-radius: 7px;
+}
+
 // Hide the first column of table, which just says "user password" in each cell
 #password-policy-status tr td:first-of-type {
   display: none;
@@ -202,18 +207,22 @@
   display: inherit;
 }
 
+.image-widget.form-managed-file img {
+  padding: 0;
+  margin: 0;
+}
+
 .file--image,
 .file-size {
   display: none;
 }
 
-input[id^="edit-user-picture"] {
+input[id^="edit-user-picture-"] {
   width: 50%;
   height: 36px;
-}
-
-input[id^="edit-user-picture-0-remove-button"] {
-  margin-top: 4rem;
+  max-width: 60%;
+  margin-top: 2rem;
+  margin-left: 2rem;
 }
 
 .tabledrag-toggle-weight-wrapper,
@@ -241,9 +250,10 @@ input[id^="edit-user-picture-0-remove-button"] {
   background-color: #fff;
   background-image: none;
   background-clip: padding-box;
-  border: 1px solid rgba(0,0,0,0.15);
+  border: 1px solid $gray-light;
   border-radius: 100vw;
   transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+  background: linear-gradient(white, $gray-light);
 }
 
 select {
@@ -254,7 +264,7 @@ select {
   font-size: 1rem;
   line-height: 1.25;
   color: #464a4c;
-  background-color: #fff;
+  background-color: transparent;
   background-image: none;
   background-clip: padding-box;
   border: 0 solid rgba(0,0,0,0.15);
@@ -263,4 +273,153 @@ select {
 
 .form-file {
   @extend .btn-primary;
+}
+
+// User Edit Form
+.page-entity-user-edit_form h1 {
+  text-transform: none;
+  letter-spacing: 1px;
+  font-size: 2rem;
+}
+
+.block-user-settings-banner {
+  padding-top: 0;
+  padding-bottom: 10%;
+  background-image: url(/themes/custom/nnphi/svg/swirls.svg);
+  background-size: 136%;
+  background-repeat: no-repeat;
+  background-position: top;
+  margin-top: 2%;
+  border-bottom: solid 1px $gray-light;
+}
+
+.page-entity-user-edit_form #block-nnphi-local-tasks {
+  display: none;
+}
+
+.page-entity-user-edit_form #user-form {
+  border-left: solid 1px $gray-light;
+  border-right: solid 1px $gray-light;
+  border-bottom: solid 1px $gray-light;
+  margin: 0 12rem 3rem;
+  @include media-breakpoint-down(lg) {
+    margin: 0 2rem 3rem;
+  }
+}
+
+.page-entity-user-edit_form .block-region-main-container h2 {
+  border: solid 1px $gray-light;
+  padding: 1rem 2rem;
+  color: $blue;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 3rem 12rem 0 12rem;
+  @include media-breakpoint-down(lg) {
+    margin: 3rem 2rem 0 2rem;
+  }
+}
+
+.dashboard > .container:nth-of-type(2) {
+  @include media-breakpoint-down(lg) {
+    margin: 1rem 0;
+  }
+}
+
+.page-entity-user-edit_form .block-region-main-container form {
+  padding: 2rem 2rem 3.5rem;
+}
+
+.form-item-current-pass .description {
+  display: block;
+}
+
+#password-policy-status table {
+  display: none;
+}
+
+.user-form .form-item input[type="file"] {
+  border: solid 0 $gray-light;
+  color: $gray-light;
+}
+
+
+.user-form .form-item input[type="submit"] {
+  border: solid 1px $green;
+  color: $green;
+}
+
+.user-form .cancel {
+  background-color: white;
+  border: solid 1px $green;
+  color: $green;
+  float: right;
+  margin-left: 1rem;
+}
+
+//Interests is a heierarchical select element
+.user-form table .select-wrapper {
+  margin-bottom: .5rem;
+}
+
+.user-form table h4.label {
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 0;
+  font-size: 1rem;
+  font-family: "Lato",sans-serif;
+}
+
+.user-form tbody .select-wrapper {
+  width: 100%;
+  float: right;
+}
+
+tr.draggable {
+  width: 80%;
+  float: right;
+  position: relative;
+  top: -20px;
+}
+
+tr.draggable .select-wrapper:nth-of-type(2) {
+  width: 95%;
+  margin-left: 5%;
+}
+
+tr.draggable .select-wrapper:nth-of-type(3) {
+  width: 90%;
+  margin-left: 10%;
+}
+
+[id^='field-user-interests-'] .clearfix {
+  width: 80%;
+  margin-left: 20%;
+  position: relative;
+  top: -20px;
+}
+
+.field-multiple-table {
+  table-layout: fixed;
+}
+
+// I don't like using px, but there is seemingly no other way to control the width of the "Please Select" widget.
+@include media-breakpoint-up(md) {
+  .field-multiple-table td {
+    width: 100%;
+    float: right;
+    min-width: 500px;
+    margin-left: 200px;
+  }
+}
+
+
+#button-divider {
+  height: 1px;
+  width: 100%;
+  background-color: $gray-light;
+  margin-bottom: 1rem;
+}
+
+#edit-submit {
+  float: right;
 }
