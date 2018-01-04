@@ -1,0 +1,28 @@
+uuid: 0821f996-af54-48f1-b878-3b50165e1847
+langcode: en
+status: true
+dependencies:
+  module:
+    - nnphi_user
+    - system
+  theme:
+    - nnphi
+id: usersettingsbanner
+theme: nnphi
+region: content
+weight: -8
+provider: null
+plugin: user_settings_banner
+settings:
+  id: user_settings_banner
+  label: 'User settings banner'
+  provider: nnphi_user
+  label_display: '0'
+  context_mapping:
+    user: '@user.current_user_context:current_user'
+visibility:
+  request_path:
+    id: request_path
+    pages: '/user/*/edit'
+    negate: false
+    context_mapping: {  }

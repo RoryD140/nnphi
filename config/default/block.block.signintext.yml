@@ -12,7 +12,7 @@ dependencies:
 id: signintext
 theme: nnphi
 region: content
-weight: -3
+weight: -2
 provider: null
 plugin: 'block_content:a2d7aa12-037f-481b-b324-a9fb702dc775'
 settings:

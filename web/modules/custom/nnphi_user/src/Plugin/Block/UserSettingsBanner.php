@@ -38,9 +38,7 @@ class UserSettingsBanner extends BlockBase implements ContainerFactoryPluginInte
     $account = $this->getContextValue('user');
     $name = $account->getDisplayName();
     $build = [
-      '#type' => 'html_tag',
-      '#tag' => 'h1',
-      '#value' => $this->t('Settings'),
+      '#type' => 'markup',
       '#prefix' => '<div class="container">',
       '#suffix' => '</div>',
     ];
