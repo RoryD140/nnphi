@@ -1,0 +1,54 @@
+// Specificity to override default section padding
+section.hero{
+  padding-top: $padding-lg;
+  padding-bottom: $padding-lg;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  border-bottom: solid 1px $gray-light;
+  margin-bottom: $padding-md;
+  @include media-breakpoint-down(md) {
+    padding-top: $padding-md;
+    padding-bottom: $padding-md;
+  }
+}
+
+.hero-interior {
+  @extend .container;
+}
+
+.hero-text {
+  @extend .col-lg-8;
+  @extend .offset-lg-2;
+}
+
+.hero-interior h1 {
+  color: $blue;
+  margin-bottom: 25px; // combines with line-heights to get correct spacing
+}
+
+.hero-source {
+  font-family: $font-family-work-sans;
+  font-size: $font-size-lg;
+  color: $gray-text;
+  text-transform: uppercase;
+  margin-bottom: $padding-md;
+  line-height: 1.1; // Prevents unwanted spacing
+}
+
+.hero-subtitle {
+  font-family: $font-family-work-sans;
+  font-size: $font-size-md;
+  margin-bottom: 100px;
+  font-weight: $font-weight-light;
+  line-height: 1.1; // Prevents unwanted spacing
+  @include media-breakpoint-down(md) {
+    margin-bottom: $padding-md;
+  }
+}
+
+.hero-btn a {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-arrow;
+}

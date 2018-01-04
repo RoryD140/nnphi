@@ -70,7 +70,7 @@
  *   in different view modes.
  */
 #}
-<article{{ attributes.addClass('basic-page-node') }}>
+<article{{ attributes.addClass('announcement-node') }}>
     {# background is temporary until we decide which term we're using #}
     <section class="hero" style="background-image: url('/{{ base_path ~ directory ~ '/svg/header-bg.svg' }}');">
       <div class="hero-interior">
@@ -79,8 +79,8 @@
         </div>
       </div>
     </section>
-  <div class="basic-page-node-interior">
-    <div{{ content_attributes.addClass('basic-page-content') }}>
+  <div class="announcement-node-interior container">
+    <div{{ content_attributes.addClass('announcement-content') }}>
       {{ content }}
     </div>
   </div>
