@@ -45,11 +45,6 @@ section.hero{
   @include media-breakpoint-down(md) {
     margin-bottom: $padding-md;
   }
-  // Cost text
-  span {
-    font-weight: $font-weight-bold;
-    text-transform: uppercase;
-  }
 }
 
 .hero-btn a {
