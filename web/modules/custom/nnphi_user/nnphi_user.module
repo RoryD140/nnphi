@@ -116,15 +116,16 @@ function nnphi_user_form_user_form_alter(&$form, FormStateInterface $form_state,
   $form['actions']['submit']['#value'] = t('Save Changes');
 
   // Add "Cancel" button
-  $form['actions']['cancel'] = array(
-    '#title' => t('Cancel'),
-    '#type' => 'link',
-    '#url' => Url::fromRoute('entity.user.canonical', array('user' => $form_state->get('user')->id())),
-    '#attributes' => array(
-      'class' => array('button', 'button-secondary', 'form-submit', 'cancel'),
-    ),
-    '#prefix' => '<div id="button-divider"></div>',
-  );
+  // Todo: this worked when using page manager to build this page, but throws error when using default page.
+  //  $form['actions']['cancel'] = array(
+  //    '#title' => t('Cancel'),
+  //    '#type' => 'link',
+  //    '#url' => Url::fromRoute('entity.user.canonical', array('user' => $form_state->get('user')->id())),
+  //    '#attributes' => array(
+  //      'class' => array('button', 'button-secondary', 'form-submit', 'cancel'),
+  //    ),
+  //    '#prefix' => '<div id="button-divider"></div>',
+  //  );
 }
 
 /**
