@@ -1,0 +1,16 @@
+uuid: b4cb6c7c-225f-4c18-b67f-b04007f25449
+langcode: en
+status: true
+dependencies: {  }
+id: user_edit
+label: 'User edit'
+description: ''
+use_admin_theme: false
+path: '/user/{user}/edit'
+access_logic: and
+access_conditions: {  }
+parameters:
+  user:
+    machine_name: user
+    type: 'entity:user'
+    label: User

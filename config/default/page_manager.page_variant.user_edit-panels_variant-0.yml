@@ -1,0 +1,56 @@
+uuid: c9092678-fdfd-4991-b52c-07a7aa52e8ac
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.user_edit
+  module:
+    - nnphi_user
+    - panels
+    - user
+id: user_edit-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks:
+    b0fb62af-2300-4205-9e50-77fc6b2ac977:
+      id: user_edit
+      label: 'User edit form'
+      provider: nnphi_user
+      label_display: '0'
+      region: main_container
+      weight: 0
+      uuid: b0fb62af-2300-4205-9e50-77fc6b2ac977
+      context_mapping:
+        user: current_user
+    e96fdae3-9c84-4153-925b-cd60b5b92bc0:
+      id: user_settings_banner
+      label: 'User settings banner'
+      provider: nnphi_user
+      label_display: '0'
+      region: banner
+      weight: 0
+      uuid: e96fdae3-9c84-4153-925b-cd60b5b92bc0
+      context_mapping: {  }
+  id: panels_variant
+  uuid: a05ad5d1-209a-4876-a837-1bac42ad062a
+  label: null
+  weight: 0
+  layout: nnphi_dashboard
+  layout_settings: {  }
+  page_title: Settings
+  storage_type: page_manager
+  storage_id: user_edit-panels_variant-0
+  builder: standard
+page: user_edit
+weight: 0
+selection_criteria:
+  -
+    id: user_role
+    roles:
+      administrator: administrator
+    negate: true
+    context_mapping:
+      user: current_user
+selection_logic: and
+static_context: {  }

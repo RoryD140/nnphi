@@ -42,8 +42,6 @@ function nnphi_user_preprocess_page(&$variables) {
     $variables['custom_title'] = t('Log In');
   } elseif($route === 'user.pass') {
     $variables['custom_title'] = t('Reset Your Password');
-  } elseif($route === 'entity.user.edit_form') {
-    $variables['custom_title'] = $variables['page']['#title'];
   }
 }
 
@@ -114,18 +112,18 @@ function nnphi_user_form_user_form_alter(&$form, FormStateInterface $form_state,
 
   // Override default submit text
   $form['actions']['submit']['#value'] = t('Save Changes');
-
+  
   // Add "Cancel" button
-  // Todo: this worked when using page manager to build this page, but throws error when using default page.
-  //  $form['actions']['cancel'] = array(
-  //    '#title' => t('Cancel'),
-  //    '#type' => 'link',
-  //    '#url' => Url::fromRoute('entity.user.canonical', array('user' => $form_state->get('user')->id())),
-  //    '#attributes' => array(
-  //      'class' => array('button', 'button-secondary', 'form-submit', 'cancel'),
-  //    ),
-  //    '#prefix' => '<div id="button-divider"></div>',
-  //  );
+  $account = $form_state->getFormObject()->getEntity();
+  $form['actions']['cancel'] = array(
+    '#title' => t('Cancel'),
+    '#type' => 'link',
+    '#url' => Url::fromRoute('entity.user.canonical', array('user' => $account->id())),
+    '#attributes' => array(
+      'class' => array('button', 'button-secondary', 'form-submit', 'cancel'),
+    ),
+    '#prefix' => '<div id="button-divider"></div>',
+  );
 }
 
 /**
