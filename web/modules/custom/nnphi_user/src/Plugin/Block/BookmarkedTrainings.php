@@ -112,7 +112,7 @@ class BookmarkedTrainings extends BlockBase implements ContainerFactoryPluginInt
         $build['nodes'][$node->id()]['flag']['#attributes']['class'][] = 'unflag-link';
       }
       $build['#attached']['library'][] = 'nnphi_user/bookmarks';
-//      $build['pager'] = ['#type' => 'pager'];
+      $build['pager'] = ['#type' => 'pager'];
       $build['nodes']['manage_bookmarks'] = array(
         '#title' => t('View and Manage Bookmarks'),
         '#type' => 'link',
