@@ -113,14 +113,14 @@ class BookmarkedTrainings extends BlockBase implements ContainerFactoryPluginInt
       }
       $build['#attached']['library'][] = 'nnphi_user/bookmarks';
       $build['pager'] = ['#type' => 'pager'];
-      $build['nodes']['manage_bookmarks'] = array(
-        '#title' => t('View and Manage Bookmarks'),
+      $build['nodes']['manage_bookmarks'] = [
+        '#title' => $this->t('View and Manage Bookmarks'),
         '#type' => 'link',
         '#url' => Url::fromRoute('nnphi_bookmark.user_list', array('user' => $account->id())),
         '#attributes' => array(
           'class' => array('btn', 'btn-outline-primary', 'btn-sm'),
         ),
-      );
+      ];
     }
     // Expensive rendering (nodes and flags) is cached,
     // but caching this block for every user would be counterproductive.
