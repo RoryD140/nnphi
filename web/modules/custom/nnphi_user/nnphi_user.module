@@ -99,6 +99,14 @@ function nnphi_user_form_user_form_alter(&$form, FormStateInterface $form_state,
     unset($form['account']['password_policy_status']['#header'][2]);
   }
 
+  // Hide Role field from non-admins
+  $user_role = \Drupal::currentUser()->getRoles();
+  if(!in_array("administrator", $user_role)) {
+    $form['field_user_role'] = [
+      '#access' => FALSE,
+    ];
+  }
+
   // Add the suggest job title field.
   $form['suggest_terms'] = [
     '#type' => 'textfield',
