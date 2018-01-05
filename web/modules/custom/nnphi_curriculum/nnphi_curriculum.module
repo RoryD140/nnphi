@@ -7,6 +7,7 @@
 
 use Drupal\node\NodeInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Render\Element;
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter().
@@ -58,7 +59,25 @@ function nnphi_curriculum_node_view(array &$build, NodeInterface $node, EntityVi
     ]],
     '#create_placeholder' => TRUE,
   ];
+}
 
+/**
+ * Implements hook_ENTITY_TYPE_view_alter().
+ */
+function nnphi_curriculum_node_view_alter(array &$build, NodeInterface $node, EntityViewDisplayInterface $display) {
+  if ($node->getType() !== 'curriculum' || !$display->getComponent('field_curriculum_trainings')) {
+    return;
+  }
+  foreach (Element::children($build['field_curriculum_trainings']) as $delta) {
+    $item = &$build['field_curriculum_trainings'][$delta];
+    $item['enrollment_link'] = [
+      '#lazy_builder' => ['nnphi_curriculum.link_builder:training', [
+        $node->id(),
+        $item['#node']->id(),
+      ]],
+      '#create_placeholder' => TRUE,
+    ];
+  }
 }
 
 /**
@@ -67,7 +86,10 @@ function nnphi_curriculum_node_view(array &$build, NodeInterface $node, EntityVi
 function nnphi_curriculum_theme($existing, $type, $theme, $path) {
   return [
     'curriculum_enroll' => [
-      'variables' => ['attributes' => [], 'title' => []],
+      'variables' => ['action' => 'enroll', 'attributes' => [], 'title' => ''],
+    ],
+    'curriculum_training_complete' => [
+      'variables' => ['attributes' => [], 'container_attributes' => [], 'title' => ''],
     ],
   ];
 }

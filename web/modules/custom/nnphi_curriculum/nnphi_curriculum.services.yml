@@ -5,5 +5,5 @@ services:
 
   nnphi_curriculum.link_builder:
     class: 'Drupal\nnphi_curriculum\CurriculumLinkBuilder'
-    arguments: ['@nnphi_curriculum.progress', '@entity_type.manager']
+    arguments: ['@nnphi_curriculum.progress', '@entity_type.manager', '@current_user', '@date.formatter']
 

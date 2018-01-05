@@ -89,5 +89,8 @@
   {{ content.field_training_description }}
   <div class="training-teaser-link-wrapper">
     <a href="{{ url }}" class="training-teaser-link">{{ 'View Training'|t }}</a>
+    {% if elements.enrollment_link|render %}
+      {{ elements.enrollment_link }}
+    {% endif %}
   </div>
 </article>

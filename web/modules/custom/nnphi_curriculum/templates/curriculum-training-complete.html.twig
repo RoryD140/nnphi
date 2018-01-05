@@ -1,0 +1,5 @@
+{% spaceless %}
+  {# Set nofollow to prevent search bots from crawling links #}
+  {% set attributes = attributes.setAttribute('rel', 'nofollow') %}
+  <div {{ container_attributes }}><a{{ attributes }}>{{ title }}</a></div>
+{% endspaceless %}

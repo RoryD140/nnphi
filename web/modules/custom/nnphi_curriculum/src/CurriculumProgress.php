@@ -31,7 +31,7 @@ class CurriculumProgress {
    */
   public function __construct(Connection $database, TimeInterface $time) {
     $this->database = $database;
-    $time->time = $time;
+    $this->time = $time;
   }
 
   /**
@@ -43,10 +43,11 @@ class CurriculumProgress {
   public function enrollUserInCurriculum(AccountProxyInterface $account, NodeInterface $curriculumNode) {
     return $this->database->merge('nnphi_curriculum_enrollment')
       ->keys(['uid' => $account->id(), 'curriculum_nid' => $curriculumNode->id()])
-      ->insertFields(['created' => $this->time->getRequestTime()])
-      ->fields([
-        'changed' => $this->time->getRequestTime(),
-      ])
+      ->insertFields(
+        ['created' => $this->time->getRequestTime(),
+        'uid' => $account->id(),
+        'curriculum_nid' => $curriculumNode->id()]
+      )
       ->execute();
   }
 
@@ -58,9 +59,18 @@ class CurriculumProgress {
    * @return \Drupal\Core\Database\Query\Merge
    */
   public function trackProgress(AccountProxyInterface $account, NodeInterface $curriculumNode, NodeInterface $trainingNode) {
+    // Enroll the user if they aren't already enrolled.
+    if (!$this->userIsEnrolled($account, $curriculumNode)) {
+      $this->enrollUserInCurriculum($account, $curriculumNode);
+    }
     return $this->database->merge('nnphi_curriculum_progress')
       ->keys(['uid' => $account->id(), 'curriculum_nid' => $curriculumNode->id(), 'training_nid' => $trainingNode->id()])
-      ->insertFields(['completed' => $this->time->getRequestTime()]);
+      ->insertFields([
+        'completed' => $this->time->getRequestTime(),
+        'uid' => $account->id(),
+        'curriculum_nid' => $curriculumNode->id(),
+        'training_nid' => $trainingNode->id(),
+      ])->execute();
   }
 
   /**
@@ -81,7 +91,7 @@ class CurriculumProgress {
    */
   public function userIsEnrolled(AccountProxyInterface $account, NodeInterface $curriculumNode) {
     return (bool)$this->database->query("SELECT 1 FROM {nnphi_curriculum_enrollment} 
-                                                WHERE uid = :uid AND curriculum_nid = :cid", [':uid' => $account->id(), ':cid' => $curriculumNode->id()]);
+                                                WHERE uid = :uid AND curriculum_nid = :cid", [':uid' => $account->id(), ':cid' => $curriculumNode->id()])->fetchField();
   }
 
   /**
@@ -89,10 +99,11 @@ class CurriculumProgress {
    * @param \Drupal\node\NodeInterface $curriculumNode
    * @param \Drupal\node\NodeInterface $trainingNode
    *
-   * @return bool
+   * @return int|bool
+   *  The timestamp the user completed the course|false
    */
   public function userHasCompletedCourse(AccountProxyInterface $account, NodeInterface $curriculumNode, NodeInterface $trainingNode) {
-    return (bool)$this->database->query("SELECT 1 FROM {nnphi_curriculum_progress}
+    return $this->database->query("SELECT completed FROM {nnphi_curriculum_progress}
                                                 WHERE uid = :uid 
                                                 AND curriculum_nid = :cid
                                                 AND training_nid = :tid ",
