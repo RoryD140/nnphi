@@ -254,6 +254,9 @@ input[id^="edit-user-picture-"] {
   border-radius: 100vw;
   transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
   background: linear-gradient(white, $gray-light);
+  @include media-breakpoint-down(sm) {
+    width: 100%;
+  }
 }
 
 select {
@@ -280,7 +283,6 @@ select {
   text-transform: none;
   letter-spacing: 1px;
   font-size: 2rem;
-  margin: 2rem 19rem;
   @include media-breakpoint-down(lg) {
     margin: 2rem 3rem;
   }
@@ -295,6 +297,7 @@ select {
   background-position: top;
   margin-top: 2%;
   border-bottom: solid 1px $gray-light;
+  margin-bottom: $padding-md;
 }
 
 .page-entity-user-edit_form #block-nnphi-local-tasks {
@@ -303,13 +306,6 @@ select {
 
 .page-entity-user-edit_form .user-form {
   border: solid 1px $gray-light;
-  margin: 2rem 25% 3rem;
-  @include media-breakpoint-down(lg) {
-    margin: 0 20% 3rem;
-  }
-  @include media-breakpoint-down(md) {
-    margin: 0 2rem 3rem;
-  }
 }
 
 .page-entity-user-edit_form .block-system-main-block h2 {
@@ -384,16 +380,43 @@ tr.draggable {
   float: right;
   position: relative;
   top: -20px;
+  @include media-breakpoint-down(md) {
+    top: 0;
+  }
 }
 
 tr.draggable .select-wrapper:nth-of-type(2) {
   width: 95%;
   margin-left: 5%;
+  @include media-breakpoint-down(xl) {
+    width: 90%;
+    margin-left: 10%;
+  }
+  @include media-breakpoint-down(lg) {
+     width: 85%;
+     margin-left: 15%;
+   }
+  @include media-breakpoint-down(md) {
+    width: 100%;
+    margin-left: 0;
+  }
 }
 
 tr.draggable .select-wrapper:nth-of-type(3) {
   width: 90%;
   margin-left: 10%;
+  @include media-breakpoint-down(xl) {
+    width: 85%;
+    margin-left: 15%;
+  }
+  @include media-breakpoint-down(lg) {
+    width: 80%;
+    margin-left: 20%;
+  }
+  @include media-breakpoint-down(md) {
+    width: 100%;
+    margin-left: 0;
+  }
 }
 
 [id^='field-user-interests-'] .clearfix {
