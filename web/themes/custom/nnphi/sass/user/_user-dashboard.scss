@@ -109,8 +109,6 @@
 }
 
 .block-user-profile article + a {
-  text-transform: uppercase;
-  color: $green;
   @extend .btn;
   @extend .btn-sm;
   @extend .btn-outline-primary;
@@ -169,7 +167,12 @@
   padding: 0 1rem 0 3rem;
 }
 
-.block-user-training-suggestions {}
+.training-bookmarks .btn {
+  display: flex;
+  justify-content: center;
+  margin: 0 4rem 1rem;
+  margin-top: 1rem;
+}
 
 .page-entity-user-canonical .training-bookmark article,
 .page-entity-user-canonical .block-user-training-suggestions article {
@@ -195,7 +198,46 @@
 
 .flag-bookmark.action-unflag,
 .flag-bookmark.action-flag {
+  width: auto;
+}
+
+.flag-bookmark.action-unflag svg,
+.flag-bookmark.action-flag svg {
   width: 20px;
+}
+
+.page-entity-user-canonical .flag-bookmark.action-unflag,
+.page-entity-user-canonical .flag-bookmark.action-flag {
+  width: 20px;
+}
+
+.page-entity-user-canonical .bookmark-text {
+  display: none;
+}
+
+.bookmark-text {
+  margin-left: 1rem;
+  vertical-align: top;
+  line-height: 1;
+}
+
+.action-flag .bookmark-text {
+  color: $plum;
+}
+
+.action-unflag .bookmark-text {
+  color: $coral;
+}
+
+.manage-bookmarks {
+  color: $green;
+  margin-left: 1rem;
+  vertical-align: top;
+  line-height: 1;
+}
+
+.page-entity-user-canonical .manage-bookmarks {
+  display: none;
 }
 
 .page-entity-user-canonical .flag-bookmark.action-unflag,
