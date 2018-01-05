@@ -7,6 +7,7 @@ dependencies:
     - field.field.user.user.field_password_expiration
     - field.field.user.user.field_user_interests
     - field.field.user.user.field_user_job_title
+    - field.field.user.user.field_user_role
     - field.field.user.user.field_user_setting
     - field.field.user.user.field_user_zipcode
     - field.field.user.user.user_picture
@@ -60,6 +61,15 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
+  field_user_role:
+    type: entity_reference_autocomplete
+    weight: 7
+    region: content
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_user_setting:
     weight: 8
     settings:
