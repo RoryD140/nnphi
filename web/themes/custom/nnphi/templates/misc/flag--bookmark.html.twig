@@ -31,11 +31,12 @@ action_class
 ] %}
 
 {# Set nofollow to prevent search bots from crawling anonymous flag links #}
-{% set attributes = attributes.setAttribute('rel', 'nofollow') %}
 {% if action_class == 'action-unflag' %}
-    <div class="{{classes|join(' ')}}"><a{{ attributes }}>{{ source(directory ~ '/svg/delete.svg') }}</a></div>
+    {% set attributes = attributes.setAttribute('rel', 'nofollow').setAttribute('title', 'Remove Bookmark'|t) %}
+    <div class="{{classes|join(' ')}}"><a{{ attributes }}>{{ source(directory ~ '/svg/remove-bookmark.svg') }}<span class="bookmark-text">{{ 'Remove Bookmark'|t }}</span></a><a class="manage-bookmarks" href="{{ path('nnphi_bookmark.user_list', {'user': user.id}) }}">{{ 'Manage Bookmarks'|t }}</a></div>
 {% else %}
-    <div class="{{classes|join(' ')}}"><a{{ attributes }}>{{ source(directory ~ '/svg/bookmark.svg') }}</a></div>
+    {% set attributes = attributes.setAttribute('rel', 'nofollow').setAttribute('title', 'Add Bookmark'|t) %}
+    <div class="{{classes|join(' ')}}"><a{{ attributes }}>{{ source(directory ~ '/svg/bookmark.svg') }}<span class="bookmark-text">{{ 'Add Bookmark'|t }}</span></a><a class="manage-bookmarks" href="{{ path('nnphi_bookmark.user_list', {'user': user.id}) }}">{{ 'Manage Bookmarks'|t }}</a></div>
 {% endif %}
 
 {% endspaceless %}
