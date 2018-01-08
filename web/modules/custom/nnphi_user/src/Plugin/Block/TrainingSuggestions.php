@@ -93,6 +93,9 @@ class TrainingSuggestions extends BlockBase implements ContainerFactoryPluginInt
           '#type' => 'link',
           '#title' => $this->t('View More'),
           '#url' => Url::fromRoute('nnphi_user.suggestions', ['user' => $account->id()]),
+          '#attributes' => [
+            'class' => ['btn', 'btn-outline-primary', 'btn-sm']
+          ]
         ];
       }
     }
