@@ -10,6 +10,9 @@ use Drupal\Core\Cache\CacheableMetadata;
 
 class TrainingSuggestions extends ControllerBase {
 
+  /**
+   * @var \Drupal\nnphi_training\TrainingSuggestions
+   */
   protected $trainingSuggestions;
 
   public function __construct(SuggestionService $trainingSuggestions) {
@@ -22,6 +25,13 @@ class TrainingSuggestions extends ControllerBase {
     );
   }
 
+  /**
+   * User training suggestions page callback.
+   *
+   * @param \Drupal\user\UserInterface $user
+   *
+   * @return array
+   */
   public function user(UserInterface $user) {
     $build = [];
     /** @var \Drupal\node\NodeInterface[] $nodes */
@@ -30,7 +40,6 @@ class TrainingSuggestions extends ControllerBase {
       $build['content'] = $this->emptyContent();
     }
     else {
-      $nodes = array_slice($nodes, 0, 3);
       $build['content'] = $this->entityTypeManager()->getViewBuilder('node')->viewMultiple($nodes, 'teaser');
     }
 
@@ -44,6 +53,11 @@ class TrainingSuggestions extends ControllerBase {
     return $build;
   }
 
+  /**
+   * Content when no suggestions are available.
+   *
+   * @return array
+   */
   protected function emptyContent() {
     return [
       '#type' => 'markup',
