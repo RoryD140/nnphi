@@ -51,6 +51,9 @@ class CurriculumLinkBuilder {
    * @return array
    */
   public function curriculum($curriculum_nid) {
+    if (!$this->currentUser->hasPermission('enroll in curricula')) {
+      return [];
+    }
     /** @var NodeInterface $node */
     $node = $this->entityTypeManager->getStorage('node')->load($curriculum_nid);
     // Check if the user is enrolled in the curriculum.
@@ -88,6 +91,9 @@ class CurriculumLinkBuilder {
    * @return array
    */
   public function training($curriculum_nid, $training_nid) {
+    if (!$this->currentUser->hasPermission('enroll in curricula')) {
+      return [];
+    }
     $ns = $this->entityTypeManager->getStorage('node');
     $curriculum = $ns->load($curriculum_nid);
     // Don't let the user complete a course if they're not enrolled in the curriculum.
