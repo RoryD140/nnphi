@@ -1,0 +1,25 @@
+nnphi_curriculum.enroll.curriculum:
+  path: '/curriculum/enroll/{node}'
+  defaults:
+    _controller: '\Drupal\nnphi_curriculum\Controller\EnrollmentController::curriculumEnroll'
+  requirements:
+    _permission: 'enroll in curricula'
+    node: '\d+'
+    _csrf_token: 'TRUE'
+
+
+nnphi_curriculum.enroll.training:
+  path: '/curriculum/enroll/{curriculum}/{training}'
+  defaults:
+    _controller: '\Drupal\nnphi_curriculum\Controller\EnrollmentController:completeTraining'
+  requirements:
+    _permission: 'enroll in curricula'
+    curriculum: '\d+'
+    training: '\d+'
+    _csrf_token: 'TRUE'
+  options:
+    parameters:
+      curriculum:
+        type: entity:node
+      training:
+        type: entity:node

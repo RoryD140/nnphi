@@ -1,0 +1,18 @@
+{% spaceless %}
+  {# Depending on the enrollment action, set the appropriate action class. #}
+  {% if action == 'enroll' %}
+    {% set action_class = 'action-enroll' %}
+  {% else %}
+    {% set action_class = 'action-unenroll' %}
+  {% endif %}
+
+  {# Set the remaining classes. #}
+  {% set classes = [
+    action_class,
+    'curriculum-enroll'
+  ] %}
+
+  {# Set nofollow to prevent search bots from crawling anonymous flag links #}
+  {% set attributes = attributes.setAttribute('rel', 'nofollow') %}
+  <div data-curriculum-nid="{{ curriculum_nid }}" class="{{classes|join(' ')}}"><a{{ attributes }}>{{ title }}</a></div>
+{% endspaceless %}
