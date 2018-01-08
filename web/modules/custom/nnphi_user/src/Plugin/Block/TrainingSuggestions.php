@@ -3,7 +3,6 @@
 namespace Drupal\nnphi_user\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -80,13 +79,21 @@ class TrainingSuggestions extends BlockBase implements ContainerFactoryPluginInt
       $build['content'] = $this->completeProfileContent($account);
     }
     else {
-      /** @var \Drupal\user\UserInterface $nodes */
+      /** @var \Drupal\node\NodeInterface[] $nodes */
       $nodes = $this->recommendationService->getSuggestionsForUser($account);
       if (empty($nodes)) {
         $build['content'] = $this->emptyContent($account);
       }
       else {
+        $nodes = array_slice($nodes, 0, 3);
         $build['content'] = $this->nodeViewer->viewMultiple($nodes, 'mini');
+        $build['link'] = [
+          '#prefix' => '<div>',
+          '#suffix' => '</div>',
+          '#type' => 'link',
+          '#title' => $this->t('View More'),
+          '#url' => Url::fromRoute('nnphi_user.suggestions', ['user' => $account->id()]),
+        ];
       }
     }
 
