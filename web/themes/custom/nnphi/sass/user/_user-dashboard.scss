@@ -280,6 +280,13 @@
   color: $gray-light;
 }
 
+.block-user-training-suggestions .btn-sm {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 4rem 1rem;
+  clear: both;
+}
+
 // Assessment
 .block-user-assessment {
   margin: 3rem;

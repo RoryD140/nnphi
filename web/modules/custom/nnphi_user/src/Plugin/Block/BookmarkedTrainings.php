@@ -78,7 +78,7 @@ class BookmarkedTrainings extends BlockBase implements ContainerFactoryPluginInt
       ->condition('uid', $account->id())
       ->condition('flag_id', 'bookmark')
       ->sort('created', 'DESC')
-      ->pager(5)
+      ->range(0, 3)
       ->execute();
     if (empty($flagging_ids)) {
       // Empty content.
@@ -112,7 +112,6 @@ class BookmarkedTrainings extends BlockBase implements ContainerFactoryPluginInt
         $build['nodes'][$node->id()]['flag']['#attributes']['class'][] = 'unflag-link';
       }
       $build['#attached']['library'][] = 'nnphi_user/bookmarks';
-      $build['pager'] = ['#type' => 'pager'];
       $build['nodes']['manage_bookmarks'] = [
         '#title' => $this->t('View and Manage Bookmarks'),
         '#type' => 'link',
