@@ -38,23 +38,13 @@ class UserBookmarkFolders extends ControllerBase {
   public function page(UserInterface $user) {
     $build = [];
     $build['bookmarks'] = $this->getUserBookmarks($user);
-//    $folders = $this->folderService->getFoldersForUser($user);
+    $build['folders'] = $this->getUserFolders($user);
 
-//    if (empty($folders)) {
-//      $build['empty'] = [
-//        '#type' => 'markup',
-//        '#markup' => $this->t('You have not created any bookmark folders yet.'),
-//      ];
-//    }
-//    else {
-//      $build['folders'] = $this->entityTypeManager()->getViewBuilder('bookmark_folder')->viewMultiple($folders);
-//    }
-//    // Add user metadata to cache array.
-//    CacheableMetadata::createFromObject($user)
-//      ->applyTo($build);
-//    $build['#cache']['keys'] = ['user', 'user_bookmark_folder_list', $user->id()];
-//    $build['#cache']['contexts'] = [];
-//    $build['#cache']['tags'][] = 'user_bookmark_folders:' . $user->id();
+    // Add user metadata to cache array.
+    CacheableMetadata::createFromObject($user)
+      ->applyTo($build);
+    $build['#cache']['keys'] = ['user', 'user_bookmark_folder_list', $user->id()];
+    $build['#attached']['library'][] = 'nnphi_bookmark/manage_bookmarks';
 
     return $build;
   }
@@ -81,6 +71,44 @@ class UserBookmarkFolders extends ControllerBase {
     return AccessResult::neutral()->cachePerPermissions();
   }
 
+  private function getUserFolders(UserInterface $user) {
+    $build = [];
+    $header = [
+      'name' => $this->t('Name'),
+      'opts' => '',
+    ];
+    $rows = [];
+    $fids = $this->entityTypeManager()->getStorage('bookmark_folder')->getQuery()
+      ->condition('uid', $user->id())
+      ->execute();
+    if (empty($fids)) {
+      return $build;
+    }
+    /** @var \Drupal\nnphi_bookmark\Entity\BookmarkFolderInterface[] $folders */
+    $folders = $this->entityTypeManager()->getStorage('bookmark_folder')->loadMultiple($fids);
+    foreach ($folders as $folder) {
+      CacheableMetadata::createFromObject($folder)
+        ->applyTo($build);
+      $rows[] = [
+        $folder->toLink($folder->label()),
+        '',
+      ];
+    }
+
+    $build['table'] = [
+      '#theme' => 'table',
+      '#header' => $header,
+      '#rows' => $rows,
+      '#attributes' => [
+        'class' => ['user-bookmarks-table'],
+      ]
+    ];
+
+    $build['#cache']['keys'] = ['user', 'bookmark_folders', $user->id()];
+
+    return $build;
+  }
+
   /**
    * Get
    * @param \Drupal\user\UserInterface $user
@@ -88,52 +116,8 @@ class UserBookmarkFolders extends ControllerBase {
    * @return bool|\Drupal\flag\FlaggingInterface[]
    */
   private function getUserBookmarks(UserInterface $user) {
-    return $this->formBuilder()->getForm(ManageBookmarks::class, $user);
-    $ns = $this->entityTypeManager()->getStorage('node');
-    $fs = $this->entityTypeManager()->getStorage('flagging');
-    $fids = $fs->getQuery()
-      ->condition('flag_id', 'bookmark')
-      ->condition('uid', $user->id())
-      ->notExists('field_bookmark_folder')
-      ->sort('created', 'DESC')
-      ->execute();
-    if (empty($fids)) {
-      return FALSE;
-    }
-
-    $options = [];
-
-    /** @var \Drupal\flag\FlaggingInterface $flag */
-    foreach ($fs->loadMultiple($fids) as $flag) {
-      $nid = $flag->get('entity_id')->getString();
-      $node = $ns->load($nid);
-      $rating = '';
-      if ($node->hasField('field_training_overall_rating') && $node->get('field_training_overall_rating')->count()) {
-        $field = $node->get('field_training_overall_rating');
-        $rating = $this->entityTypeManager()->getViewBuilder('node')->viewField($field, 'full');
-      }
-      $options[$flag->id()] = [
-        'select' => '',
-        'name' => $node->toLink($node->label()),
-        'date' => $flag->get('created')->getString(),
-        'rating' => '',
-        'options' => 'opts',
-      ];
-    }
-
-    $header = [
-      'select' => ['data' => ''],
-      'name' => $this->t('Name'),
-      'date' => $this->t('Date Added'),
-      'rating' => $this->t('Rating'),
-    ];
-
-    $debug = TRUE;
-
-    return [
-      '#type' => 'table',
-      '#header' => $header,
-      '#rows' => $options,
-    ];
+    $build = [];
+    $build['form'] = $this->formBuilder()->getForm(ManageBookmarks::class, $user);
+    return $build;
   }
 }

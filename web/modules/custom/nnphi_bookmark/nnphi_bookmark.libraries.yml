@@ -1,0 +1,8 @@
+manage_bookmarks:
+  version: VERSION
+  js:
+    js/manage.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - nnphi_general/tablesort

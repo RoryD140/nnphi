@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b6176aa0e0908eb7eb2a8fa2c9b8d609",
+    "content-hash": "2ccb4acc38af023dad70a2408e693996",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -6116,6 +6116,16 @@
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
             "time": "2017-05-01T14:55:58+00:00"
+        },
+        {
+            "name": "tristen/tablesort",
+            "version": "v5.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tristen/tablesort.git",
+                "reference": "gh-pages"
+            },
+            "type": "drupal-library"
         },
         {
             "name": "twig/twig",
