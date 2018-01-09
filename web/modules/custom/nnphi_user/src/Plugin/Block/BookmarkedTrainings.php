@@ -100,6 +100,7 @@ class BookmarkedTrainings extends BlockBase implements ContainerFactoryPluginInt
       }
       /** @var \Drupal\node\NodeInterface[] $nodes */
       $nodes = $this->nodeStorage->loadMultiple($nids);
+      $nodes = array_slice($nodes, 0, 3);
       $build['nodes']['#prefix'] =  '<div class="training-bookmarks">';
       $build['nodes']['#suffix'] =  '</div>';
       foreach ($nodes as $node) {
@@ -112,7 +113,6 @@ class BookmarkedTrainings extends BlockBase implements ContainerFactoryPluginInt
         $build['nodes'][$node->id()]['flag']['#attributes']['class'][] = 'unflag-link';
       }
       $build['#attached']['library'][] = 'nnphi_user/bookmarks';
-      $build['pager'] = ['#type' => 'pager'];
       $build['nodes']['manage_bookmarks'] = [
         '#title' => $this->t('View and Manage Bookmarks'),
         '#type' => 'link',
