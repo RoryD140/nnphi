@@ -1,0 +1,4 @@
+tablesort:
+  version: VERSION
+  js:
+    /libraries/tablesort/dist/tablesort.min.js: {minified: true}

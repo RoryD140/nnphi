@@ -5,7 +5,10 @@ namespace Drupal\nnphi_bookmark\Controller;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Session\AccountProxyInterface;
+use Drupal\flag\FlagServiceInterface;
 use Drupal\nnphi_bookmark\BookmarkFolderService;
+use Drupal\nnphi_bookmark\Form\ManageBookmarks;
 use Drupal\user\UserInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -13,13 +16,15 @@ class UserBookmarkFolders extends ControllerBase {
 
   private $folderService;
 
-  public function __construct(BookmarkFolderService $folderService) {
+  public function __construct(BookmarkFolderService $folderService, FlagServiceInterface $flagService) {
     $this->folderService = $folderService;
+    $this->flagService = $flagService;
   }
 
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('nnphi_bookmark.folder')
+      $container->get('nnphi_bookmark.folder'),
+      $container->get('flag')
     );
   }
 
@@ -32,22 +37,14 @@ class UserBookmarkFolders extends ControllerBase {
    */
   public function page(UserInterface $user) {
     $build = [];
-    $folders = $this->folderService->getFoldersForUser($user);
-    if (empty($folders)) {
-      $build['empty'] = [
-        '#type' => 'markup',
-        '#markup' => $this->t('You have not created any bookmark folders yet.'),
-      ];
-    }
-    else {
-      $build['bookmarks'] = $this->entityTypeManager()->getViewBuilder('bookmark_folder')->viewMultiple($folders);
-    }
+    $build['bookmarks'] = $this->getUserBookmarks($user);
+    $build['folders'] = $this->getUserFolders($user);
+
     // Add user metadata to cache array.
     CacheableMetadata::createFromObject($user)
       ->applyTo($build);
     $build['#cache']['keys'] = ['user', 'user_bookmark_folder_list', $user->id()];
-    $build['#cache']['contexts'] = [];
-    $build['#cache']['tags'][] = 'user_bookmark_folders:' . $user->id();
+    $build['#attached']['library'][] = 'nnphi_bookmark/manage_bookmarks';
 
     return $build;
   }
@@ -72,5 +69,55 @@ class UserBookmarkFolders extends ControllerBase {
     }
 
     return AccessResult::neutral()->cachePerPermissions();
+  }
+
+  private function getUserFolders(UserInterface $user) {
+    $build = [];
+    $header = [
+      'name' => $this->t('Name'),
+      'opts' => '',
+    ];
+    $rows = [];
+    $fids = $this->entityTypeManager()->getStorage('bookmark_folder')->getQuery()
+      ->condition('uid', $user->id())
+      ->execute();
+    if (empty($fids)) {
+      return $build;
+    }
+    /** @var \Drupal\nnphi_bookmark\Entity\BookmarkFolderInterface[] $folders */
+    $folders = $this->entityTypeManager()->getStorage('bookmark_folder')->loadMultiple($fids);
+    foreach ($folders as $folder) {
+      CacheableMetadata::createFromObject($folder)
+        ->applyTo($build);
+      $rows[] = [
+        $folder->toLink($folder->label()),
+        '',
+      ];
+    }
+
+    $build['table'] = [
+      '#theme' => 'table',
+      '#header' => $header,
+      '#rows' => $rows,
+      '#attributes' => [
+        'class' => ['user-bookmarks-table'],
+      ]
+    ];
+
+    $build['#cache']['keys'] = ['user', 'bookmark_folders', $user->id()];
+
+    return $build;
+  }
+
+  /**
+   * Get
+   * @param \Drupal\user\UserInterface $user
+   *
+   * @return bool|\Drupal\flag\FlaggingInterface[]
+   */
+  private function getUserBookmarks(UserInterface $user) {
+    $build = [];
+    $build['form'] = $this->formBuilder()->getForm(ManageBookmarks::class, $user);
+    return $build;
   }
 }

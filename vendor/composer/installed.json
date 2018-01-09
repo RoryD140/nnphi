@@ -9034,5 +9034,17 @@
         "support": {
             "source": "http://cgit.drupalcode.org/cshs"
         }
+    },
+    {
+        "name": "tristen/tablesort",
+        "version": "v5.0.2",
+        "version_normalized": "5.0.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/tristen/tablesort.git",
+            "reference": "gh-pages"
+        },
+        "type": "drupal-library",
+        "installation-source": "source"
     }
 ]
