@@ -78,7 +78,7 @@ class BookmarkedTrainings extends BlockBase implements ContainerFactoryPluginInt
       ->condition('uid', $account->id())
       ->condition('flag_id', 'bookmark')
       ->sort('created', 'DESC')
-      ->pager(5)
+      ->range(0, 3)
       ->execute();
     if (empty($flagging_ids)) {
       // Empty content.
@@ -100,7 +100,6 @@ class BookmarkedTrainings extends BlockBase implements ContainerFactoryPluginInt
       }
       /** @var \Drupal\node\NodeInterface[] $nodes */
       $nodes = $this->nodeStorage->loadMultiple($nids);
-      $nodes = array_slice($nodes, 0, 3);
       $build['nodes']['#prefix'] =  '<div class="training-bookmarks">';
       $build['nodes']['#suffix'] =  '</div>';
       foreach ($nodes as $node) {
