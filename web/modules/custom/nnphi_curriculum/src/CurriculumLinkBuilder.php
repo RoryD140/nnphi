@@ -107,30 +107,34 @@ class CurriculumLinkBuilder {
     $training = $ns->load($training_nid);
     $completed = $this->curriculumService->userHasCompletedCourse($this->currentUser, $curriculum, $training);
     if ($completed) {
-      return $this->completedText($completed);
+      $render = $this->completedText($completed);
     }
-    $content_attributes = new Attribute();
-    $content_attributes['class'] = ['training-completion'];
-    $content_attributes['data-curriculum'] = $curriculum_nid;
-    $content_attributes['data-training'] = $training_nid;
+    else {
+      $content_attributes = new Attribute();
+      $content_attributes['class'] = ['training-completion'];
+      $content_attributes['data-curriculum'] = $curriculum_nid;
+      $content_attributes['data-training'] = $training_nid;
 
-    $render = [
-      '#theme' => 'curriculum_training_complete',
-      '#action' => 'enroll',
-      '#attributes' => [
-        'class' => ['use-ajax'],
-        'title' => $title,
-      ],
-      '#container_attributes' => $content_attributes,
-      '#title' => $title,
-    ];
-    $url = Url::fromRoute('nnphi_curriculum.enroll.training', ['curriculum' => $curriculum_nid, 'training' => $training_nid]);
-    $rendered_url = $url->toString(TRUE);
-    $rendered_url->applyTo($render);
-    $render['#attributes']['href'] = $rendered_url->getGeneratedUrl();
+      $render = [
+        '#theme' => 'curriculum_training_complete',
+        '#action' => 'enroll',
+        '#attributes' => [
+          'class' => ['use-ajax'],
+          'title' => $title,
+        ],
+        '#container_attributes' => $content_attributes,
+        '#title' => $title,
+      ];
+      $url = Url::fromRoute('nnphi_curriculum.enroll.training', ['curriculum' => $curriculum_nid, 'training' => $training_nid]);
+      $rendered_url = $url->toString(TRUE);
+      $rendered_url->applyTo($render);
+      $render['#attributes']['href'] = $rendered_url->getGeneratedUrl();
+    }
 
-    CacheableMetadata::createFromObject($this->currentUser)
+    CacheableMetadata::createFromRenderArray($render)
       ->applyTo($render);
+
+    $render['#cache']['contexts'][] = 'user.permissions';
 
     return $render;
   }
