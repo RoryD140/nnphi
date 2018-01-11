@@ -2,9 +2,18 @@ nnphi_bookmark.user_list:
   path: '/user/{user}/bookmarks'
   defaults:
     _controller: '\Drupal\nnphi_bookmark\Controller\UserBookmarkFolders::page'
-    _title: 'Bookmark Folders'
+    _title: 'Bookmarks'
   requirements:
     _custom_access: 'Drupal\nnphi_bookmark\Controller\UserBookmarkFolders::checkAccess'
   options:
     user: \d+
+
+nnphi_bookmark.add_folder:
+  path: 'bookmarks/folder/add/{js}'
+  defaults:
+    _controller: '\Drupal\nnphi_bookmark\Controller\UserBookmarkFolders::addFolder'
+    _title: 'Add Folder'
+  requirements:
+    _permission: 'flag bookmark'
+    js: 'nojs|ajax'
 

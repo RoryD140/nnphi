@@ -3,9 +3,13 @@
 namespace Drupal\nnphi_bookmark\Controller;
 
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\OpenDialogCommand;
+use Drupal\Core\Ajax\OpenModalDialogCommand;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Session\AccountProxyInterface;
+use Drupal\Core\Url;
 use Drupal\flag\FlagServiceInterface;
 use Drupal\nnphi_bookmark\BookmarkFolderService;
 use Drupal\nnphi_bookmark\Form\ManageBookmarks;
@@ -45,6 +49,8 @@ class UserBookmarkFolders extends ControllerBase {
       ->applyTo($build);
     $build['#cache']['keys'] = ['user', 'user_bookmark_folder_list', $user->id()];
     $build['#attached']['library'][] = 'nnphi_bookmark/manage_bookmarks';
+    $build['#attached']['library'][] = 'core/drupal.ajax';
+    $build['#attached']['library'][] = 'core/drupal.dialog.ajax';
 
     return $build;
   }
@@ -90,7 +96,7 @@ class UserBookmarkFolders extends ControllerBase {
       CacheableMetadata::createFromObject($folder)
         ->applyTo($build);
       $rows[] = [
-        $folder->toLink($folder->label()),
+        ['data-sort' => $folder->label(), 'data' => $folder->toLink($folder->label())],
         '',
       ];
     }
@@ -104,7 +110,7 @@ class UserBookmarkFolders extends ControllerBase {
       ]
     ];
 
-    $build['#cache']['keys'] = ['user', 'bookmark_folders', $user->id()];
+//    $build['#cache']['keys'] = ['user', 'bookmark_folders', $user->id()];
 
     return $build;
   }
@@ -117,7 +123,32 @@ class UserBookmarkFolders extends ControllerBase {
    */
   private function getUserBookmarks(UserInterface $user) {
     $build = [];
+    $build['header'] = [
+      'link' => [
+        '#type' => 'link',
+        '#title' => $this->t('Add Folder'),
+        '#url' => Url::fromRoute('nnphi_bookmark.add_folder', ['ajax' => 'nojs']),
+        '#attributes' => [
+          'class' => ['use-ajax'],
+          'data-dialog-type' => 'modal',
+        ],
+      ],
+    ];
     $build['form'] = $this->formBuilder()->getForm(ManageBookmarks::class, $user);
     return $build;
+  }
+
+  public function addFolder($ajax = 'ajax') {
+    $folder = $this->entityTypeManager()->getStorage('bookmark_folder')
+      ->create(['uid' => $this->currentUser()->id()]);
+    $form = $this->entityFormBuilder()->getForm($folder);
+    if ($ajax === 'ajax') {
+      $response = new AjaxResponse();
+      $response->addCommand(new OpenModalDialogCommand($this->t('Add Folder'), $form, [
+        'width' => '40%',
+      ]));
+      return $response;
+    }
+    return $form;
   }
 }

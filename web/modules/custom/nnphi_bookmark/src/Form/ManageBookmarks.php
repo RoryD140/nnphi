@@ -104,8 +104,9 @@ class ManageBookmarks extends FormBase {
       '#type' => 'tableselect',
       '#header' => $header,
       '#options' => $options,
+      '#js_select' => FALSE,
       '#attributes' => [
-        'class' => ['user-bookmarks-table'],
+        'class' => ['user-bookmarks-table', 'orphan-flags'],
       ],
     ];
 
