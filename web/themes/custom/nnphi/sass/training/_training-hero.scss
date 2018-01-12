@@ -1,10 +1,11 @@
 // Specificity to override default section padding
-section.training-hero{
-  padding-top: $padding-lg;
-  padding-bottom: $padding-lg;
-  background-size: 100% auto;
-  background-repeat: no-repeat;
-  background-position: 0 100%;
+.training-hero.hero {
+  background-position: 50% 3rem;
+  margin: 0;
+}
+
+.training-hero.hero h1 {
+  top: 0;
 }
 
 .training-hero-interior {

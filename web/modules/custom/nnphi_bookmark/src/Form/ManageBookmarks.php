@@ -104,8 +104,15 @@ class ManageBookmarks extends FormBase {
       '#type' => 'tableselect',
       '#header' => $header,
       '#options' => $options,
+      '#prefix' => '<div class="bookmarks-heading">' . $this->t('Bookmarked Trainings') . '</div>',
       '#attributes' => [
-        'class' => ['user-bookmarks-table'],
+        'class' => [
+          'user-bookmarks-table',
+          // Bootstrap table classes.
+          'table',
+          'table-responsive-md',
+          'table-hover'
+        ],
       ],
     ];
 

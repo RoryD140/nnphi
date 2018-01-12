@@ -41,6 +41,11 @@
  *
  * @see template_preprocess_page()
  * @see html.html.twig
+ *
+ * For nodes of content type Training.
+ * The only difference between this and global page.html.twig is this does not render the title hero.
+ * We render the Training title hero in the node--training.html.twig template because it contains more fields and
+ * has different layout and styling requirements.
  */
 #}
 <div class="layout-container">
@@ -68,23 +73,6 @@
   {{ page.highlighted }}
 
   {{ page.help }}
-
-  {# Title Hero Banner #}
-  {% if not is_front %}
-    <section class="hero">
-      <div class="hero-interior">
-        <div class="hero-text">
-            {% if custom_title %}
-              <h1 class="page-title">{{ custom_title }}</h1>
-            {% elseif node.title.value %}
-              <h1 class="page-title">{{ node.title.value }}</h1>
-            {% elseif page['#title'] %}
-              <h1 class="page-title">{{ page['#title'] }}</h1>
-            {% endif %}
-        </div>
-      </div>
-    </section>
-  {% endif %}
 
   <main role="main">
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}

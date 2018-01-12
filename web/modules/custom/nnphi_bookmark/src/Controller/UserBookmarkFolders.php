@@ -99,8 +99,16 @@ class UserBookmarkFolders extends ControllerBase {
       '#theme' => 'table',
       '#header' => $header,
       '#rows' => $rows,
+      '#prefix' => '<div id="bookmarks-folders"><div class="bookmarks-heading">' . $this->t('Folders') . '</div>',
+      '#suffix' => '</div>',
       '#attributes' => [
-        'class' => ['user-bookmarks-table'],
+        'class' => [
+          'user-bookmarks-folders-table',
+          // Bootstrap table classes.
+          'table',
+          'table-responsive-md',
+          'table-hover'
+        ],
       ]
     ];
 

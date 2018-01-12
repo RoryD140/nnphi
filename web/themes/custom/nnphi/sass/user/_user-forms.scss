@@ -288,18 +288,6 @@ select {
   }
 }
 
-.block-user-settings-banner {
-  padding-top: 0;
-  padding-bottom: 10%;
-  background-image: url(/themes/custom/nnphi/svg/swirls.svg);
-  background-size: 136%;
-  background-repeat: no-repeat;
-  background-position: top;
-  margin-top: 2%;
-  border-bottom: solid 1px $gray-light;
-  margin-bottom: $padding-md;
-}
-
 .page-entity-user-edit_form #block-nnphi-local-tasks {
   display: none;
 }
