@@ -1,0 +1,17 @@
+<div class="container">
+  <div id="manage-bookmarks">
+    <div class="bookmarks-header">
+      <h3>{{ 'Bookmarked Trainings'|t }}</h3>
+      <div>
+        <span class="bookmark-link"><a id="add-folder" class="use-ajax" data-dialog-type="modal" href="{{ path('nnphi_bookmark.create_folder', {'js': 'nojs'}) }}">{{ '{{ addLinkText }}' }}</a></span>
+      </div>
+    </div>
+    {{ bookmarks }}
+  </div>
+  <div id="manage-folders">
+    <div class="bookmarks-header">
+      <h3>{{ 'Folders'|t }}</h3>
+    </div>
+    {{ folders }}
+  </div>
+</div>

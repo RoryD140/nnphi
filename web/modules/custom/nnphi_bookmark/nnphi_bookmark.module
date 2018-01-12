@@ -1,7 +1,7 @@
 <?php
 
 use Drupal\user\UserInterface;
-use Drupal\flag\FlagInterface;
+use Drupal\flag\FlaggingInterface;
 
 /**
  * Implements hook_entity_extra_field_info().
@@ -53,25 +53,25 @@ function nnphi_bookmark_user_delete(UserInterface $account) {
 /**
  * Implements hook_ENTITY_TYPE_insert().
  */
-function nnphi_bookmark_flag_insert(FlagInterface $flag) {
+function nnphi_bookmark_flagging_insert(FlaggingInterface $flag) {
   nnphi_bookmark_clear_bookmark_folder_cache($flag);
 }
 
 /**
  * Implements hook_ENTITY_TYPE_update().
  */
-function nnphi_bookmark_flag_update(FlagInterface $flag) {
+function nnphi_bookmark_flagging_update(FlaggingInterface $flag) {
   nnphi_bookmark_clear_bookmark_folder_cache($flag);
 }
 
 /**
  * Implements hook_ENTITY_TYPE_delete().
  */
-function nnphi_bookmark_flag_delete(FlagInterface $flag) {
+function nnphi_bookmark_flagging_delete(FlaggingInterface $flag) {
   nnphi_bookmark_clear_bookmark_folder_cache($flag);
 }
 
-function nnphi_bookmark_clear_bookmark_folder_cache(FlagInterface $flag) {
+function nnphi_bookmark_clear_bookmark_folder_cache(FlaggingInterface $flag) {
   if (!$flag->hasField('field_bookmark_folder') || $flag->get('field_bookmark_folder')->isEmpty()) {
     return;
   }
@@ -79,4 +79,15 @@ function nnphi_bookmark_clear_bookmark_folder_cache(FlagInterface $flag) {
   if ($folder_id) {
     \Drupal::service('cache_tags.invalidator')->invalidateTags(['bookmark_folder:' . $folder_id]);
   }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function nnphi_bookmark_theme($existing, $type, $theme, $path) {
+  return [
+    'user_bookmarks_page' => [
+      'variables' => ['bookmarks' => '', 'folders' => ''],
+    ]
+  ];
 }
