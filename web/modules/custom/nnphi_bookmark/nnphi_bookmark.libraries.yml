@@ -6,3 +6,14 @@ manage_bookmarks:
     - core/jquery
     - core/jquery.once
     - nnphi_general/tablesort
+    - core/drupal.ajax
+    - core/drupal.dialog.ajax
+
+manage_bookmarks.app:
+  version: VERSION
+  js:
+    js/manage_app.js: {}
+  dependencies:
+    - nnphi_bookmark/manage_bookmarks
+    - nnphi_general/vue
+

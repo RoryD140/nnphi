@@ -2,3 +2,13 @@ services:
   nnphi_bookmark.folder:
     class: Drupal\nnphi_bookmark\BookmarkFolderService
     arguments: ['@current_user', '@entity_type.manager']
+  nnphi_bookmark.flagging.access_check:
+    class: Drupal\nnphi_bookmark\Access\FlaggingAccess
+    arguments: ['@current_user']
+    tags:
+      - { name: access_check, applies_to: _flagging_access }
+  nnphi_bookmark.folder_add.access_check:
+    class: Drupal\nnphi_bookmark\Access\AddToFolderAccess
+    arguments: ['@current_user', '@entity_type.manager']
+    tags:
+      - { name: access_check, applies_to: _add_to_folder_access }
