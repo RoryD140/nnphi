@@ -2,6 +2,7 @@
 
 use Drupal\user\UserInterface;
 use Drupal\flag\FlaggingInterface;
+use Drupal\nnphi_bookmark\BookmarkFolderService;
 
 /**
  * Implements hook_entity_extra_field_info().
@@ -71,6 +72,28 @@ function nnphi_bookmark_flagging_delete(FlaggingInterface $flag) {
   nnphi_bookmark_clear_bookmark_folder_cache($flag);
 }
 
+/**
+ * Implements hook_ENTITY_TYPE_delete().
+ */
+function nnphi_bookmark_bookmark_folder_delete(\Drupal\nnphi_bookmark\Entity\BookmarkFolderInterface $folder) {
+  // Remove this folder from any flaggings.
+  $flagging_ids = \Drupal::entityQuery('flagging')
+    ->condition(BookmarkFolderService::FLAGGING_FOLDER_FIELD, [$folder->id()], 'IN')
+    ->execute();
+  if (empty($flagging_ids)) {
+    return;
+  }
+  /** @var FlaggingInterface[] $flaggings */
+  $flaggings = \Drupal::entityTypeManager()->getStorage('flagging')
+    ->loadMultiple($flagging_ids);
+  foreach ($flaggings as $flagging) {
+    $flagging->get(BookmarkFolderService::FLAGGING_FOLDER_FIELD)->filter(function($value) use ($folder) {
+      return (int)$value->getString() !== (int)$folder->id();
+    });
+    $flagging->save();
+  }
+}
+
 function nnphi_bookmark_clear_bookmark_folder_cache(FlaggingInterface $flag) {
   if (!$flag->hasField('field_bookmark_folder') || $flag->get('field_bookmark_folder')->isEmpty()) {
     return;
@@ -88,6 +111,6 @@ function nnphi_bookmark_theme($existing, $type, $theme, $path) {
   return [
     'user_bookmarks_page' => [
       'variables' => ['bookmarks' => '', 'folders' => ''],
-    ]
+    ],
   ];
 }
