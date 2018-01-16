@@ -2,6 +2,7 @@
 
 namespace Drupal\nnphi_bookmark\Controller;
 
+use Drupal\Component\Serialization\Json;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Ajax\AjaxResponse;
@@ -107,9 +108,9 @@ class UserBookmarkFolders extends ControllerBase {
   private function getUserFolders(UserInterface $user) {
     $build = [];
     $header = [
-      'check' => ['data' => '', 'width' => '10%'],
+      'check' => ['data' => '', 'data-sort-method' => 'none', 'width' => '10%'],
       'name' => ['data' => $this->t('Name'), 'width' => '90%'],
-      'opts' => '',
+      'opts' => ['data' => '', 'data-sort-method' => 'none'],
     ];
     $rows = [];
     $fids = $this->entityTypeManager()->getStorage('bookmark_folder')->getQuery()
@@ -130,10 +131,10 @@ class UserBookmarkFolders extends ControllerBase {
           'v-model' => 'folders',
         ],
       ];
-      $rows[] = [
+      $rows[$folder->id()] = [
          ['data' =>  \Drupal::service('renderer')->render($checkbox)],
           ['data-sort' => $folder->label(), 'data' => $folder->toLink($folder->label()), 'class' => 'folder-title'],
-          '',
+          ['data' => $this->getFolderOptions($folder)],
       ];
     }
 
@@ -155,6 +156,32 @@ class UserBookmarkFolders extends ControllerBase {
 //    $build['#cache']['keys'] = ['user', 'bookmark_folders', $user->id()];
 
     return $build;
+  }
+
+  protected function getFolderOptions(BookmarkFolderInterface $folder) {
+    $links = [];
+    $links['view'] = [
+      'title' => $this->t('View'),
+      'url' => $folder->toUrl(),
+    ];
+    $links['edit'] = [
+      'title' => $this->t('Edit'),
+      'url' => Url::fromRoute('entity.bookmark_folder.edit_form',
+        ['user' => $folder->getOwnerId(), 'bookmark_folder' => $folder->id()],
+        ['attributes' => ['class' => ['use-ajax'], 'data-dialog-type' => 'modal', 'data-dialog-options' => Json::encode(['width' => '75%'])]]
+      ),
+    ];
+    $links['delete'] = [
+      'title' => $this->t('Delete'),
+      'url' => Url::fromRoute('entity.bookmark_folder.delete_form',
+        ['user' => $folder->getOwnerId(), 'bookmark_folder' => $folder->id()],
+        ['attributes' => ['class' => ['use-ajax'], 'data-dialog-type' => 'modal', 'data-dialog-options' => Json::encode(['width' => '75%'])]]
+      ),
+    ];
+    return [
+      '#type' => 'dropbutton',
+      '#links' => $links,
+    ];
   }
 
   /**
