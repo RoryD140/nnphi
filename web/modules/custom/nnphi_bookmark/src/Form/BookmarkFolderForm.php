@@ -51,9 +51,14 @@ class BookmarkFolderForm extends ContentEntityForm {
       ],
     ];
 
+    $default_entity = NULL;
+    $storage = $form_state->getStorage();
+    if (!empty($storage['defaultEntity'])) {
+      $default_entity = $storage['defaultEntity'];
+    }
     $form['default_entity'] = [
       '#type' => 'value',
-      '#value' => $form_state->getStorage()['defaultEntity'],
+      '#value' => $default_entity,
     ];
 
     return $form;
