@@ -144,9 +144,9 @@ class UserBookmarkFolders extends ControllerBase {
     $build = [];
     $header = [
       'checkbox' => ['data' => '', 'data-sort-method' => 'none', 'width' => '10%'],
-      'name' => ['data' => $this->t('Name'), 'width' => '90%'],
-      'created' => ['data-sort-default' => 1, 'data' => $this->t('Date Added')],
-      'rating' => $this->t('Rating'),
+      'name' => ['data' => $this->t('Name'), 'width' => '90%', 'class' => 'sort-column'],
+      'created' => ['data-sort-default' => 1, 'data' => $this->t('Date Added'), 'class' => 'sort-column'],
+      'rating' => ['data' => $this->t('Rating'), 'class' => 'sort-column'],
       'delete' => ['data' => '', 'data-sort-method' => 'none'],
       'options' => ['data' => '', 'data-sort-method' => 'none'],
     ];

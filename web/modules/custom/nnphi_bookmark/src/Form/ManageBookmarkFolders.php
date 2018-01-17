@@ -60,7 +60,7 @@ class ManageBookmarkFolders extends FormBase {
     $form['#suffix'] = '</div>';
 
     $header = [
-      'name' => $this->t('Name'),
+      'name' => ['data' => $this->t('Name'), 'class' => 'sort-column'],
       'delete' => ['data' => '', 'data-sort-method' => 'none'],
       'opts' => ['data' => '', 'data-sort-method' => 'none'],
     ];
