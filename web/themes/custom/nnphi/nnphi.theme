@@ -26,6 +26,7 @@ function nnphi_preprocess_block(&$variables) {
  */
 function nnphi_preprocess_page(&$variables) {
 
+  $show_hero = TRUE;
   $node = \Drupal::routeMatch()->getParameter('node');
   $revision = \Drupal::routeMatch()->getRawParameter('node_revision');
   $homepage = \Drupal::service('path.matcher')->isFrontPage();
@@ -43,15 +44,16 @@ function nnphi_preprocess_page(&$variables) {
     else {
       $content_type = $node->bundle();
     }
-    // Future-proofing in case homepage is ever a node.
-    if ($content_type != 'training' && $homepage != 'TRUE') {
-      $variables['show_hero'] = TRUE;
+    
+    if ($content_type === 'training') {
+      $show_hero = FALSE;
     }
   }
 
-  // If it's not a node and it's not the homepage.
-  else if ($homepage != 'TRUE') {
-      $variables['show_hero'] = TRUE;
+  if ($homepage) {
+    $show_hero = FALSE;
   }
+
+  $variables['show_hero'] = $show_hero;
 
 }
