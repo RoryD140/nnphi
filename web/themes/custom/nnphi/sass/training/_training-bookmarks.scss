@@ -20,6 +20,25 @@
   padding-left: 2rem;
 }
 
+// Sorting indicator arrow.
+.user-bookmarks-folders-table th.sort-column:after {
+  content: '';
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-style: solid;
+  border-width: 0.3333em 0.3333em 0;
+  display: block;
+  height: 0;
+  line-height: 0;
+  position: relative;
+  left: 60px;
+  top: -8px;
+  margin-top: -0.1666em;
+  width: 0;
+  overflow: hidden;
+}
+
 .bookmarks-header h3 {
   display: flex;
   align-items: center;
@@ -28,6 +47,10 @@
   text-transform: uppercase;
   margin-bottom: 0;
   color: black;
+}
+
+#manage-bookmarks .bookmarks-header h3 {
+  float: left;
 }
 
 .bookmarks-header h3::before {
