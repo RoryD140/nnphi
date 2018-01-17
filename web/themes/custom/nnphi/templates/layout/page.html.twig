@@ -70,20 +70,8 @@
   {{ page.help }}
 
   {# Title Hero Banner #}
-  {% if not is_front %}
-    <section class="hero">
-      <div class="hero-interior">
-        <div class="hero-text">
-            {% if custom_title %}
-              <h1 class="page-title">{{ custom_title }}</h1>
-            {% elseif node.title.value %}
-              <h1 class="page-title">{{ node.title.value }}</h1>
-            {% elseif page['#title'] %}
-              <h1 class="page-title">{{ page['#title'] }}</h1>
-            {% endif %}
-        </div>
-      </div>
-    </section>
+  {% if not is_front and content_type != 'training' %}
+    {% include (base_path ~ directory ~ '/templates/components/hero-banner.html.twig') %}
   {% endif %}
 
   <main role="main">

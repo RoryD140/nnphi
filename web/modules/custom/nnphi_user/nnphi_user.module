@@ -8,6 +8,7 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\nnphi_user\Plugin\Block\UserProfile;
 use Drupal\Core\Url;
+use Drupal\user\UserInterface;
 
 /**
  * Implements hook_module_implements_alter()
@@ -48,7 +49,10 @@ function nnphi_user_preprocess_page(&$variables) {
   } elseif ($route === 'nnphi_bookmark.user_list') {
     $variables['custom_title'] = t('Bookmarked Trainings');
   } elseif ($route === 'entity.user.canonical') {
-    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $url = \Drupal::service('path.current')->getPath();
+    $path_args = explode('/', $url);
+    $user_id = $path_args[2];
+    $user = \Drupal::entityTypeManager()->getStorage('user')->load($user_id);
     $name = $user->getDisplayName();
     $variables['custom_title'] = t('Welcome, @name', ['@name' => $name]);
   }

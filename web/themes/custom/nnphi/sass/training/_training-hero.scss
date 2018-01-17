@@ -1,7 +1,13 @@
 // Specificity to override default section padding
 .training-hero.hero {
-  background-position: 50% 3rem;
+  background-position: 50% 22rem;
   margin: 0;
+  @include media-breakpoint-down(md) {
+    background-position: 50% 16rem;
+  }
+  @include media-breakpoint-down(sm) {
+    background-position: 50% 26rem;
+  }
 }
 
 .training-hero.hero h1 {
@@ -40,6 +46,7 @@
   @include media-breakpoint-down(md) {
     margin-bottom: $padding-md;
   }
+
   // Cost text
   span {
     font-weight: $font-weight-bold;

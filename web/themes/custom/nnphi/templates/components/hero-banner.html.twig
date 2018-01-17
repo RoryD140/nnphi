@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Template for the site title hero banner.
+ */
+#}
+<section class="hero">
+    <div class="hero-interior">
+        <div class="hero-text">
+            {% if custom_title %}
+                <h1 class="page-title">{{ custom_title }}</h1>
+            {% elseif node.title.value %}
+                <h1 class="page-title">{{ node.title.value }}</h1>
+            {% elseif page['#title'] %}
+                <h1 class="page-title">{{ page['#title'] }}</h1>
+            {% endif %}
+        </div>
+    </div>
+</section>
