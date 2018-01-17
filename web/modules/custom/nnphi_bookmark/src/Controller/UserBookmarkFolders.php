@@ -143,8 +143,8 @@ class UserBookmarkFolders extends ControllerBase {
     $nodeViewer = $this->entityTypeManager()->getViewBuilder('node');
     $build = [];
     $header = [
-      'checkbox' => ['data' => '', 'data-sort-method' => 'none'],
-      'name' => $this->t('Name'),
+      'checkbox' => ['data' => '', 'data-sort-method' => 'none', 'width' => '10%'],
+      'name' => ['data' => $this->t('Name'), 'width' => '90%'],
       'created' => ['data-sort-default' => 1, 'data' => $this->t('Date Added')],
       'rating' => $this->t('Rating'),
       'delete' => ['data' => '', 'data-sort-method' => 'none'],

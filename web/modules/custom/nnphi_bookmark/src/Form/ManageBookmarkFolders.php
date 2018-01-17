@@ -95,7 +95,14 @@ class ManageBookmarkFolders extends FormBase {
         '#header' => $header,
         '#options' => $rows,
         '#attributes' => [
-          'class' => ['user-bookmarks-table'],
+          'class' => [
+            'user-bookmarks-table',
+            'user-bookmarks-folders-table',
+            // Bootstrap table classes.
+            'table',
+            'table-responsive-md',
+            'table-hover'
+          ],
         ],
         '#after_build' => [[$this, 'foldersAfterBuild']],
         '#js_select' => FALSE,
