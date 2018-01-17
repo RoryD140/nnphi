@@ -74,10 +74,6 @@ class UserBookmarkFolders extends ControllerBase {
     $build['#bookmarks'] = $this->getUserBookmarks($user);
     $build['#folders'] = $this->getUserFolders($user);
 
-    // Add user metadata to cache array.
-    CacheableMetadata::createFromObject($user)
-      ->applyTo($build);
-    $build['#cache']['keys'] = ['user', 'user_bookmark_folder_list', $user->id()];
     $build['#attached']['library'][] = 'nnphi_bookmark/manage_bookmarks.app';
 
     return $build;
@@ -106,56 +102,7 @@ class UserBookmarkFolders extends ControllerBase {
   }
 
   private function getUserFolders(UserInterface $user) {
-    $build = [];
-    $header = [
-      'check' => ['data' => '', 'data-sort-method' => 'none', 'width' => '10%'],
-      'name' => ['data' => $this->t('Name'), 'width' => '90%'],
-      'opts' => ['data' => '', 'data-sort-method' => 'none'],
-    ];
-    $rows = [];
-    $fids = $this->entityTypeManager()->getStorage('bookmark_folder')->getQuery()
-      ->condition('uid', $user->id())
-      ->execute();
-    if (empty($fids)) {
-      return $build;
-    }
-    /** @var \Drupal\nnphi_bookmark\Entity\BookmarkFolderInterface[] $folders */
-    $folders = $this->entityTypeManager()->getStorage('bookmark_folder')->loadMultiple($fids);
-    foreach ($folders as $folder) {
-      CacheableMetadata::createFromObject($folder)
-        ->applyTo($build);
-      $checkbox = [
-        '#type' => 'checkbox',
-        '#value' => $folder->id(),
-        '#attributes' => [
-          'v-model' => 'folders',
-        ],
-      ];
-      $rows[$folder->id()] = [
-         ['data' =>  \Drupal::service('renderer')->render($checkbox)],
-          ['data-sort' => $folder->label(), 'data' => $folder->toLink($folder->label()), 'class' => 'folder-title'],
-          ['data' => $this->getFolderOptions($folder)],
-      ];
-    }
-
-    $build['table'] = [
-      '#theme' => 'table',
-      '#header' => $header,
-      '#rows' => $rows,
-      '#attributes' => [
-        'class' => [
-          'user-bookmarks-folders-table',
-          // Bootstrap table classes.
-          'table',
-          'table-responsive-md',
-          'table-hover'
-        ],
-      ]
-    ];
-
-//    $build['#cache']['keys'] = ['user', 'bookmark_folders', $user->id()];
-
-    return $build;
+    return $this->formBuilder()->getForm(\Drupal\nnphi_bookmark\Form\ManageBookmarkFolders::class, $user);
   }
 
   protected function getFolderOptions(BookmarkFolderInterface $folder) {
