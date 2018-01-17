@@ -28,12 +28,14 @@ function nnphi_preprocess_page(&$variables) {
 
   $show_hero = TRUE;
   $node = \Drupal::routeMatch()->getParameter('node');
-  $revision = \Drupal::routeMatch()->getRawParameter('node_revision');
   $homepage = \Drupal::service('path.matcher')->isFrontPage();
 
   // Revision IDs are strings and node ids are strings when a revision is loaded.
   // Node parameters loaded by getParameter are objects and the bundle can be accessed normally.
   if ($node) {
+
+    $revision = \Drupal::routeMatch()->getRawParameter('node_revision');
+    
     if ($revision) {
       $revised_node = \Drupal::entityTypeManager()
         ->getStorage('node')
@@ -44,7 +46,7 @@ function nnphi_preprocess_page(&$variables) {
     else {
       $content_type = $node->bundle();
     }
-    
+
     if ($content_type === 'training') {
       $show_hero = FALSE;
     }
