@@ -69,15 +69,17 @@
 
   {{ page.help }}
 
+  {# Title Hero Banner #}
+  {% if show_hero %}
+    {% include (base_path ~ directory ~ '/templates/components/hero-banner.html.twig') %}
+  {% endif %}
+
   <main role="main">
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
     <div class="layout-content">
-      {% if custom_title %}
-        <h1 class="page-title">{{ custom_title }}</h1>
-      {% endif %}
       {{ page.content }}
-    </div>{# /.layout-content #}
+    </div>
 
     {% if page.sidebar_first %}
       <aside class="layout-sidebar-first" role="complementary">

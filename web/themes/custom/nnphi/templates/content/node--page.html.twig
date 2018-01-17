@@ -71,14 +71,6 @@
  */
 #}
 <article{{ attributes.addClass('basic-page-node') }}>
-    {# background is temporary until we decide which term we're using #}
-    <section class="hero" style="background-image: url('/{{ base_path ~ directory ~ '/svg/header-bg.svg' }}');">
-      <div class="hero-interior">
-        <div class="hero-text">
-          <h1>{{ label }}</h1>
-        </div>
-      </div>
-    </section>
   <div class="basic-page-node-interior">
     <div{{ content_attributes.addClass('basic-page-content') }}>
       {{ content }}

@@ -71,14 +71,6 @@
  */
 #}
 <article{{ attributes.addClass('announcement-node') }}>
-    {# background is temporary until we decide which term we're using #}
-    <section class="hero" style="background-image: url('/{{ base_path ~ directory ~ '/svg/header-bg.svg' }}');">
-      <div class="hero-interior">
-        <div class="hero-text">
-          <h1>{{ label }}</h1>
-        </div>
-      </div>
-    </section>
   <div class="announcement-node-interior container">
     <div{{ content_attributes.addClass('announcement-content') }}>
       {{ content }}

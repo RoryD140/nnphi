@@ -1,10 +1,14 @@
 %section-padding {
-  padding-top: $padding-sm;
-  padding-bottom: $padding-sm;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
 }
 
-.training-node section {
+.training-node section.training-hero {
   @extend %section-padding;
+  @include media-breakpoint-down(lg) {
+    padding-top: $padding-md;
+    padding-bottom: $padding-md;
+  }
 }
 
 .training-subtitle {

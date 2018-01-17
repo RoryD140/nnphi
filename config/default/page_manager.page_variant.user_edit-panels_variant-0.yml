@@ -23,15 +23,6 @@ variant_settings:
       uuid: b0fb62af-2300-4205-9e50-77fc6b2ac977
       context_mapping:
         user: current_user
-    e96fdae3-9c84-4153-925b-cd60b5b92bc0:
-      id: user_settings_banner
-      label: 'User settings banner'
-      provider: nnphi_user
-      label_display: '0'
-      region: banner
-      weight: 0
-      uuid: e96fdae3-9c84-4153-925b-cd60b5b92bc0
-      context_mapping: {  }
   id: panels_variant
   uuid: a05ad5d1-209a-4876-a837-1bac42ad062a
   label: null

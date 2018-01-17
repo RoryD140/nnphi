@@ -1,0 +1,103 @@
+#manage-bookmarks,
+#manage-folders {
+  border: solid 1px $gray-light;
+  margin-bottom: 0.5rem;
+  font-family: "Work Sans",sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+  color: $gray-text;
+  min-height: 64px;
+}
+
+#manage-bookmarks a,
+#manage-folders a {
+  color: black;
+  font-size: 1.2rem;
+}
+
+.user-bookmarks-folders-table th,
+.user-bookmarks-folders-table td {
+  padding-left: 2rem;
+}
+
+.bookmarks-header h3 {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0 1rem 1rem;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  float: left;
+  margin-bottom: 0;
+  color: black;
+}
+
+.bookmarks-header h3::before {
+  background-image: url('/themes/custom/nnphi/svg/bookmark.svg');
+  content: '';
+  width: 2rem;
+  height: 2rem;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+th[role='columnheader'] {
+  color: $gray-text;
+}
+
+// New bookmark folder button
+.bookmark-link {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-sm;
+  float: right;
+  margin: 1rem;
+  background-color: $blue;
+  border-color: $blue;
+  max-height: 36px;
+  padding: 2px 30px 5px;
+}
+
+.bookmark-link:hover {
+  background-color: $blue-dark;
+  border-color: $blue-dark;
+}
+
+#manage-folders {
+  margin-top: 2rem;
+}
+
+#manage-bookmarks .bookmark-link a,
+#manage-folders .bookmark-link a {
+  color: white;
+  font-size: .9rem;
+}
+
+.bookmark-link a::after {
+  content: '';
+  width: 1.5rem;
+  height: 1rem;
+  background-image: url('/themes/custom/nnphi/svg/plus.svg');
+  background-position: center 150%;
+  background-repeat: no-repeat;
+  display: inline-block;
+  background-size: 62%;
+}
+
+.folder-title {
+  display: flex;
+  align-items: center;
+}
+
+.folder-title::before {
+  background-image: url('/themes/custom/nnphi/svg/folder.svg');
+  content: '';
+  width: 2rem;
+  height: 2rem;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin-right: 1rem;
+}
+

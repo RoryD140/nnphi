@@ -8,6 +8,7 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\nnphi_user\Plugin\Block\UserProfile;
 use Drupal\Core\Url;
+use Drupal\user\UserInterface;
 
 /**
  * Implements hook_module_implements_alter()
@@ -34,6 +35,7 @@ function nnphi_user_module_implements_alter(&$implementations, $hook) {
 function nnphi_user_preprocess_page(&$variables) {
 
   $route = \Drupal::routeMatch()->getRouteName();
+
   // Create custom title for user login pages so that it can be within
   // the layout-container in page.html.twig
   if($route === 'user.register') {
@@ -44,6 +46,12 @@ function nnphi_user_preprocess_page(&$variables) {
     $variables['custom_title'] = t('Reset Your Password');
   } elseif ($route === 'nnphi_user.suggestions') {
     $variables['custom_title'] = t('Suggested Trainings');
+  } elseif ($route === 'nnphi_bookmark.user_list') {
+    $variables['custom_title'] = t('Bookmarked Trainings');
+  } elseif ($route === 'entity.user.canonical') {
+    $user = \Drupal::routeMatch()->getParameter('user');
+    $name = $user->getDisplayName();
+    $variables['custom_title'] = t('Welcome, @name', ['@name' => $name]);
   }
 
 }

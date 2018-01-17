@@ -1,21 +1,4 @@
 // Dashboard blocks
-.block-user-banner {
-  padding-top: 0;
-  padding-bottom: 10%;
-  background-image: url(/themes/custom/nnphi/svg/swirls.svg);
-  background-size: 136%;
-  background-repeat: no-repeat;
-  background-position: top;
-  margin-top: 13%;
-  border-bottom: solid 1px $gray-light;
-}
-
-.block-user-banner h1 {
-  color: $blue;
-  position: relative;
-  top: -8rem;
-}
-
 .block-user-profile,
 .block-bookmarked-trainings,
 .block-user-training-suggestions {

@@ -16,16 +16,6 @@ label: 'Authenticated User'
 variant: panels_variant
 variant_settings:
   blocks:
-    0f926905-c237-4f23-8984-26b93043541c:
-      id: user_banner
-      label: 'User banner'
-      provider: nnphi_user
-      label_display: '0'
-      region: banner
-      weight: -10
-      uuid: 0f926905-c237-4f23-8984-26b93043541c
-      context_mapping:
-        user: user
     d1f1b309-be18-4e39-953c-b9765cd24fc6:
       id: bookmarked_trainings
       label: 'Bookmarked Trainings'

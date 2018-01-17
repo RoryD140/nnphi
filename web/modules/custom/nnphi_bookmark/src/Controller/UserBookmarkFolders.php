@@ -108,8 +108,8 @@ class UserBookmarkFolders extends ControllerBase {
   private function getUserFolders(UserInterface $user) {
     $build = [];
     $header = [
-      'check' => ['data' => '', 'data-sort-method' => 'none'],
-      'name' => $this->t('Name'),
+      'check' => ['data' => '', 'data-sort-method' => 'none', 'width' => '10%'],
+      'name' => ['data' => $this->t('Name'), 'width' => '90%'],
       'opts' => ['data' => '', 'data-sort-method' => 'none'],
     ];
     $rows = [];
@@ -133,7 +133,7 @@ class UserBookmarkFolders extends ControllerBase {
       ];
       $rows[$folder->id()] = [
          ['data' =>  \Drupal::service('renderer')->render($checkbox)],
-          ['data-sort' => $folder->label(), 'data' => $folder->toLink($folder->label())],
+          ['data-sort' => $folder->label(), 'data' => $folder->toLink($folder->label()), 'class' => 'folder-title'],
           ['data' => $this->getFolderOptions($folder)],
       ];
     }
@@ -143,7 +143,13 @@ class UserBookmarkFolders extends ControllerBase {
       '#header' => $header,
       '#rows' => $rows,
       '#attributes' => [
-        'class' => ['user-bookmarks-table'],
+        'class' => [
+          'user-bookmarks-folders-table',
+          // Bootstrap table classes.
+          'table',
+          'table-responsive-md',
+          'table-hover'
+        ],
       ]
     ];
 
@@ -192,7 +198,7 @@ class UserBookmarkFolders extends ControllerBase {
     $header = [
       'checkbox' => ['data' => '', 'data-sort-method' => 'none'],
       'name' => $this->t('Name'),
-      'created' => ['data-sort-default' => 1, 'data' => $this->t('Created')],
+      'created' => ['data-sort-default' => 1, 'data' => $this->t('Date Added')],
       'rating' => $this->t('Rating'),
       'delete' => ['data' => '', 'data-sort-method' => 'none'],
       'options' => ['data' => '', 'data-sort-method' => 'none'],
@@ -236,7 +242,7 @@ class UserBookmarkFolders extends ControllerBase {
       $rows[$fid] = [
         'checkbox' => ['data' => $this->renderer->render($checkbox)],
         'name' => ['data-sort' => $title, 'data' => $node->toLink($title)],
-        'created' => ['data-sort' => $date, 'data' => $this->dateFormatter->format($date, 'custom', 'm/d/Y g:i A')],
+        'created' => ['data-sort' => $date, 'data' => $this->dateFormatter->format($date, 'custom', 'n/j/Y g:i A')],
         'rating' => ['data-sort' => $raw_rating, 'data' => $rating],
         'delete' => ['data' => Link::createFromRoute($this->t('Delete'),
           'nnphi_bookmark.delete_flagging', ['flagging' => $fid], ['attributes' => ['class' => ['use-ajax', 'bookmark-delete']]])],
@@ -249,7 +255,15 @@ class UserBookmarkFolders extends ControllerBase {
       '#header' => $header,
       '#rows' => $rows,
       '#attributes' => [
-        'class' => ['user-bookmarks-table', 'orphan-flags'],
+        'class' => [
+          'user-bookmarks-table',
+          'orphan-flags',
+          'user-bookmarks-folders-table',
+          // Bootstrap table classes.
+          'table',
+          'table-responsive-md',
+          'table-hover'
+        ],
       ],
     ];
 
