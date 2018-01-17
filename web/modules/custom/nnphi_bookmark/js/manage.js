@@ -9,17 +9,11 @@
 
       var $behavior = this;
       $('input[data-drupal-selector="edit-default-bookmarks"]', context).once('default-folders').each(function() {
-        $(this).val(JSON.stringify($behavior.selectedFolders));
+        $(this).val(JSON.stringify($behavior.selectedBookmarks));
       });
 
-
-      $('a.bookmark-delete', context).once('bookmark-link').each(function() {
-        $(this).click(function() {
-          confirm(Drupal.t('Are you sure you want to delete this bookmark?'));
-        })
-      })
     },
-    selectedFolders: []
+    selectedBookmarks: []
   };
 
   /**

@@ -1,14 +1,14 @@
-(function (exports) {
+(function ($, exports) {
   'use strict';
 
-  exports.app = new Vue({
+  exports.bookmarks = new Vue({
     el: '#manage-bookmarks',
     data: {
       checkedBookmarks: [],
     },
     computed: {
       addLinkText: function() {
-        Drupal.behaviors.nnphiBookmarkManage.selectedFolders = this.checkedBookmarks;
+        Drupal.behaviors.nnphiBookmarkManage.selectedBookmarks = this.checkedBookmarks;
         if (this.checkedBookmarks.length > 0) {
           return Drupal.t('New Folder With Selected');
         }
@@ -19,4 +19,16 @@
     }
   });
 
-})(window);
+  exports.folders = new Vue({
+    el: '#manage-folders',
+    data: {
+      checkedFolders: [],
+    },
+    methods: {
+      launchDialog: function () {
+        $('form#manage-bookmark-folders .form-submit').trigger('mousedown');
+      }
+    }
+  });
+
+})(jQuery, window);

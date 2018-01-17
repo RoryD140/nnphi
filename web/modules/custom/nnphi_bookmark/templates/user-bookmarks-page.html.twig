@@ -11,7 +11,10 @@
   <div id="manage-folders">
     <div class="bookmarks-header">
       <h3>{{ 'Folders'|t }}</h3>
+      <span v-if="checkedFolders.length > 1" class="combine-folders bookmark-link"><a v-on:click="launchDialog()" href="#">{{ 'Combine Folders' | t }}</a></span>
     </div>
-    {{ folders }}
+    <div id="folder-ui">
+      {{ folders }}
+    </div>
   </div>
 </div>
