@@ -49,10 +49,7 @@ function nnphi_user_preprocess_page(&$variables) {
   } elseif ($route === 'nnphi_bookmark.user_list') {
     $variables['custom_title'] = t('Bookmarked Trainings');
   } elseif ($route === 'entity.user.canonical') {
-    $url = \Drupal::service('path.current')->getPath();
-    $path_args = explode('/', $url);
-    $user_id = $path_args[2];
-    $user = \Drupal::entityTypeManager()->getStorage('user')->load($user_id);
+    $user = \Drupal::routeMatch()->getParameter('user');
     $name = $user->getDisplayName();
     $variables['custom_title'] = t('Welcome, @name', ['@name' => $name]);
   }

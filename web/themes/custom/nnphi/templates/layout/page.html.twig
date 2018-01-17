@@ -70,7 +70,7 @@
   {{ page.help }}
 
   {# Title Hero Banner #}
-  {% if not is_front and content_type != 'training' %}
+  {% if show_hero %}
     {% include (base_path ~ directory ~ '/templates/components/hero-banner.html.twig') %}
   {% endif %}
 

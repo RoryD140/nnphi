@@ -28,6 +28,7 @@ function nnphi_preprocess_page(&$variables) {
 
   $node = \Drupal::routeMatch()->getParameter('node');
   $revision = \Drupal::routeMatch()->getRawParameter('node_revision');
+  $homepage = \Drupal::service('path.matcher')->isFrontPage();
 
   // Revision IDs are strings and node ids are strings when a revision is loaded.
   // Node parameters loaded by getParameter are objects and the bundle can be accessed normally.
@@ -42,7 +43,15 @@ function nnphi_preprocess_page(&$variables) {
     else {
       $content_type = $node->bundle();
     }
-    $variables['content_type'] = $content_type;
+    // Future-proofing in case homepage is ever a node.
+    if ($content_type != 'training' && $homepage != 'TRUE') {
+      $variables['show_hero'] = TRUE;
+    }
+  }
+
+  // If it's not a node and it's not the homepage.
+  else if ($homepage != 'TRUE') {
+      $variables['show_hero'] = TRUE;
   }
 
 }

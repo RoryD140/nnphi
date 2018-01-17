@@ -256,6 +256,8 @@ class UserBookmarkFolders extends ControllerBase {
       '#rows' => $rows,
       '#attributes' => [
         'class' => [
+          'user-bookmarks-table',
+          'orphan-flags',
           'user-bookmarks-folders-table',
           // Bootstrap table classes.
           'table',
