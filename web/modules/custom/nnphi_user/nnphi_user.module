@@ -129,21 +129,22 @@ function nnphi_user_form_user_form_alter(&$form, FormStateInterface $form_state,
 
   $form['#after_build'][] = 'nnphi_user_register_form_after_build';
 
+  $account = $form_state->getFormObject()->getEntity();
+  if (!$account->isAnonymous()) {
   // Override default submit text
   $form['actions']['submit']['#value'] = t('Save Changes');
   
   // Add "Cancel" button
-  $account = $form_state->getFormObject()->getEntity();
-  $form['actions']['cancel'] = array(
-    '#title' => t('Cancel'),
-    '#type' => 'link',
-    '#url' => Url::fromRoute('<front>', [], [
+    $form['actions']['cancel'] = [
+      '#title' => t('Cancel'),
+      '#type' => 'link',
+      '#url' => Url::fromRoute('entity.user.canonical', ['user' => $account->id()]),
       '#attributes' => [
         'class' => ['button', 'button-secondary', 'form-submit', 'cancel'],
       ],
-    ]),
-    '#prefix' => '<div id="button-divider"></div>',
-  );
+      '#prefix' => '<div id="button-divider"></div>',
+    ];
+  }
 }
 
 /**
