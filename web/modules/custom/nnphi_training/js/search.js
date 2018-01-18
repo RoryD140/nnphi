@@ -202,7 +202,7 @@
         })
 
         search.start();
-      })
+      });
 
     },
 
@@ -281,13 +281,16 @@
               type: 'GET',
               data: {},
               success: function(data, status) {
+                var $content = $(this.elements.content);
                 this.set('content.text', data.content);
 
                 // Add a class so that we can remove loading padding
-                $(this.elements.content).addClass('qtip-content-loaded');
+                $content.addClass('qtip-content-loaded');
+
+                Drupal.attachBehaviors($content.get(0), settings);
 
                 // Assign the hide event listener to the close button
-                $(this.elements.content).find('.training-node-preview-close').click(function() {
+                $content.find('.training-node-preview-close').click(function() {
                     $this.qtip('hide');
                   }
                 );
