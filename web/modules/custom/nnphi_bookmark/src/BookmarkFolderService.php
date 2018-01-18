@@ -90,9 +90,9 @@ class BookmarkFolderService {
           $flagging->get(self::FLAGGING_FOLDER_FIELD)->appendItem(['target_id' => $destination->id()]);
           $flagging->save();
         }
-        if ($delete && $sourceFolder->id() !== $destination->id()) {
-          $sourceFolder->delete();
-        }
+      }
+      if ($delete && (int)$sourceFolder->id() !== (int)$destination->id()) {
+        $sourceFolder->delete();
       }
     }
   }
