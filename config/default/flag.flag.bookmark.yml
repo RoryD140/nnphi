@@ -5,6 +5,7 @@ dependencies: {  }
 id: bookmark
 label: Bookmark
 bundles:
+  - curriculum
   - training
 entity_type: node
 global: false
