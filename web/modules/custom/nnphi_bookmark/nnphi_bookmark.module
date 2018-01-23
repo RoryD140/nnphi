@@ -12,7 +12,7 @@ function nnphi_bookmark_entity_extra_field_info() {
 
   $extra['bookmark_folder']['bookmark_folder']['display']['nodes'] = [
     'label' => t('Trainings'),
-    'description' => t('Bookmarked trainings that belong to this folder'),
+    'description' => t('Bookmarks that belong to this folder'),
     'weight' => 0,
     'visible' => TRUE,
   ];

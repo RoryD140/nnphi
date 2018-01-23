@@ -1,8 +1,9 @@
-uuid: 6e8229b3-f67c-4db2-af34-b0b41268de7d
+uuid: 79eb58e0-a89e-447c-874f-3ebb6cd5c3db
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.mini
     - field.field.node.curriculum.field_curriculum_trainings
     - field.field.node.curriculum.field_curriculum_updated
     - field.field.node.curriculum.field_training_competencies
@@ -12,78 +13,58 @@ dependencies:
     - field.field.node.curriculum.field_training_occupations
     - node.type.curriculum
   module:
-    - datetime
     - text
     - user
-id: node.curriculum.default
+id: node.curriculum.mini
 targetEntityType: node
 bundle: curriculum
-mode: default
+mode: mini
 content:
-  field_curriculum_trainings:
-    weight: 106
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: content
-  field_curriculum_updated:
-    weight: 108
-    label: above
-    settings:
-      format_type: medium
-      timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
   field_training_competencies:
-    weight: 103
-    label: above
+    weight: 2
+    label: hidden
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     type: entity_reference_label
     region: content
   field_training_description:
-    weight: 107
-    label: above
+    weight: 0
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_training_job_tasks:
-    weight: 105
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
     type: entity_reference_label
+    weight: 4
     region: content
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
   field_training_objectives:
-    weight: 102
-    label: above
+    weight: 1
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_training_occupations:
-    weight: 104
-    label: above
+    weight: 3
+    label: hidden
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     type: entity_reference_label
     region: content
   flag_bookmark:
-    weight: 10
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  links:
-    weight: 100
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
   curriculum_enroll: true
+  field_curriculum_trainings: true
+  field_curriculum_updated: true
+  links: true

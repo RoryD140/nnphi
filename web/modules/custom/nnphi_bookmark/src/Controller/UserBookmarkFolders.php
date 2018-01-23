@@ -44,6 +44,11 @@ class UserBookmarkFolders extends ControllerBase {
    */
   private $nodeStorage;
 
+  /**
+   * @var \Drupal\Core\Entity\EntityStorageInterface
+   */
+  private $nodeTypeStorage;
+
   public function __construct(BookmarkFolderService $folderService, FlagServiceInterface $flagService,
                               RendererInterface $renderer, DateFormatterInterface $dateFormatter) {
     $this->folderService = $folderService;
@@ -145,6 +150,7 @@ class UserBookmarkFolders extends ControllerBase {
     $header = [
       'checkbox' => ['data' => '', 'data-sort-method' => 'none', 'width' => '10%'],
       'name' => ['data' => $this->t('Name'), 'width' => '90%', 'class' => 'sort-column'],
+      'type' => ['data' => $this->t('Type'), 'data-sort-method' => 'none'],
       'created' => ['data-sort-default' => 1, 'data' => $this->t('Date Added'), 'class' => 'sort-column'],
       'rating' => ['data' => $this->t('Rating'), 'class' => 'sort-column'],
       'delete' => ['data' => '', 'data-sort-method' => 'none'],
@@ -189,6 +195,7 @@ class UserBookmarkFolders extends ControllerBase {
       $rows[$fid] = [
         'checkbox' => ['data' => $this->renderer->render($checkbox)],
         'name' => ['data-sort' => $title, 'data' => $node->toLink($title)],
+        'type' => ['data' => $this->getNodeTypeLabel($node->getType())],
         'created' => ['data-sort' => $date, 'data' => $this->dateFormatter->format($date, 'custom', 'n/j/Y g:i A')],
         'rating' => ['data-sort' => $raw_rating, 'data' => $rating],
         'delete' => ['data' => Link::createFromRoute($this->t('Delete'),
@@ -270,6 +277,22 @@ class UserBookmarkFolders extends ControllerBase {
   }
 
   /**
+   * Get the label for a node's type.
+   *
+   * @param $typeId
+   *
+   * @return string
+   */
+  private function getNodeTypeLabel($typeId) {
+    $labels = &drupal_static(__FUNCTION__, []);
+    if (!isset($labels[$typeId])) {
+      $type = $this->nodeTypeStorage()->load($typeId);
+      $labels[$typeId] = $type->label();
+    }
+    return $labels[$typeId];
+  }
+
+  /**
    * @return \Drupal\node\NodeStorageInterface;
    */
   private function nodeStorage() {
@@ -277,5 +300,15 @@ class UserBookmarkFolders extends ControllerBase {
       $this->nodeStorage = $this->entityTypeManager()->getStorage('node');
     }
     return $this->nodeStorage;
+  }
+
+  /**
+   * @return \Drupal\Core\Entity\EntityStorageInterface
+   */
+  private function nodeTypeStorage() {
+    if (empty($this->nodeTypeStorage)) {
+      $this->nodeTypeStorage = $this->entityTypeManager()->getStorage('node_type');
+    }
+    return $this->nodeTypeStorage;
   }
 }

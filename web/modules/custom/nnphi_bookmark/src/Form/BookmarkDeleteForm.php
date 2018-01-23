@@ -47,7 +47,7 @@ class BookmarkDeleteForm extends FormBase {
 
     $form['question'] = [
       '#type' => 'markup',
-      '#markup' => $this->t('Are you sure you want to remove %label from your Bookmarked Trainings?',
+      '#markup' => $this->t('Are you sure you want to remove %label from your bookmarks?',
         ['%label' => $node->label()]),
     ];
 

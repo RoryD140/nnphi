@@ -70,6 +70,9 @@ function nnphi_curriculum_node_view_alter(array &$build, NodeInterface $node, En
   }
   foreach (Element::children($build['field_curriculum_trainings']) as $delta) {
     $item = &$build['field_curriculum_trainings'][$delta];
+    if (!isset($item['#node'])) {
+      continue;
+    }
     $item['enrollment_link'] = [
       '#lazy_builder' => ['nnphi_curriculum.link_builder:training', [
         $node->id(),
