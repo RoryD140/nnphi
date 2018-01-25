@@ -7,3 +7,12 @@ config:
   xdebug: true
   web_docroot: true
   drupal: true
+proxy:
+  mailhog:
+    - mail.nnphi.lndo.site
+services:
+  mailhog:
+    type: mailhog
+    hogfrom:
+      - appserver
+    portforward: true
