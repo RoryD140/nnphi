@@ -1,5 +1,6 @@
 module:
   address: 0
+  allowed_formats: 0
   block: 0
   block_content: 0
   breakpoint: 0
@@ -66,6 +67,7 @@ module:
   tour: 0
   update: 0
   user: 0
+  votingapi: 0
   menu_link_content: 1
   views: 10
   paragraphs: 11

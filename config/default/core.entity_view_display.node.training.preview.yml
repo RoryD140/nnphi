@@ -18,8 +18,12 @@ dependencies:
     - field.field.node.training.field_training_module_length
     - field.field.node.training.field_training_objectives
     - field.field.node.training.field_training_occupations
-    - field.field.node.training.field_training_overall_rating
     - field.field.node.training.field_training_proficiency
+    - field.field.node.training.field_training_review_content
+    - field.field.node.training.field_training_review_overall
+    - field.field.node.training.field_training_review_present
+    - field.field.node.training.field_training_review_relevance
+    - field.field.node.training.field_training_reviews
     - field.field.node.training.field_training_source
     - field.field.node.training.field_training_state
     - field.field.node.training.field_training_total_time
@@ -102,17 +106,6 @@ content:
     third_party_settings: {  }
     type: smart_trim
     region: content
-  field_training_overall_rating:
-    weight: 10
-    label: hidden
-    settings:
-      thousand_separator: ''
-      decimal_separator: .
-      scale: 2
-      prefix_suffix: true
-    third_party_settings: {  }
-    type: number_decimal
-    region: content
   field_training_proficiency:
     weight: 11
     label: hidden
@@ -121,6 +114,13 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
+  field_training_review_overall:
+    type: number_unformatted
+    weight: 12
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
   field_training_source:
     weight: 9
     label: hidden
@@ -136,6 +136,11 @@ content:
     third_party_settings: {  }
     type: list_default
     region: content
+  flag_bookmark:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   module_times:
     weight: 2
     region: content
@@ -154,6 +159,10 @@ hidden:
   field_training_length_type: true
   field_training_module_length: true
   field_training_occupations: true
+  field_training_review_content: true
+  field_training_review_present: true
+  field_training_review_relevance: true
+  field_training_reviews: true
   field_training_total_time: true
   field_training_url: true
   links: true

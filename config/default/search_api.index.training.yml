@@ -15,7 +15,6 @@ dependencies:
     - field.storage.node.field_training_course_type
     - field.storage.node.field_training_level
     - field.storage.node.field_training_source
-    - field.storage.node.field_training_overall_rating
     - search_api.server.algolia
   module:
     - taxonomy
@@ -25,7 +24,7 @@ dependencies:
 id: training
 name: Training
 description: ''
-read_only: true
+read_only: false
 field_settings:
   url:
     label: URI
@@ -263,14 +262,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_training_description
-  rating:
-    label: 'Overall Rating'
-    datasource_id: 'entity:node'
-    property_path: field_training_overall_rating
-    type: decimal
-    dependencies:
-      config:
-        - field.storage.node.field_training_overall_rating
   nid:
     label: NID
     datasource_id: 'entity:node'

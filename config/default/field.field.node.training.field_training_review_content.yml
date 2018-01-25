@@ -1,22 +1,22 @@
-uuid: 53603c92-8065-4e86-a5ae-41db5c024fc3
+uuid: 43ed50aa-d394-48b7-bab2-985394036761
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_training_overall_rating
+    - field.storage.node.field_training_review_content
     - node.type.training
-id: node.training.field_training_overall_rating
-field_name: field_training_overall_rating
+id: node.training.field_training_review_content
+field_name: field_training_review_content
 entity_type: node
 bundle: training
-label: 'Overall Rating'
+label: 'Content Rating'
 description: ''
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  min: !!float 0
+  min: null
   max: !!float 5
   prefix: ''
   suffix: ''
