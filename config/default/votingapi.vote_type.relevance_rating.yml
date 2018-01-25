@@ -1,0 +1,8 @@
+uuid: 25dc578a-3e13-4a1e-923f-b029ad723c14
+langcode: en
+status: true
+dependencies: {  }
+id: relevance_rating
+label: 'Relevance Rating'
+value_type: percent
+description: ''

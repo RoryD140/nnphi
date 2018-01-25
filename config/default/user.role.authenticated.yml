@@ -18,6 +18,6 @@ permissions:
   - 'flag bookmark'
   - 'post comments'
   - 'search content'
-  - 'skip comment approval'
   - 'unflag bookmark'
   - 'use text format basic_html'
+  - 'use text format review'

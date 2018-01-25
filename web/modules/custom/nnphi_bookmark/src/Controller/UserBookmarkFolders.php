@@ -176,8 +176,8 @@ class UserBookmarkFolders extends ControllerBase {
       $node = $ns->load($nid);
       $rating = '';
       $raw_rating = 0;
-      if ($node->hasField('field_training_overall_rating') && $node->get('field_training_overall_rating')->count()) {
-        $field = $node->get('field_training_overall_rating');
+      if ($node->hasField('field_training_review_overall') && $node->get('field_training_review_overall')->count()) {
+        $field = $node->get('field_training_review_overall');
         $raw_rating = $field->getString();
         $rating = $nodeViewer->viewField($field, 'mini');
         $rating = $this->renderer->render($rating);

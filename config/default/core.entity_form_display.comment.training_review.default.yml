@@ -1,0 +1,76 @@
+uuid: ab5d700d-4ecd-4bb3-80b5-0c053ee48bca
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.training_review
+    - field.field.comment.training_review.field_training_review_comment
+    - field.field.comment.training_review.field_training_review_content
+    - field.field.comment.training_review.field_training_review_overall
+    - field.field.comment.training_review.field_training_review_present
+    - field.field.comment.training_review.field_training_review_relevance
+  module:
+    - text
+id: comment.training_review.default
+targetEntityType: comment
+bundle: training_review
+mode: default
+content:
+  author:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  content_rating:
+    weight: 3
+    region: content
+  field_training_review_comment:
+    weight: 6
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_training_review_content:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_training_review_overall:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_training_review_present:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_training_review_relevance:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  overall_rating:
+    weight: 2
+    region: content
+  presentation_rating:
+    weight: 5
+    region: content
+  relevance_rating:
+    weight: 4
+    region: content
+  subject:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

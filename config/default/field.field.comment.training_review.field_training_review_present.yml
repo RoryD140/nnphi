@@ -1,0 +1,21 @@
+uuid: 049d6146-e1ba-48b1-8963-6dfc62eb89de
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.training_review
+    - field.storage.comment.field_training_review_present
+  module:
+    - options
+id: comment.training_review.field_training_review_present
+field_name: field_training_review_present
+entity_type: comment
+bundle: training_review
+label: 'Presentation Rating'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_integer
