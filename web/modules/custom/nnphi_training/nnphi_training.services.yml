@@ -9,3 +9,8 @@ services:
   nnphi_training.reviews.lazy_builders:
     class: '\Drupal\nnphi_training\ReviewLazyBuilders'
     arguments: ['@entity_type.manager', '@entity.form_builder', '@current_user']
+  nnphi_training.config_subscriber:
+    class: '\Drupal\nnphi_training\EventSubscriber\ConfigImportSubscriber'
+    arguments: ['@entity_type.manager']
+    tags:
+       - {name: 'event_subscriber'}

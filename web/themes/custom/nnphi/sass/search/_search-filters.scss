@@ -48,7 +48,7 @@
 }
 
 // Numbers after label
-.training-filters label span {
+.training-filters label span, .training-filters span.ais-star-rating--count {
   font-weight: bold;
   font-size: $font-size-xs;
   display: inline-flex;

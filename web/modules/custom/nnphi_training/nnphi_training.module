@@ -181,7 +181,7 @@ function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayIn
         '@proficiency' => $proficiency,
         '@ceu' => $ceu,
         '@offering' => $offering,
-        '@is' => $is
+        '@is' => $is,
       ]
     );
 
@@ -470,7 +470,7 @@ function nnphi_training_theme($existing, $type, $theme, $path) {
     'training_subtitle' => [
       'variables' => [
         'text' => '',
-        'cost' => ''
+        'cost' => '',
       ],
       'template' => 'training-subtitle',
     ],
@@ -517,5 +517,19 @@ function nnphi_training_mail($key, &$message, $params) {
     $link = '<a href="%url">Click here</a> or copy and paste the following link for the moderation page: %url';
     $link = strtr($link, ['%url' => Url::fromRoute('comment.admin_approval', [], ['absolute' => TRUE])->toString()]);
     $message['body'][] = MailFormatHelper::htmlToText($link);
+  }
+}
+
+/**
+ * Implements hook_search_api_algolia_objects_alter().
+ */
+function nnphi_training_search_api_algolia_objects_alter(array &$objects, \Drupal\search_api\IndexInterface $index, array $items) {
+  // The instantsearch star widget only works with integers,
+  // floor the rating value so "x stars & up" works correctly.
+  foreach ($objects as &$object) {
+    if (!isset($object['overall_rating_facet_value'])) {
+      continue;
+    }
+    $object['overall_rating_facet_value'] = floor($object['overall_rating_facet_value']);
   }
 }
