@@ -15,6 +15,7 @@ dependencies:
     - field.storage.node.field_training_course_type
     - field.storage.node.field_training_level
     - field.storage.node.field_training_source
+    - field.storage.node.field_training_review_overall
     - search_api.server.algolia
   module:
     - taxonomy
@@ -132,6 +133,14 @@ field_settings:
     type: boolean
     configuration:
       field: content_type
+      filter_only: 0
+      searchable: 0
+  overall_rating_facet:
+    label: 'Overall rating facet'
+    property_path: facet_attribute
+    type: boolean
+    configuration:
+      field: overall_rating_facet_value
       filter_only: 0
       searchable: 0
   title:
@@ -272,6 +281,22 @@ field_settings:
     datasource_id: 'entity:node'
     property_path: type
     type: string
+  overall_rating:
+    label: 'Overall Rating'
+    datasource_id: 'entity:node'
+    property_path: field_training_review_overall
+    type: decimal
+    dependencies:
+      config:
+        - field.storage.node.field_training_review_overall
+  overall_rating_facet_value:
+    label: 'Overall Rating Facet Value'
+    datasource_id: 'entity:node'
+    property_path: field_training_review_overall
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_training_review_overall
 datasource_settings:
   'entity:node':
     bundles:

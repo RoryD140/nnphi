@@ -195,6 +195,23 @@
         }
         catch (err) {}
 
+        try {
+          search.addWidget(
+            instantsearch.widgets.starRating({
+              container: '#rating',
+              attributeName: 'overall_rating_facet_value',
+              max: 5,
+              labels: {
+                andUp: Drupal.t('& Up')
+              },
+              templates: {
+                header: Drupal.t('Avg User Rating')
+              }
+            })
+          );
+        }
+        catch (err) {}
+
         // Attach Drupal.behaviors to the rendered content.
         search.on('render', function() {
           var $new_content = $('#hits').contents();
