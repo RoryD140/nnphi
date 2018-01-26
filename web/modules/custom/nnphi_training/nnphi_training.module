@@ -330,6 +330,9 @@ function nnphi_training_comment_insert(CommentInterface $comment) {
  */
 function nnphi_training_comment_update(CommentInterface $comment) {
   nnphi_training_comment_update_insert($comment);
+  if ($comment->getTypeId() === 'training_review' && !$comment->isPublished() && $comment->original->isPublished()) {
+    nnphi_training_review_notify($comment);
+  }
 }
 
 function nnphi_training_comment_update_insert(CommentInterface $comment) {
@@ -389,7 +392,13 @@ function nnphi_training_review_notify(CommentInterface $review) {
     'node' => $review->getCommentedEntity(),
     'review' => $review,
   ];
-  $sent = \Drupal::service('plugin.manager.mail')->mail('nnphi_training', 'review_moderation', 'test@localhost.dev', $lang, $params);
+  $address = \Drupal::state()->get(\Drupal\nnphi_training\Form\ReviewNotificationConfig::STATE_KEY);
+  if (!$address) {
+    \Drupal::logger('nnphi_training')->alert('Unable to send notification email for review @cid: Missing email address',
+      ['@cid' => $review->id()]);
+    return;
+  }
+  $sent = \Drupal::service('plugin.manager.mail')->mail('nnphi_training', 'review_moderation', $address, $lang, $params);
   if (!$sent['result']) {
     \Drupal::logger('nnphi_training')->error('Error sending moderation notification message for review @cid',
       ['@cid' => $review->id()]);
