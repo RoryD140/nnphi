@@ -171,7 +171,7 @@ content:
     region: content
   field_training_review_content:
     type: number_decimal
-    weight: 23
+    weight: 24
     region: content
     label: above
     settings:
@@ -182,7 +182,7 @@ content:
     third_party_settings: {  }
   field_training_review_overall:
     type: number_decimal
-    weight: 24
+    weight: 25
     region: content
     label: above
     settings:
@@ -193,7 +193,7 @@ content:
     third_party_settings: {  }
   field_training_review_present:
     type: number_decimal
-    weight: 25
+    weight: 26
     region: content
     label: above
     settings:
@@ -204,7 +204,7 @@ content:
     third_party_settings: {  }
   field_training_review_relevance:
     type: number_decimal
-    weight: 26
+    weight: 27
     region: content
     label: above
     settings:
@@ -272,6 +272,11 @@ content:
     third_party_settings: {  }
   module_times:
     weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  review_login_message:
+    weight: 23
     region: content
     settings: {  }
     third_party_settings: {  }
