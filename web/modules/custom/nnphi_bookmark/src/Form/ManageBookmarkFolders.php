@@ -211,22 +211,44 @@ class ManageBookmarkFolders extends FormBase {
   }
 
   protected function getFolderOptions(BookmarkFolderInterface $folder) {
-    $links = [];
-    $links['view'] = [
-      'title' => $this->t('View'),
-      'url' => $folder->toUrl(),
+    $links['options_toggle'] = [
+      '#type' => 'button',
+      '#value' => '...',
+      '#url' => '/',
+      '#attributes' => [
+        'class' => ['dropdown','dropdown-toggle'],
+        'id' => 'dropdownMenuButton',
+        'data-toggle' => 'dropdown',
+        'aria-haspopup' => 'true',
+        'aria-expanded' => 'false',
+        'role' => 'button'
+      ],
+      '#prefix' => '<div class="dropdown">'
     ];
+
+    $links['open'] = [
+      '#prefix' => '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">',
+      '#title' => $this->t('Open'),
+      '#type' => 'link',
+      '#url' => $folder->toUrl(),
+      '#attributes' => ['class' => ['dropdown-item']]
+    ];
+
     $links['edit'] = [
-      'title' => $this->t('Edit'),
-      'url' => Url::fromRoute('entity.bookmark_folder.edit_form',
+      '#title' => $this->t('Edit'),
+      '#type' => 'link',
+      '#url' => Url::fromRoute('entity.bookmark_folder.edit_form',
         ['user' => $folder->getOwnerId(), 'bookmark_folder' => $folder->id()],
-        ['attributes' => ['class' => ['use-ajax'], 'data-dialog-type' => 'modal', 'data-dialog-options' => Json::encode(['width' => '75%'])]]
+        ['attributes' => ['class' => ['use-ajax', 'dropdown-item'], 'data-dialog-type' => 'modal', 'data-dialog-options' => Json::encode(['width' => '75%'])]]
       ),
     ];
-    return [
-      '#type' => 'dropbutton',
-      '#links' => $links,
+
+    $links['suffix'] = [
+      '#type' => 'markup',
+      '#markup' => '</div></div>'
     ];
+
+    return $links;
   }
 
   /**

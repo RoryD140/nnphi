@@ -218,29 +218,51 @@ class UserBookmarkFolders extends ControllerBase {
   }
 
   protected function getFlaggingOptions(FlaggingInterface $flagging) {
-    $links = [];
+
     $node = $this->nodeStorage()->load($flagging->get('entity_id')->getString());
-    $links['view'] = [
-      'title' => $this->t('View'),
-      'url' => $node->toUrl(),
+
+    $build['options_toggle'] = [
+      '#type' => 'button',
+      '#value' => '...',
+      '#url' => '/',
+      '#attributes' => [
+        'class' => ['dropdown','dropdown-toggle'],
+        'id' => 'dropdownMenuButton',
+        'data-toggle' => 'dropdown',
+        'aria-haspopup' => 'true',
+        'aria-expanded' => 'false',
+        'role' => 'button'
+      ],
+      '#prefix' => '<div class="dropdown">'
     ];
-    $links['new'] = [
-      'title' => $this->t('Create Folder from Bookmark'),
-      'url' => Url::fromRoute('nnphi_bookmark.create_folder',
+
+    $build['open'] = [
+      '#prefix' => '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">',
+      '#title' => $this->t('Open'),
+      '#type' => 'link',
+      '#url' => $node->toUrl(),
+      '#attributes' => ['class' => ['dropdown-item']]
+    ];
+
+    $build['new'] = [
+      '#title' => $this->t('Create Folder from Bookmark'),
+      '#type' => 'link',
+      '#url' => Url::fromRoute('nnphi_bookmark.create_folder',
         ['entityId' => $flagging->id(), 'entityType' => $flagging->getEntityTypeId()],
-        ['attributes' => ['class' => ['use-ajax'], 'data-dialog-type' => 'modal']]
-      ),
+        ['attributes' => ['class' => ['use-ajax', 'dropdown-item'], 'data-dialog-type' => 'modal']]
+      )
     ];
-    $links['add'] = [
-      'title' => $this->t('Add to Existing Folder'),
-      'url' => Url::fromRoute('nnphi_bookmark.add_to_folder',
-                ['flagging' => $flagging->id()],
-                ['attributes' => ['class' => ['use-ajax'], 'data-dialog-type' => 'modal']]),
+
+    $build['add'] = [
+      '#title' => $this->t('Add to Existing Folder'),
+      '#type' => 'link',
+      '#url' => Url::fromRoute('nnphi_bookmark.add_to_folder',
+        ['flagging' => $flagging->id()],
+        ['attributes' => ['class' => ['use-ajax', 'dropdown-item'], 'data-dialog-type' => 'modal']]),
+      '#suffix' => '</div></div>'
     ];
-    return [
-      '#type' => 'dropbutton',
-      '#links' => $links,
-    ];
+
+    return $build;
   }
 
   public function addFolder(Request $request, $entityType = NULL, $entityId = NULL) {

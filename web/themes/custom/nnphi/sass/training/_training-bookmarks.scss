@@ -15,13 +15,35 @@
   font-size: 1.2rem;
 }
 
+// Dropdown toggle menus
+#manage-bookmarks .dropdown-menu a, #manage-folders .dropdown-menu a {
+  color: $gray-text;
+  font-size: 1rem;
+}
+
+#manage-bookmarks .dropdown-menu a:hover, #manage-folders .dropdown-menu a:hover {
+  color: $gray-dark;
+}
+
+#dropdownMenuButton {
+  border: solid 0 white;
+  background-color: transparent;
+  font-size: 2rem;
+  color: $gray-text;
+  font-family: "Work Sans",sans-serif;
+}
+
+#dropdownMenuButton:hover {
+  background-color: $gray-lighter;
+}
+
 .user-bookmarks-folders-table th,
 .user-bookmarks-folders-table td {
   padding-left: 2rem;
 }
 
 // Sorting indicator arrow.
-.user-bookmarks-folders-table th.sort-column:after {
+.user-bookmarks-folders-table th.sort-column[aria-sort="descending"]::after {
   content: '';
   border-bottom-color: transparent;
   border-left-color: transparent;
@@ -30,7 +52,25 @@
   border-width: 0.3333em 0.3333em 0;
   display: block;
   height: 0;
-  line-height: 0;
+  //line-height: 0;
+  position: relative;
+  left: 60px;
+  top: -8px;
+  margin-top: -0.1666em;
+  width: 0;
+  overflow: hidden;
+}
+
+.user-bookmarks-folders-table th.sort-column[aria-sort="ascending"]::after {
+  content: '';
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-style: solid;
+  border-width: 0 0.3333em 0.3333em;
+  display: block;
+  height: 0;
+  //line-height: 0;
   position: relative;
   left: 60px;
   top: -8px;
@@ -122,4 +162,43 @@ th[role='columnheader'] {
   display: inline-block;
   margin-right: 1rem;
 }
+
+//.dropbutton-action {
+//  display: none;
+//}
+//
+//.dropbutton-arrow {
+//  position: relative;
+//  background-color: $gray-light;
+//  border-radius: 5px;
+//  font-size: 0;
+//  margin-left: 20px;
+//  padding: 5px;
+//  border-width: 0;
+//}
+//
+//.dropbutton-arrow::before {
+//  position: absolute;
+//  left: -10px;
+//  content: '';
+//  top: 0;
+//  background-color: $gray-light;
+//  border-radius: 5px;
+//  font-size: 0;
+//  margin-left: 35px;
+//  padding: 5px;
+//}
+//
+//.dropbutton-arrow::after {
+//  position: absolute;
+//  left: 10px; //using left instead of right
+//  content: '';
+//  background-color: $gray-light;
+//  border-radius: 5px;
+//  font-size: 0;
+//  margin-left: 35px;
+//  top: 0;
+//  padding: 5px;
+//}
+
 
