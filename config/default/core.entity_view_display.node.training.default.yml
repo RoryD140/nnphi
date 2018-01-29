@@ -94,7 +94,7 @@ content:
     type: text_default
     region: content
   field_training_expiration:
-    weight: 11
+    weight: 12
     label: above
     settings:
       format_type: medium
@@ -112,7 +112,7 @@ content:
     third_party_settings: {  }
     region: content
   field_training_job_tasks:
-    weight: 12
+    weight: 13
     label: above
     settings:
       link: false
@@ -120,14 +120,14 @@ content:
     type: entity_reference_label
     region: content
   field_training_length_type:
-    weight: 16
+    weight: 17
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   field_training_level:
-    weight: 15
+    weight: 16
     label: above
     settings:
       link: true
@@ -135,7 +135,7 @@ content:
     type: entity_reference_label
     region: content
   field_training_module_length:
-    weight: 17
+    weight: 18
     label: above
     settings:
       thousand_separator: ''
@@ -146,14 +146,14 @@ content:
     type: number_decimal
     region: content
   field_training_objectives:
-    weight: 13
+    weight: 14
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_training_occupations:
-    weight: 18
+    weight: 19
     label: above
     settings:
       link: false
@@ -161,7 +161,7 @@ content:
     type: entity_reference_label
     region: content
   field_training_proficiency:
-    weight: 20
+    weight: 21
     label: above
     settings:
       link: false
@@ -213,7 +213,7 @@ content:
     type: number_decimal
     region: content
   field_training_reviews:
-    weight: 23
+    weight: 22
     label: above
     settings:
       view_mode: default
@@ -222,7 +222,7 @@ content:
     type: comment_default
     region: content
   field_training_source:
-    weight: 19
+    weight: 20
     label: hidden
     settings:
       link: false
@@ -237,7 +237,7 @@ content:
     type: list_default
     region: content
   field_training_total_time:
-    weight: 14
+    weight: 15
     label: above
     settings:
       thousand_separator: ''
@@ -260,7 +260,7 @@ content:
     type: link
     region: content
   flag_bookmark:
-    weight: 10
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -271,6 +271,11 @@ content:
     third_party_settings: {  }
   module_times:
     weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  review_login_message:
+    weight: 23
     region: content
     settings: {  }
     third_party_settings: {  }

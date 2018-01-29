@@ -133,10 +133,8 @@ function nnphi_user_form_user_form_alter(&$form, FormStateInterface $form_state,
 
   $account = $form_state->getFormObject()->getEntity();
   if (!$account->isAnonymous()) {
-  // Override default submit text
-  $form['actions']['submit']['#value'] = t('Save Changes');
-  
-  // Add "Cancel" button
+
+    // Add "Cancel" button
     $form['actions']['cancel'] = [
       '#title' => t('Cancel'),
       '#type' => 'link',
@@ -146,6 +144,23 @@ function nnphi_user_form_user_form_alter(&$form, FormStateInterface $form_state,
       ],
       '#prefix' => '<div id="button-divider"></div>',
     ];
+  }
+  else {
+    $destination = \Drupal::destination()->getAsArray();
+    $t_args = [
+      '@login' => Url::fromRoute('user.login', [], ['query' => $destination])->toString(),
+      '@reset' => Url::fromRoute('user.pass')->toString(),
+    ];
+    $form['header'] = [
+      '#type' => 'markup',
+      '#prefix' => '<p class="green-link">',
+      '#suffix' => '</p>',
+      '#markup' => t('Already have an account? <a href="@login">Sign in</a> or <a href="@reset">reset your password</a>.', $t_args),
+      '#weight' => -99,
+    ];
+
+    // Override default submit text
+    $form['actions']['submit']['#value'] = t('Save Changes');
   }
 }
 
