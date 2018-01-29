@@ -118,6 +118,8 @@ function nnphi_user_form_user_form_alter(&$form, FormStateInterface $form_state,
     ];
   }
 
+  $form['account']['name']['#description'] = t('Please Note: Your Username will appear with any Review Comments you post to Trainings. It will also appear on your Profile Page.');
+
   // Add the suggest job title field.
   $form['suggest_terms'] = [
     '#type' => 'textfield',
