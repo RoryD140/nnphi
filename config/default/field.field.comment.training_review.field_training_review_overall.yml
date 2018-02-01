@@ -1,0 +1,21 @@
+uuid: fed1583d-3c6d-47c0-9272-b0f742b41530
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.training_review
+    - field.storage.comment.field_training_review_overall
+  module:
+    - options
+id: comment.training_review.field_training_review_overall
+field_name: field_training_review_overall
+entity_type: comment
+bundle: training_review
+label: 'Overall Rating'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

@@ -18,7 +18,7 @@ use Drupal\Core\Url;
  * @Block(
  *  id="bookmarked_trainings",
  *  category=@Translation("User"),
- *  admin_label=@Translation("Bookmarked trainings"),
+ *  admin_label=@Translation("Bookmarks"),
  *  context = {
  *   "user" = @ContextDefinition("entity:user", label = @Translation("User"))
  *  }
@@ -85,7 +85,7 @@ class BookmarkedTrainings extends BlockBase implements ContainerFactoryPluginInt
       $build['empty'] = [
         '#type' => 'markup',
         '#prefix' => '<div class="block-content">',
-        '#markup' => $this->t('You have not bookmarked any trainings.'),
+        '#markup' => $this->t('You have not bookmarked any trainings or curricula.'),
         '#suffix' => '</div>',
       ];
     }

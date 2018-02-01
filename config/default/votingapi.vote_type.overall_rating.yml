@@ -1,0 +1,8 @@
+uuid: 048c36f1-501a-4238-a4fa-c177fb5f8fa4
+langcode: en
+status: true
+dependencies: {  }
+id: overall_rating
+label: 'Overall Rating'
+value_type: percent
+description: ''

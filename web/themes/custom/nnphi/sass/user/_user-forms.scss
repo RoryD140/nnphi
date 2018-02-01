@@ -166,6 +166,10 @@
   display: none;
 }
 
+.form-item-name .description {
+  display: inherit;
+}
+
 #password-policy-status {
   margin-bottom: $padding-md;
 }

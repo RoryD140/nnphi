@@ -1,0 +1,60 @@
+uuid: c781d6bd-c1af-48d3-87b4-86f3b35a9d21
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.training_review
+    - field.field.comment.training_review.field_training_review_comment
+    - field.field.comment.training_review.field_training_review_content
+    - field.field.comment.training_review.field_training_review_overall
+    - field.field.comment.training_review.field_training_review_present
+    - field.field.comment.training_review.field_training_review_relevance
+  module:
+    - options
+    - text
+id: comment.training_review.default
+targetEntityType: comment
+bundle: training_review
+mode: default
+content:
+  field_training_review_comment:
+    weight: 106
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_training_review_content:
+    weight: 103
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_training_review_overall:
+    weight: 102
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_training_review_present:
+    weight: 105
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_training_review_relevance:
+    weight: 104
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

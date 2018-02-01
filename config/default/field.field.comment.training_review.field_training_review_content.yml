@@ -1,0 +1,21 @@
+uuid: 59cd0462-2796-4cf8-9cf8-5e5546173d83
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.training_review
+    - field.storage.comment.field_training_review_content
+  module:
+    - options
+id: comment.training_review.field_training_review_content
+field_name: field_training_review_content
+entity_type: comment
+bundle: training_review
+label: 'Content Rating'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

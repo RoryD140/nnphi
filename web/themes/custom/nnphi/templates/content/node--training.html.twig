@@ -124,11 +124,17 @@
         {% if content.field_training_instructor|render or content.field_training_description|render %}
           <div class="training-text-overview">
             <h2 class="training-subtitle">{{ 'Overview'|t }}</h2>
+            {{ content.field_training_review_overall }}
+            {{ content.field_training_review_content }}
+            {{ content.field_training_review_relevance }}
+            {{ content.field_training_review_present }}
             {% if content.flag_bookmark|render %}
               {{ content.flag_bookmark }}
             {% endif %}
             {{ content.field_training_instructor }}
             {{ content.field_training_description }}
+            {#Ratings#}
+            {{ content.field_training_ }}
           </div>
         {% endif %}
         <div class="training-text-objectives">
@@ -157,6 +163,15 @@
     {% if content.field_related_trainings|render %}
       <section class="training-related">
         {{ content.field_related_trainings }}
+      </section>
+    {% endif %}
+
+    {% if content.field_training_reviews|render or content.review_login_message|render %}
+      <section class="training-reviews">
+        {{ content.field_training_reviews }}
+        {% if content.review_login_message|render %}
+          {{ content.review_login_message }}
+        {% endif %}
       </section>
     {% endif %}
 

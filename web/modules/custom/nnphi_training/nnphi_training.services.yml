@@ -2,3 +2,15 @@ services:
   nnphi_training.suggestions:
     class: '\Drupal\nnphi_training\TrainingSuggestions'
     arguments: ['@entity_type.manager', '@database']
+  nnphi_training.route_subscriber:
+    class: '\Drupal\nnphi_training\Routing\RouteSubscriber'
+    tags:
+       - { name: event_subscriber }
+  nnphi_training.reviews.lazy_builders:
+    class: '\Drupal\nnphi_training\ReviewLazyBuilders'
+    arguments: ['@entity_type.manager', '@entity.form_builder', '@current_user']
+  nnphi_training.config_subscriber:
+    class: '\Drupal\nnphi_training\EventSubscriber\ConfigImportSubscriber'
+    arguments: ['@entity_type.manager']
+    tags:
+       - {name: 'event_subscriber'}

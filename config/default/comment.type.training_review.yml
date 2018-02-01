@@ -1,0 +1,8 @@
+uuid: b973bee9-87d1-435f-a8d6-1a423d6dacbc
+langcode: en
+status: true
+dependencies: {  }
+id: training_review
+label: 'Training Review'
+target_entity_type_id: node
+description: ''

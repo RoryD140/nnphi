@@ -1,3 +1,8 @@
+// Tables.
+.table-hover tbody tr:hover {
+  background-color: rgba(133,191,66,0.075);
+}
+
 #manage-bookmarks,
 #manage-folders {
   border: solid 1px $gray-light;
@@ -15,7 +20,38 @@
   font-size: 1.2rem;
 }
 
-// Dropdown toggle menus
+// Rating stars.
+span.stars, span.stars span {
+  display: block;
+  background: url('/themes/custom/nnphi/images/rating-stars.png') 0 -16px repeat-x;
+  width: 80px;
+  height: 16px;
+  margin-top: 1rem;
+}
+
+span.stars span {
+  background-position: 0 0;
+}
+
+// Delete button.
+#manage-bookmarks .bookmark-delete,
+#manage-folders .bookmark-delete {
+  color: $white;
+  font-size: 1px;
+}
+
+.bookmark-delete::before {
+  background-image: url('/themes/custom/nnphi/svg/delete.svg');
+  content: '';
+  width: 1rem;
+  height: 1rem;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin: 1rem 1rem 0;
+}
+
+// Dropdown toggle menus.
 #manage-bookmarks .dropdown-menu a, #manage-folders .dropdown-menu a {
   color: $gray-text;
   font-size: 1rem;
@@ -25,16 +61,30 @@
   color: $gray-dark;
 }
 
+.dropdown {
+  position: relative;
+  width: 50px;
+  float: right;
+}
+
 #dropdownMenuButton {
-  border: solid 0 white;
   background-color: transparent;
   font-size: 2rem;
   color: $gray-text;
   font-family: "Work Sans",sans-serif;
+  border-radius: 5px;
+  border: solid 2px transparent;
+  padding: 0 7px 19px;
+  height: 30px;
+  line-height: 0;
+  margin-top: .5rem;
 }
 
 #dropdownMenuButton:hover {
-  background-color: $gray-lighter;
+  background-color: $white;
+  color: $green;
+  border-radius: 5px;
+  border: solid 2px $green;
 }
 
 .user-bookmarks-folders-table th,
@@ -79,6 +129,7 @@
   overflow: hidden;
 }
 
+// Section Headings.
 .bookmarks-header h3 {
   display: flex;
   align-items: center;
@@ -108,7 +159,7 @@ th[role='columnheader'] {
   color: $gray-text;
 }
 
-// New bookmark folder button
+// New bookmark folder button.
 .bookmark-link {
   @extend .btn;
   @extend .btn-primary;
@@ -162,43 +213,3 @@ th[role='columnheader'] {
   display: inline-block;
   margin-right: 1rem;
 }
-
-//.dropbutton-action {
-//  display: none;
-//}
-//
-//.dropbutton-arrow {
-//  position: relative;
-//  background-color: $gray-light;
-//  border-radius: 5px;
-//  font-size: 0;
-//  margin-left: 20px;
-//  padding: 5px;
-//  border-width: 0;
-//}
-//
-//.dropbutton-arrow::before {
-//  position: absolute;
-//  left: -10px;
-//  content: '';
-//  top: 0;
-//  background-color: $gray-light;
-//  border-radius: 5px;
-//  font-size: 0;
-//  margin-left: 35px;
-//  padding: 5px;
-//}
-//
-//.dropbutton-arrow::after {
-//  position: absolute;
-//  left: 10px; //using left instead of right
-//  content: '';
-//  background-color: $gray-light;
-//  border-radius: 5px;
-//  font-size: 0;
-//  margin-left: 35px;
-//  top: 0;
-//  padding: 5px;
-//}
-
-

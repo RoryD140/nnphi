@@ -1,11 +1,11 @@
-uuid: e5c77b3c-50e4-407e-8e5d-0c3a0528a562
+uuid: cee9fbe7-b801-454d-ba45-28f9ba827067
 langcode: en
 status: true
 dependencies:
   module:
     - node
-id: node.field_training_overall_rating
-field_name: field_training_overall_rating
+id: node.field_training_review_content
+field_name: field_training_review_content
 entity_type: node
 type: decimal
 settings:

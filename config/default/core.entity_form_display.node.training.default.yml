@@ -17,14 +17,19 @@ dependencies:
     - field.field.node.training.field_training_module_length
     - field.field.node.training.field_training_objectives
     - field.field.node.training.field_training_occupations
-    - field.field.node.training.field_training_overall_rating
     - field.field.node.training.field_training_proficiency
+    - field.field.node.training.field_training_review_content
+    - field.field.node.training.field_training_review_overall
+    - field.field.node.training.field_training_review_present
+    - field.field.node.training.field_training_review_relevance
+    - field.field.node.training.field_training_reviews
     - field.field.node.training.field_training_source
     - field.field.node.training.field_training_state
     - field.field.node.training.field_training_total_time
     - field.field.node.training.field_training_url
     - node.type.training
   module:
+    - comment
     - conditional_fields
     - datetime
     - link
@@ -43,7 +48,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_related_trainings:
-    weight: 24
+    weight: 22
     settings:
       match_operator: CONTAINS
       size: 60
@@ -175,13 +180,6 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
-  field_training_overall_rating:
-    weight: 26
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
-    type: number
-    region: content
   field_training_proficiency:
     weight: 17
     settings:
@@ -190,6 +188,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  field_training_reviews:
+    weight: 24
+    settings: {  }
+    third_party_settings: {  }
+    type: comment_default
     region: content
   field_training_source:
     weight: 6
@@ -249,7 +253,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 120
+    weight: 23
     region: content
     third_party_settings: {  }
   title:
@@ -270,6 +274,9 @@ content:
     region: content
     third_party_settings: {  }
 hidden:
-  field_training_overall_rating: true
+  field_training_review_content: true
+  field_training_review_overall: true
+  field_training_review_present: true
+  field_training_review_relevance: true
   promote: true
   sticky: true

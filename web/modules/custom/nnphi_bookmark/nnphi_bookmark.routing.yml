@@ -38,8 +38,7 @@ nnphi_bookmark.delete_flagging:
   path: '/bookmarks/flagging/{flagging}/delete'
   defaults:
     _controller: '\Drupal\nnphi_bookmark\Controller\UserBookmarks::delete'
-    _title: 'Delete Bookmark'
+    _title: 'Remove this training?'
   requirements:
     _permission: 'flag bookmark'
-    _csrf_token: 'TRUE'
     _flagging_access: 'TRUE'

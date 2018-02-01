@@ -1,0 +1,19 @@
+uuid: 23c3a7d5-ba57-4279-8884-a21c239d78d8
+langcode: en
+status: true
+dependencies:
+  module:
+    - comment
+    - text
+id: comment.field_training_review_comment
+field_name: field_training_review_comment
+entity_type: comment
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

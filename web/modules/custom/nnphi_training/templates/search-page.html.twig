@@ -12,6 +12,9 @@
       </div>
     </div>
     <h3>{{{  _highlightResult.title.value }}}</h3>
+    {% endraw %}
+    <div>{{ 'Rating'| t }}: {{ '{{ overall_rating }}'|raw }}</div>
+    {% raw %}
     {{{  _highlightResult.summary.value }}}
     {% endraw %}
     <div class="training-teaser-link-wrapper">
@@ -41,6 +44,7 @@
       <div id="levels"></div>
       <div id="locations"></div>
       <div id="competency"></div>
+      <div id="rating"></div>
       <div id="occupation"></div>
       <div id="job-tasks"></div>
       <div id="reset"></div>

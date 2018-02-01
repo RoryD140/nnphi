@@ -47,7 +47,7 @@ function nnphi_user_preprocess_page(&$variables) {
   } elseif ($route === 'nnphi_user.suggestions') {
     $variables['custom_title'] = t('Suggested Trainings');
   } elseif ($route === 'nnphi_bookmark.user_list') {
-    $variables['custom_title'] = t('Bookmarked Trainings');
+    $variables['custom_title'] = t('Bookmarks');
   } elseif ($route === 'entity.user.canonical') {
     $user = \Drupal::routeMatch()->getParameter('user');
     $name = $user->getDisplayName();
@@ -118,6 +118,8 @@ function nnphi_user_form_user_form_alter(&$form, FormStateInterface $form_state,
     ];
   }
 
+  $form['account']['name']['#description'] = t('Please Note: Your Username will appear with any Review Comments you post to Trainings. It will also appear on your Profile Page.');
+
   // Add the suggest job title field.
   $form['suggest_terms'] = [
     '#type' => 'textfield',
@@ -129,20 +131,37 @@ function nnphi_user_form_user_form_alter(&$form, FormStateInterface $form_state,
 
   $form['#after_build'][] = 'nnphi_user_register_form_after_build';
 
-  // Override default submit text
-  $form['actions']['submit']['#value'] = t('Save Changes');
-  
-  // Add "Cancel" button
   $account = $form_state->getFormObject()->getEntity();
-  $form['actions']['cancel'] = array(
-    '#title' => t('Cancel'),
-    '#type' => 'link',
-    '#url' => Url::fromRoute('entity.user.canonical', array('user' => $account->id())),
-    '#attributes' => array(
-      'class' => array('button', 'button-secondary', 'form-submit', 'cancel'),
-    ),
-    '#prefix' => '<div id="button-divider"></div>',
-  );
+  if (!$account->isAnonymous()) {
+
+    // Add "Cancel" button
+    $form['actions']['cancel'] = [
+      '#title' => t('Cancel'),
+      '#type' => 'link',
+      '#url' => Url::fromRoute('entity.user.canonical', ['user' => $account->id()]),
+      '#attributes' => [
+        'class' => ['button', 'button-secondary', 'form-submit', 'cancel'],
+      ],
+      '#prefix' => '<div id="button-divider"></div>',
+    ];
+  }
+  else {
+    $destination = \Drupal::destination()->getAsArray();
+    $t_args = [
+      '@login' => Url::fromRoute('user.login', [], ['query' => $destination])->toString(),
+      '@reset' => Url::fromRoute('user.pass')->toString(),
+    ];
+    $form['header'] = [
+      '#type' => 'markup',
+      '#prefix' => '<p class="green-link">',
+      '#suffix' => '</p>',
+      '#markup' => t('Already have an account? <a href="@login">Sign in</a> or <a href="@reset">reset your password</a>.', $t_args),
+      '#weight' => -99,
+    ];
+
+    // Override default submit text
+    $form['actions']['submit']['#value'] = t('Save Changes');
+  }
 }
 
 /**

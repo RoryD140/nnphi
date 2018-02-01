@@ -76,7 +76,7 @@ class ManageBookmarkFolders extends FormBase {
     foreach ($folders as $folder) {
       $delete_url = Url::fromRoute('entity.bookmark_folder.delete_form',
           ['user' => $folder->getOwnerId(), 'bookmark_folder' => $folder->id()],
-          ['attributes' => ['class' => ['use-ajax'], 'data-dialog-type' => 'modal', 'data-dialog-options' => Json::encode(['width' => '75%'])]]
+          ['attributes' => ['class' => ['use-ajax', 'bookmark-delete'], 'data-dialog-type' => 'modal', 'data-dialog-options' => Json::encode(['width' => '75%'])]]
         );
       $rows[$folder->id()] = [
         'name' => [
@@ -227,7 +227,7 @@ class ManageBookmarkFolders extends FormBase {
     ];
 
     $links['open'] = [
-      '#prefix' => '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">',
+      '#prefix' => '<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">',
       '#title' => $this->t('Open'),
       '#type' => 'link',
       '#url' => $folder->toUrl(),

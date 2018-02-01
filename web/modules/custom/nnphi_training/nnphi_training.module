@@ -15,6 +15,10 @@ use Drupal\Component\Serialization\Json;
 use Drupal\nnphi_training\Plugin\Block\PopularSearches;
 use Snipe\BanBuilder;
 use Drupal\Component\Utility\Unicode;
+use Drupal\comment\CommentInterface;
+use Drupal\votingapi\VoteInterface;
+use Drupal\node\NodeInterface;
+use Drupal\Core\Mail\MailFormatHelper;
 
 /**
  * Implements hook_cron().
@@ -85,19 +89,34 @@ function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayIn
       $build['field_training_cost'][0]['#markup'] = t('Free');
     }
   }
-
-  // Add classes to create star rating on overall rating field
-  if( $display->getComponent('field_training_overall_rating')) {
-
-    // Adds 'star' and (e.g.) 'star-5' classes to field
-    if(isset($build['field_training_overall_rating'][0]['#markup'])) {
-
-      // Round rating to whole number
-      $rating = round($build['field_training_overall_rating'][0]['#markup']);
-
-      $build['field_training_overall_rating']['#attributes']['class'][] = 'training-node-star';
-      $build['field_training_overall_rating']['#attributes']['class'][] = 'star-' . $rating;
-    }
+//  TODO: this should be a int field formatter.
+//  // Add classes to create star rating on overall rating field
+//  if( $display->getComponent('field_training_review_overall')) {
+//
+//    // Adds 'star' and (e.g.) 'star-5' classes to field
+//    if(isset($build['field_training_review_overall'][0]['#markup'])) {
+//
+//      // Round rating to whole number
+//      $rating = round($build['field_training_review_overall'][0]['#markup']);
+//
+//      $build['field_training_review_overall']['#attributes']['class'][] = 'training-node-star';
+//      $build['field_training_review_overall']['#attributes']['class'][] = 'star-' . $rating;
+//    }
+//  }
+  // @see nnphi_training_entity_extra_field_info().
+  if ($display->getComponent('review_login_message')) {
+    $destination_url = $node->toUrl('canonical', ['fragment' => 'comment-form']);
+    $build['review_login_message'] = [
+      '#type' => 'link',
+      '#title' => t('Submit a Review'),
+      '#url' => Url::fromRoute('user.register', [], ['query' => ['destination' => $destination_url->toString()]]),
+      '#access' => \Drupal::currentUser()->isAnonymous(),
+      '#cache' => [
+        'contexts' => [
+          'user.roles:anonymous',
+        ],
+      ],
+    ];
   }
 
 
@@ -177,7 +196,7 @@ function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayIn
         '@proficiency' => $proficiency,
         '@ceu' => $ceu,
         '@offering' => $offering,
-        '@is' => $is
+        '@is' => $is,
       ]
     );
 
@@ -210,6 +229,20 @@ function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayIn
       // the module times from the module time field
       $build['#attributes'] = ['display_module_times' => TRUE];
     }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view_alter().
+ */
+function nnphi_training_node_view_alter(array &$build, NodeInterface $node, EntityViewDisplayInterface $display) {
+  if (!$display->getComponent('field_training_reviews')) {
+    return;
+  }
+  // Swap the comment lazy builder with a custom one so we can limit
+  // users from entering more than 1 review.
+  if (!empty($build['field_training_reviews'][0]['comment_form']['#lazy_builder'][0])) {
+    $build['field_training_reviews'][0]['comment_form']['#lazy_builder'][0] = 'nnphi_training.reviews.lazy_builders:renderForm';
   }
 }
 
@@ -253,6 +286,13 @@ function nnphi_training_entity_extra_field_info() {
     'visible' => TRUE,
   ];
 
+  $extra['node']['training']['display']['review_login_message'] = [
+    'label' => t('Review login message'),
+    'description' => t('Review login link for anonymous users'),
+    'weight' => 10,
+    'visible' => FALSE,
+  ];
+
   $extra['block_content']['search_training']['display']['search_form'] = [
     'label' => t('Search form'),
     'description' => t('Training search autocomplete form'),
@@ -263,6 +303,181 @@ function nnphi_training_entity_extra_field_info() {
   return $extra;
 }
 
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nnphi_training_form_comment_training_review_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // Re-name the "subject" field.
+  $form['subject']['widget'][0]['value']['#title'] = t('Review title');
+  $form['field_training_review_comment']['#after_build'][] = 'nnphi_training_review_comment_after_build';
+  $form['#prefix'] = '<a id="comment-form"></a>';
+}
+
+/**
+ * Review comment after build callback.
+ */
+function nnphi_training_review_comment_after_build($element) {
+  unset($element['widget'][0]['format']['help']);
+  unset($element['widget'][0]['format']['guidelines']);
+  unset($element['widget'][0]['format']['format']['#type']);
+  unset($element['widget'][0]['format']['#theme_wrappers']);
+  return $element;
+}
+
+/**
+ * A list of vote types and the node/comment fields.
+ *
+ * @return array
+ */
+function nnphi_training_review_rating_fields() {
+  return [
+    'content_rating' => 'field_training_review_content',
+    'overall_rating' => 'field_training_review_overall',
+    'presentation_rating' => 'field_training_review_present',
+    'relevance_rating' => 'field_training_review_relevance',
+  ];
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert().
+ */
+function nnphi_training_comment_insert(CommentInterface $comment) {
+  nnphi_training_comment_update_insert($comment);
+  if ($comment->getTypeId() === 'training_review' && !$comment->isPublished()) {
+    nnphi_training_review_notify($comment);
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update().
+ */
+function nnphi_training_comment_update(CommentInterface $comment) {
+  nnphi_training_comment_update_insert($comment);
+  if ($comment->getTypeId() === 'training_review' && !$comment->isPublished() && $comment->original->isPublished()) {
+    nnphi_training_review_notify($comment);
+  }
+}
+
+function nnphi_training_comment_update_insert(CommentInterface $comment) {
+  // Make sure it's a published review.
+  if ($comment->getTypeId() !== 'training_review' || !$comment->isPublished()) {
+    return;
+  }
+  $vote_storage = \Drupal::entityTypeManager()->getStorage('vote');
+  $entity = $comment->getCommentedEntity();
+  $vote_types = nnphi_training_review_rating_fields();
+  $entity_id = $entity->id();
+  $uid = $comment->getOwnerId();
+  $time = $comment->getCreatedTime();
+  foreach ($vote_types as $vote_type => $vote_field) {
+    try {
+      /** @var \Drupal\votingapi\VoteInterface $vote */
+      // Update an existing vote if one exists.
+      $existing = $vote_storage->loadByProperties([
+        'entity_type' => 'node',
+        'entity_id' => $entity_id,
+        'user_id' => $uid,
+        'type' => $vote_type,
+      ]);
+      if ($existing) {
+        $vote = end($existing);
+      }
+      else {
+        $vote = $vote_storage->create([
+          'type' => $vote_type,
+          'timestamp' => $time,
+        ]);
+      }
+      $vote->setOwnerId($uid);
+      $vote->setValue($comment->{$vote_field}->value);
+      $vote->setVotedEntityType('node');
+      $vote->setVotedEntityId($entity_id);
+      $vote->setValueType('percent');
+      $valid = $vote->validate();
+      if ($valid->count() < 1) {
+        $vote->save();
+      }
+    }
+    catch (Exception $exception) {
+      watchdog_exception('nnphi_training', $exception);
+      \Drupal::logger('nnphi_training')->error('Unable to save vote @type for node @id',
+        ['@type' => $vote_type, '@id' => $entity_id]);
+    }
+  }
+}
+
+/**
+ * Send an admin notification for a new comment.
+ */
+function nnphi_training_review_notify(CommentInterface $review) {
+  $lang = \Drupal::languageManager()->getDefaultLanguage();
+  $params = [
+    'node' => $review->getCommentedEntity(),
+    'review' => $review,
+  ];
+  $address = \Drupal::state()->get(\Drupal\nnphi_training\Form\ReviewNotificationConfig::STATE_KEY);
+  if (!$address) {
+    \Drupal::logger('nnphi_training')->alert('Unable to send notification email for review @cid: Missing email address',
+      ['@cid' => $review->id()]);
+    return;
+  }
+  $sent = \Drupal::service('plugin.manager.mail')->mail('nnphi_training', 'review_moderation', $address, $lang, $params);
+  if (!$sent['result']) {
+    \Drupal::logger('nnphi_training')->error('Error sending moderation notification message for review @cid',
+      ['@cid' => $review->id()]);
+  }
+  else {
+    \Drupal::logger('nnphi_training')->notice('Sent moderation notification message for review @cid',
+      ['@cid' => $review->id()]);
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert().
+ */
+function nnphi_training_vote_insert(VoteInterface $vote) {
+  // Update the node with the vote result.
+  $vote_types = nnphi_training_review_rating_fields();
+  $vote_type = $vote->type->target_id;
+  if (!isset($vote_types[$vote_type])) {
+    return;
+  }
+  $value = \Drupal::database()->query("SELECT value FROM {votingapi_result}
+                                    WHERE entity_type = 'node'
+                                    AND entity_id = :entity_id
+                                    AND type = :vote_type
+                                    AND function = 'vote_average'",
+    [':entity_id' => $vote->getVotedEntityId(), ':vote_type' => $vote_type])->fetchField();
+  $node = \Drupal::entityTypeManager()->getStorage('node')
+    ->load($vote->getVotedEntityId());
+  if ($node) {
+    try {
+      $node->{$vote_types[$vote_type]}->value = $value;
+      $node->save();
+    }
+    catch (Exception $exception) {
+      watchdog_exception('nnphi_training', $exception);
+      \Drupal::logger('nnphi_training')->error('Unable to update training rating field @field',
+        ['@field' => $vote_types[$vote_type]]);
+    }
+  }
+}
+
+/**
+ * Implements hook_comment_links_alter().
+ */
+function nnphi_training_comment_links_alter(array &$links, CommentInterface $comment, array &$context) {
+  if ($comment->getTypeId() !== 'training_review') {
+    return;
+  }
+  // Hide the reply link for training reviews.
+  if (!empty($links['comment']['#links']['comment-reply'])) {
+    unset($links['comment']['#links']['comment-reply']);
+  }
+  if (!empty($links['comment']['#links']['comment-forbidden'])) {
+    unset($links['comment']['#links']['comment-forbidden']);
+  }
+}
 
 /**
  * Implements hook_theme().
@@ -281,7 +496,7 @@ function nnphi_training_theme($existing, $type, $theme, $path) {
     'training_subtitle' => [
       'variables' => [
         'text' => '',
-        'cost' => ''
+        'cost' => '',
       ],
       'template' => 'training-subtitle',
     ],
@@ -310,4 +525,37 @@ function nnphi_training_search_js_settings() {
     'index' => $config->get('index'),
     'search_page' => Url::fromRoute('nnphi_training.instant_search')->toString(),
   ];
+}
+
+/**
+ * Implements hook_mail().
+ */
+function nnphi_training_mail($key, &$message, $params) {
+  if ($key === 'review_moderation') {
+    /** @var NodeInterface $node */
+    $node = $params['node'];
+    /** @var CommentInterface $review */
+    $review = $params['review'];
+    $message['subject'] = t('New training review submitted');
+    $line = 'A new review ("%rtitle") has been submitted for training "%ttitle" and is waiting for moderation.';
+    $line = strtr($line, ['%rtitle' => $review->getSubject(), '%ttitle' => $node->label()]);
+    $message['body'][] = MailFormatHelper::htmlToText($line);
+    $link = '<a href="%url">Click here</a> or copy and paste the following link for the moderation page: %url';
+    $link = strtr($link, ['%url' => Url::fromRoute('comment.admin_approval', [], ['absolute' => TRUE])->toString()]);
+    $message['body'][] = MailFormatHelper::htmlToText($link);
+  }
+}
+
+/**
+ * Implements hook_search_api_algolia_objects_alter().
+ */
+function nnphi_training_search_api_algolia_objects_alter(array &$objects, \Drupal\search_api\IndexInterface $index, array $items) {
+  // The instantsearch star widget only works with integers,
+  // floor the rating value so "x stars & up" works correctly.
+  foreach ($objects as &$object) {
+    if (!isset($object['overall_rating_facet_value'])) {
+      continue;
+    }
+    $object['overall_rating_facet_value'] = floor($object['overall_rating_facet_value']);
+  }
 }
