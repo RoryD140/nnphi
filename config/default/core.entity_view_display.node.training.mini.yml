@@ -33,6 +33,7 @@ dependencies:
     - datetime
     - entity_reference_revisions
     - link
+    - nnphi_training
     - options
     - text
     - user
@@ -168,7 +169,7 @@ content:
     type: entity_reference_label
     region: content
   field_training_review_overall:
-    type: number_unformatted
+    type: ratings_field_formatter
     weight: 21
     region: content
     label: hidden
@@ -232,4 +233,5 @@ hidden:
   field_training_review_present: true
   field_training_review_relevance: true
   field_training_reviews: true
+  review_login_message: true
   subtitle: true

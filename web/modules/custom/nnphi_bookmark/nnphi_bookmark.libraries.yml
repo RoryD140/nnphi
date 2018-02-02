@@ -6,6 +6,7 @@ manage_bookmarks:
     - core/jquery
     - core/jquery.once
     - nnphi_general/tablesort
+    - nnphi_training/stars
     - core/drupal.ajax
     - core/drupal.dialog.ajax
 

@@ -34,6 +34,7 @@ dependencies:
     - datetime
     - entity_reference_revisions
     - link
+    - nnphi_training
     - options
     - text
     - user
@@ -171,46 +172,30 @@ content:
   field_training_review_content:
     weight: 25
     label: above
-    settings:
-      thousand_separator: ''
-      decimal_separator: .
-      scale: 2
-      prefix_suffix: true
+    settings: {  }
     third_party_settings: {  }
-    type: number_decimal
+    type: ratings_field_formatter
     region: content
   field_training_review_overall:
     weight: 24
     label: above
-    settings:
-      thousand_separator: ''
-      decimal_separator: .
-      scale: 2
-      prefix_suffix: true
+    settings: {  }
     third_party_settings: {  }
-    type: number_decimal
+    type: ratings_field_formatter
     region: content
   field_training_review_present:
     weight: 26
     label: above
-    settings:
-      thousand_separator: ''
-      decimal_separator: .
-      scale: 2
-      prefix_suffix: true
+    settings: {  }
     third_party_settings: {  }
-    type: number_decimal
+    type: ratings_field_formatter
     region: content
   field_training_review_relevance:
     weight: 27
     label: above
-    settings:
-      thousand_separator: ''
-      decimal_separator: .
-      scale: 2
-      prefix_suffix: true
+    settings: {  }
     third_party_settings: {  }
-    type: number_decimal
+    type: ratings_field_formatter
     region: content
   field_training_reviews:
     weight: 22

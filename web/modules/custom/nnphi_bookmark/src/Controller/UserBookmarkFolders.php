@@ -189,6 +189,9 @@ class UserBookmarkFolders extends ControllerBase {
         '#attributes' => [
           'v-model' => 'checkedBookmarks',
         ],
+        '#prefix' => '<span class="custom-checkbox">',
+        '#suffix' => '<span class="checkbox-target"></span></span>',
+        '#theme_wrappers' => []
       ];
       $title = $node->label();
       $fid = $flagging->id();
@@ -197,7 +200,7 @@ class UserBookmarkFolders extends ControllerBase {
         'name' => ['data-sort' => $title, 'data' => $node->toLink($title)],
         'type' => ['data' => $this->getNodeTypeLabel($node->getType())],
         'created' => ['data-sort' => $date, 'data' => $this->dateFormatter->format($date, 'custom', 'n/j/Y g:i A')],
-        'rating' => ['attributes' => ['class' => 'ratings'], 'data-sort' => $raw_rating, 'data' => $rating],
+        'rating' => ['data-sort' => $raw_rating, 'data' => $rating, 'class' => 'ratings'],
         'delete' => ['data' => Link::createFromRoute($this->t('Delete'),
           'nnphi_bookmark.delete_flagging', ['flagging' => $fid], ['attributes' => ['class' => ['use-ajax', 'bookmark-delete']]])],
         'options' => ['data' => $this->getFlaggingOptions($flagging)],

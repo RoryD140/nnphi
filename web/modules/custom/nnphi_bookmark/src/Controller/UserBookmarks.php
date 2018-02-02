@@ -22,7 +22,7 @@ class UserBookmarks extends ControllerBase {
     $form = $this->formBuilder()->getForm(\Drupal\nnphi_bookmark\Form\BookmarkDeleteForm::class, $flagging);
     if ($request->isXmlHttpRequest()) {
       $response = new AjaxResponse();
-      $response->addCommand(new OpenModalDialogCommand($this->t('Remove this training?'), $form, ['width' => '60%']));
+      $response->addCommand(new OpenModalDialogCommand($this->t('Remove this training?'), $form, ['width' => '30%']));
       return $response;
     }
     return $form;
