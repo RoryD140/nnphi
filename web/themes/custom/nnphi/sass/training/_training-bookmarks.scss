@@ -21,37 +21,34 @@
 }
 
 // Custom checkboxes.
+span.checkbox-target {
+  font-family: 'FontAwesome'; /* use an icon font for the checkbox */
+}
+input[type='checkbox'].form-checkbox {
+  position: relative;
+  display: block;
+  opacity: 0.01;
+  z-index: 1;
+  cursor: pointer;
+  top: 15px;
+  border: none;
+  margin: 0;
+}
 
-//span.checkbox-target {
-//  font-family: 'FontAwesome'; /* use an icon font for the checkbox */
-//}
-//input[type='checkbox'].form-checkbox {
-//  //position: relative;
-//  //left: -999em; /* hide the real checkbox */
-//  //position: absolute;
-//  //display: block;
-//  opacity: 0.01;
-//  z-index: 999;
-//  //width: 100%;
-//  //height: 100%;
-//  cursor: pointer;
-//  top: 0;
-//  border: none;
-//  margin: 0;
-//}
-//
-//input[type='checkbox'].form-checkbox + span.checkbox-target::after {
-//  content: "\f0c8"; /* In fontawesome, is an open square (fa-square) */
-//}
-//input[type='checkbox'].form-checkbox:checked + span.checkbox-target::after {
-//  content: "\f14a"; /* fontawesome checked box (fa-check-square) */
-//}
-//
-//span.custom-checkbox {
-//  display: block;
-//  padding: 0.5em;;
-//}
+input[type='checkbox'].form-checkbox + span.checkbox-target::after {
+  content: "\f0c8"; /* In fontawesome, is an open square (fa-square) */
+  font-weight: normal;
+}
+input[type='checkbox'].form-checkbox:checked + span.checkbox-target::after {
+  content: "\f14a"; /* fontawesome checked box (fa-check-square) */
+  font-weight: bold;
+  color: $green;
+}
 
+span.custom-checkbox {
+  display: block;
+  padding: 0.5em;;
+}
 
 // Rating stars.
 span.stars, span.stars span {
@@ -138,8 +135,8 @@ span.stars span {
   padding-left: 2rem;
 }
 
-// Sorting indicator arrow.
-.user-bookmarks-folders-table th.sort-column[aria-sort="descending"]::after {
+// Sorting indicator arrow, intentionally global.
+th.sort-column[aria-sort="descending"]::after {
   content: '';
   border-bottom-color: transparent;
   border-left-color: transparent;
@@ -148,7 +145,6 @@ span.stars span {
   border-width: 0.3333em 0.3333em 0;
   display: block;
   height: 0;
-  //line-height: 0;
   position: relative;
   left: 60px;
   top: -8px;
@@ -157,7 +153,7 @@ span.stars span {
   overflow: hidden;
 }
 
-.user-bookmarks-folders-table th.sort-column[aria-sort="ascending"]::after {
+th.sort-column[aria-sort="ascending"]::after {
   content: '';
   border-top-color: transparent;
   border-left-color: transparent;
@@ -166,7 +162,6 @@ span.stars span {
   border-width: 0 0.3333em 0.3333em;
   display: block;
   height: 0;
-  //line-height: 0;
   position: relative;
   left: 60px;
   top: -8px;
@@ -258,4 +253,106 @@ th[role='columnheader'] {
   background-repeat: no-repeat;
   display: inline-block;
   margin-right: 1rem;
+}
+// Modals.
+.ui-dialog {
+  top: 80px;
+}
+
+.ui-widget-overlay {
+  background: $white;
+  opacity: .7;
+  filter: Alpha(Opacity=70);
+}
+
+.ui-widget.ui-widget-content {
+  border: 0 solid $white;
+  box-shadow: 2px 2px 40px 10px rgba(0,0,0,0.2);
+  font-family: $font-family-work-sans;
+}
+
+// Close button.
+.ui-button,
+.ui-button:hover {
+  border: none;
+  background-color: transparent;
+}
+
+.ui-icon {
+  background-image: none;
+}
+
+.ui-button::before {
+  content: "\f00d";
+  font-family: 'FontAwesome';
+  font-weight: normal;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  font-size: 2rem;
+}
+
+.ui-widget-header {
+  border: 0 solid $white;
+  background: transparent;
+  color: $blue;
+  font-weight: normal;
+  border-bottom: solid 1px $gray-light;
+  font-size: 1.4rem;
+}
+
+.ui-dialog-buttonpane {
+  border-top: none;
+}
+
+// Add to existing folder modal.
+// Unset scroll on entire modal.
+.ui-dialog .ui-dialog-content {
+  overflow: unset;
+}
+
+// So we can scroll here instead.
+.table-wrapper {
+  height: 20rem;
+  overflow: auto;
+}
+
+.nnphi-bookmark-add-to-folder .table th {
+  padding: 0;
+  border: none;
+}
+
+.nnphi-bookmark-add-to-folder th.sort-column[aria-sort="descending"]::after {
+  top: -12px;
+}
+
+// Add to selected button.
+.nnphi-bookmark-add-to-folder .button {
+  float: right;
+  margin: 1rem 0 1rem;
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-sm;
+}
+
+// End modals.
+
+// Title.
+.meta {
+  font-family: "Work Sans",sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+// Remove button.
+.ui-dialog-buttonset .form-submit,
+.ui-dialog-buttonset button {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-sm;
+}
+
+// Cancel button.
+.ui-dialog-buttonset .form-submit + button {
+  @extend .btn-outline-primary;
 }

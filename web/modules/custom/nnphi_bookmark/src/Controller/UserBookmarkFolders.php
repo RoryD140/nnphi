@@ -194,10 +194,55 @@ class UserBookmarkFolders extends ControllerBase {
         '#theme_wrappers' => []
       ];
       $title = $node->label();
+      $link = $node->toLink($title);
+
+      $level = '';
+      $level_field = $node->get('field_training_level');
+      if (!$level_field->isEmpty()) {
+        $levels = $level_field->referencedEntities();
+        $level = $levels[0]->label();
+      }
+
+      $proficiency = '';
+      $proficiency_field = $node->get('field_training_proficiency');
+      if (!$proficiency_field->isEmpty()) {
+        $proficiencies = $proficiency_field->referencedEntities();
+        $proficiency = $proficiencies[0]->label();
+      }
+
+      $ceu = '';
+      $ceus_field = $node->get('field_training_ceus_offered');
+      if (!$ceus_field->isEmpty()) {
+        $ceus = $ceus_field->referencedEntities();
+        $ceu = $ceus[0]->label();
+      }
+
+      $cost_field = $node->get('field_training_cost');
+      if(!$cost_field->isEmpty()) {
+        if($cost_field->getValue()[0]['value'] === '0.00') {
+          $cost_field = t('Free');
+        }
+        else {
+          $cost_field = '$' . $cost_field->getString();
+        }
+      }
+
+      $name_markup = [
+        '#type' => 'inline_template',
+        '#template' => '<div class="meta">{{ level }} {{ proficiency }} {{ cost }} {{ ceu }}</div> {{ title }}',
+        '#context' => [
+          'level' => $level,
+          'proficiency' => $proficiency,
+          'ceu' => $ceu,
+          'cost' => $cost_field,
+          'title' => $link,
+        ],
+      ];
+
       $fid = $flagging->id();
       $rows[$fid] = [
         'checkbox' => ['data' => $this->renderer->render($checkbox)],
-        'name' => ['data-sort' => $title, 'data' => $node->toLink($title)],
+        'name' => ['data-sort' => $title, 'data' => $name_markup],
         'type' => ['data' => $this->getNodeTypeLabel($node->getType())],
         'created' => ['data-sort' => $date, 'data' => $this->dateFormatter->format($date, 'custom', 'n/j/Y g:i A')],
         'rating' => ['data-sort' => $raw_rating, 'data' => $rating, 'class' => 'ratings'],
@@ -239,6 +284,7 @@ class UserBookmarkFolders extends ControllerBase {
         'class' => ['dropdown','dropdown-toggle'],
         'id' => 'dropdownMenuButton',
         'data-toggle' => 'dropdown',
+        'aria-label' => $this->t('Other Options'),
         'aria-haspopup' => 'true',
         'aria-expanded' => 'false',
         'role' => 'button'
@@ -259,7 +305,7 @@ class UserBookmarkFolders extends ControllerBase {
       '#type' => 'link',
       '#url' => Url::fromRoute('nnphi_bookmark.create_folder',
         ['entityId' => $flagging->id(), 'entityType' => $flagging->getEntityTypeId()],
-        ['attributes' => ['class' => ['use-ajax', 'dropdown-item'], 'data-dialog-type' => 'modal']]
+        ['attributes' => ['class' => ['use-ajax', 'dropdown-item'], 'data-dialog-type' => 'modal', 'data-dialog-options' => Json::encode(['width' => '75%', 'top' => '10rem'])]]
       )
     ];
 
@@ -268,7 +314,7 @@ class UserBookmarkFolders extends ControllerBase {
       '#type' => 'link',
       '#url' => Url::fromRoute('nnphi_bookmark.add_to_folder',
         ['flagging' => $flagging->id()],
-        ['attributes' => ['class' => ['use-ajax', 'dropdown-item'], 'data-dialog-type' => 'modal']]),
+        ['attributes' => ['class' => ['use-ajax', 'dropdown-item'], 'data-dialog-type' => 'modal', 'data-dialog-options' => Json::encode(['width' => '75%', 'top' => '10rem'])]]),
       '#suffix' => '</div></div>'
     ];
 

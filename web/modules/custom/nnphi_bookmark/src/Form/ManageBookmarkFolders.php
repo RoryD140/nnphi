@@ -82,6 +82,7 @@ class ManageBookmarkFolders extends FormBase {
         'name' => [
           'data-sort' => $folder->label(),
           'data' => $folder->toLink($folder->label()),
+          'class' => 'folder-title'
         ],
         'delete' => ['data' => Link::fromTextAndUrl($this->t('Delete'), $delete_url)],
         'opts' => ['data' => $this->getFolderOptions($folder)],

@@ -42,13 +42,29 @@
       <style>
         @font-face {
           font-family: 'fontawesome';
-          src: url('/themes/custom/nnphi/fonts/fontawesome/webfonts/fa-regular-400.woff') format('woff');
+          font-style: normal;
+          font-weight: normal;
+          src: url('/themes/custom/nnphi/fonts/fontawesome/webfonts/fa-regular-400.woff');
+          src: url('/themes/custom/nnphi/fonts/fontawesome/webfonts/fa-regular-400.woff') format('woff'),
+                url('/themes/custom/nnphi/fonts/fontawesome/webfonts/fa-regular-400.woff2') format('woff2'),
+                url('/themes/custom/nnphi/fonts/fontawesome/webfonts/fa-regular-400.ttf') format('ttf'),
+                url('/themes/custom/nnphi/fonts/fontawesome/webfonts/fa-regular-400.eot') format('eot'),
+                url('/themes/custom/nnphi/fonts/fontawesome/webfonts/fa-regular-400.svg') format('svg');
+        }
+        @font-face {
+          font-family: 'fontawesome';
+          font-style: normal;
+          font-weight: bold;
+          src: url('/themes/custom/nnphi/fonts/fontawesome/webfonts/fa-solid-900.woff') format('woff');
+          src: url('/themes/custom/nnphi/fonts/fontawesome/webfonts/fa-solid-900.woff') format('woff'),
+                url('/themes/custom/nnphi/fonts/fontawesome/webfonts/fa-solid-900.woff2') format('woff2'),
+                url('/themes/custom/nnphi/fonts/fontawesome/webfonts/fa-solid-900.ttf') format('ttf'),
+                url('/themes/custom/nnphi/fonts/fontawesome/webfonts/fa-solid-900.eot') format('eot'),
+                url('/themes/custom/nnphi/fonts/fontawesome/webfonts/fa-solid-900.svg') format('svg');
         }
       </style>
     {# Loads our google fonts the fancy way #}
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-    {# FontAwesome #}
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 
       <script>
       WebFont.load({
@@ -57,7 +73,7 @@
         },
         custom: {
           families: ['FontAwesome'],
-          urls: ['/themes/custom/nnphi/fonts/fontawesome/css/fontawesome.css'],
+          urls: ['/themes/custom/nnphi/fonts/fontawesome/css/fa-solid.css', '/themes/custom/nnphi/fonts/fontawesome/css/fa-regular.css'],
         }
       });
     </script>
