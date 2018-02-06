@@ -59,3 +59,13 @@ function nnphi_preprocess_page(&$variables) {
   $variables['show_hero'] = $show_hero;
 
 }
+
+/**
+ * Implements hook_theme_suggestions_input_alter().
+ */
+function nnphi_theme_suggestions_input_alter(&$suggestions, array $variables) {
+  if (empty($variables['element']['#type']) || $variables['element']['#type'] !== 'checkbox') {
+    return;
+  }
+  $suggestions[] = 'misc/input__checkbox';
+}
