@@ -1,6 +1,19 @@
 (function ($, Drupal) {
+  'use strict'
   Drupal.behaviors.nnphiTrainingSearch = {
     attach: function (context, settings) {
+      // Create a new template for the custom checkbox theming.
+      var refinementCheckbox = `<label class="{{cssClasses.label}}">
+                                <span class="custom-checkbox">
+                                <input type="checkbox"
+                                       class="{{cssClasses.checkbox}}"
+                                       value="{{value}}"
+                                       {{#isRefined}}checked{{/isRefined}} /><span class="checkbox-target"></span></span>
+                                    {{{highlighted}}}
+                                <span class="{{cssClasses.count}}">{{#helpers.formatNumber}}{{count}}{{/helpers.formatNumber}}</span>
+                              </label>`;
+
+
       $('#hits', context).once('search').each(function()  {
         const search = instantsearch({
           appId: settings.trainingSearch.app_id,
@@ -62,7 +75,8 @@
               limit: 2,
               showMore: false,
               templates: {
-                header: Drupal.t('Type')
+                header: Drupal.t('Type'),
+                item: refinementCheckbox
               }
             })
           );
@@ -78,7 +92,8 @@
               limit: 3,
               showMore: true,
               templates: {
-                header: Drupal.t('CEUS')
+                header: Drupal.t('CEUS'),
+                item: refinementCheckbox
               }
             })
           );
@@ -94,7 +109,8 @@
               limit: 3,
               showMore: true,
               templates: {
-                header: Drupal.t('Course Types')
+                header: Drupal.t('Course Types'),
+                item: refinementCheckbox
               }
             })
           );
@@ -110,7 +126,8 @@
               limit: 3,
               showMore: true,
               templates: {
-                header: Drupal.t('Levels')
+                header: Drupal.t('Levels'),
+                item: refinementCheckbox
               }
             })
           );
@@ -142,7 +159,8 @@
               limit: 3,
               showMore: true,
               templates: {
-                header: Drupal.t('Competency Terms')
+                header: Drupal.t('Competency Terms'),
+                item: refinementCheckbox
               }
             })
           );
@@ -158,7 +176,8 @@
               limit: 3,
               showMore: true,
               templates: {
-                header: Drupal.t('Occupation')
+                header: Drupal.t('Occupation'),
+                item: refinementCheckbox
               }
             })
           );
@@ -174,7 +193,8 @@
               limit: 3,
               showMore: true,
               templates: {
-                header: Drupal.t('Specific Job Task Terms')
+                header: Drupal.t('Specific Job Task Terms'),
+                item: refinementCheckbox
               }
             })
           );
