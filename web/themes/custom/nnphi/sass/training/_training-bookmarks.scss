@@ -9,6 +9,10 @@
   border-bottom: none;
 }
 
+.page-nnphi_bookmark-user_list .table-responsive {
+  display: table;
+}
+
 #manage-bookmarks,
 #manage-folders {
   border: solid 1px $gray-light;
@@ -18,6 +22,11 @@
   line-height: 1.1;
   color: $gray-text;
   min-height: 64px;
+}
+
+#manage-bookmarks th,
+#manage-folders th {
+  font-family: $font-family-lato;
 }
 
 #manage-bookmarks .bookmarks-header h3 + div {
@@ -136,7 +145,6 @@ span.stars, span.stars span {
   background: url('/themes/custom/nnphi/images/rating-stars.png') 0 -16px repeat-x;
   width: 80px;
   height: 16px;
-  margin-top: 1rem;
 }
 
 span.stars span {
@@ -361,7 +369,7 @@ th[role='columnheader'] {
 }
 
 // So we can scroll here instead.
-.table-wrapper {
+.ui-dialog .table-wrapper {
   height: 20rem;
   overflow: auto;
 }
