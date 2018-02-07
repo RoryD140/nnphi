@@ -189,36 +189,33 @@ class UserBookmarkFolders extends ControllerBase {
         '#attributes' => [
           'v-model' => 'checkedBookmarks',
         ],
-//        '#prefix' => '<span class="custom-checkbox">',
-//        '#suffix' => '<span class="checkbox-target"></span></span>',
-//        '#theme_wrappers' => []
       ];
       $title = $node->label();
       $link = $node->toLink($title);
 
       $level = '';
       $level_field = $node->get('field_training_level');
-      if (!$level_field->isEmpty()) {
+      if ($node->hasField('field_training_level') && !$level_field->isEmpty()) {
         $levels = $level_field->referencedEntities();
         $level = $levels[0]->label();
       }
 
       $proficiency = '';
       $proficiency_field = $node->get('field_training_proficiency');
-      if (!$proficiency_field->isEmpty()) {
+      if ($node->hasField('field_training_proficiency') && !$proficiency_field->isEmpty()) {
         $proficiencies = $proficiency_field->referencedEntities();
         $proficiency = $proficiencies[0]->label();
       }
 
       $ceu = '';
       $ceus_field = $node->get('field_training_ceus_offered');
-      if (!$ceus_field->isEmpty()) {
+      if ($node->hasField('field_training_ceus_offered') && !$ceus_field->isEmpty()) {
         $ceus = $ceus_field->referencedEntities();
         $ceu = $ceus[0]->label();
       }
 
       $cost_field = $node->get('field_training_cost');
-      if(!$cost_field->isEmpty()) {
+      if($node->hasField('field_training_cost') && !$cost_field->isEmpty()) {
         if($cost_field->getValue()[0]['value'] === '0.00') {
           $cost_field = t('Free');
         }
