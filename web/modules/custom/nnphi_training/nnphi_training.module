@@ -109,7 +109,7 @@ function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayIn
     $build['review_login_message'] = [
       '#type' => 'link',
       '#title' => t('Submit a Review'),
-      '#url' => Url::fromRoute('user.register', [], ['query' => ['destination' => $destination_url->toString()]]),
+      '#url' => Url::fromRoute('user.login', [], ['query' => ['destination' => $destination_url->toString()]]),
       '#access' => \Drupal::currentUser()->isAnonymous(),
       '#cache' => [
         'contexts' => [
