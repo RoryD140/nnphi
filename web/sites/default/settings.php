@@ -87,3 +87,12 @@ else {
 // Set the search_api and training search page index.
 $config['search_api.index.training']['options']['algolia_index_name'] = $index;
 $config['nnphi_training.search.config']['index'] = $index;
+
+// Normalizing & enforcing https for live site. Todo: once pre-prods have domains and certs, add logic to cover them. 
+if (isset($_ENV['PANTHEON_ENVIRONMENT']) && php_sapi_name() != 'cli') {
+  // Redirect to https://$primary_domain in the Live environment
+  if ($_ENV['PANTHEON_ENVIRONMENT'] === 'live') {
+    /** Replace www.example.com with your registered domain name */
+    $primary_domain = 'www.phlearningnavigator.org';
+  }
+}
