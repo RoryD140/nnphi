@@ -20,6 +20,10 @@
   min-height: 64px;
 }
 
+#manage-bookmarks .bookmarks-header h3 + div {
+  display: inline;
+}
+
 .user-bookmarks-table {
   table-layout: fixed;
   width: 100%;
