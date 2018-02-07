@@ -60,9 +60,9 @@ class ManageBookmarkFolders extends FormBase {
     $form['#suffix'] = '</div>';
 
     $header = [
-      'name' => ['data' => $this->t('Name'), 'class' => 'sort-column'],
-      'delete' => ['data' => '', 'data-sort-method' => 'none'],
-      'opts' => ['data' => '', 'data-sort-method' => 'none'],
+      'name' => ['data-sort-default' => 1, 'data' => $this->t('Name'), 'class' => ['sort-column', 'folder-name-cell']],
+      'delete' => ['data' => '', 'data-sort-method' => 'none', 'class' => 'folder-delete-cell'],
+      'opts' => ['data' => '', 'data-sort-method' => 'none', 'class' => 'folder-options-cell'],
     ];
     $rows = [];
     $fids = $this->entityTypeManager->getStorage('bookmark_folder')->getQuery()
@@ -101,7 +101,7 @@ class ManageBookmarkFolders extends FormBase {
             'user-bookmarks-folders-table',
             // Bootstrap table classes.
             'table',
-            'table-responsive-md',
+            'table-responsive',
             'table-hover'
           ],
         ],

@@ -148,13 +148,13 @@ class UserBookmarkFolders extends ControllerBase {
     $nodeViewer = $this->entityTypeManager()->getViewBuilder('node');
     $build = [];
     $header = [
-      'checkbox' => ['data' => '', 'data-sort-method' => 'none', 'width' => '10%'],
-      'name' => ['data' => $this->t('Name'), 'width' => '90%', 'class' => 'sort-column'],
-      'type' => ['data' => $this->t('Type'), 'data-sort-method' => 'none'],
-      'created' => ['data-sort-default' => 1, 'data' => $this->t('Date Added'), 'class' => 'sort-column'],
-      'rating' => ['data' => $this->t('Rating'), 'class' => 'sort-column'],
-      'delete' => ['data' => '', 'data-sort-method' => 'none'],
-      'options' => ['data' => '', 'data-sort-method' => 'none'],
+      'checkbox' => ['data' => '', 'data-sort-method' => 'none', 'class' => 'checkbox-cell'],
+      'name' => ['data' => $this->t('Name'), 'class' => ['sort-column', 'name-cell']],
+      'type' => ['data' => $this->t('Type'), 'data-sort-method' => 'none', 'class' => 'type-cell'],
+      'created' => ['data-sort-default' => 1, 'data' => $this->t('Date Added'), 'class' => ['sort-column', 'created-cell']],
+      'rating' => ['data' => $this->t('Rating'), 'class' => ['sort-column', 'rating-cell']],
+      'delete' => ['data' => '', 'data-sort-method' => 'none', 'class' => 'delete-cell'],
+      'options' => ['data' => '', 'data-sort-method' => 'none', 'class' => 'options-cell']
     ];
 
     $fids = $this->entityTypeManager()->getStorage('flagging')->getQuery()
@@ -189,9 +189,9 @@ class UserBookmarkFolders extends ControllerBase {
         '#attributes' => [
           'v-model' => 'checkedBookmarks',
         ],
-        '#prefix' => '<span class="custom-checkbox">',
-        '#suffix' => '<span class="checkbox-target"></span></span>',
-        '#theme_wrappers' => []
+//        '#prefix' => '<span class="custom-checkbox">',
+//        '#suffix' => '<span class="checkbox-target"></span></span>',
+//        '#theme_wrappers' => []
       ];
       $title = $node->label();
       $link = $node->toLink($title);
@@ -263,7 +263,7 @@ class UserBookmarkFolders extends ControllerBase {
           'user-bookmarks-folders-table',
           // Bootstrap table classes.
           'table',
-          'table-responsive-md',
+          'table-responsive',
           'table-hover'
         ],
       ],

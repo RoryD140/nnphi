@@ -46,7 +46,7 @@ class AddToFolder extends FormBase {
       'name' => [
         'data-sort-default' => 1,
         'data' => $this->t('Name'),
-        'class' => ['sort-column']
+        'class' => ['sort-column', 'add-to-name-cell']
       ]
     ];
     /** @var \Drupal\nnphi_bookmark\Entity\BookmarkFolderInterface[] $folders */
@@ -80,7 +80,7 @@ class AddToFolder extends FormBase {
           'user-bookmarks-table',
           // Bootstrap table classes.
           'table',
-          'table-responsive-md',
+          'table-responsive',
           'table-hover'
         ],
       ],

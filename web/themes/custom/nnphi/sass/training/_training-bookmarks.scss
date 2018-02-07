@@ -3,6 +3,12 @@
   background-color: rgba(133,191,66,0.075);
 }
 
+.table thead th {
+  padding: .5rem 2rem;
+  border-top: none;
+  border-bottom: none;
+}
+
 #manage-bookmarks,
 #manage-folders {
   border: solid 1px $gray-light;
@@ -12,6 +18,73 @@
   line-height: 1.1;
   color: $gray-text;
   min-height: 64px;
+}
+
+.user-bookmarks-table {
+  table-layout: fixed;
+  width: 100%;
+  margin-bottom: 0;
+  border-top: solid 1px $gray-light;
+}
+
+.checkbox-cell {
+  width: 5%;
+}
+
+.name-cell {
+  width: 50%;
+  white-space: wrap;
+}
+
+.type-cell {
+  width: 10%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.created-cell {
+  width: 20%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.delete-cell {
+  width: 5%;
+}
+
+.options-cell {
+  width: 10%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Folders table
+
+// Checkbox column.
+.user-bookmarks-folders-table tr th:first-of-type {
+  width: 5%;
+}
+
+.folder-name-cell {
+  width: 80%;
+  white-space: wrap;
+}
+
+.folder-delete-cell {
+  width: 5%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.folder-options-cell {
+  width: 10%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #manage-bookmarks a,
@@ -24,6 +97,7 @@
 span.checkbox-target {
   font-family: 'FontAwesome'; /* use an icon font for the checkbox */
 }
+
 input[type='checkbox'].form-checkbox {
   position: relative;
   display: block;
@@ -38,7 +112,9 @@ input[type='checkbox'].form-checkbox {
 input[type='checkbox'].form-checkbox + span.checkbox-target::after {
   content: "\f0c8"; /* In fontawesome, is an open square (fa-square) */
   font-weight: normal;
+  color: $gray-text;
 }
+
 input[type='checkbox'].form-checkbox:checked + span.checkbox-target::after {
   content: "\f14a"; /* fontawesome checked box (fa-check-square) */
   font-weight: bold;
@@ -47,7 +123,7 @@ input[type='checkbox'].form-checkbox:checked + span.checkbox-target::after {
 
 span.custom-checkbox {
   display: block;
-  padding: 0.5em;;
+  //padding: 0.5em;;
 }
 
 // Rating stars.
@@ -146,11 +222,21 @@ th.sort-column[aria-sort="descending"]::after {
   display: block;
   height: 0;
   position: relative;
-  left: 60px;
+  left: 70%;
   top: -8px;
   margin-top: -0.1666em;
   width: 0;
   overflow: hidden;
+}
+
+th.folder-name-cell.sort-column[aria-sort="descending"]::after,
+th.folder-name-cell.sort-column[aria-sort="ascending"]::after{
+  left: 7%;
+}
+
+th.add-to-name-cell.sort-column[aria-sort="descending"]::after,
+th.add-to-name-cell.sort-column[aria-sort="ascending"]::after{
+  left: 5%;
 }
 
 th.sort-column[aria-sort="ascending"]::after {
@@ -163,7 +249,7 @@ th.sort-column[aria-sort="ascending"]::after {
   display: block;
   height: 0;
   position: relative;
-  left: 60px;
+  left: 70%;
   top: -8px;
   margin-top: -0.1666em;
   width: 0;
@@ -172,17 +258,13 @@ th.sort-column[aria-sort="ascending"]::after {
 
 // Section Headings.
 .bookmarks-header h3 {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   padding: 1rem 0 1rem 1rem;
   font-size: 1.3rem;
   text-transform: uppercase;
   margin-bottom: 0;
   color: black;
-}
-
-#manage-bookmarks .bookmarks-header h3 {
-  float: left;
 }
 
 .bookmarks-header h3::before {
@@ -259,10 +341,34 @@ th[role='columnheader'] {
   top: 80px;
 }
 
+.ui-dialog .user-bookmarks-table {
+  border-top: none;
+}
+
 .ui-widget-overlay {
   background: $white;
   opacity: .7;
   filter: Alpha(Opacity=70);
+}
+
+// Unset scroll on entire modal.
+.ui-dialog .ui-dialog-content {
+  overflow: unset;
+}
+
+// So we can scroll here instead.
+.table-wrapper {
+  height: 20rem;
+  overflow: auto;
+}
+
+.ui-dialog input[type='checkbox'].form-checkbox {
+  top: 5px;
+}
+
+.ui-dialog input[type='checkbox'].form-checkbox + span.checkbox-target::after {
+  position: relative;
+  top: -15px;
 }
 
 .ui-widget.ui-widget-content {
@@ -272,26 +378,34 @@ th[role='columnheader'] {
 }
 
 // Close button.
+.ui-button .ui-icon,
+.ui-button:hover .ui-icon {
+  border: none;
+  background-color: transparent;
+  background-image: url('/themes/custom/nnphi/svg/close-x.svg');
+  width: 1rem;
+  height: 1rem;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
 .ui-button,
 .ui-button:hover {
   border: none;
   background-color: transparent;
 }
 
-.ui-icon {
-  background-image: none;
+.ui-button .ui-icon:hover,
+.ui-button .ui-icon:active {
+
 }
 
-.ui-button::before {
-  content: "\f00d";
-  font-family: 'FontAwesome';
-  font-weight: normal;
-  width: 30px;
-  height: 30px;
-  display: inline-block;
-  font-size: 2rem;
+.ui-dialog .ui-dialog-titlebar-close {
+  right: 1rem;
 }
 
+// Modal header.
 .ui-widget-header {
   border: 0 solid $white;
   background: transparent;
@@ -306,24 +420,29 @@ th[role='columnheader'] {
 }
 
 // Add to existing folder modal.
-// Unset scroll on entire modal.
-.ui-dialog .ui-dialog-content {
-  overflow: unset;
-}
-
-// So we can scroll here instead.
-.table-wrapper {
-  height: 20rem;
-  overflow: auto;
-}
-
-.nnphi-bookmark-add-to-folder .table th {
-  padding: 0;
-  border: none;
-}
-
-.nnphi-bookmark-add-to-folder th.sort-column[aria-sort="descending"]::after {
+.nnphi-bookmark-add-to-folder th.sort-column[aria-sort="descending"]::after,
+.nnphi-bookmark-add-to-folder th.sort-column[aria-sort="ascending"]::after{
   top: -12px;
+}
+
+.nnphi-bookmark-add-to-folder  .select-all {
+  width: 5%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nnphi-bookmark-add-to-folder .add-to-name-cell {
+  width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nnphi-bookmark-add-to-folder .table thead th {
+  padding: 0 .5rem;
+  border-top: none;
+  border-bottom: none;
 }
 
 // Add to selected button.
