@@ -56,8 +56,23 @@ class RatingsFieldFormatter extends FormatterBase {
     $elements = [];
 
     foreach ($items as $delta => $item) {
-      $stars_markup = ' <div class="stars-wrapper"><span class="stars">' .$this->viewValue($item) . '</span></div>';
-      $elements[$delta] = ['#markup' => $stars_markup];
+
+      // Get the value.
+      $rating = $this->viewValue($item);
+
+      // Round to nearest half.
+      $rating = round($rating * 2);
+
+      // Make sure that the value is in 0 - 5 range, multiply to get width.
+      $size = max(0, (min(5, $rating))) * 16;
+
+      $elements[$delta] = [
+        '#type' => 'inline_template',
+        '#template' => '<div class="stars-wrapper"><span class="stars"><span style="width:{{ size }}px;"></span></span></div>',
+        '#context' => [
+          'size' => $size
+        ]
+      ];
     }
 
     return $elements;

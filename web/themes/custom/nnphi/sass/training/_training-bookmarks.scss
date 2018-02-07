@@ -34,7 +34,6 @@
 }
 
 .user-bookmarks-table {
-  table-layout: fixed;
   width: 100%;
   margin-bottom: 0;
   border-top: solid 1px $gray-light;
@@ -46,7 +45,7 @@
 
 .name-cell {
   width: 50%;
-  white-space: wrap;
+  white-space: normal;
 }
 
 .type-cell {
@@ -305,6 +304,9 @@ th[role='columnheader'] {
   border-color: $blue;
   max-height: 36px;
   padding: 2px 30px 5px;
+  @include media-breakpoint-down(md) {
+    float: none;
+  }
 }
 
 .bookmark-link:hover {
@@ -371,6 +373,9 @@ th[role='columnheader'] {
 // So we can scroll here instead.
 .ui-dialog .table-wrapper {
   height: 20rem;
+}
+
+.table-wrapper {
   overflow: auto;
 }
 
@@ -464,6 +469,9 @@ th[role='columnheader'] {
   @extend .btn;
   @extend .btn-primary;
   @extend .btn-sm;
+  @include media-breakpoint-down(md) {
+    float: none;
+  }
 }
 
 // End modals.

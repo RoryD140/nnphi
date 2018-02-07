@@ -261,6 +261,8 @@ class UserBookmarkFolders extends ControllerBase {
           'table-hover'
         ],
       ],
+      '#prefix' => '<div class="table-wrapper">',
+      '#suffix' => '</div>'
     ];
 
     return $build;

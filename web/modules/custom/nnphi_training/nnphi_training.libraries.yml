@@ -3,19 +3,9 @@ slider:
   js:
    js/slick-slider.min.js: {}
    js/slick-slider-init.min.js: {}
-   js/stars.js: {}
   dependencies:
    - core/jquery
    - core/jquery.once
-
-stars:
-  version: VERSION
-  js:
-    js/stars.js: {}
-  dependencies:
-    - core/jquery
-    - core/jquery.once
-    - nnphi_bookmarks/delete_flagging
 
 instant-search:
   version: VERSION
