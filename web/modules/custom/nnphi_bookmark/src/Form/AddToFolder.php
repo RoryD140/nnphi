@@ -43,7 +43,11 @@ class AddToFolder extends FormBase {
     ];
 
     $header = [
-      'name' => ['data' => $this->t('Name')],
+      'name' => [
+        'data-sort-default' => 1,
+        'data' => $this->t('Name'),
+        'class' => ['sort-column', 'add-to-name-cell']
+      ]
     ];
     /** @var \Drupal\nnphi_bookmark\Entity\BookmarkFolderInterface[] $folders */
     $folders = $this->folderService->getFoldersForUser($this->currentUser());
@@ -56,7 +60,10 @@ class AddToFolder extends FormBase {
     $rows = [];
     foreach ($folders as $folder) {
       $rows[$folder->id()] = [
-        'name' => ['data' => $folder->label()],
+        'name' => [
+          'data' => $folder->label(),
+          'class' => ['folder-title']
+        ],
       ];
     }
 
@@ -66,8 +73,16 @@ class AddToFolder extends FormBase {
       '#header' => $header,
       '#empty' => $this->t('You have not created any folders.'),
       '#after_build' => [[$this, 'foldersAfterBuild']],
+      '#prefix' => '<div class="table-wrapper">',
+      '#suffix' => '</div>',
       '#attributes' => [
-        'class' => ['user-bookmarks-table'],
+        'class' => [
+          'user-bookmarks-table',
+          // Bootstrap table classes.
+          'table',
+          'table-responsive',
+          'table-hover'
+        ],
       ],
     ];
 

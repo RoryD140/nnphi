@@ -44,7 +44,6 @@ module.exports = function(grunt) {
         }
       },
 
-
       concat: {
         options: {
           // Custom function to remove all export and import statements
@@ -58,7 +57,9 @@ module.exports = function(grunt) {
             // You have to manually request bootstrap scripts you want to use
             'js/src/base.js',
             'js/src/header.js',
-            'js/src/scripts.js'
+            'js/src/scripts.js',
+            'js/src/bootstrap/dropdown.js',
+            'js/src/bootstrap/util.js'
           ],
           dest: 'dist/scripts.js'
 

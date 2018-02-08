@@ -111,4 +111,5 @@ hidden:
   field_training_total_time: true
   field_training_url: true
   links: true
+  review_login_message: true
   subtitle: true

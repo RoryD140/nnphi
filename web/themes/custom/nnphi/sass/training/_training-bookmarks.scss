@@ -1,3 +1,18 @@
+// Tables.
+.table-hover tbody tr:hover {
+  background-color: rgba(133,191,66,0.075);
+}
+
+.table thead th {
+  padding: .5rem 2rem;
+  border-top: none;
+  border-bottom: none;
+}
+
+.page-nnphi_bookmark-user_list .table-responsive {
+  display: table;
+}
+
 #manage-bookmarks,
 #manage-folders {
   border: solid 1px $gray-light;
@@ -9,10 +24,197 @@
   min-height: 64px;
 }
 
+#manage-bookmarks th,
+#manage-folders th {
+  font-family: $font-family-lato;
+}
+
+#manage-bookmarks .bookmarks-header h3 + div {
+  display: inline;
+}
+
+.user-bookmarks-table {
+  width: 100%;
+  margin-bottom: 0;
+  border-top: solid 1px $gray-light;
+}
+
+.checkbox-cell {
+  width: 5%;
+}
+
+.name-cell {
+  width: 50%;
+  white-space: normal;
+}
+
+.type-cell {
+  width: 10%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.created-cell {
+  width: 20%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.delete-cell {
+  width: 5%;
+}
+
+.options-cell {
+  width: 10%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Folders table
+
+// Checkbox column.
+.user-bookmarks-folders-table tr th:first-of-type {
+  width: 5%;
+}
+
+.folder-name-cell {
+  width: 80%;
+  white-space: wrap;
+}
+
+.folder-delete-cell {
+  width: 5%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.folder-options-cell {
+  width: 10%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 #manage-bookmarks a,
 #manage-folders a {
   color: black;
   font-size: 1.2rem;
+}
+
+// Custom checkboxes.
+span.checkbox-target {
+  font-family: 'FontAwesome'; /* use an icon font for the checkbox */
+}
+
+input[type='checkbox'].form-checkbox {
+  position: relative;
+  display: block;
+  opacity: 0.01;
+  z-index: 1;
+  cursor: pointer;
+  top: 15px;
+  border: none;
+  margin: 0;
+}
+
+input[type='checkbox'].form-checkbox + span.checkbox-target::after {
+  content: "\f0c8"; /* In fontawesome, is an open square (fa-square) */
+  font-weight: normal;
+  color: $gray-text;
+}
+
+input[type='checkbox'].form-checkbox:checked + span.checkbox-target::after {
+  content: "\f14a"; /* fontawesome checked box (fa-check-square) */
+  font-weight: bold;
+  color: $green;
+}
+
+span.custom-checkbox {
+  display: block;
+  //padding: 0.5em;;
+}
+
+// Rating stars.
+span.stars, span.stars span {
+  display: block;
+  background: url('/themes/custom/nnphi/images/rating-stars.png') 0 -16px repeat-x;
+  width: 80px;
+  height: 16px;
+}
+
+span.stars span {
+  background-position: 0 0;
+}
+
+// Delete button.
+#manage-bookmarks .bookmark-delete,
+#manage-folders .bookmark-delete {
+  color: $white;
+  font-size: 1px;
+}
+
+.bookmark-delete::before {
+  background-image: url('/themes/custom/nnphi/svg/delete.svg');
+  content: '';
+  width: 1rem;
+  height: 1rem;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin: 1rem 1rem 0;
+}
+
+.bookmark-delete {
+  padding: 22px 0 8px;
+  white-space: nowrap;
+}
+
+// Dropdown toggle menus.
+#manage-bookmarks .dropdown-menu a, #manage-folders .dropdown-menu a {
+  color: $gray-text;
+  font-size: 1rem;
+}
+
+#manage-bookmarks .dropdown-menu a:hover, #manage-folders .dropdown-menu a:hover {
+  color: $gray-dark;
+}
+
+.dropdown {
+  position: relative;
+  width: 50px;
+  float: right;
+}
+
+#dropdownMenuButton {
+  background-color: transparent;
+  font-size: 2rem;
+  color: $gray-text;
+  font-family: "Work Sans",sans-serif;
+  border-radius: 5px;
+  border: solid 2px transparent;
+  padding: 0 7px 19px;
+  height: 30px;
+  line-height: 0;
+  margin-top: .5rem;
+}
+
+#dropdownMenuButton:focus {
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+#dropdownMenuButton:active {
+  outline: -webkit-focus-ring-color auto 0;
+}
+
+#dropdownMenuButton:hover {
+  background-color: $white;
+  color: $green;
+  border-radius: 5px;
+  border: solid 2px $green;
 }
 
 .user-bookmarks-folders-table th,
@@ -20,8 +222,8 @@
   padding-left: 2rem;
 }
 
-// Sorting indicator arrow.
-.user-bookmarks-folders-table th.sort-column:after {
+// Sorting indicator arrow, intentionally global.
+th.sort-column[aria-sort="descending"]::after {
   content: '';
   border-bottom-color: transparent;
   border-left-color: transparent;
@@ -30,27 +232,50 @@
   border-width: 0.3333em 0.3333em 0;
   display: block;
   height: 0;
-  line-height: 0;
   position: relative;
-  left: 60px;
+  left: 70%;
   top: -8px;
   margin-top: -0.1666em;
   width: 0;
   overflow: hidden;
 }
 
+th.folder-name-cell.sort-column[aria-sort="descending"]::after,
+th.folder-name-cell.sort-column[aria-sort="ascending"]::after{
+  left: 7%;
+}
+
+th.add-to-name-cell.sort-column[aria-sort="descending"]::after,
+th.add-to-name-cell.sort-column[aria-sort="ascending"]::after{
+  left: 5%;
+}
+
+th.sort-column[aria-sort="ascending"]::after {
+  content: '';
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-style: solid;
+  border-width: 0 0.3333em 0.3333em;
+  display: block;
+  height: 0;
+  position: relative;
+  left: 70%;
+  top: -8px;
+  margin-top: -0.1666em;
+  width: 0;
+  overflow: hidden;
+}
+
+// Section Headings.
 .bookmarks-header h3 {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   padding: 1rem 0 1rem 1rem;
   font-size: 1.3rem;
   text-transform: uppercase;
   margin-bottom: 0;
   color: black;
-}
-
-#manage-bookmarks .bookmarks-header h3 {
-  float: left;
 }
 
 .bookmarks-header h3::before {
@@ -68,7 +293,7 @@ th[role='columnheader'] {
   color: $gray-text;
 }
 
-// New bookmark folder button
+// New bookmark folder button.
 .bookmark-link {
   @extend .btn;
   @extend .btn-primary;
@@ -79,6 +304,9 @@ th[role='columnheader'] {
   border-color: $blue;
   max-height: 36px;
   padding: 2px 30px 5px;
+  @include media-breakpoint-down(md) {
+    float: none;
+  }
 }
 
 .bookmark-link:hover {
@@ -122,4 +350,148 @@ th[role='columnheader'] {
   display: inline-block;
   margin-right: 1rem;
 }
+// Modals.
+.ui-dialog {
+  top: 80px;
+}
 
+.ui-dialog .user-bookmarks-table {
+  border-top: none;
+}
+
+.ui-widget-overlay {
+  background: $white;
+  opacity: .7;
+  filter: Alpha(Opacity=70);
+}
+
+// Unset scroll on entire modal.
+.ui-dialog .ui-dialog-content {
+  overflow: unset;
+}
+
+// So we can scroll here instead.
+.ui-dialog .table-wrapper {
+  height: 20rem;
+}
+
+.table-wrapper {
+  overflow: auto;
+}
+
+.ui-dialog input[type='checkbox'].form-checkbox {
+  top: 5px;
+}
+
+.ui-dialog input[type='checkbox'].form-checkbox + span.checkbox-target::after {
+  position: relative;
+  top: -15px;
+}
+
+.ui-widget.ui-widget-content {
+  border: 0 solid $white;
+  box-shadow: 2px 2px 40px 10px rgba(0,0,0,0.2);
+  font-family: $font-family-work-sans;
+}
+
+// Close button.
+.ui-button .ui-icon,
+.ui-button:hover .ui-icon {
+  border: none;
+  background-color: transparent;
+  background-image: url('/themes/custom/nnphi/svg/close-x.svg');
+  width: 1rem;
+  height: 1rem;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+.ui-button,
+.ui-button:hover {
+  border: none;
+  background-color: transparent;
+}
+
+.ui-button .ui-icon:hover,
+.ui-button .ui-icon:active {
+
+}
+
+.ui-dialog .ui-dialog-titlebar-close {
+  right: 1rem;
+}
+
+// Modal header.
+.ui-widget-header {
+  border: 0 solid $white;
+  background: transparent;
+  color: $blue;
+  font-weight: normal;
+  border-bottom: solid 1px $gray-light;
+  font-size: 1.4rem;
+}
+
+.ui-dialog-buttonpane {
+  border-top: none;
+}
+
+// Add to existing folder modal.
+.nnphi-bookmark-add-to-folder th.sort-column[aria-sort="descending"]::after,
+.nnphi-bookmark-add-to-folder th.sort-column[aria-sort="ascending"]::after{
+  top: -12px;
+}
+
+.nnphi-bookmark-add-to-folder  .select-all {
+  width: 5%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nnphi-bookmark-add-to-folder .add-to-name-cell {
+  width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nnphi-bookmark-add-to-folder .table thead th {
+  padding: 0 .5rem;
+  border-top: none;
+  border-bottom: none;
+}
+
+// Add to selected button.
+.nnphi-bookmark-add-to-folder .button {
+  float: right;
+  margin: 1rem 0 1rem;
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-sm;
+  @include media-breakpoint-down(md) {
+    float: none;
+  }
+}
+
+// End modals.
+
+// Title.
+.meta {
+  font-family: "Work Sans",sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+// Remove button.
+.ui-dialog-buttonset .form-submit,
+.ui-dialog-buttonset button {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-sm;
+}
+
+// Cancel button.
+.ui-dialog-buttonset .form-submit + button {
+  @extend .btn-outline-primary;
+}

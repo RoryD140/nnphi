@@ -148,13 +148,13 @@ class UserBookmarkFolders extends ControllerBase {
     $nodeViewer = $this->entityTypeManager()->getViewBuilder('node');
     $build = [];
     $header = [
-      'checkbox' => ['data' => '', 'data-sort-method' => 'none', 'width' => '10%'],
-      'name' => ['data' => $this->t('Name'), 'width' => '90%', 'class' => 'sort-column'],
-      'type' => ['data' => $this->t('Type'), 'data-sort-method' => 'none'],
-      'created' => ['data-sort-default' => 1, 'data' => $this->t('Date Added'), 'class' => 'sort-column'],
-      'rating' => ['data' => $this->t('Rating'), 'class' => 'sort-column'],
-      'delete' => ['data' => '', 'data-sort-method' => 'none'],
-      'options' => ['data' => '', 'data-sort-method' => 'none'],
+      'checkbox' => ['data' => '', 'data-sort-method' => 'none', 'class' => 'checkbox-cell'],
+      'name' => ['data' => $this->t('Name'), 'class' => ['sort-column', 'name-cell']],
+      'type' => ['data' => $this->t('Type'), 'data-sort-method' => 'none', 'class' => 'type-cell'],
+      'created' => ['data-sort-default' => 1, 'data' => $this->t('Date Added'), 'class' => ['sort-column', 'created-cell']],
+      'rating' => ['data' => $this->t('Rating'), 'class' => ['sort-column', 'rating-cell']],
+      'delete' => ['data' => '', 'data-sort-method' => 'none', 'class' => 'delete-cell'],
+      'options' => ['data' => '', 'data-sort-method' => 'none', 'class' => 'options-cell']
     ];
 
     $fids = $this->entityTypeManager()->getStorage('flagging')->getQuery()
@@ -191,13 +191,55 @@ class UserBookmarkFolders extends ControllerBase {
         ],
       ];
       $title = $node->label();
+      $link = $node->toLink($title);
+
+      $level = '';
+      if ($node->hasField('field_training_level') && !$node->get('field_training_level')->isEmpty()) {
+        $levels = $node->get('field_training_level')->referencedEntities();
+        $level = $levels[0]->label();
+      }
+
+      $proficiency = '';
+      if ($node->hasField('field_training_proficiency') && !$node->get('field_training_proficiency')->isEmpty()) {
+        $proficiencies = $node->get('field_training_proficiency')->referencedEntities();
+        $proficiency = $proficiencies[0]->label();
+      }
+
+      $ceu = '';
+      if ($node->hasField('field_training_ceus_offered') && !$node->get('field_training_ceus_offered')->isEmpty()) {
+        $ceus = $node->get('field_training_ceus_offered')->referencedEntities();
+        $ceu = $ceus[0]->label();
+      }
+
+      $cost_field = '';
+      if($node->hasField('field_training_cost') && !$node->get('field_training_cost')->isEmpty()) {
+        if($node->get('field_training_cost')->getValue()[0]['value'] === '0.00') {
+          $cost_field = t('Free');
+        }
+        else {
+          $cost_field = '$' . $cost_field->getString();
+        }
+      }
+
+      $name_markup = [
+        '#type' => 'inline_template',
+        '#template' => '<div class="meta">{{ level }} {{ proficiency }} {{ cost }} {{ ceu }}</div> {{ title }}',
+        '#context' => [
+          'level' => $level,
+          'proficiency' => $proficiency,
+          'ceu' => $ceu,
+          'cost' => $cost_field,
+          'title' => $link,
+        ],
+      ];
+
       $fid = $flagging->id();
       $rows[$fid] = [
         'checkbox' => ['data' => $this->renderer->render($checkbox)],
-        'name' => ['data-sort' => $title, 'data' => $node->toLink($title)],
+        'name' => ['data-sort' => $title, 'data' => $name_markup],
         'type' => ['data' => $this->getNodeTypeLabel($node->getType())],
         'created' => ['data-sort' => $date, 'data' => $this->dateFormatter->format($date, 'custom', 'n/j/Y g:i A')],
-        'rating' => ['data-sort' => $raw_rating, 'data' => $rating],
+        'rating' => ['data-sort' => $raw_rating, 'data' => $rating, 'class' => 'ratings'],
         'delete' => ['data' => Link::createFromRoute($this->t('Delete'),
           'nnphi_bookmark.delete_flagging', ['flagging' => $fid], ['attributes' => ['class' => ['use-ajax', 'bookmark-delete']]])],
         'options' => ['data' => $this->getFlaggingOptions($flagging)],
@@ -215,39 +257,64 @@ class UserBookmarkFolders extends ControllerBase {
           'user-bookmarks-folders-table',
           // Bootstrap table classes.
           'table',
-          'table-responsive-md',
+          'table-responsive',
           'table-hover'
         ],
       ],
+      '#prefix' => '<div class="table-wrapper">',
+      '#suffix' => '</div>'
     ];
 
     return $build;
   }
 
   protected function getFlaggingOptions(FlaggingInterface $flagging) {
-    $links = [];
+
     $node = $this->nodeStorage()->load($flagging->get('entity_id')->getString());
-    $links['view'] = [
-      'title' => $this->t('View'),
-      'url' => $node->toUrl(),
+
+    $build['options_toggle'] = [
+      '#type' => 'button',
+      '#value' => '...',
+      '#url' => '/',
+      '#attributes' => [
+        'class' => ['dropdown','dropdown-toggle'],
+        'id' => 'dropdownMenuButton',
+        'data-toggle' => 'dropdown',
+        'aria-label' => $this->t('Other Options'),
+        'aria-haspopup' => 'true',
+        'aria-expanded' => 'false',
+        'role' => 'button'
+      ],
+      '#prefix' => '<div class="dropdown">'
     ];
-    $links['new'] = [
-      'title' => $this->t('Create Folder from Bookmark'),
-      'url' => Url::fromRoute('nnphi_bookmark.create_folder',
+
+    $build['open'] = [
+      '#prefix' => '<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">',
+      '#title' => $this->t('Open'),
+      '#type' => 'link',
+      '#url' => $node->toUrl(),
+      '#attributes' => ['class' => ['dropdown-item']]
+    ];
+
+    $build['new'] = [
+      '#title' => $this->t('Create Folder from Bookmark'),
+      '#type' => 'link',
+      '#url' => Url::fromRoute('nnphi_bookmark.create_folder',
         ['entityId' => $flagging->id(), 'entityType' => $flagging->getEntityTypeId()],
-        ['attributes' => ['class' => ['use-ajax'], 'data-dialog-type' => 'modal']]
-      ),
+        ['attributes' => ['class' => ['use-ajax', 'dropdown-item'], 'data-dialog-type' => 'modal', 'data-dialog-options' => Json::encode(['width' => '75%', 'top' => '10rem'])]]
+      )
     ];
-    $links['add'] = [
-      'title' => $this->t('Add to Existing Folder'),
-      'url' => Url::fromRoute('nnphi_bookmark.add_to_folder',
-                ['flagging' => $flagging->id()],
-                ['attributes' => ['class' => ['use-ajax'], 'data-dialog-type' => 'modal']]),
+
+    $build['add'] = [
+      '#title' => $this->t('Add to Existing Folder'),
+      '#type' => 'link',
+      '#url' => Url::fromRoute('nnphi_bookmark.add_to_folder',
+        ['flagging' => $flagging->id()],
+        ['attributes' => ['class' => ['use-ajax', 'dropdown-item'], 'data-dialog-type' => 'modal', 'data-dialog-options' => Json::encode(['width' => '75%', 'top' => '10rem'])]]),
+      '#suffix' => '</div></div>'
     ];
-    return [
-      '#type' => 'dropbutton',
-      '#links' => $links,
-    ];
+
+    return $build;
   }
 
   public function addFolder(Request $request, $entityType = NULL, $entityId = NULL) {
