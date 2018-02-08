@@ -436,6 +436,12 @@ th[role='columnheader'] {
   border-top: none;
 }
 
+.ui-dialog input,
+.ui-dialog select,
+.ui-dialog textarea {
+  width: 100%;
+}
+
 // Add to existing folder modal.
 .nnphi-bookmark-add-to-folder th.sort-column[aria-sort="descending"]::after,
 .nnphi-bookmark-add-to-folder th.sort-column[aria-sort="ascending"]::after{
@@ -494,4 +500,13 @@ th[role='columnheader'] {
 // Cancel button.
 .ui-dialog-buttonset .form-submit + button {
   @extend .btn-outline-primary;
+}
+
+// Combine folders dialog.
+//#folder-ui {
+//  padding: 2rem;
+//}
+
+#manage-folders #folder-ui {
+  overflow: auto;
 }
