@@ -331,7 +331,7 @@ class UserBookmarkFolders extends ControllerBase {
     if ($request->isXmlHttpRequest()) {
       $response = new AjaxResponse();
       $response->addCommand(new OpenModalDialogCommand($this->t('Add Folder'), $form, [
-        'width' => '40%',
+        'width' => '75%',
       ]));
       return $response;
     }
