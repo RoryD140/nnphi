@@ -109,7 +109,7 @@ function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayIn
     $build['review_login_message'] = [
       '#type' => 'link',
       '#title' => t('Submit a Review'),
-      '#url' => Url::fromRoute('user.register', [], ['query' => ['destination' => $destination_url->toString()]]),
+      '#url' => Url::fromRoute('user.login', [], ['query' => ['destination' => $destination_url->toString()]]),
       '#access' => \Drupal::currentUser()->isAnonymous(),
       '#cache' => [
         'contexts' => [
@@ -436,6 +436,23 @@ function nnphi_training_review_notify(CommentInterface $review) {
  * Implements hook_ENTITY_TYPE_insert().
  */
 function nnphi_training_vote_insert(VoteInterface $vote) {
+  nnphi_training_vote_update_insert($vote);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update().
+ */
+function nnphi_training_vote_update(VoteInterface $vote) {
+  nnphi_training_vote_update_insert($vote);
+}
+
+/**
+ * Combined callback for vote result updates/inserts.
+ * @param \Drupal\votingapi\VoteInterface $vote
+ *
+ * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+ */
+function nnphi_training_vote_update_insert(VoteInterface $vote) {
   // Update the node with the vote result.
   $vote_types = nnphi_training_review_rating_fields();
   $vote_type = $vote->type->target_id;

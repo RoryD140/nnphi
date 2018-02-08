@@ -159,6 +159,8 @@ function nnphi_user_form_user_form_alter(&$form, FormStateInterface $form_state,
       '#weight' => -99,
     ];
 
+    $form['#cache']['contexts'][] = 'url.query_args';
+
     // Override default submit text
     $form['actions']['submit']['#value'] = t('Save Changes');
   }
@@ -196,6 +198,20 @@ function nnphi_user_register_form_after_build($element) {
  * Implements hook_form_FORM_ID_alter().
  */
 function nnphi_user_form_user_login_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $destination = \Drupal::destination()->getAsArray();
+  $t_args = [
+    '@register' => Url::fromRoute('user.register', [], ['query' => $destination])->toString(),
+    '@reset' => Url::fromRoute('user.pass')->toString(),
+  ];
+  $form['header'] = [
+    '#type' => 'markup',
+    '#prefix' => '<p class="green-links">',
+    '#suffix' => '</p>',
+    '#markup' => t('<a href="@register">Register</a> | <a href="@reset">reset your password</a>', $t_args),
+    '#weight' => -99,
+  ];
+
+  $form['#cache']['contexts'][] = 'url.query_args';
 
   // Add submit handler to set redirect.
   $form['#submit'][] = '_nnphi_user_user_login_form_submit';
