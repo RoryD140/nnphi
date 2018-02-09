@@ -55,7 +55,8 @@
   text-overflow: ellipsis;
 }
 
-.created-cell {
+.created-cell,
+td.created {
   width: 20%;
   white-space: nowrap;
   overflow: hidden;
