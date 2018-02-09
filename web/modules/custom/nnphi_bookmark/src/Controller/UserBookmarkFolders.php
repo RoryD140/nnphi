@@ -194,7 +194,7 @@ class UserBookmarkFolders extends ControllerBase {
       $link = $node->toLink($title);
 
       $level = '';
-      if ($node->hasField('field_training_level') && !$node->get('field_training_level')->isEmpty()) {
+      if ($node->hasField('field_training_level') && !empty($levels = $node->get('field_training_level')->referencedEntities())) {
         $levels = $node->get('field_training_level')->referencedEntities();
         $level = $levels[0]->label();
       }
@@ -217,7 +217,7 @@ class UserBookmarkFolders extends ControllerBase {
           $cost_field = t('Free');
         }
         else {
-          $cost_field = '$' . $cost_field->getString();
+          $cost_field = '$' . $node->get('field_training_cost')->getString();
         }
       }
 
