@@ -194,20 +194,17 @@ class UserBookmarkFolders extends ControllerBase {
       $link = $node->toLink($title);
 
       $level = '';
-      if ($node->hasField('field_training_level') && !$node->get('field_training_level')->isEmpty()) {
-        $levels = $node->get('field_training_level')->referencedEntities();
+      if ($node->hasField('field_training_level') && !empty($levels = $node->get('field_training_level')->referencedEntities())) {
         $level = $levels[0]->label();
       }
 
       $proficiency = '';
-      if ($node->hasField('field_training_proficiency') && !$node->get('field_training_proficiency')->isEmpty()) {
-        $proficiencies = $node->get('field_training_proficiency')->referencedEntities();
+      if ($node->hasField('field_training_proficiency') && !empty($proficiencies = $node->get('field_training_proficiency')->referencedEntities())) {
         $proficiency = $proficiencies[0]->label();
       }
 
       $ceu = '';
-      if ($node->hasField('field_training_ceus_offered') && !$node->get('field_training_ceus_offered')->isEmpty()) {
-        $ceus = $node->get('field_training_ceus_offered')->referencedEntities();
+      if ($node->hasField('field_training_ceus_offered') && !empty($ceus = $node->get('field_training_ceus_offered')->referencedEntities())) {
         $ceu = $ceus[0]->label();
       }
 
@@ -217,7 +214,7 @@ class UserBookmarkFolders extends ControllerBase {
           $cost_field = t('Free');
         }
         else {
-          $cost_field = '$' . $cost_field->getString();
+          $cost_field = '$' . $node->get('field_training_cost')->getString();
         }
       }
 
