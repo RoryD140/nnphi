@@ -200,13 +200,13 @@ class UserBookmarkFolders extends ControllerBase {
       }
 
       $proficiency = '';
-      if ($node->hasField('field_training_proficiency') && !empty($levels = $node->get('field_training_proficiency')->referencedEntities())) {
+      if ($node->hasField('field_training_proficiency') && !empty($proficiencies = $node->get('field_training_proficiency')->referencedEntities())) {
         $proficiencies = $node->get('field_training_proficiency')->referencedEntities();
         $proficiency = $proficiencies[0]->label();
       }
 
       $ceu = '';
-      if ($node->hasField('field_training_ceus_offered') && !empty($levels = $node->get('field_training_ceus_offered')->referencedEntities())) {
+      if ($node->hasField('field_training_ceus_offered') && !empty($ceus = $node->get('field_training_ceus_offered')->referencedEntities())) {
         $ceus = $node->get('field_training_ceus_offered')->referencedEntities();
         $ceu = $ceus[0]->label();
       }
