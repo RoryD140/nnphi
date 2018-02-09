@@ -113,7 +113,7 @@ class ManageBookmarkFolders extends FormBase {
         '#type' => 'submit',
         '#value' => $this->t('Combine Selected Folders'),
         '#attributes' => [
-          'class' => ['visually-hidden'],
+          'class' => ['visually-hidden','use-ajax-submit'],
         ],
         '#ajax' => [
           'callback' => [$this, 'ajaxSubmit'],
@@ -142,6 +142,7 @@ class ManageBookmarkFolders extends FormBase {
         '#options' => $folder_opts,
         '#required' => TRUE,
         '#title' => $this->t('Destination'),
+        '#attributes' => ['class' => ['merge-folders']],
       ];
 
       $form['combine'] = [
@@ -153,6 +154,16 @@ class ManageBookmarkFolders extends FormBase {
           'method' => 'replace',
         ],
         '#submit' => [[$this, 'combineSubmit']],
+        '#attributes' => ['class' => ['combine']],
+      ];
+
+      $form['cancel'] = [
+        '#type' => 'button',
+        '#value' => $this->t('Cancel'),
+        '#ajax' => [
+          'callback' => [$this, 'refreshSubmit'],
+        ],
+        '#attributes' => ['class' => ['cancel']],
       ];
     }
 

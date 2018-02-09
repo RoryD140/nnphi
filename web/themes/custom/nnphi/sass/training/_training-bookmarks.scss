@@ -80,6 +80,10 @@
   width: 5%;
 }
 
+.user-bookmarks-folders-table {
+  border-top: none;
+}
+
 .folder-name-cell {
   width: 80%;
   white-space: wrap;
@@ -135,7 +139,49 @@ input[type='checkbox'].form-checkbox:checked + span.checkbox-target::after {
 
 span.custom-checkbox {
   display: block;
-  //padding: 0.5em;;
+}
+
+// Custom radios.
+span.radio-target {
+  font-family: 'FontAwesome'; /* use an icon font for the radio */
+}
+
+input[type='radio'].form-radio {
+  position: relative;
+  display: block;
+  opacity: 0.01;
+  z-index: 1;
+  cursor: pointer;
+  bottom: 0;
+  border: none;
+  left: 15px;
+  margin-top: 0;
+}
+
+input[type='radio'].form-radio + span.radio-target::after {
+  content: "\f111"; /* In fontawesome, is an open circle (fa-circle) */
+  font-weight: normal;
+  color: $gray-text;
+}
+
+input[type='radio'].form-radio:checked + span.radio-target::after {
+  content: "\f192"; /* fontawesome circle-dot (fa-circle-dot) */
+  font-weight: bold;
+  color: $green;
+}
+
+span.custom-radio {
+  display: inline-flex;
+  margin: .5rem 3rem 0 0;
+}
+
+.js-form-type-radio {
+  padding: .5rem 0;
+}
+
+.js-form-type-radio label::before {
+  position: relative;
+  top: 7px;
 }
 
 // Rating stars.
@@ -340,7 +386,8 @@ th[role='columnheader'] {
   align-items: center;
 }
 
-.folder-title::before {
+.folder-title::before,
+.js-form-type-radio label::before {
   background-image: url('/themes/custom/nnphi/svg/folder.svg');
   content: '';
   width: 2rem;
@@ -350,6 +397,7 @@ th[role='columnheader'] {
   display: inline-block;
   margin-right: 1rem;
 }
+
 // Modals.
 .ui-dialog {
   top: 80px;
@@ -504,4 +552,54 @@ th[role='columnheader'] {
 
 #manage-folders #folder-ui {
   overflow: auto;
+}
+
+// Combine folders.
+.manage-bookmark-folders .merge-folders {
+  padding: 0 2rem 0 1rem;
+  margin-top: 1rem;
+}
+
+.manage-bookmark-folders {
+  border-top: solid 1px $gray-light;
+}
+
+.merge-folders .fieldset-legend {
+  color: $blue;
+  font-weight: normal;
+  border-bottom: none;
+  font-size: 1.4rem;
+  padding: 1rem 0 0;
+}
+
+.merge-folders legend {
+  margin: .5rem;
+}
+
+.merge-folders .fieldset-wrapper > div {
+  margin-bottom: 2rem;
+}
+
+.merge-folders label,
+.merge-folders .description {
+  color: $black;
+}
+
+.merge-folders .description {
+  margin-left: .5rem;
+}
+
+// Combine and Cancel buttons.
+.manage-bookmark-folders input[type="submit"].button {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-sm;
+  margin: 0 0 2rem 2rem;
+  cursor: pointer;
+}
+
+// Cancel button.
+.manage-bookmark-folders input[type="submit"].button.cancel {
+  @extend .btn-outline-primary;
+  margin-left: 1rem;
 }
