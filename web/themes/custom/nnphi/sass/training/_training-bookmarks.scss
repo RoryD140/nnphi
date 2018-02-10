@@ -63,10 +63,6 @@ td.created {
   text-overflow: ellipsis;
 }
 
-.delete-cell {
-  width: 5%;
-}
-
 .options-cell {
   width: 10%;
   white-space: nowrap;
@@ -84,13 +80,6 @@ td.created {
 .folder-name-cell {
   width: 80%;
   white-space: wrap;
-}
-
-.folder-delete-cell {
-  width: 5%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .folder-options-cell {
@@ -149,29 +138,6 @@ span.stars, span.stars span {
 
 span.stars span {
   background-position: 0 0;
-}
-
-// Delete button.
-#manage-bookmarks .bookmark-delete,
-#manage-folders .bookmark-delete {
-  color: $white;
-  font-size: 1px;
-}
-
-.bookmark-delete::before {
-  background-image: url('/themes/custom/nnphi/svg/delete.svg');
-  content: '';
-  width: 1rem;
-  height: 1rem;
-  background-position: center center;
-  background-repeat: no-repeat;
-  display: inline-block;
-  margin: 1rem 1rem 0;
-}
-
-.bookmark-delete {
-  padding: 22px 0 8px;
-  white-space: nowrap;
 }
 
 // Dropdown toggle menus.
@@ -234,21 +200,11 @@ th.sort-column[aria-sort="descending"]::after {
   display: block;
   height: 0;
   position: relative;
-  left: 70%;
+  left: 4rem;
   top: -8px;
   margin-top: -0.1666em;
   width: 0;
   overflow: hidden;
-}
-
-th.folder-name-cell.sort-column[aria-sort="descending"]::after,
-th.folder-name-cell.sort-column[aria-sort="ascending"]::after{
-  left: 7%;
-}
-
-th.add-to-name-cell.sort-column[aria-sort="descending"]::after,
-th.add-to-name-cell.sort-column[aria-sort="ascending"]::after{
-  left: 5%;
 }
 
 th.sort-column[aria-sort="ascending"]::after {
@@ -261,11 +217,16 @@ th.sort-column[aria-sort="ascending"]::after {
   display: block;
   height: 0;
   position: relative;
-  left: 70%;
+  left: 4rem;
   top: -8px;
   margin-top: -0.1666em;
   width: 0;
   overflow: hidden;
+}
+
+th.created-cell.sort-column[aria-sort="descending"]::after,
+th.created-cell.sort-column[aria-sort="ascending"]::after {
+  left: 6rem;
 }
 
 // Section Headings.
@@ -376,8 +337,13 @@ th[role='columnheader'] {
   height: 20rem;
 }
 
-.table-wrapper {
-  overflow: auto;
+// Make inline option lists fully visible without compromising table responsiveness.
+.table-wrapper,
+#manage-folders #folder-ui {
+  overflow: visible;
+  @include media-breakpoint-down(md) {
+    overflow: auto;
+  }
 }
 
 .ui-dialog input[type='checkbox'].form-checkbox {
@@ -501,8 +467,4 @@ th[role='columnheader'] {
 // Cancel button.
 .ui-dialog-buttonset .form-submit + button {
   @extend .btn-outline-primary;
-}
-
-#manage-folders #folder-ui {
-  overflow: auto;
 }
