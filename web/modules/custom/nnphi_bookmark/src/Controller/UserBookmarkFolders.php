@@ -110,32 +110,6 @@ class UserBookmarkFolders extends ControllerBase {
     return $this->formBuilder()->getForm(\Drupal\nnphi_bookmark\Form\ManageBookmarkFolders::class, $user);
   }
 
-  protected function getFolderOptions(BookmarkFolderInterface $folder) {
-    $links = [];
-    $links['view'] = [
-      'title' => $this->t('View'),
-      'url' => $folder->toUrl(),
-    ];
-    $links['edit'] = [
-      'title' => $this->t('Edit'),
-      'url' => Url::fromRoute('entity.bookmark_folder.edit_form',
-        ['user' => $folder->getOwnerId(), 'bookmark_folder' => $folder->id()],
-        ['attributes' => ['class' => ['use-ajax'], 'data-dialog-type' => 'modal', 'data-dialog-options' => Json::encode(['width' => '75%'])]]
-      ),
-    ];
-    $links['delete'] = [
-      'title' => $this->t('Delete'),
-      'url' => Url::fromRoute('entity.bookmark_folder.delete_form',
-        ['user' => $folder->getOwnerId(), 'bookmark_folder' => $folder->id()],
-        ['attributes' => ['class' => ['use-ajax'], 'data-dialog-type' => 'modal', 'data-dialog-options' => Json::encode(['width' => '75%'])]]
-      ),
-    ];
-    return [
-      '#type' => 'dropbutton',
-      '#links' => $links,
-    ];
-  }
-
   /**
    * Get
    * @param \Drupal\user\UserInterface $user
@@ -153,7 +127,6 @@ class UserBookmarkFolders extends ControllerBase {
       'type' => ['data' => $this->t('Type'), 'data-sort-method' => 'none', 'class' => 'type-cell'],
       'created' => ['data-sort-default' => 1, 'data' => $this->t('Date Added'), 'class' => ['sort-column', 'created-cell']],
       'rating' => ['data' => $this->t('Rating'), 'class' => ['sort-column', 'rating-cell']],
-      'delete' => ['data' => '', 'data-sort-method' => 'none', 'class' => 'delete-cell'],
       'options' => ['data' => '', 'data-sort-method' => 'none', 'class' => 'options-cell']
     ];
 
@@ -195,19 +168,16 @@ class UserBookmarkFolders extends ControllerBase {
 
       $level = '';
       if ($node->hasField('field_training_level') && !empty($levels = $node->get('field_training_level')->referencedEntities())) {
-        $levels = $node->get('field_training_level')->referencedEntities();
         $level = $levels[0]->label();
       }
 
       $proficiency = '';
-      if ($node->hasField('field_training_proficiency') && !$node->get('field_training_proficiency')->isEmpty()) {
-        $proficiencies = $node->get('field_training_proficiency')->referencedEntities();
+      if ($node->hasField('field_training_proficiency') && !empty($proficiencies = $node->get('field_training_proficiency')->referencedEntities())) {
         $proficiency = $proficiencies[0]->label();
       }
 
       $ceu = '';
-      if ($node->hasField('field_training_ceus_offered') && !$node->get('field_training_ceus_offered')->isEmpty()) {
-        $ceus = $node->get('field_training_ceus_offered')->referencedEntities();
+      if ($node->hasField('field_training_ceus_offered') && !empty($ceus = $node->get('field_training_ceus_offered')->referencedEntities())) {
         $ceu = $ceus[0]->label();
       }
 
@@ -238,10 +208,8 @@ class UserBookmarkFolders extends ControllerBase {
         'checkbox' => ['data' => $this->renderer->render($checkbox)],
         'name' => ['data-sort' => $title, 'data' => $name_markup],
         'type' => ['data' => $this->getNodeTypeLabel($node->getType())],
-        'created' => ['data-sort' => $date, 'data' => $this->dateFormatter->format($date, 'custom', 'n/j/Y g:i A')],
+        'created' => ['data-sort' => $date, 'data' => $this->dateFormatter->format($date, 'custom', 'n/j/Y g:i A'), 'class' => 'created'],
         'rating' => ['data-sort' => $raw_rating, 'data' => $rating, 'class' => 'ratings'],
-        'delete' => ['data' => Link::createFromRoute($this->t('Delete'),
-          'nnphi_bookmark.delete_flagging', ['flagging' => $fid], ['attributes' => ['class' => ['use-ajax', 'bookmark-delete']]])],
         'options' => ['data' => $this->getFlaggingOptions($flagging)],
       ];
     }
@@ -311,7 +279,14 @@ class UserBookmarkFolders extends ControllerBase {
       '#url' => Url::fromRoute('nnphi_bookmark.add_to_folder',
         ['flagging' => $flagging->id()],
         ['attributes' => ['class' => ['use-ajax', 'dropdown-item'], 'data-dialog-type' => 'modal', 'data-dialog-options' => Json::encode(['width' => '75%', 'top' => '10rem'])]]),
-      '#suffix' => '</div></div>'
+    ];
+
+    $build['delete'] = [
+      '#title' => $this->t('Delete'),
+      '#type' => 'link',
+      '#url' => Url::fromRoute('nnphi_bookmark.delete_flagging',
+        ['flagging' => $flagging->id()],
+        ['attributes' => ['class' => ['use-ajax', 'dropdown-item'], 'data-dialog-type' => 'modal', 'data-dialog-options' => Json::encode(['width' => '75%', 'top' => '10rem'])]]),
     ];
 
     return $build;
