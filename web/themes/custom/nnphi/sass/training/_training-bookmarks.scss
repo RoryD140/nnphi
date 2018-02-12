@@ -98,9 +98,14 @@ td.created {
 // Custom checkboxes.
 span.checkbox-target {
   font-family: 'FontAwesome'; /* use an icon font for the checkbox */
+  margin-right: 1rem;
 }
 
-input[type='checkbox'].form-checkbox {
+table span.checkbox-target {
+  margin-right: 0;
+}
+
+input[type='checkbox'] {
   position: relative;
   display: block;
   opacity: 0.01;
@@ -108,16 +113,16 @@ input[type='checkbox'].form-checkbox {
   cursor: pointer;
   top: 15px;
   border: none;
-  margin: 0;
+  margin: 0 0 0 1rem;
 }
 
-input[type='checkbox'].form-checkbox + span.checkbox-target::after {
+input[type='checkbox'] + span.checkbox-target::after {
   content: "\f0c8"; /* In fontawesome, is an open square (fa-square) */
   font-weight: normal;
   color: $gray-text;
 }
 
-input[type='checkbox'].form-checkbox:checked + span.checkbox-target::after {
+input[type='checkbox']:checked + span.checkbox-target::after {
   content: "\f14a"; /* fontawesome checked box (fa-check-square) */
   font-weight: bold;
   color: $green;

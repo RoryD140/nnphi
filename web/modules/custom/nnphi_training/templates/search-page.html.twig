@@ -13,9 +13,10 @@
     </div>
     <h3>{{{  _highlightResult.title.value }}}</h3>
     {% endraw %}
-    <div>{{ 'Rating'| t }}: {{ '{{ overall_rating }}'|raw }}</div>
+
+    <div class="stars-wrapper"><span class="stars"><span class="{{ '{{ class }}' }}" style="width:{{ '{{ size }}' }}px;"></span></span></div>
     {% raw %}
-    {{{  _highlightResult.summary.value }}}
+      {{{  _highlightResult.summary.value }}}
     {% endraw %}
     <div class="training-teaser-link-wrapper">
       <a href="{{ '{{ url }}' }}" class="training-teaser-link">{{ 'View Training'|t }}</a>
