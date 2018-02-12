@@ -61,7 +61,6 @@ class ManageBookmarkFolders extends FormBase {
 
     $header = [
       'name' => ['data-sort-default' => 1, 'data' => $this->t('Name'), 'class' => ['sort-column', 'folder-name-cell']],
-      'delete' => ['data' => '', 'data-sort-method' => 'none', 'class' => 'folder-delete-cell'],
       'opts' => ['data' => '', 'data-sort-method' => 'none', 'class' => 'folder-options-cell'],
     ];
     $rows = [];
@@ -74,17 +73,12 @@ class ManageBookmarkFolders extends FormBase {
     /** @var \Drupal\nnphi_bookmark\Entity\BookmarkFolderInterface[] $folders */
     $folders = $this->folderStorage()->loadMultiple($fids);
     foreach ($folders as $folder) {
-      $delete_url = Url::fromRoute('entity.bookmark_folder.delete_form',
-          ['user' => $folder->getOwnerId(), 'bookmark_folder' => $folder->id()],
-          ['attributes' => ['class' => ['use-ajax', 'bookmark-delete'], 'data-dialog-type' => 'modal', 'data-dialog-options' => Json::encode(['width' => '75%'])]]
-        );
       $rows[$folder->id()] = [
         'name' => [
           'data-sort' => $folder->label(),
           'data' => $folder->toLink($folder->label()),
           'class' => 'folder-title'
         ],
-        'delete' => ['data' => Link::fromTextAndUrl($this->t('Delete'), $delete_url)],
         'opts' => ['data' => $this->getFolderOptions($folder)],
       ];
     }
@@ -242,6 +236,14 @@ class ManageBookmarkFolders extends FormBase {
         ['user' => $folder->getOwnerId(), 'bookmark_folder' => $folder->id()],
         ['attributes' => ['class' => ['use-ajax', 'dropdown-item'], 'data-dialog-type' => 'modal', 'data-dialog-options' => Json::encode(['width' => '75%'])]]
       ),
+    ];
+
+    $links['delete'] = [
+      '#title' => $this->t('Delete'),
+      '#type' => 'link',
+      '#url' => Url::fromRoute('entity.bookmark_folder.delete_form',
+        ['user' => $folder->getOwnerId(), 'bookmark_folder' => $folder->id()],
+        ['attributes' => ['class' => ['use-ajax', 'dropdown-item'], 'data-dialog-type' => 'modal', 'data-dialog-options' => Json::encode(['width' => '75%'])]])
     ];
 
     $links['suffix'] = [
