@@ -409,6 +409,10 @@ th[role='columnheader'] {
   width: 100%;
 }
 
+.ui-dialog input[type="submit"] {
+  width: auto;
+}
+
 // Add to existing folder modal.
 .nnphi-bookmark-add-to-folder th.sort-column[aria-sort="descending"]::after,
 .nnphi-bookmark-add-to-folder th.sort-column[aria-sort="ascending"]::after{
