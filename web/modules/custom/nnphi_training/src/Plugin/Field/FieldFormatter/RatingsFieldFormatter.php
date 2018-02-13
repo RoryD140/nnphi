@@ -61,7 +61,7 @@ class RatingsFieldFormatter extends FormatterBase {
       $rating = $this->viewValue($item);
 
       // Round to nearest half.
-      $rating = round($rating * .5);
+      $rating = round($rating * 2)/2;
 
       // Make sure that the value is in 0 - 5 range, multiply to get width.
       $size = max(0, (min(5, $rating))) * 16;
