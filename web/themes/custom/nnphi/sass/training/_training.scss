@@ -14,3 +14,58 @@
 .training-subtitle {
   text-transform: uppercase;
 }
+
+// Bookmarked Training Folder page.
+.page-entity-bookmark_folder-canonical #block-nnphi-content {
+  @extend .container;
+}
+
+.bookmark-folder-move-to-folder table span.checkbox-target {
+  margin-left: 1rem;
+}
+
+.page-entity-bookmark_folder-canonical .user-bookmarks-table {
+  border-top: none;
+}
+
+.page-entity-bookmark_folder-canonical .table-responsive {
+  display: table;
+}
+
+// Breadcrumbs for Bookmarked Training Folder page.
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0 1rem 1rem;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  color: black;
+  border: solid 1px $gray-light;
+  border-bottom: none;
+}
+
+.breadcrumbs::before {
+  background-image: url('/themes/custom/nnphi/svg/bookmark.svg');
+  content: '';
+  width: 2rem;
+  height: 2rem;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+// Breadcrumb divider.
+.folder-name {
+  text-transform: capitalize;
+  color: $gray-text;
+}
+
+.folder-name::before {
+  content: "\f105"; /* In fontawesome, is a right-angle (fa-right-angle) */
+  font-family: 'FontAwesome';
+  font-weight: bold;
+  color: $gray-light;
+  padding: 10px;
+}
