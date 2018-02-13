@@ -144,74 +144,7 @@ class UserBookmarkFolders extends ControllerBase {
 
     /** @var \Drupal\flag\FlaggingInterface $flagging */
     foreach ($fs->loadMultiple($fids) as $flagging) {
-      $nid = $flagging->get('entity_id')->getString();
-      /** @var \Drupal\node\NodeInterface $node */
-      $node = $ns->load($nid);
-      $rating = '';
-      $raw_rating = 0;
-      if ($node->hasField('field_training_review_overall') && $node->get('field_training_review_overall')->count()) {
-        $field = $node->get('field_training_review_overall');
-        $raw_rating = $field->getString();
-        $rating = $nodeViewer->viewField($field, 'mini');
-        $rating = $this->renderer->render($rating);
-      }
-      $date = $flagging->get('created')->getString();
-      $checkbox = [
-        '#type' => 'checkbox',
-        '#return_value' => $flagging->id(),
-        '#attributes' => [
-          'v-model' => 'checkedBookmarks',
-        ],
-      ];
-      $title = $node->label();
-      $link = $node->toLink($title);
-
-      $level = '';
-      if ($node->hasField('field_training_level') && !empty($levels = $node->get('field_training_level')->referencedEntities())) {
-        $level = $levels[0]->label();
-      }
-
-      $proficiency = '';
-      if ($node->hasField('field_training_proficiency') && !empty($proficiencies = $node->get('field_training_proficiency')->referencedEntities())) {
-        $proficiency = $proficiencies[0]->label();
-      }
-
-      $ceu = '';
-      if ($node->hasField('field_training_ceus_offered') && !empty($ceus = $node->get('field_training_ceus_offered')->referencedEntities())) {
-        $ceu = $ceus[0]->label();
-      }
-
-      $cost_field = '';
-      if($node->hasField('field_training_cost') && !$node->get('field_training_cost')->isEmpty()) {
-        if($node->get('field_training_cost')->getValue()[0]['value'] === '0.00') {
-          $cost_field = t('Free');
-        }
-        else {
-          $cost_field = '$' . $node->get('field_training_cost')->getString();
-        }
-      }
-
-      $name_markup = [
-        '#type' => 'inline_template',
-        '#template' => '<div class="meta">{{ level }} {{ proficiency }} {{ cost }} {{ ceu }}</div> {{ title }}',
-        '#context' => [
-          'level' => $level,
-          'proficiency' => $proficiency,
-          'ceu' => $ceu,
-          'cost' => $cost_field,
-          'title' => $link,
-        ],
-      ];
-
-      $fid = $flagging->id();
-      $rows[$fid] = [
-        'checkbox' => ['data' => $this->renderer->render($checkbox)],
-        'name' => ['data-sort' => $title, 'data' => $name_markup],
-        'type' => ['data' => $this->getNodeTypeLabel($node->getType())],
-        'created' => ['data-sort' => $date, 'data' => $this->dateFormatter->format($date, 'custom', 'n/j/Y g:i A'), 'class' => 'created'],
-        'rating' => ['data-sort' => $raw_rating, 'data' => $rating, 'class' => 'ratings'],
-        'options' => ['data' => $this->getFlaggingOptions($flagging)],
-      ];
+      $rows[$flagging->id()] = $this->folderService->formatBookmarkTableRow($flagging, $this->getFlaggingOptions($flagging));
     }
 
     $build['bookmarks'] = [
@@ -292,6 +225,16 @@ class UserBookmarkFolders extends ControllerBase {
     return $build;
   }
 
+  /**
+   * Add folder page callback.
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   * @param null $entityType
+   * @param null $entityId
+   *
+   * @return array|\Drupal\Core\Ajax\AjaxResponse
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   */
   public function addFolder(Request $request, $entityType = NULL, $entityId = NULL) {
     $defaultEntity = FALSE;
     if ($entityType && $entityId) {
@@ -313,8 +256,73 @@ class UserBookmarkFolders extends ControllerBase {
     return $form;
   }
 
+  /**
+   * Add to folder page callback.
+   *
+   * @param \Drupal\flag\FlaggingInterface $flagging
+   *
+   * @return array
+   */
   public function addToFolder(FlaggingInterface $flagging) {
     $form = $this->formBuilder()->getForm(\Drupal\nnphi_bookmark\Form\AddToFolder::class, $flagging);
+    return $form;
+  }
+
+  /**
+   * Custom access callback for folder/flagging combination.
+   *
+   * @param \Drupal\nnphi_bookmark\Entity\BookmarkFolderInterface $bookmark_folder
+   * @param \Drupal\flag\FlaggingInterface $flagging
+   *
+   * @return \Drupal\Core\Access\AccessResultAllowed|\Drupal\Core\Access\AccessResultForbidden|\Drupal\Core\Access\AccessResultNeutral|static
+   */
+  public function removeFromFolderAccess(BookmarkFolderInterface $bookmark_folder, FlaggingInterface $flagging) {
+    return AccessResult::allowedIf((int)$bookmark_folder->getOwnerId() === (int)$this->currentUser()->id())
+      ->andIf(AccessResult::allowedIf((int)$flagging->getOwnerId() === (int)$this->currentUser()->id()))
+      ->orIf(AccessResult::allowedIfHasPermission($this->currentUser(), 'administer bookmark folder entities'));
+  }
+
+  /**
+   * Remove from folder page callback.
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   * @param \Drupal\nnphi_bookmark\Entity\BookmarkFolderInterface $bookmark_folder
+   * @param \Drupal\flag\FlaggingInterface $flagging
+   *
+   * @return array|\Drupal\Core\Ajax\AjaxResponse
+   */
+  public function removeFromFolder(Request $request, BookmarkFolderInterface $bookmark_folder, FlaggingInterface $flagging) {
+    $form = $this->formBuilder()->getForm(\Drupal\nnphi_bookmark\Form\RemoveFromFolder::class, $flagging, $bookmark_folder);
+    if ($request->isXmlHttpRequest()) {
+      $response = new AjaxResponse();
+      $title = $this->t('Remove bookmark from folder');
+      $response->addCommand(new OpenModalDialogCommand($title, $form, [
+        'width' => '75%',
+      ]));
+      return $response;
+    }
+    return $form;
+  }
+
+  /**
+   * Move to folder page callback.
+   * 
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   * @param \Drupal\flag\FlaggingInterface $flagging
+   * @param \Drupal\nnphi_bookmark\Entity\BookmarkFolderInterface $bookmark_folder
+   *
+   * @return array|\Drupal\Core\Ajax\AjaxResponse
+   */
+  public function moveToFolder(Request $request, FlaggingInterface $flagging, BookmarkFolderInterface $bookmark_folder) {
+    $form = $this->formBuilder()->getForm(\Drupal\nnphi_bookmark\Form\MoveToFolder::class, $flagging, $bookmark_folder);
+    if ($request->isXmlHttpRequest()) {
+      $response = new AjaxResponse();
+      $title = $this->t('Move bookmark to folder');
+      $response->addCommand(new OpenModalDialogCommand($title, $form, [
+        'width' => '75%',
+      ]));
+      return $response;
+    }
     return $form;
   }
 

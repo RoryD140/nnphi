@@ -1,7 +1,7 @@
 services:
   nnphi_bookmark.folder:
     class: Drupal\nnphi_bookmark\BookmarkFolderService
-    arguments: ['@current_user', '@entity_type.manager']
+    arguments: ['@current_user', '@entity_type.manager', '@renderer', '@date.formatter']
   nnphi_bookmark.flagging.access_check:
     class: Drupal\nnphi_bookmark\Access\FlaggingAccess
     arguments: ['@current_user']

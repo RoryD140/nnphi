@@ -3,6 +3,7 @@
 namespace Drupal\nnphi_bookmark\Form;
 
 use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\CloseDialogCommand;
 use Drupal\Core\Ajax\CloseModalDialogCommand;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -50,7 +51,7 @@ class AddToFolder extends FormBase {
       ]
     ];
     /** @var \Drupal\nnphi_bookmark\Entity\BookmarkFolderInterface[] $folders */
-    $folders = $this->folderService->getFoldersForUser($this->currentUser());
+    $folders = $this->folderService->getFoldersForUser($flagging->getOwner());
     // If the bookmark already belongs to folders, remove those folders from the list.
     if (!$flagging->get(BookmarkFolderService::FLAGGING_FOLDER_FIELD)->isEmpty()) {
       $vals = array_column($flagging->get(BookmarkFolderService::FLAGGING_FOLDER_FIELD)->getValue(), 'target_id');
@@ -71,7 +72,7 @@ class AddToFolder extends FormBase {
       '#type' => 'tableselect',
       '#options' => $rows,
       '#header' => $header,
-      '#empty' => $this->t('You have not created any folders.'),
+      '#empty' => $this->t('You have not created any folders or all of your folders contain this bookmark.'),
       '#after_build' => [[$this, 'foldersAfterBuild']],
       '#prefix' => '<div class="table-wrapper">',
       '#suffix' => '</div>',
@@ -86,7 +87,20 @@ class AddToFolder extends FormBase {
       ],
     ];
 
-    $form['submit'] = [
+    $form['actions'] = [
+      '#type' => 'actions',
+    ];
+
+    $form['actions']['cancel'] = [
+      '#type' => 'button',
+      '#value' => $this->t('Cancel'),
+      '#submit' => ['::cancelSubmit'],
+      '#ajax' => [
+        'callback' => [$this, 'ajaxCancel'],
+      ],
+    ];
+
+    $form['actions']['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Add to Selected'),
       '#ajax' => [
@@ -138,6 +152,19 @@ class AddToFolder extends FormBase {
   public function ajaxSubmit(array $form, FormStateInterface $form_state) {
     $response = new AjaxResponse();
     $response->addCommand(new RefreshCommand());
+    return $response;
+  }
+
+  public function cancelSubmit(array &$form, FormStateInterface $form_state) {
+    $form_state->setRedirect('nnphi_bookmark.user_list', ['user' => $form_state->getValue('bookmark')->getOwnerId()]);
+  }
+
+  /**
+   * Cancel button ajax callback.
+   */
+  public function ajaxCancel($form, FormStateInterface $form_state) {
+    $response = new AjaxResponse();
+    $response->addCommand(new CloseDialogCommand());
     return $response;
   }
 

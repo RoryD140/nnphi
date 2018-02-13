@@ -34,6 +34,26 @@ nnphi_bookmark.add_to_folder:
     flagging: \d+
     _flagging_access: 'TRUE'
 
+nnphi_bookmark.remove_from_folder:
+  path: '/user/{user}/bookmarks/{bookmark_folder}/remove/{flagging}'
+  defaults:
+    _title: 'Remove bookmark from folder'
+    _controller: '\Drupal\nnphi_bookmark\Controller\UserBookmarkFolders::removeFromFolder'
+  requirements:
+    _custom_access: '\Drupal\nnphi_bookmark\Controller\UserBookmarkFolders::removeFromFolderAccess'
+    bookmark_folder: \d+
+    flagging: \d+
+
+nnphi_bookmark.move_to_folder:
+  path: '/user/{user}/bookmarks/{bookmark_folder}/move/{flagging}'
+  defaults:
+    _title: 'Remove bookmark from folder'
+    _controller: '\Drupal\nnphi_bookmark\Controller\UserBookmarkFolders::moveToFolder'
+  requirements:
+    _custom_access: '\Drupal\nnphi_bookmark\Controller\UserBookmarkFolders::removeFromFolderAccess'
+    bookmark_folder: \d+
+    flagging: \d+
+
 nnphi_bookmark.delete_flagging:
   path: '/bookmarks/flagging/{flagging}/delete'
   defaults:
@@ -42,3 +62,4 @@ nnphi_bookmark.delete_flagging:
   requirements:
     _permission: 'flag bookmark'
     _flagging_access: 'TRUE'
+
