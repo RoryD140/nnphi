@@ -280,6 +280,18 @@
         item.url = item.url.substring(1);
       }
       item.url = Drupal.url(item.url);
+
+      // Calculate size for Rating Star theming.
+      item.class = 'invisible';
+      if (item.hasOwnProperty('overall_rating')) {
+        // Get the value
+        var val = item.overall_rating;
+        var rounded = Math.round(val * 2) / 2; /* To round to nearest half */
+        // Make sure that the value is in 0 - 5 range, multiply to get width
+        item.size = Math.max(0, (Math.min(5, rounded))) * 16;
+        item.class = 'visible';
+      }
+
       return item;
     },
 
