@@ -89,6 +89,7 @@ class BookmarkFolderViewBuilder extends EntityViewBuilder {
    * @param \Drupal\flag\FlaggingInterface[]
    */
   private function buildTable(array $flaggings, BookmarkFolderInterface $bookmarkFolder) {
+    $user_id = $bookmarkFolder->getOwnerId();
     $header = [
       'name' => ['data' => $this->t('Name'), 'class' => ['sort-column', 'name-cell']],
       'type' => ['data' => $this->t('Type'), 'data-sort-method' => 'none', 'class' => 'type-cell'],
@@ -102,7 +103,14 @@ class BookmarkFolderViewBuilder extends EntityViewBuilder {
       unset($row['checkbox']);
       $rows[] = $row;
     }
-    return [
+    $build['breadcrumbs'] = [
+      '#title' => $this->t('Bookmarked Trainings'),
+      '#type' => 'link',
+      '#url' => Url::fromRoute('nnphi_bookmark.user_list', ['user' => $user_id]),
+      '#prefix' => '<div class="breadcrumbs">',
+      '#suffix' => '<span class="folder-name">' . $bookmarkFolder->label() . '</span></div>'
+    ];
+    $build['table'] = [
       '#type' => 'table',
       '#header' => $header,
       '#rows' => $rows,
@@ -117,7 +125,7 @@ class BookmarkFolderViewBuilder extends EntityViewBuilder {
           'table-hover'
         ],
       ],
-      '#prefix' => '<div class="table-wrapper">',
+      '#prefix' => '<div id="manage-bookmarks" class="table-wrapper">',
       '#suffix' => '</div>',
       '#attached' => [
         'library' => [
@@ -125,6 +133,8 @@ class BookmarkFolderViewBuilder extends EntityViewBuilder {
         ],
       ],
     ];
+
+    return $build;
   }
 
   protected function getEmptyContent() {
