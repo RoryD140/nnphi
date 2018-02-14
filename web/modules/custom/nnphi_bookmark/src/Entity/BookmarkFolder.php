@@ -154,7 +154,7 @@ class BookmarkFolder extends ContentEntityBase implements BookmarkFolderInterfac
       ->setTranslatable(TRUE)
       ->setDisplayOptions('view', [
         'label' => 'hidden',
-        'type' => 'author',
+        'type' => 'hidden',
         'weight' => 0,
       ])
       ->setDisplayOptions('form', [
@@ -180,7 +180,7 @@ class BookmarkFolder extends ContentEntityBase implements BookmarkFolderInterfac
       ])
       ->setDefaultValue('')
       ->setDisplayOptions('view', [
-        'label' => 'above',
+        'label' => 'hidden',
         'type' => 'string',
         'weight' => -4,
       ])

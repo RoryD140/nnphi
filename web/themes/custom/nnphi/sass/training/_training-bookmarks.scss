@@ -73,7 +73,7 @@ td.created {
 // Folders table
 
 // Checkbox column.
-.user-bookmarks-folders-table tr th:first-of-type {
+.user-bookmarks-folders-table .checkbox-cell {
   width: 5%;
 }
 
@@ -116,6 +116,7 @@ input[type='checkbox'] {
   z-index: 1;
   cursor: pointer;
   top: 15px;
+  right: 15px;
   border: none;
   margin: 0 0 0 1rem;
 }
