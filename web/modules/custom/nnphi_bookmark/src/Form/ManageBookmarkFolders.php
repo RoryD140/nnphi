@@ -103,7 +103,7 @@ class ManageBookmarkFolders extends FormBase {
         '#js_select' => FALSE,
       ];
 
-      $form['submit'] = [
+      $form['combine'] = [
         '#type' => 'submit',
         '#value' => $this->t('Combine Selected Folders'),
         '#attributes' => [
@@ -152,11 +152,13 @@ class ManageBookmarkFolders extends FormBase {
       ];
 
       $form['cancel'] = [
-        '#type' => 'button',
+        '#type' => 'submit',
+        '#limit_validation_errors' => [],
         '#value' => $this->t('Cancel'),
         '#ajax' => [
           'callback' => [$this, 'refreshSubmit'],
         ],
+        '#submit' => [[$this, 'cancelSubmit']],
         '#attributes' => ['class' => ['cancel']],
       ];
     }
@@ -192,6 +194,10 @@ class ManageBookmarkFolders extends FormBase {
         ['@fids' => print_r($form_state->getValue('folders')), '@err' => $exception->getMessage()]);
       drupal_set_message($this->t('An error occurred. Please try again later.'), 'error');
     }
+  }
+
+  public function cancelSubmit($form, FormStateInterface $form_state) {
+    // Do nothing. This function is required to make #limit_validation_errors work.
   }
 
   public function refreshSubmit(array &$form, FormStateInterface $form_state) {
