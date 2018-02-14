@@ -280,6 +280,7 @@
         item.url = item.url.substring(1);
       }
       item.url = Drupal.url(item.url);
+
       return item;
     },
 
