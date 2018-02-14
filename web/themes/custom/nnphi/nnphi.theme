@@ -19,8 +19,6 @@ function nnphi_preprocess_block(&$variables) {
   $variables['attributes']['class'][] = Html::cleanCssIdentifier('block-' . $variables['plugin_id']);
 }
 
-
-
 /**
  * Implements hook_preprocess_page().
  */
@@ -67,5 +65,8 @@ function nnphi_theme_suggestions_input_alter(&$suggestions, array $variables) {
   if (empty($variables['element']['#type']) || $variables['element']['#type'] !== 'checkbox') {
     return;
   }
-  $suggestions[] = 'misc/input__checkbox';
+  if (empty($variables['element']['#type']) || $variables['element']['#type'] !== 'radio' || $variables['element']['#type'] !== 'radios') {
+    return;
+  }
+  $suggestions[] = ['misc/input__checkbox', 'misc/input__radio'];
 }

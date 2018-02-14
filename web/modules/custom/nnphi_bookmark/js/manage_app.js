@@ -26,7 +26,7 @@
     },
     methods: {
       launchDialog: function () {
-        $('form#manage-bookmark-folders .form-submit').trigger('mousedown');
+        $('form.manage-bookmark-folders .form-submit').trigger('mousedown');
       }
     }
   });
