@@ -2,6 +2,7 @@
 
 namespace Drupal\nnphi_bookmark;
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -97,11 +98,14 @@ class BookmarkFolderViewBuilder extends EntityViewBuilder {
       'rating' => ['data' => $this->t('Rating'), 'class' => ['sort-column', 'rating-cell']],
       'options' => ['data' => '', 'data-sort-method' => 'none', 'class' => 'options-cell']
     ];
+    $build = [];
     $rows = [];
     foreach ($flaggings as $flagging) {
       $row = $this->folderService->formatBookmarkTableRow($flagging, $this->getRowOptions($flagging, $bookmarkFolder));
       unset($row['checkbox']);
       $rows[] = $row;
+      CacheableMetadata::createFromObject($flagging)
+        ->applyTo($build);
     }
     $build['breadcrumbs'] = [
       '#title' => $this->t('Bookmarked Trainings'),
