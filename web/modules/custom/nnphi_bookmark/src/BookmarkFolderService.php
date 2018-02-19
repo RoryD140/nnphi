@@ -103,6 +103,8 @@ class BookmarkFolderService {
       return (int)$value->getString() !== (int)$folder->id();
     });
     $flagging->save();
+    // Update the folder to clear any related cache data.
+    $folder->save();
   }
 
   /**
