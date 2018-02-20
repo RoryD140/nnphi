@@ -311,6 +311,22 @@ function nnphi_training_form_comment_training_review_form_alter(&$form, \Drupal\
   $form['subject']['widget'][0]['value']['#title'] = t('Review title');
   $form['field_training_review_comment']['#after_build'][] = 'nnphi_training_review_comment_after_build';
   $form['#prefix'] = '<a id="comment-form"></a>';
+  // Reversing order of overall rating radio buttons to support 5-star theming.
+  $overall = $form['field_training_review_overall']['widget']['#options'];
+  $reversed_overall = array_reverse($overall, TRUE);
+  $form['field_training_review_overall']['widget']['#options'] = $reversed_overall;
+  // Reversing order of content rating radio buttons to support 5-star theming.
+  $content = $form['field_training_review_content']['widget']['#options'];
+  $reversed_content = array_reverse($content, TRUE);
+  $form['field_training_review_content']['widget']['#options'] = $reversed_content;
+  // Reversing order of relevance rating radio buttons to support 5-star theming.
+  $relevance = $form['field_training_review_relevance']['widget']['#options'];
+  $reversed_relevance = array_reverse($relevance, TRUE);
+  $form['field_training_review_relevance']['widget']['#options'] = $reversed_relevance;
+  // Reversing order of presentation rating radio buttons to support 5-star theming.
+  $present = $form['field_training_review_present']['widget']['#options'];
+  $reversed_present = array_reverse($present, TRUE);
+  $form['field_training_review_present']['widget']['#options'] = $reversed_present;
 }
 
 /**
