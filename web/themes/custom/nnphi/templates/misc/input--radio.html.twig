@@ -12,7 +12,14 @@
  * @ingroup themeable
  */
 #}
-<span class="custom-radio">
+{# Rating star radios require minimal markup. #}
+{% if attributes.name == 'field_training_review_overall' or attributes.name == 'field_training_review_content'
+  or attributes.name == 'field_training_review_relevance' or attributes.name == 'field_training_review_present' %}
   <input{{ attributes }} />{{ children }}
-<span class="radio-target"></span></span>
+{% else %}
+{# Markup required for basic custom round green radio buttons. #}
+  <span class="custom-radio">
+    <input{{ attributes }} />{{ children }}
+  <span class="radio-target"></span></span>
+{% endif %}
 

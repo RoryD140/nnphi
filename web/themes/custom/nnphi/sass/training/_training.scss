@@ -69,3 +69,64 @@
   color: $gray-light;
   padding: 10px;
 }
+
+// Ratings and Reviews Section.
+.comment-training-review-form .fieldset-wrapper {
+  font-family: 'FontAwesome';
+
+  > #edit-field-training-review-overall,
+  > #edit-field-training-review-content,
+  > #edit-field-training-review-relevance,
+  > #edit-field-training-review-present {
+    border: none;
+    display: inline-block;
+
+    &:not(:checked) {
+      > input {
+        position: absolute;
+        clip: rect(0,0,0,0);
+      }
+
+      > label {
+        float: right;
+        width: 1.7rem;
+        padding: 0 .05em;
+        overflow: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: $gray-light;
+
+        &:before {
+          content: '\f005';
+          font-weight: normal;
+        }
+
+        &:hover,
+        &:hover ~ label {
+          color: $green;
+          text-shadow: 0 0 3px $green;
+          &:before {
+            content: '\f005';
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    > input:checked {
+      & ~ label {
+        color: $green;
+        &:before {
+          content: '\f005';
+          font-weight: bold;
+        }
+      }
+    }
+
+    > label:active {
+      position: relative;
+      top: 2px;
+    }
+  }
+}

@@ -24,9 +24,25 @@
   min-height: 64px;
 }
 
+#manage-bookmarks th {
+  border-top: solid 1px $gray-light;
+}
+
 #manage-bookmarks th,
 #manage-folders th {
   font-family: $font-family-lato;
+}
+
+#manage-folders .table td {
+  padding: .75rem .75rem 0 2rem;
+}
+
+//#manage-folders .table td.folder-title {
+//  padding-top: 1.2rem;
+//}
+
+#manage-folders .table td.folder-title a {
+  margin-top: .5rem;
 }
 
 #manage-bookmarks .bookmarks-header h3 + div {
@@ -73,8 +89,8 @@ td.created {
 // Folders table
 
 // Checkbox column.
-.user-bookmarks-folders-table .checkbox-cell {
-  width: 5%;
+#manage-folders-form .user-bookmarks-folders-table th:first-of-type {
+  width: 7%;
 }
 
 .user-bookmarks-folders-table {
@@ -97,6 +113,21 @@ td.created {
 #manage-folders a {
   color: black;
   font-size: 1.2rem;
+}
+
+// Move bookmark to another folder modal.
+.bookmark-folder-move-to-folder .table thead th {
+  padding: 0;
+}
+
+// Checkbox column.
+.bookmark-folder-move-to-folder .user-bookmarks-table th:first-of-type {
+  width: 10%;
+}
+
+// Name column.
+.bookmark-folder-move-to-folder .user-bookmarks-table .add-to-name-cell {
+  width: 90%;
 }
 
 // Custom checkboxes.
@@ -142,7 +173,7 @@ span.radio-target {
   font-family: 'FontAwesome'; /* use an icon font for the radio */
 }
 
-input[type='radio'].form-radio {
+.custom-radio input[type='radio'].form-radio {
   position: relative;
   display: block;
   opacity: 0.01;
@@ -154,13 +185,13 @@ input[type='radio'].form-radio {
   margin-top: 0;
 }
 
-input[type='radio'].form-radio + span.radio-target::after {
+.custom-radio input[type='radio'].form-radio + span.radio-target::after {
   content: "\f111"; /* In fontawesome, is an open circle (fa-circle) */
   font-weight: normal;
   color: $gray-text;
 }
 
-input[type='radio'].form-radio:checked + span.radio-target::after {
+.custom-radio input[type='radio'].form-radio:checked + span.radio-target::after {
   content: "\f192"; /* fontawesome circle-dot (fa-circle-dot) */
   font-weight: bold;
   color: $green;
@@ -171,11 +202,11 @@ span.custom-radio {
   margin: .5rem 3rem 0 0;
 }
 
-.js-form-type-radio {
+.custom-radio .js-form-type-radio {
   padding: .5rem 0;
 }
 
-.js-form-type-radio label::before {
+.merge-folders .js-form-type-radio .option::before {
   position: relative;
   top: 7px;
 }
@@ -355,7 +386,7 @@ th[role='columnheader'] {
 }
 
 .folder-title::before,
-.js-form-type-radio label::before {
+.merge-folders .js-form-type-radio .option::before {
   background-image: url('/themes/custom/nnphi/svg/folder.svg');
   content: '';
   width: 2rem;
@@ -364,6 +395,10 @@ th[role='columnheader'] {
   background-repeat: no-repeat;
   display: inline-block;
   margin-right: 1rem;
+}
+
+#manage-folders .folder-title::before {
+  margin-top: .5rem;
 }
 
 // Modals.
