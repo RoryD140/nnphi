@@ -9,6 +9,7 @@ dependencies:
     - field.field.user.user.field_user_job_title
     - field.field.user.user.field_user_role
     - field.field.user.user.field_user_setting
+    - field.field.user.user.field_user_username
     - field.field.user.user.field_user_zipcode
     - field.field.user.user.user_picture
     - image.style.thumbnail
@@ -32,19 +33,19 @@ content:
     third_party_settings: {  }
   field_last_password_reset:
     type: datetime_default
-    weight: 5
+    weight: 6
     settings: {  }
     third_party_settings: {  }
     region: content
   field_password_expiration:
     type: boolean_checkbox
-    weight: 3
+    weight: 4
     settings:
       display_label: true
     third_party_settings: {  }
     region: content
   field_user_interests:
-    weight: 9
+    weight: 10
     settings:
       parent: 0
       level_labels: ''
@@ -53,7 +54,7 @@ content:
     type: cshs
     region: content
   field_user_job_title:
-    weight: 11
+    weight: 12
     settings:
       match_operator: CONTAINS
       size: 60
@@ -63,7 +64,7 @@ content:
     region: content
   field_user_role:
     type: entity_reference_autocomplete
-    weight: 7
+    weight: 8
     region: content
     settings:
       match_operator: CONTAINS
@@ -71,7 +72,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_user_setting:
-    weight: 8
+    weight: 9
     settings:
       parent: 0
       level_labels: ''
@@ -79,8 +80,16 @@ content:
     third_party_settings: {  }
     type: cshs
     region: content
+  field_user_username:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_user_zipcode:
-    weight: 2
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -88,18 +97,18 @@ content:
     type: string_textfield
     region: content
   google_analytics:
-    weight: 4
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
   path:
     type: path
-    weight: 6
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
   suggest_terms:
-    weight: 10
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -110,7 +119,7 @@ content:
     third_party_settings: {  }
   user_picture:
     type: image_image
-    weight: 1
+    weight: 2
     region: content
     settings:
       progress_indicator: throbber

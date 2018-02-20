@@ -6,7 +6,11 @@ dependencies:
     - core.entity_view_mode.user.profile
     - field.field.user.user.field_last_password_reset
     - field.field.user.user.field_password_expiration
+    - field.field.user.user.field_user_interests
     - field.field.user.user.field_user_job_title
+    - field.field.user.user.field_user_role
+    - field.field.user.user.field_user_setting
+    - field.field.user.user.field_user_username
     - field.field.user.user.field_user_zipcode
     - field.field.user.user.user_picture
   module:
@@ -50,4 +54,5 @@ hidden:
   field_user_interests: true
   field_user_role: true
   field_user_setting: true
+  field_user_username: true
   member_for: true
