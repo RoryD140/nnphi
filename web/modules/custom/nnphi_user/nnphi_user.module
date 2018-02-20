@@ -9,6 +9,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\nnphi_user\Plugin\Block\UserProfile;
 use Drupal\Core\Url;
 use Drupal\user\UserInterface;
+use Drupal\Core\Session\UserSession;
 
 /**
  * Implements hook_module_implements_alter()
@@ -117,8 +118,6 @@ function nnphi_user_form_user_form_alter(&$form, FormStateInterface $form_state,
       '#access' => FALSE,
     ];
   }
-
-  $form['account']['name']['#description'] = t('Please Note: Your Username will appear with any Review Comments you post to Trainings. It will also appear on your Profile Page.');
 
   // Add the suggest job title field.
   $form['suggest_terms'] = [
@@ -235,4 +234,31 @@ function nnphi_user_theme_suggestions_user(array $variables) {
   if (!empty($variables['elements']['#view_mode'])) {
     return ['user__' . $variables['elements']['#view_mode']];
   }
+}
+
+/**
+ * Implements hook_user_format_name_alter().
+ */
+function nnphi_user_user_format_name_alter(&$name, $account) {
+  if ((int)\Drupal::currentUser()->id() === (int)$account->id()) {
+    return;
+  }
+  $user = \Drupal::entityTypeManager()->getStorage('user')->load($account->id());
+  if ($user->get('field_user_username')->isEmpty()) {
+    $name = t('PHLN Member');
+  }
+  else {
+    $name = $user->get('field_user_username')->getString();
+  }
+}
+
+/**
+ * Implements hook_entity_bundle_field_info_alter().
+ */
+function nnphi_user_entity_bundle_field_info_alter(&$fields, \Drupal\Core\Entity\EntityTypeInterface $entity_type, $bundle) {
+  if ($entity_type->id() !== 'user') {
+    return;
+  }
+  /** @var $fields \Drupal\field\FieldConfigInterface[] */
+  $fields['field_user_username']->addConstraint('unique_username');
 }

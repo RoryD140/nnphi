@@ -133,7 +133,7 @@ function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayIn
     }
 
     $proficiency = '';
-    if (!$node->get('field_training_level')->isEmpty()) {
+    if (!$node->get('field_training_level')->isEmpty() && !empty($build['field_training_level'][0])) {
       $proficiency = strtolower($build['field_training_level'][0]['#title']);
 
       // Add appropriate a/an
