@@ -262,12 +262,3 @@ function nnphi_user_entity_bundle_field_info_alter(&$fields, \Drupal\Core\Entity
   /** @var $fields \Drupal\field\FieldConfigInterface[] */
   $fields['field_user_username']->addConstraint('unique_username');
 }
-
-/**
- * Implements hook_entity_type_build().
- */
-function nnphi_user_entity_type_build(array &$entity_types) {
-  /** @var $entity_types \Drupal\Core\Entity\EntityTypeInterface[] */
-//  $debug = TRUE;
-//  $entity_types['node']->addConstraint('UniqueUsername');
-}
