@@ -221,14 +221,6 @@ function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayIn
       $build['field_training_url'][0]['#attributes']['target'] = '_blank';
     }
 
-
-    $length_type = $node->get('field_training_length_type')->getValue();
-
-    if (empty($length_type) || $length_type[0]['value'] === '1') {
-      // If length type is module, set attribute to use in template to display
-      // the module times from the module time field
-      $build['#attributes'] = ['display_module_times' => TRUE];
-    }
   }
 }
 

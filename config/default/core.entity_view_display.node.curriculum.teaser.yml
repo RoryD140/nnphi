@@ -35,8 +35,13 @@ content:
         text: text
       more_class: more-link
     third_party_settings: {  }
+  flag_bookmark:
+    weight: 10
+    region: content
 hidden:
+  curriculum_enroll: true
   field_curriculum_trainings: true
+  field_curriculum_updated: true
   field_training_competencies: true
   field_training_job_tasks: true
   field_training_objectives: true

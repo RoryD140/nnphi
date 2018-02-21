@@ -1,16 +1,16 @@
-uuid: 8488d9cb-d400-4f69-8958-ec779a56fe9d
+uuid: d83a2e29-0d2b-42fb-9639-60e3945746d3
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_training_level
+    - field.storage.node.field_training_categories
     - node.type.training
-    - taxonomy.vocabulary.levels
-id: node.training.field_training_level
-field_name: field_training_level
+    - taxonomy.vocabulary.categories
+id: node.training.field_training_categories
+field_name: field_training_categories
 entity_type: node
 bundle: training
-label: Level
+label: Categories
 description: ''
 required: false
 translatable: false
@@ -20,9 +20,10 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      levels: levels
+      categories: categories
     sort:
-      field: _none
+      field: name
+      direction: asc
     auto_create: false
     auto_create_bundle: ''
 field_type: entity_reference

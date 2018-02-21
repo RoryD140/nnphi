@@ -1,16 +1,16 @@
-uuid: 8488d9cb-d400-4f69-8958-ec779a56fe9d
+uuid: b260f511-3c4f-48d4-a350-d631934923e4
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_training_level
+    - field.storage.node.field_training_time_to_start
     - node.type.training
-    - taxonomy.vocabulary.levels
-id: node.training.field_training_level
-field_name: field_training_level
+    - taxonomy.vocabulary.time_to_start
+id: node.training.field_training_time_to_start
+field_name: field_training_time_to_start
 entity_type: node
 bundle: training
-label: Level
+label: 'Time to Start'
 description: ''
 required: false
 translatable: false
@@ -20,9 +20,10 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      levels: levels
+      time_to_start: time_to_start
     sort:
-      field: _none
+      field: name
+      direction: asc
     auto_create: false
     auto_create_bundle: ''
 field_type: entity_reference
