@@ -1,9 +1,9 @@
-uuid: 458c5fbb-9317-4d5c-9636-8e1c0bbf54af
+uuid: 70e16dcf-9a59-4ee3-8cf4-798542093faa
 langcode: en
 status: true
 dependencies: {  }
-name: 'Training Types'
-vid: course_types
+name: Categories
+vid: categories
 description: ''
 hierarchy: 0
 weight: 0

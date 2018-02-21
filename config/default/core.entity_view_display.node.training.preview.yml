@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.preview
     - field.field.node.training.field_related_trainings
+    - field.field.node.training.field_training_categories
     - field.field.node.training.field_training_ceus_offered
     - field.field.node.training.field_training_competencies
     - field.field.node.training.field_training_cost
@@ -13,9 +14,8 @@ dependencies:
     - field.field.node.training.field_training_expiration
     - field.field.node.training.field_training_instructor
     - field.field.node.training.field_training_job_tasks
-    - field.field.node.training.field_training_length_type
+    - field.field.node.training.field_training_learning_outcomes
     - field.field.node.training.field_training_level
-    - field.field.node.training.field_training_module_length
     - field.field.node.training.field_training_objectives
     - field.field.node.training.field_training_occupations
     - field.field.node.training.field_training_proficiency
@@ -26,6 +26,7 @@ dependencies:
     - field.field.node.training.field_training_reviews
     - field.field.node.training.field_training_source
     - field.field.node.training.field_training_state
+    - field.field.node.training.field_training_time_to_start
     - field.field.node.training.field_training_total_time
     - field.field.node.training.field_training_url
     - node.type.training
@@ -154,16 +155,17 @@ content:
     third_party_settings: {  }
 hidden:
   field_related_trainings: true
+  field_training_categories: true
   field_training_expiration: true
   field_training_instructor: true
   field_training_job_tasks: true
-  field_training_length_type: true
-  field_training_module_length: true
+  field_training_learning_outcomes: true
   field_training_occupations: true
   field_training_review_content: true
   field_training_review_present: true
   field_training_review_relevance: true
   field_training_reviews: true
+  field_training_time_to_start: true
   field_training_total_time: true
   field_training_url: true
   links: true

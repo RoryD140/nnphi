@@ -10,7 +10,7 @@ id: node.training.field_training_level
 field_name: field_training_level
 entity_type: node
 bundle: training
-label: 'Training Level'
+label: Level
 description: ''
 required: false
 translatable: false

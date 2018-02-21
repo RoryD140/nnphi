@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.storage.node.field_training_description
     - field.storage.node.field_training_job_tasks
-    - field.storage.node.field_training_module_length
     - field.storage.node.field_training_cost
     - field.storage.node.field_training_state
     - field.storage.node.field_training_competencies
@@ -166,14 +165,6 @@ field_settings:
         - field.storage.node.field_training_job_tasks
       module:
         - taxonomy
-  field_training_module_length:
-    label: 'Module Length'
-    datasource_id: 'entity:node'
-    property_path: field_training_module_length
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_training_module_length
   field_training_cost:
     label: Cost
     datasource_id: 'entity:node'

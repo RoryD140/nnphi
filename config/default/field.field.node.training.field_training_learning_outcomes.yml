@@ -1,16 +1,16 @@
-uuid: 113a67f3-1078-476c-a7d7-bb2db2f3bacf
+uuid: abc161db-9881-483f-9796-757f1c3d57e9
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_training_course_type
+    - field.storage.node.field_training_learning_outcomes
     - node.type.training
-    - taxonomy.vocabulary.course_types
-id: node.training.field_training_course_type
-field_name: field_training_course_type
+    - taxonomy.vocabulary.learning_outcomes
+id: node.training.field_training_learning_outcomes
+field_name: field_training_learning_outcomes
 entity_type: node
 bundle: training
-label: 'Training Type'
+label: 'Learning Outcomes'
 description: ''
 required: false
 translatable: false
@@ -20,9 +20,10 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      course_types: course_types
+      learning_outcomes: learning_outcomes
     sort:
-      field: _none
+      field: name
+      direction: asc
     auto_create: false
     auto_create_bundle: ''
 field_type: entity_reference

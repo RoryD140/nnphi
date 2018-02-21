@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_display.comment.training_review.default
     - field.field.node.training.field_related_trainings
+    - field.field.node.training.field_training_categories
     - field.field.node.training.field_training_ceus_offered
     - field.field.node.training.field_training_competencies
     - field.field.node.training.field_training_cost
@@ -13,9 +14,8 @@ dependencies:
     - field.field.node.training.field_training_expiration
     - field.field.node.training.field_training_instructor
     - field.field.node.training.field_training_job_tasks
-    - field.field.node.training.field_training_length_type
+    - field.field.node.training.field_training_learning_outcomes
     - field.field.node.training.field_training_level
-    - field.field.node.training.field_training_module_length
     - field.field.node.training.field_training_objectives
     - field.field.node.training.field_training_occupations
     - field.field.node.training.field_training_proficiency
@@ -26,6 +26,7 @@ dependencies:
     - field.field.node.training.field_training_reviews
     - field.field.node.training.field_training_source
     - field.field.node.training.field_training_state
+    - field.field.node.training.field_training_time_to_start
     - field.field.node.training.field_training_total_time
     - field.field.node.training.field_training_url
     - node.type.training
@@ -51,6 +52,14 @@ content:
       link: false
     third_party_settings: {  }
     type: entity_reference_entity_view
+    region: content
+  field_training_categories:
+    weight: 28
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
     region: content
   field_training_ceus_offered:
     weight: 6
@@ -120,12 +129,13 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
-  field_training_length_type:
-    weight: 17
+  field_training_learning_outcomes:
+    weight: 29
     label: above
-    settings: {  }
+    settings:
+      link: true
     third_party_settings: {  }
-    type: list_default
+    type: entity_reference_label
     region: content
   field_training_level:
     weight: 16
@@ -134,17 +144,6 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
-    region: content
-  field_training_module_length:
-    weight: 18
-    label: above
-    settings:
-      thousand_separator: ''
-      decimal_separator: .
-      scale: 2
-      prefix_suffix: true
-    third_party_settings: {  }
-    type: number_decimal
     region: content
   field_training_objectives:
     weight: 14
@@ -220,6 +219,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
+  field_training_time_to_start:
+    weight: 30
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
     region: content
   field_training_total_time:
     weight: 15
