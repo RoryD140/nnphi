@@ -15,7 +15,8 @@ use Drupal\Core\Form\FormStateInterface;
  *   id = "ratings_field_formatter",
  *   label = @Translation("Ratings Field Formatter"),
  *   field_types = {
- *     "decimal"
+ *     "decimal",
+ *     "list_integer"
  *   }
  * )
  */
