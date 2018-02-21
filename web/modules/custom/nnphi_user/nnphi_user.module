@@ -256,7 +256,7 @@ function nnphi_user_user_format_name_alter(&$name, $account) {
  * Implements hook_entity_bundle_field_info_alter().
  */
 function nnphi_user_entity_bundle_field_info_alter(&$fields, \Drupal\Core\Entity\EntityTypeInterface $entity_type, $bundle) {
-  if ($entity_type->id() !== 'user') {
+  if ($entity_type->id() !== 'user' || empty($fields['field_user_username'])) {
     return;
   }
   /** @var $fields \Drupal\field\FieldConfigInterface[] */
