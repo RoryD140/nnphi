@@ -1,0 +1,6 @@
+pipelines:
+  branches:
+    master:
+      - step:
+          script:
+            - git push pantheon master
