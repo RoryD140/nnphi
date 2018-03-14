@@ -3,4 +3,5 @@ pipelines:
     master:
       - step:
           script:
+            - git remote add pantheon $PANTHEON_REPO
             - git push pantheon master
