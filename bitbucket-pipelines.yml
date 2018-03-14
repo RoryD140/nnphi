@@ -3,6 +3,7 @@ pipelines:
     master:
       - step:
           script:
-            - echo "[codeserver.dev.74ca8106-d163-40b3-b7ce-d7d82d1272d6.drush.in]:2222 ssh-rsa $PANTHEON_FINGERPRINT" >> /root/.ssh/known_hosts
+            - echo $PANTHEON_REPO
+            - echo "[appserver.dev.74ca8106-d163-40b3-b7ce-d7d82d1272d6.drush.in]:2222,[35.184.31.229]:2222 ssh-rsa $PANTHEON_FINGERPRINT" >> /root/.ssh/known_hosts
             - git remote add pantheon $PANTHEON_REPO
             - git push pantheon master
