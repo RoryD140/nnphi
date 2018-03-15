@@ -2,6 +2,8 @@ pipelines:
   branches:
     master:
       - step:
+          name: Deploy to dev
+          deployment: test
           script:
             - echo "Deploying..."
             - echo $PANTHEON_FINGERPRINT >> /root/.ssh/known_hosts
