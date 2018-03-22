@@ -1,3 +1,9 @@
 <div class="training-hero-subtitle">
-  {{ text }} <span>— {{ cost }}</span>
+  {% if text|render and cost|render %}
+    {{ text }} <span>— {{ cost }}</span>
+  {% elseif text|render %}
+    {{ text }}
+  {% elseif cost|render %}
+    <span>{{ cost }}</span>
+  {% endif %}
 </div>

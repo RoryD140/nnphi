@@ -35,21 +35,43 @@ section.training-related {
 
 .training-node-teaser-top-left  {
   display: flex;
-  flex-wrap: wrap;
   > div {
     padding-right: 10px;
     display: flex;
-    > div:first-child:not(:last-child) {
+    flex-wrap: wrap;
+    > div:not(:last-child) {
       padding-right: 5px; // Targets multiple CEU Items
     }
   }
+}
+
+.training-node-teaser .flag-bookmark {
+  display: flex;
+  align-items: center;
+  font-size: $font-size-sm;
+  a {
+    display: flex; // align link and SVG
+    align-items: center;
+  }
+}
+
+.training-node-teaser-expires {
+  display: flex;
+  span {
+    padding-left: 5px;
+  }
+}
+
+.training-node-teaser .flag-bookmark.action-unflag svg,
+.training-node-teaser .flag-bookmark.action-flag svg {
+  width: 12px;
 }
 
 .training-node-teaser-top-right {
   display: flex;
   flex-wrap: wrap;
   > div {
-    padding-left: 10px;
+    padding-right: 5px;
   }
 }
 
@@ -67,7 +89,10 @@ section.training-related {
   @extend .btn;
   @extend .btn-md;
   @extend .btn-outline-primary;
-  margin: 0 auto;
+  margin: $padding-sm 0 0 0;
+  @include media-breakpoint-up(lg) {
+    margin: 0 0 0 auto;
+  }
 }
 
 .training-preview-link {
@@ -76,7 +101,7 @@ section.training-related {
   @extend .btn-outline-primary;
   margin: $padding-sm 0 0 0;
   @include media-breakpoint-up(lg) {
-    margin: 0 0 0 $padding-sm;
+    margin: 0;
   }
 }
 

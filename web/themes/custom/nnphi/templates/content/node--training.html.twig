@@ -98,6 +98,9 @@
           <div class="training-details-dates">
             <div>{{ 'Created on'|t }} <span>{{ node.getCreatedTime()|format_date('training_date') }}</span></div>
             <div>{{ 'Last Revised on'|t }} <span>{{ node.getRevisionCreationTime()|format_date('training_date') }}</span></div>
+            {% if content.field_training_expiration|render %}
+              <div>{{ 'Expires'|t }} <span>{{ content.field_training_expiration }}</span></div>
+            {% endif %}
           </div>
           {% if content.field_training_state|render %}
             <div class="training-details-state">

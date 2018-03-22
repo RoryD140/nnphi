@@ -86,27 +86,35 @@
       {# From nnphi_training.module #}
       {{ content.subtitle }}
 
+      {% if content.field_training_expiration|render %}
+        <div class="training-node-preview-expires">{{ 'Expires'|t }} <span>{{ content.field_training_expiration }}</span></div>
+      {% endif %}
+      {% if content.field_training_total_time|render %}
+        <div class="training-node-preview-expires">{{ 'Length'|t }} <span>{{ content.field_training_total_time }}</span></div>
+      {% endif %}
+
     </div>
     <div class="training-node-preview-bottom">
       <div class="row">
         <div class="training-node-preview-bottom-left">
           <div class="training-node-preview-rating-ceu">
-            {% if content.field_training_ceus_offered|render  %}
+            {% if content.field_training_ceus_offered|render %}
               <div class="training-node-preview-ceu">
                 <span>{{ 'CEU:'|t }}</span> {{ content.field_training_ceus_offered }}
               </div>
             {% endif %}
             {{ content.field_training_review_overall }}
           </div>
-
           {{ content.field_training_description }}
         </div>
         <div class="training-node-preview-bottom-right">
           {{ content.field_training_objectives }}
         </div>
+      </div>
+      <div class="training-node-preview-submit">
+        <a href="{{ url }}" class="training-node-preview-btn">{{ 'View Details'|t }}</a>
         {{ content.flag_bookmark }}
       </div>
-      <a href="{{ url }}" class="training-node-preview-btn">{{ 'View Details'|t }}</a>
     </div>
   </div>
 </article>

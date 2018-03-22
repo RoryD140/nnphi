@@ -2,7 +2,8 @@
   border-top: solid 2px $gray-light;
   border-bottom: solid 2px $gray-light;
   font-weight: $font-weight-light;
-  padding-top: 3rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .training-details-container {
@@ -41,6 +42,9 @@
   font-weight: $font-weight-light;
   span {
     font-weight: $font-weight-bold;
+  }
+  div {
+    display: inline-block; // Interior field wrapper divs
   }
 }
 

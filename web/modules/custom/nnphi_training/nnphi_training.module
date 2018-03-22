@@ -23,49 +23,49 @@ use Drupal\Core\Mail\MailFormatHelper;
 /**
  * Implements hook_cron().
  */
-function nnphi_training_cron() {
-  // Query Algolia for the popular queries.
-  /** @var \Drupal\search_api\Entity\Index $index */
-  $index = \Drupal::entityTypeManager()->getStorage('search_api_index')
-    ->load('training');
-  /** @var \Drupal\search_api_algolia\Plugin\search_api\backend\SearchApiAlgoliaBackend $backend */
-  $backend = $index->getServerInstance()->getBackend();
-  $config = $backend->getConfiguration();
-  // Algolia API client doesn't do analytics. Use a custom request.
-  // @see https://www.algolia.com/doc/rest-api/analytics/
-  try {
-    $response = \Drupal::httpClient()
-      ->get('https://analytics.algolia.com/1/searches/' . $index->getOption('algolia_index_name') . '/popular',
-        [
-          'headers' => [
-            'X-Algolia-API-KEY' => $config['api_key'],
-            'X-Algolia-Application-Id' => $config['application_id'],
-          ],
-          'query' => [
-            'startAt' => strtotime('-7 days'),
-            'endAt' => time(),
-          ],
-        ]);
-    $analytics = $response->getBody()->getContents();
-    $analytics = Json::decode($analytics);
-    // Try and sanitize
-    $sanitizer = new BanBuilder\CensorWords();
-    $popular = [];
-    foreach ($analytics['topSearches'] as $analytic) {
-      $sanitized = $sanitizer->censorString($analytic['query']);
-      if (empty($sanitized['matched']) && Unicode::strlen($analytic['query']) > 3) {
-        $popular[] = $analytic['query'];
-      }
+function nnphi_training_cron()
+{
+    // Query Algolia for the popular queries.
+    /** @var \Drupal\search_api\Entity\Index $index */
+    $index = \Drupal::entityTypeManager()->getStorage('search_api_index')
+        ->load('training');
+    /** @var \Drupal\search_api_algolia\Plugin\search_api\backend\SearchApiAlgoliaBackend $backend */
+    $backend = $index->getServerInstance()->getBackend();
+    $config = $backend->getConfiguration();
+    // Algolia API client doesn't do analytics. Use a custom request.
+    // @see https://www.algolia.com/doc/rest-api/analytics/
+    try {
+        $response = \Drupal::httpClient()
+            ->get('https://analytics.algolia.com/1/searches/' . $index->getOption('algolia_index_name') . '/popular',
+                [
+                    'headers' => [
+                        'X-Algolia-API-KEY' => $config['api_key'],
+                        'X-Algolia-Application-Id' => $config['application_id'],
+                    ],
+                    'query' => [
+                        'startAt' => strtotime('-7 days'),
+                        'endAt' => time(),
+                    ],
+                ]);
+        $analytics = $response->getBody()->getContents();
+        $analytics = Json::decode($analytics);
+        // Try and sanitize
+        $sanitizer = new BanBuilder\CensorWords();
+        $popular = [];
+        foreach ($analytics['topSearches'] as $analytic) {
+            $sanitized = $sanitizer->censorString($analytic['query']);
+            if (empty($sanitized['matched']) && Unicode::strlen($analytic['query']) > 3) {
+                $popular[] = $analytic['query'];
+            }
+        }
+        if (!empty($popular)) {
+            \Drupal\Core\Cache\Cache::invalidateTags([PopularSearches::STATE_KEY]);
+            \Drupal::state()->set(PopularSearches::STATE_KEY, $popular);
+        }
+    } catch (Exception $exception) {
+        watchdog_exception('nnphi_training', $exception, 'Unable to retrieve popular searches for index @index',
+            ['@index' => $index->getOption('algolia_index_name')], \Drupal\Core\Logger\RfcLogLevel::ERROR);
     }
-    if (!empty($popular)) {
-      \Drupal\Core\Cache\Cache::invalidateTags([PopularSearches::STATE_KEY]);
-      \Drupal::state()->set(PopularSearches::STATE_KEY, $popular);
-    }
-  }
-  catch (Exception $exception) {
-    watchdog_exception('nnphi_training', $exception, 'Unable to retrieve popular searches for index @index',
-      ['@index' => $index->getOption('algolia_index_name')], \Drupal\Core\Logger\RfcLogLevel::ERROR);
-  }
 }
 
 /**
@@ -75,20 +75,21 @@ function nnphi_training_cron() {
  * @param \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display
  * @param $view_mode
  */
-function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayInterface $display, $view_mode) {
+function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayInterface $display, $view_mode)
+{
 
-  if( $node->getType() !== 'training')  {
-    return;
-  }
-
-  // Adjust cost field markup to "Free" if value is 0
-  // Used on both teaser and full view modes
-  $cost_field = $node->get('field_training_cost');
-  if(!$cost_field->isEmpty()) {
-    if($cost_field->getValue()[0]['value'] === '0.00') {
-      $build['field_training_cost'][0]['#markup'] = t('Free');
+    if ($node->getType() !== 'training') {
+        return;
     }
-  }
+
+    // Adjust cost field markup to "Free" if value is 0
+    // Used on both teaser and full view modes
+    $cost_field = $node->get('field_training_cost');
+    if (!$cost_field->isEmpty()) {
+        if ($cost_field->getValue()[0]['value'] === '0.00') {
+            $build['field_training_cost'][0]['#markup'] = t('Free');
+        }
+    }
 //  TODO: this should be a int field formatter.
 //  // Add classes to create star rating on overall rating field
 //  if( $display->getComponent('field_training_review_overall')) {
@@ -103,224 +104,236 @@ function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayIn
 //      $build['field_training_review_overall']['#attributes']['class'][] = 'star-' . $rating;
 //    }
 //  }
-  // @see nnphi_training_entity_extra_field_info().
-  if ($display->getComponent('review_login_message')) {
-    $destination_url = $node->toUrl('canonical', ['fragment' => 'comment-form']);
-    $build['review_login_message'] = [
-      '#type' => 'link',
-      '#title' => t('Submit a Review'),
-      '#url' => Url::fromRoute('user.login', [], ['query' => ['destination' => $destination_url->toString()]]),
-      '#access' => \Drupal::currentUser()->isAnonymous(),
-      '#cache' => [
-        'contexts' => [
-          'user.roles:anonymous',
-        ],
-      ],
-    ];
-  }
-
-
-  // Build the subtitle string. Only do this if we have proficiency or CEUS
-  if (
-    $display->getComponent('subtitle') &&
-    (!$node->get('field_training_ceus_offered')
-        ->isEmpty() || !$node->get('field_training_level')->isEmpty())
-  ) {
-
-    // Use the modified cost string
-    if (!$node->get('field_training_cost')->isEmpty()) {
-      $cost = $build['field_training_cost'][0]['#markup'];
-    }
-
-    $proficiency = '';
-    if (!$node->get('field_training_level')->isEmpty() && !empty($build['field_training_level'][0])) {
-      $proficiency = strtolower($build['field_training_level'][0]['#title']);
-
-      // Add appropriate a/an
-      $proficiency = IndefiniteArticle::A($proficiency);
+    // @see nnphi_training_entity_extra_field_info().
+    if ($display->getComponent('review_login_message')) {
+        $destination_url = $node->toUrl('canonical', ['fragment' => 'comment-form']);
+        $build['review_login_message'] = [
+            '#type' => 'link',
+            '#title' => t('Submit a Review'),
+            '#url' => Url::fromRoute('user.login', [], ['query' => ['destination' => $destination_url->toString()]]),
+            '#access' => \Drupal::currentUser()->isAnonymous(),
+            '#cache' => [
+                'contexts' => [
+                    'user.roles:anonymous',
+                ],
+            ],
+        ];
     }
 
 
-    // Build comma-separated list of CEUS with "and"
+    // Build the subtitle string. Only do this if we have proficiency or CEUS
+    if (
+        $display->getComponent('subtitle') &&
+        (!$node->get('field_training_ceus_offered')
+                ->isEmpty() || !$node->get('field_training_level')->isEmpty())
+    ) {
 
-    $ceu = '';
-    $offering = '';
-    $is = '';
+        // Use the modified cost string
+        if (!$node->get('field_training_cost')->isEmpty()) {
+            $cost = $build['field_training_cost'][0]['#markup'];
+        }
 
-    if (!$node->get('field_training_ceus_offered')->isEmpty()) {
-      $ceus = $node->get('field_training_ceus_offered')->referencedEntities();
+        $proficiency = null;
+        if (!$node->get('field_training_level')->isEmpty() && !empty($build['field_training_level'][0])) {
+            $proficiency = strtolower($build['field_training_level'][0]['#title']);
 
-      // Just use the single label if we only have one
-      if (count($ceus) === 1) {
-        $ceu = $ceus[0]->label();
-      }
-      else {
-        // Get the CEU labels
-        $ceu_labels = array_map(function ($item) {
-          return $item->label();
-        }, $ceus);
-
-
-        $last_element = array_pop($ceu_labels);
-
-        // Add "and" to last string
-        $last_string = t("and @last",
-          [
-            '@last' => $last_element,
-          ]
-        );
-
-        array_push($ceu_labels, $last_string);
-
-        // If there are just two items, no comma
-        $glue = (count($ceus) === 2) ? ' ' : ', ';
-        $ceu = implode($glue, $ceu_labels);
-      }
+            // Add appropriate a/an
+            $proficiency = IndefiniteArticle::A($proficiency);
+        }
 
 
-      // Only add the "offering" string if we have CEUs. Change conjugation if
-      // there's not proficiency
-      if (isset($proficiency)) {
-        $offering = t(' offering');
-        $is = t(' is');
-      }
-      else {
-        $offering = t(' offers');
-      }
+        // Build comma-separated list of CEUS with "and"
 
+        $ceu = null;
+        $offering = null;
+        $is = null;
+
+        if (!$node->get('field_training_ceus_offered')->isEmpty()) {
+            $ceus = $node->get('field_training_ceus_offered')->referencedEntities();
+
+            // Just use the single label if we only have one
+            if (count($ceus) === 1) {
+                $ceu = $ceus[0]->label();
+            } else {
+                // Get the CEU labels
+                $ceu_labels = array_map(function ($item) {
+                    return $item->label();
+                }, $ceus);
+
+
+                $last_element = array_pop($ceu_labels);
+
+                // Add "and" to last string
+                $last_string = t("and @last",
+                    [
+                        '@last' => $last_element,
+                    ]
+                );
+
+                array_push($ceu_labels, $last_string);
+
+                // If there are just two items, no comma
+                $glue = (count($ceus) === 2) ? ' ' : ', ';
+                $ceu = implode($glue, $ceu_labels);
+            }
+        }
+
+        // Only add the "offering" string if we have CEUs. Change conjugation if
+        // there's not proficiency
+        $offering = null;
+        if ($proficiency !== null) {
+            $offering = t(' offering');
+            $is = t(' is');
+        } else {
+            $offering = t(' offers');
+        }
+
+        // If there's no ceu, remove offering
+        if($ceu === null) {
+            $offering = null;
+        }
+
+
+
+        // Create translated string. If we just have a cost this isn't going to show
+        $text = null;
+        if($proficiency !== null || $ceu !== null || $is !== null) {
+            $text = t("This@is @proficiency course@offering @ceu",
+                [
+                    '@proficiency' => $proficiency,
+                    '@ceu' => $ceu,
+                    '@offering' => $offering,
+                    '@is' => $is,
+                ]
+            );
+        }
+
+        // Add variables to template
+        $build['subtitle'] = [
+            '#theme' => 'training_subtitle',
+            '#text' => $text,
+            '#cost' => $cost,
+        ];
     }
 
-    // Create translated string
-    $text = t("This@is @proficiency course@offering @ceu",
-      [
-        '@proficiency' => $proficiency,
-        '@ceu' => $ceu,
-        '@offering' => $offering,
-        '@is' => $is,
-      ]
-    );
-
-    // Add variables to template
-    $build['subtitle'] = [
-      '#theme' => 'training_subtitle',
-      '#text' => $text,
-      '#cost' => $cost,
-    ];
-  }
-
-  if($view_mode === 'full') {
+    if ($view_mode === 'full') {
 
 
-    // Attach slider library if there are values in related training field
-    if (!$node->get('field_related_trainings')->isEmpty()) {
-      $build['#attached']['library'][] = 'nnphi_training/slider';
+        // Attach slider library if there are values in related training field
+        if (!$node->get('field_related_trainings')->isEmpty()) {
+            $build['#attached']['library'][] = 'nnphi_training/slider';
+        }
+
+        // Set target to blank on training link
+        if (isset($build['field_training_url'])) {
+            $build['field_training_url'][0]['#attributes']['target'] = '_blank';
+        }
+
     }
-
-    // Set target to blank on training link
-    if (isset($build['field_training_url'])) {
-      $build['field_training_url'][0]['#attributes']['target'] = '_blank';
-    }
-
-  }
 }
 
 /**
  * Implements hook_ENTITY_TYPE_view_alter().
  */
-function nnphi_training_node_view_alter(array &$build, NodeInterface $node, EntityViewDisplayInterface $display) {
-  if (!$display->getComponent('field_training_reviews')) {
-    return;
-  }
-  // Swap the comment lazy builder with a custom one so we can limit
-  // users from entering more than 1 review.
-  if (!empty($build['field_training_reviews'][0]['comment_form']['#lazy_builder'][0])) {
-    $build['field_training_reviews'][0]['comment_form']['#lazy_builder'][0] = 'nnphi_training.reviews.lazy_builders:renderForm';
-  }
+function nnphi_training_node_view_alter(array &$build, NodeInterface $node, EntityViewDisplayInterface $display)
+{
+    if (!$display->getComponent('field_training_reviews')) {
+        return;
+    }
+    // Swap the comment lazy builder with a custom one so we can limit
+    // users from entering more than 1 review.
+    if (!empty($build['field_training_reviews'][0]['comment_form']['#lazy_builder'][0])) {
+        $build['field_training_reviews'][0]['comment_form']['#lazy_builder'][0] = 'nnphi_training.reviews.lazy_builders:renderForm';
+    }
 }
 
 /**
  * Implements hook_ENTITY_TYPE_view().
  */
-function nnphi_training_block_content_view(array &$build, BlockContentInterface $block, EntityViewDisplayInterface $display, $view_mode) {
-  if ($block->bundle() === 'search_training' && $display->getComponent('search_form')) {
-    $build['search_form'] = \Drupal::formBuilder()->getForm('Drupal\nnphi_training\Form\SearchHeader');
-  }
+function nnphi_training_block_content_view(array &$build, BlockContentInterface $block, EntityViewDisplayInterface $display, $view_mode)
+{
+    if ($block->bundle() === 'search_training' && $display->getComponent('search_form')) {
+        $build['search_form'] = \Drupal::formBuilder()->getForm('Drupal\nnphi_training\Form\SearchHeader');
+    }
 }
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter().
  */
-function nnphi_training_form_node_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-  /** @var \Drupal\node\NodeInterface $node */
-  $node = $form_state->getFormObject()->getEntity();
-  if ($node->getType() !== 'training') {
-    return;
-  }
-  // Require the summary field.
-  $form['field_training_description']['widget'][0]['summary']['#required'] = TRUE;
-  $form['field_training_description']['widget'][0]['summary']['#description'] = t('The summary will be displayed in search results and where this training appears as a "related training."');
-  // Remove the JS that hides the summary.
-  $attached = array_search('text/drupal.text', $form['field_training_description']['widget'][0]['summary']['#attached']['library']);
-  unset($form['field_training_description']['widget'][0]['summary']['#attached']['library'][$attached]);
+function nnphi_training_form_node_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+    /** @var \Drupal\node\NodeInterface $node */
+    $node = $form_state->getFormObject()->getEntity();
+    if ($node->getType() !== 'training') {
+        return;
+    }
+    // Require the summary field.
+    $form['field_training_description']['widget'][0]['summary']['#required'] = TRUE;
+    $form['field_training_description']['widget'][0]['summary']['#description'] = t('The summary will be displayed in search results and where this training appears as a "related training."');
+    // Remove the JS that hides the summary.
+    $attached = array_search('text/drupal.text', $form['field_training_description']['widget'][0]['summary']['#attached']['library']);
+    unset($form['field_training_description']['widget'][0]['summary']['#attached']['library'][$attached]);
 }
-
 
 
 /**
  * Implements hook_entity_extra_field_info().
  */
-function nnphi_training_entity_extra_field_info() {
-  $extra = [];
-  $extra['node']['training']['display']['subtitle'] = [
-    'label' => t('Subtitle'),
-    'description' => t('Sentence describing type of course, what it offers, and cost'),
-    'weight' => 1,
-    'visible' => TRUE,
-  ];
+function nnphi_training_entity_extra_field_info()
+{
+    $extra = [];
+    $extra['node']['training']['display']['subtitle'] = [
+        'label' => t('Subtitle'),
+        'description' => t('Sentence describing type of course, what it offers, and cost'),
+        'weight' => 1,
+        'visible' => TRUE,
+    ];
 
-  $extra['node']['training']['display']['review_login_message'] = [
-    'label' => t('Review login message'),
-    'description' => t('Review login link for anonymous users'),
-    'weight' => 10,
-    'visible' => FALSE,
-  ];
+    $extra['node']['training']['display']['review_login_message'] = [
+        'label' => t('Review login message'),
+        'description' => t('Review login link for anonymous users'),
+        'weight' => 10,
+        'visible' => FALSE,
+    ];
 
-  $extra['block_content']['search_training']['display']['search_form'] = [
-    'label' => t('Search form'),
-    'description' => t('Training search autocomplete form'),
-    'visible' => TRUE,
-    'weight' => 1,
-  ];
+    $extra['block_content']['search_training']['display']['search_form'] = [
+        'label' => t('Search form'),
+        'description' => t('Training search autocomplete form'),
+        'visible' => TRUE,
+        'weight' => 1,
+    ];
 
-  return $extra;
+    return $extra;
 }
 
 /**
  * Implements hook_form_FORM_ID_alter().
  */
-function nnphi_training_form_comment_training_review_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-  // Re-name the "subject" field.
-  $form['subject']['widget'][0]['value']['#title'] = t('Review title');
-  $form['field_training_review_comment']['#after_build'][] = 'nnphi_training_review_comment_after_build';
-  $form['#prefix'] = '<a id="comment-form"></a>';
-  // Reversing order of rating radio buttons to support 5-star theming.
-  $vote_types = nnphi_training_review_rating_fields();
-  foreach ($vote_types as $vote_type => $vote_field) {
-    $options = $form[$vote_field]['widget']['#options'];
-    $reversed_options = array_reverse($options, TRUE);
-    $form[$vote_field]['widget']['#options'] = $reversed_options;
-  }
+function nnphi_training_form_comment_training_review_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+    // Re-name the "subject" field.
+    $form['subject']['widget'][0]['value']['#title'] = t('Review title');
+    $form['field_training_review_comment']['#after_build'][] = 'nnphi_training_review_comment_after_build';
+    $form['#prefix'] = '<a id="comment-form"></a>';
+    // Reversing order of rating radio buttons to support 5-star theming.
+    $vote_types = nnphi_training_review_rating_fields();
+    foreach ($vote_types as $vote_type => $vote_field) {
+        $options = $form[$vote_field]['widget']['#options'];
+        $reversed_options = array_reverse($options, TRUE);
+        $form[$vote_field]['widget']['#options'] = $reversed_options;
+    }
 }
 
 /**
  * Review comment after build callback.
  */
-function nnphi_training_review_comment_after_build($element) {
-  unset($element['widget'][0]['format']['help']);
-  unset($element['widget'][0]['format']['guidelines']);
-  unset($element['widget'][0]['format']['format']['#type']);
-  unset($element['widget'][0]['format']['#theme_wrappers']);
-  return $element;
+function nnphi_training_review_comment_after_build($element)
+{
+    unset($element['widget'][0]['format']['help']);
+    unset($element['widget'][0]['format']['guidelines']);
+    unset($element['widget'][0]['format']['format']['#type']);
+    unset($element['widget'][0]['format']['#theme_wrappers']);
+    return $element;
 }
 
 /**
@@ -328,121 +341,125 @@ function nnphi_training_review_comment_after_build($element) {
  *
  * @return array
  */
-function nnphi_training_review_rating_fields() {
-  return [
-    'content_rating' => 'field_training_review_content',
-    'overall_rating' => 'field_training_review_overall',
-    'presentation_rating' => 'field_training_review_present',
-    'relevance_rating' => 'field_training_review_relevance',
-  ];
+function nnphi_training_review_rating_fields()
+{
+    return [
+        'content_rating' => 'field_training_review_content',
+        'overall_rating' => 'field_training_review_overall',
+        'presentation_rating' => 'field_training_review_present',
+        'relevance_rating' => 'field_training_review_relevance',
+    ];
 }
 
 /**
  * Implements hook_ENTITY_TYPE_insert().
  */
-function nnphi_training_comment_insert(CommentInterface $comment) {
-  nnphi_training_comment_update_insert($comment);
-  if ($comment->getTypeId() === 'training_review' && !$comment->isPublished()) {
-    nnphi_training_review_notify($comment);
-  }
+function nnphi_training_comment_insert(CommentInterface $comment)
+{
+    nnphi_training_comment_update_insert($comment);
+    if ($comment->getTypeId() === 'training_review' && !$comment->isPublished()) {
+        nnphi_training_review_notify($comment);
+    }
 }
 
 /**
  * Implements hook_ENTITY_TYPE_update().
  */
-function nnphi_training_comment_update(CommentInterface $comment) {
-  nnphi_training_comment_update_insert($comment);
-  if ($comment->getTypeId() === 'training_review' && !$comment->isPublished() && $comment->original->isPublished()) {
-    nnphi_training_review_notify($comment);
-  }
+function nnphi_training_comment_update(CommentInterface $comment)
+{
+    nnphi_training_comment_update_insert($comment);
+    if ($comment->getTypeId() === 'training_review' && !$comment->isPublished() && $comment->original->isPublished()) {
+        nnphi_training_review_notify($comment);
+    }
 }
 
-function nnphi_training_comment_update_insert(CommentInterface $comment) {
-  // Make sure it's a published review.
-  if ($comment->getTypeId() !== 'training_review' || !$comment->isPublished()) {
-    return;
-  }
-  $vote_storage = \Drupal::entityTypeManager()->getStorage('vote');
-  $entity = $comment->getCommentedEntity();
-  $vote_types = nnphi_training_review_rating_fields();
-  $entity_id = $entity->id();
-  $uid = $comment->getOwnerId();
-  $time = $comment->getCreatedTime();
-  foreach ($vote_types as $vote_type => $vote_field) {
-    try {
-      /** @var \Drupal\votingapi\VoteInterface $vote */
-      // Update an existing vote if one exists.
-      $existing = $vote_storage->loadByProperties([
-        'entity_type' => 'node',
-        'entity_id' => $entity_id,
-        'user_id' => $uid,
-        'type' => $vote_type,
-      ]);
-      if ($existing) {
-        $vote = end($existing);
-      }
-      else {
-        $vote = $vote_storage->create([
-          'type' => $vote_type,
-          'timestamp' => $time,
-        ]);
-      }
-      $vote->setOwnerId($uid);
-      $vote->setValue($comment->{$vote_field}->value);
-      $vote->setVotedEntityType('node');
-      $vote->setVotedEntityId($entity_id);
-      $vote->setValueType('percent');
-      $valid = $vote->validate();
-      if ($valid->count() < 1) {
-        $vote->save();
-      }
+function nnphi_training_comment_update_insert(CommentInterface $comment)
+{
+    // Make sure it's a published review.
+    if ($comment->getTypeId() !== 'training_review' || !$comment->isPublished()) {
+        return;
     }
-    catch (Exception $exception) {
-      watchdog_exception('nnphi_training', $exception);
-      \Drupal::logger('nnphi_training')->error('Unable to save vote @type for node @id',
-        ['@type' => $vote_type, '@id' => $entity_id]);
+    $vote_storage = \Drupal::entityTypeManager()->getStorage('vote');
+    $entity = $comment->getCommentedEntity();
+    $vote_types = nnphi_training_review_rating_fields();
+    $entity_id = $entity->id();
+    $uid = $comment->getOwnerId();
+    $time = $comment->getCreatedTime();
+    foreach ($vote_types as $vote_type => $vote_field) {
+        try {
+            /** @var \Drupal\votingapi\VoteInterface $vote */
+            // Update an existing vote if one exists.
+            $existing = $vote_storage->loadByProperties([
+                'entity_type' => 'node',
+                'entity_id' => $entity_id,
+                'user_id' => $uid,
+                'type' => $vote_type,
+            ]);
+            if ($existing) {
+                $vote = end($existing);
+            } else {
+                $vote = $vote_storage->create([
+                    'type' => $vote_type,
+                    'timestamp' => $time,
+                ]);
+            }
+            $vote->setOwnerId($uid);
+            $vote->setValue($comment->{$vote_field}->value);
+            $vote->setVotedEntityType('node');
+            $vote->setVotedEntityId($entity_id);
+            $vote->setValueType('percent');
+            $valid = $vote->validate();
+            if ($valid->count() < 1) {
+                $vote->save();
+            }
+        } catch (Exception $exception) {
+            watchdog_exception('nnphi_training', $exception);
+            \Drupal::logger('nnphi_training')->error('Unable to save vote @type for node @id',
+                ['@type' => $vote_type, '@id' => $entity_id]);
+        }
     }
-  }
 }
 
 /**
  * Send an admin notification for a new comment.
  */
-function nnphi_training_review_notify(CommentInterface $review) {
-  $lang = \Drupal::languageManager()->getDefaultLanguage();
-  $params = [
-    'node' => $review->getCommentedEntity(),
-    'review' => $review,
-  ];
-  $address = \Drupal::state()->get(\Drupal\nnphi_training\Form\ReviewNotificationConfig::STATE_KEY);
-  if (!$address) {
-    \Drupal::logger('nnphi_training')->alert('Unable to send notification email for review @cid: Missing email address',
-      ['@cid' => $review->id()]);
-    return;
-  }
-  $sent = \Drupal::service('plugin.manager.mail')->mail('nnphi_training', 'review_moderation', $address, $lang, $params);
-  if (!$sent['result']) {
-    \Drupal::logger('nnphi_training')->error('Error sending moderation notification message for review @cid',
-      ['@cid' => $review->id()]);
-  }
-  else {
-    \Drupal::logger('nnphi_training')->notice('Sent moderation notification message for review @cid',
-      ['@cid' => $review->id()]);
-  }
+function nnphi_training_review_notify(CommentInterface $review)
+{
+    $lang = \Drupal::languageManager()->getDefaultLanguage();
+    $params = [
+        'node' => $review->getCommentedEntity(),
+        'review' => $review,
+    ];
+    $address = \Drupal::state()->get(\Drupal\nnphi_training\Form\ReviewNotificationConfig::STATE_KEY);
+    if (!$address) {
+        \Drupal::logger('nnphi_training')->alert('Unable to send notification email for review @cid: Missing email address',
+            ['@cid' => $review->id()]);
+        return;
+    }
+    $sent = \Drupal::service('plugin.manager.mail')->mail('nnphi_training', 'review_moderation', $address, $lang, $params);
+    if (!$sent['result']) {
+        \Drupal::logger('nnphi_training')->error('Error sending moderation notification message for review @cid',
+            ['@cid' => $review->id()]);
+    } else {
+        \Drupal::logger('nnphi_training')->notice('Sent moderation notification message for review @cid',
+            ['@cid' => $review->id()]);
+    }
 }
 
 /**
  * Implements hook_ENTITY_TYPE_insert().
  */
-function nnphi_training_vote_insert(VoteInterface $vote) {
-  nnphi_training_vote_update_insert($vote);
+function nnphi_training_vote_insert(VoteInterface $vote)
+{
+    nnphi_training_vote_update_insert($vote);
 }
 
 /**
  * Implements hook_ENTITY_TYPE_update().
  */
-function nnphi_training_vote_update(VoteInterface $vote) {
-  nnphi_training_vote_update_insert($vote);
+function nnphi_training_vote_update(VoteInterface $vote)
+{
+    nnphi_training_vote_update_insert($vote);
 }
 
 /**
@@ -451,81 +468,84 @@ function nnphi_training_vote_update(VoteInterface $vote) {
  *
  * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
  */
-function nnphi_training_vote_update_insert(VoteInterface $vote) {
-  // Update the node with the vote result.
-  $vote_types = nnphi_training_review_rating_fields();
-  $vote_type = $vote->type->target_id;
-  if (!isset($vote_types[$vote_type])) {
-    return;
-  }
-  $value = \Drupal::database()->query("SELECT value FROM {votingapi_result}
+function nnphi_training_vote_update_insert(VoteInterface $vote)
+{
+    // Update the node with the vote result.
+    $vote_types = nnphi_training_review_rating_fields();
+    $vote_type = $vote->type->target_id;
+    if (!isset($vote_types[$vote_type])) {
+        return;
+    }
+    $value = \Drupal::database()->query("SELECT value FROM {votingapi_result}
                                     WHERE entity_type = 'node'
                                     AND entity_id = :entity_id
                                     AND type = :vote_type
                                     AND function = 'vote_average'",
-    [':entity_id' => $vote->getVotedEntityId(), ':vote_type' => $vote_type])->fetchField();
-  $node = \Drupal::entityTypeManager()->getStorage('node')
-    ->load($vote->getVotedEntityId());
-  if ($node) {
-    try {
-      $node->{$vote_types[$vote_type]}->value = $value;
-      $node->save();
+        [':entity_id' => $vote->getVotedEntityId(), ':vote_type' => $vote_type])->fetchField();
+    $node = \Drupal::entityTypeManager()->getStorage('node')
+        ->load($vote->getVotedEntityId());
+    if ($node) {
+        try {
+            $node->{$vote_types[$vote_type]}->value = $value;
+            $node->save();
+        } catch (Exception $exception) {
+            watchdog_exception('nnphi_training', $exception);
+            \Drupal::logger('nnphi_training')->error('Unable to update training rating field @field',
+                ['@field' => $vote_types[$vote_type]]);
+        }
     }
-    catch (Exception $exception) {
-      watchdog_exception('nnphi_training', $exception);
-      \Drupal::logger('nnphi_training')->error('Unable to update training rating field @field',
-        ['@field' => $vote_types[$vote_type]]);
-    }
-  }
 }
 
 /**
  * Implements hook_comment_links_alter().
  */
-function nnphi_training_comment_links_alter(array &$links, CommentInterface $comment, array &$context) {
-  if ($comment->getTypeId() !== 'training_review') {
-    return;
-  }
-  // Hide the reply link for training reviews.
-  if (!empty($links['comment']['#links']['comment-reply'])) {
-    unset($links['comment']['#links']['comment-reply']);
-  }
-  if (!empty($links['comment']['#links']['comment-forbidden'])) {
-    unset($links['comment']['#links']['comment-forbidden']);
-  }
+function nnphi_training_comment_links_alter(array &$links, CommentInterface $comment, array &$context)
+{
+    if ($comment->getTypeId() !== 'training_review') {
+        return;
+    }
+    // Hide the reply link for training reviews.
+    if (!empty($links['comment']['#links']['comment-reply'])) {
+        unset($links['comment']['#links']['comment-reply']);
+    }
+    if (!empty($links['comment']['#links']['comment-forbidden'])) {
+        unset($links['comment']['#links']['comment-forbidden']);
+    }
 }
 
 /**
  * Implements hook_theme().
  */
-function nnphi_training_theme($existing, $type, $theme, $path) {
-  return [
-    'nnphi_training_search_page' => [
-      'variables' => [],
-      'template' => 'search-page',
-    ],
-    'training_autocomplete_footer' => [
-      'variables' => ['url' => Url::fromRoute('nnphi_training.instant_search')->toString()],
-      'template' => 'autocomplete-footer',
-    ],
+function nnphi_training_theme($existing, $type, $theme, $path)
+{
+    return [
+        'nnphi_training_search_page' => [
+            'variables' => [],
+            'template' => 'search-page',
+        ],
+        'training_autocomplete_footer' => [
+            'variables' => ['url' => Url::fromRoute('nnphi_training.instant_search')->toString()],
+            'template' => 'autocomplete-footer',
+        ],
 
-    'training_subtitle' => [
-      'variables' => [
-        'text' => '',
-        'cost' => '',
-      ],
-      'template' => 'training-subtitle',
-    ],
-  ];
+        'training_subtitle' => [
+            'variables' => [
+                'text' => '',
+                'cost' => '',
+            ],
+            'template' => 'training-subtitle',
+        ],
+    ];
 }
 
 /**
  * Implements hook_preprocess_HOOK().
  */
-function nnphi_training_preprocess_nnphi_training_search_page(&$variables) {
-  $variables['#attached']['library'][] = 'nnphi_training/instant-search';
-  $variables['#attached']['library'][] = 'nnphi_training/moment';
-  $variables['#attached']['drupalSettings']['trainingSearch'] = nnphi_training_search_js_settings();
+function nnphi_training_preprocess_nnphi_training_search_page(&$variables)
+{
+    $variables['#attached']['library'][] = 'nnphi_training/instant-search';
+    $variables['#attached']['library'][] = 'nnphi_training/moment';
+    $variables['#attached']['drupalSettings']['trainingSearch'] = nnphi_training_search_js_settings();
 }
 
 /**
@@ -533,45 +553,48 @@ function nnphi_training_preprocess_nnphi_training_search_page(&$variables) {
  *
  * @return array
  */
-function nnphi_training_search_js_settings() {
-  $config = \Drupal::config('nnphi_training.search.config');
-  return [
-    'api_key' => $config->get('api_key'),
-    'app_id' => $config->get('app_id'),
-    'index' => $config->get('index'),
-    'search_page' => Url::fromRoute('nnphi_training.instant_search')->toString(),
-  ];
+function nnphi_training_search_js_settings()
+{
+    $config = \Drupal::config('nnphi_training.search.config');
+    return [
+        'api_key' => $config->get('api_key'),
+        'app_id' => $config->get('app_id'),
+        'index' => $config->get('index'),
+        'search_page' => Url::fromRoute('nnphi_training.instant_search')->toString(),
+    ];
 }
 
 /**
  * Implements hook_mail().
  */
-function nnphi_training_mail($key, &$message, $params) {
-  if ($key === 'review_moderation') {
-    /** @var NodeInterface $node */
-    $node = $params['node'];
-    /** @var CommentInterface $review */
-    $review = $params['review'];
-    $message['subject'] = t('New training review submitted');
-    $line = 'A new review ("%rtitle") has been submitted for training "%ttitle" and is waiting for moderation.';
-    $line = strtr($line, ['%rtitle' => $review->getSubject(), '%ttitle' => $node->label()]);
-    $message['body'][] = MailFormatHelper::htmlToText($line);
-    $link = '<a href="%url">Click here</a> or copy and paste the following link for the moderation page: %url';
-    $link = strtr($link, ['%url' => Url::fromRoute('comment.admin_approval', [], ['absolute' => TRUE])->toString()]);
-    $message['body'][] = MailFormatHelper::htmlToText($link);
-  }
+function nnphi_training_mail($key, &$message, $params)
+{
+    if ($key === 'review_moderation') {
+        /** @var NodeInterface $node */
+        $node = $params['node'];
+        /** @var CommentInterface $review */
+        $review = $params['review'];
+        $message['subject'] = t('New training review submitted');
+        $line = 'A new review ("%rtitle") has been submitted for training "%ttitle" and is waiting for moderation.';
+        $line = strtr($line, ['%rtitle' => $review->getSubject(), '%ttitle' => $node->label()]);
+        $message['body'][] = MailFormatHelper::htmlToText($line);
+        $link = '<a href="%url">Click here</a> or copy and paste the following link for the moderation page: %url';
+        $link = strtr($link, ['%url' => Url::fromRoute('comment.admin_approval', [], ['absolute' => TRUE])->toString()]);
+        $message['body'][] = MailFormatHelper::htmlToText($link);
+    }
 }
 
 /**
  * Implements hook_search_api_algolia_objects_alter().
  */
-function nnphi_training_search_api_algolia_objects_alter(array &$objects, \Drupal\search_api\IndexInterface $index, array $items) {
-  // The instantsearch star widget only works with integers,
-  // floor the rating value so "x stars & up" works correctly.
-  foreach ($objects as &$object) {
-    if (!isset($object['overall_rating_facet_value'])) {
-      continue;
+function nnphi_training_search_api_algolia_objects_alter(array &$objects, \Drupal\search_api\IndexInterface $index, array $items)
+{
+    // The instantsearch star widget only works with integers,
+    // floor the rating value so "x stars & up" works correctly.
+    foreach ($objects as &$object) {
+        if (!isset($object['overall_rating_facet_value'])) {
+            continue;
+        }
+        $object['overall_rating_facet_value'] = floor($object['overall_rating_facet_value']);
     }
-    $object['overall_rating_facet_value'] = floor($object['overall_rating_facet_value']);
-  }
 }
