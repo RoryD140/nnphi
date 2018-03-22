@@ -7,10 +7,10 @@ dependencies:
     - field.field.user.user.field_last_password_reset
     - field.field.user.user.field_password_expiration
     - field.field.user.user.field_user_interests
-    - field.field.user.user.field_user_job_title
     - field.field.user.user.field_user_role
     - field.field.user.user.field_user_setting
     - field.field.user.user.field_user_username
+    - field.field.user.user.field_user_work_setting
     - field.field.user.user.field_user_zipcode
     - field.field.user.user.user_picture
   module:
@@ -23,14 +23,6 @@ targetEntityType: user
 bundle: user
 mode: profile
 content:
-  field_user_job_title:
-    weight: 1
-    label: inline
-    settings:
-      link: false
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: content
   field_user_zipcode:
     weight: 2
     label: inline
@@ -55,4 +47,5 @@ hidden:
   field_user_role: true
   field_user_setting: true
   field_user_username: true
+  field_user_work_setting: true
   member_for: true

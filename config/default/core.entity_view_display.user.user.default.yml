@@ -6,10 +6,11 @@ dependencies:
     - field.field.user.user.field_last_password_reset
     - field.field.user.user.field_password_expiration
     - field.field.user.user.field_user_interests
-    - field.field.user.user.field_user_job_title
+    - field.field.user.user.field_user_job_title_text
     - field.field.user.user.field_user_role
     - field.field.user.user.field_user_setting
     - field.field.user.user.field_user_username
+    - field.field.user.user.field_user_work_setting
     - field.field.user.user.field_user_zipcode
     - field.field.user.user.user_picture
     - image.style.thumbnail
@@ -31,13 +32,13 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
-  field_user_job_title:
-    weight: 1
-    label: hidden
+  field_user_job_title_text:
+    weight: 7
+    label: above
     settings:
-      link: true
+      link_to_entity: false
     third_party_settings: {  }
-    type: entity_reference_label
+    type: string
     region: content
   field_user_role:
     weight: 3
@@ -49,6 +50,14 @@ content:
     region: content
   field_user_setting:
     weight: 4
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_user_work_setting:
+    weight: 6
     label: above
     settings:
       link: true
