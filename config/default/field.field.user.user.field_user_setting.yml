@@ -11,7 +11,7 @@ id: user.user.field_user_setting
 field_name: field_user_setting
 entity_type: user
 bundle: user
-label: Setting
+label: CEU
 description: ''
 required: false
 translatable: false

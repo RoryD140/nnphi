@@ -149,8 +149,7 @@ class TrainingSuggestions extends BlockBase implements ContainerFactoryPluginInt
    */
   protected function canSuggest(AccountInterface $account) {
     $interests = $account->get('field_user_interests');
-    $job_title = $account->get('field_user_job_title');
-    if ($interests->isEmpty() && $job_title->isEmpty()) {
+    if ($interests->isEmpty()) {
       return FALSE;
     }
     return TRUE;

@@ -1,9 +1,0 @@
-uuid: 5ef01e41-e4af-44e6-8d10-ca44fbdf94c3
-langcode: en
-status: true
-dependencies: {  }
-name: 'Job Titles'
-vid: job_titles
-description: 'Job titles for user registration'
-hierarchy: 0
-weight: 0

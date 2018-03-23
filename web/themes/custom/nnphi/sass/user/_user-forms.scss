@@ -67,6 +67,7 @@
   margin-bottom: 0;
 }
 
+%user-form-label,
 .user-form .form-item label,
 .user-register-form .form-item label,
 .user-login-form .form-item label,
@@ -234,13 +235,13 @@ input[id^="edit-user-picture-"] {
   display: none;
 }
 
-// Interests
-.field-user-interests-values h4.label {
-  text-transform: uppercase;
-  font-weight: bold;
-  margin-bottom: 0;
-  font-size: 1rem;
-}
+//// Interests
+//.field-user-interests-values h4.label {
+//  text-transform: uppercase;
+//  font-weight: bold;
+//  margin-bottom: 0;
+//  font-size: 1rem;
+//}
 
 // Global select styles
 .select-wrapper {
@@ -266,7 +267,6 @@ input[id^="edit-user-picture-"] {
 select {
   width: 100%;
   display: block;
-  width: 100%;
   padding: 0.5rem 0.75rem;
   font-size: 1rem;
   line-height: 1.25;
@@ -354,12 +354,46 @@ select {
   margin-bottom: .5rem;
 }
 
-.user-form table h4.label {
-  text-transform: uppercase;
-  font-weight: bold;
-  margin-bottom: 0;
-  font-size: 1rem;
-  font-family: "Lato",sans-serif;
+// Repeating hierarchical select items are in dataset tables,
+// so this makes that markup function like standard form items
+.user-form table {
+  display: flex;
+  flex-wrap: wrap;
+  //align-items: center;
+  width: 100%;
+  margin-bottom: 30px;
+  align-items: flex-start; // prevents title from jumping around when new items are added
+  thead {
+    @extend %user-form-label;
+    h4 {
+      font-size: $font-size-base;
+      @include media-breakpoint-up(md) {
+        line-height: 2.4; // Gives this the effect of looking centered with the first select element
+      }
+    }
+  }
+  tbody {
+    @extend %input-width;
+    display: flex;
+    flex-direction: column;
+  }
+  tr {
+    width: 100%;
+    display: flex;
+    td {
+      width: 100%;
+      .form-item {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// Right align and unset weird default styles for "add more" wrapper
+#edit-field-user-interests-wrapper .clearfix {
+  margin-left: auto;
+  width: auto;
+  top: unset;
 }
 
 .user-form tbody .select-wrapper {
@@ -367,69 +401,9 @@ select {
   float: right;
 }
 
-tr.draggable {
-  width: 80%;
-  float: right;
-  position: relative;
-  top: -20px;
-  @include media-breakpoint-down(md) {
-    top: 0;
-  }
-}
-
-tr.draggable .select-wrapper:nth-of-type(2) {
-  width: 95%;
-  margin-left: 5%;
-  @include media-breakpoint-down(xl) {
-    width: 90%;
-    margin-left: 10%;
-  }
-  @include media-breakpoint-down(lg) {
-     width: 85%;
-     margin-left: 15%;
-   }
-  @include media-breakpoint-down(md) {
-    width: 100%;
-    margin-left: 0;
-  }
-}
-
-tr.draggable .select-wrapper:nth-of-type(3) {
-  width: 90%;
-  margin-left: 10%;
-  @include media-breakpoint-down(xl) {
-    width: 85%;
-    margin-left: 15%;
-  }
-  @include media-breakpoint-down(lg) {
-    width: 80%;
-    margin-left: 20%;
-  }
-  @include media-breakpoint-down(md) {
-    width: 100%;
-    margin-left: 0;
-  }
-}
-
-[id^='field-user-interests-'] .clearfix {
-  width: 80%;
-  margin-left: 20%;
-  position: relative;
-  top: -20px;
-}
 
 .field-multiple-table {
   table-layout: fixed;
-}
-
-// I don't like using px, but there is seemingly no other way to control the width of the "Please Select" widget.
-@include media-breakpoint-up(md) {
-  .field-multiple-table td {
-    width: 100%;
-    float: right;
-    min-width: 500px;
-    margin-left: 200px;
-  }
 }
 
 
@@ -438,8 +412,4 @@ tr.draggable .select-wrapper:nth-of-type(3) {
   width: 100%;
   background-color: $gray-light;
   margin-bottom: 1rem;
-}
-
-#edit-submit {
-  float: right;
 }

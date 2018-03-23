@@ -1,18 +1,18 @@
-uuid: a19303eb-8c4b-4ce4-bc9a-c5a437283a40
+uuid: a04d09eb-8863-4654-8984-8d4d9a237f94
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.user.field_user_interests
-    - taxonomy.vocabulary.competencies
+    - field.storage.user.field_user_work_setting
+    - taxonomy.vocabulary.work_settings
   module:
     - user
-id: user.user.field_user_interests
-field_name: field_user_interests
+id: user.user.field_user_work_setting
+field_name: field_user_work_setting
 entity_type: user
 bundle: user
-label: Interests
-description: 'This information will be used to provide you with suggested trainings.'
+label: 'Work Setting'
+description: ''
 required: false
 translatable: false
 default_value: {  }
@@ -21,10 +21,10 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      competencies: competencies
+      work_settings: work_settings
     sort:
       field: name
       direction: asc
     auto_create: false
-    auto_create_bundle: competencies
+    auto_create_bundle: ''
 field_type: entity_reference
