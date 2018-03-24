@@ -7,9 +7,10 @@ dependencies:
     - field.field.user.user.field_last_password_reset
     - field.field.user.user.field_password_expiration
     - field.field.user.user.field_user_interests
-    - field.field.user.user.field_user_job_title
     - field.field.user.user.field_user_role
     - field.field.user.user.field_user_setting
+    - field.field.user.user.field_user_username
+    - field.field.user.user.field_user_work_setting
     - field.field.user.user.field_user_zipcode
     - field.field.user.user.user_picture
   module:
@@ -41,15 +42,6 @@ content:
       display_label: true
     third_party_settings: {  }
     region: content
-  field_user_job_title:
-    weight: 2
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: 'Start typing to see existing job titles'
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_user_zipcode:
     weight: 1
     settings:
@@ -74,6 +66,8 @@ hidden:
   field_user_interests: true
   field_user_role: true
   field_user_setting: true
+  field_user_username: true
+  field_user_work_setting: true
   language: true
   suggest_terms: true
   timezone: true

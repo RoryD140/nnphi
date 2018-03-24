@@ -1,0 +1,9 @@
+uuid: 8fa07dec-152c-43bf-b7bc-28e654e78ab1
+langcode: en
+status: true
+dependencies: {  }
+name: 'Work Settings'
+vid: work_settings
+description: ''
+hierarchy: 0
+weight: 0
