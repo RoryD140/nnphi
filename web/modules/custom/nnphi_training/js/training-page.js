@@ -7,7 +7,7 @@
           var location = $.cookie('nnphi_search_url');
           if (location.length > 0) {
             var $this = $(this);
-            $this.html('<a class="search-back-link" href="' + location +'">' + Drupal.t('Back to Search Results') + '</a>');
+            $this.html('<a class="search-back-link" href="' + location +'">' + Drupal.t('< Back to Search Results') + '</a>');
             $this.show();
           }
         }
