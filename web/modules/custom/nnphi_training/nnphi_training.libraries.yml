@@ -21,6 +21,7 @@ instant-search:
     - core/jquery
     - core/jquery.once
     - core/drupalSettings
+    - core/jquery.cookie
 
 autocomplete:
   version: VERSION
@@ -38,3 +39,11 @@ moment:
   js:
     /libraries/moment/min/moment.min.js: {minified: true}
 
+training-page:
+  version: VERSION
+  js:
+    js/training-page.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/jquery.cookie
