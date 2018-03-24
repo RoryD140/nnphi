@@ -59,3 +59,14 @@
   @extend .btn-primary;
   @extend .btn-arrow;
 }
+
+.search-back {
+  font-size: $font-size-sm;
+  text-transform: uppercase;
+  padding-bottom: $padding-sm;
+  @include media-breakpoint-up(lg) {
+    position: absolute;
+    left: $padding-sm;
+    top: -6rem; // puts this at top of training-hero, but allows us to left position relative to container
+  }
+}

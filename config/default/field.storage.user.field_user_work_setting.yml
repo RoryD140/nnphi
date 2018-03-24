@@ -1,12 +1,12 @@
-uuid: 4deac100-3181-4738-bd53-feb032d54042
+uuid: 10a1f264-7488-4278-97b7-a6fdb8545f71
 langcode: en
 status: true
 dependencies:
   module:
     - taxonomy
     - user
-id: user.field_user_job_title
-field_name: field_user_job_title
+id: user.field_user_work_setting
+field_name: field_user_work_setting
 entity_type: user
 type: entity_reference
 settings:

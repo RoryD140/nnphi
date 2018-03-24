@@ -279,7 +279,7 @@
       if (item.url.indexOf('/') === 0){
         item.url = item.url.substring(1);
       }
-      item.url = Drupal.url(item.url);
+      item.url = Drupal.url(item.url) + '?src=search';
 
       return item;
     },
@@ -349,6 +349,13 @@
             def: false // Remove the default styling
           }
         }).bind('click', function(event){ event.preventDefault(); return false; });
+      });
+      $('a.training-teaser-link, a.training-node-preview-btn', context).once('search-history').click(function(e) {
+        // Set a cookie so training pages can add a back link.
+        var url = $(this).attr('href');
+        e.preventDefault();
+        $.cookie('nnphi_search_url', window.location);
+        document.location = url;
       });
     }
   }

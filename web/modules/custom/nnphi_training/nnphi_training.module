@@ -218,11 +218,12 @@ function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayIn
 
     if ($view_mode === 'full') {
 
-
-        // Attach slider library if there are values in related training field
+        // Attach the training page javascript library.
         if (!$node->get('field_related_trainings')->isEmpty()) {
             $build['#attached']['library'][] = 'nnphi_training/slider';
         }
+
+        $build['#attached']['library'][] = 'nnphi_training/training-page';
 
         // Set target to blank on training link
         if (isset($build['field_training_url'])) {
@@ -546,6 +547,21 @@ function nnphi_training_preprocess_nnphi_training_search_page(&$variables)
     $variables['#attached']['library'][] = 'nnphi_training/instant-search';
     $variables['#attached']['library'][] = 'nnphi_training/moment';
     $variables['#attached']['drupalSettings']['trainingSearch'] = nnphi_training_search_js_settings();
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function nnphi_training_preprocess_node(&$variables) {
+  /** @var NodeInterface $node */
+  $node = $variables['node'];
+  if ($variables['view_mode'] !== 'preview' || $node->bundle() !== 'training') {
+    return;
+  }
+  // Add a src query string to the URL.
+  $variables['url'] = $node->toUrl('canonical', [
+    'query' => ['src' => 'search'],
+  ])->toString();
 }
 
 /**

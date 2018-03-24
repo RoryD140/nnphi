@@ -34,11 +34,10 @@ class TrainingSuggestions {
     $account = $this->userStorage()->load($account->id());
     // Extract interests from the user.
     $interests = $account->get('field_user_interests');
-    $job_title = $account->get('field_user_job_title');
-    if ($interests->isEmpty() && $job_title->isEmpty()) {
+    if ($interests->isEmpty()) {
       return [];
     }
-    $terms = $interests->getValue() + $job_title->getValue();
+    $terms = $interests->getValue();
     $tids = array_column($terms, 'target_id');
     $nids = $this->suggestedTrainingsQuery($tids, $account->id());
     if (count($nids) < 10) {
