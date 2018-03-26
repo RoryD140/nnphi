@@ -83,12 +83,17 @@
     <div class="training-node-teaser-top-right">
       {{ content.field_training_source }}
       {{ node.getCreatedTime()|format_date('training_date') }}
-      {{ content.flag_bookmark }}
     </div>
+    {% if content.field_training_expiration|render %}
+      <div class="training-node-teaser-expires">{{ 'Expires'|t }} <span>{{ content.field_training_expiration }}</span></div>
+    {% endif %}
   </div>
   <h3>{{ label }}</h3>
+  {{ content.field_training_total_time }}
+  {#{{ content.field_training_time_to_start }}#}
   {{ content.field_training_description }}
   <div class="training-teaser-link-wrapper">
+    {{ content.flag_bookmark }}
     <a href="{{ url }}" class="training-teaser-link">{{ 'View Training'|t }}</a>
     {% if elements.enrollment_link|render %}
       {{ elements.enrollment_link }}

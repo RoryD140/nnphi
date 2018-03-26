@@ -122,14 +122,39 @@ $close-btn-size: 30px;
   }
 }
 
+
+.training-node-preview-expires {
+  display: flex;
+  text-transform: uppercase;
+  color: $gray-text;
+  font-size: $font-size-sm;
+  margin-top: 5px;
+  span {
+    padding-left: $padding-sm/2;
+    font-weight: $font-weight-light;
+  }
+}
 .training-node-preview-rating-ceu .training-node-star {
   margin-top: 0; // override star margin
 }
 
 .training-node-preview-bottom-left ul li {
-  @extend %green-dot-list;;
+  @extend %green-dot-list;
 }
 
 .training-node-preview-bottom-right ul li {
   @extend %checkmark-list;
+}
+
+.training-node-preview-submit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  @include media-breakpoint-down(lg) {
+    flex-direction: column;
+    .flag-bookmark {
+      margin-top: 30px;
+    }
+  }
 }
