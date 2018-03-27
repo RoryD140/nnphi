@@ -53,6 +53,8 @@ function nnphi_user_preprocess_page(&$variables) {
     $user = \Drupal::routeMatch()->getParameter('user');
     $name = $user->getDisplayName();
     $variables['custom_title'] = t('Welcome, @name', ['@name' => $name]);
+  } elseif ($route === 'change_pwd_page.change_password_form') {
+    $variables['custom_title'] = t('Change Your Password');
   }
 
 }

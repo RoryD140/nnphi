@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "43217a68ea68151da06bc1109cbe31a4",
+    "content-hash": "2f7d2d643804c342eadf3c8c7ddc7de5",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1357,6 +1357,64 @@
             "homepage": "https://www.drupal.org/project/allowed_formats",
             "support": {
                 "source": "http://cgit.drupalcode.org/allowed_formats"
+            }
+        },
+        {
+            "name": "drupal/change_pwd_page",
+            "version": "1.0.0-beta1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/change_pwd_page",
+                "reference": "8.x-1.0-beta1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/change_pwd_page-8.x-1.0-beta1.zip",
+                "reference": "8.x-1.0-beta1",
+                "shasum": "02e888b3294ccee88df003ab59e10d0517579b2f"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta1",
+                    "datestamp": "1478006340",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                },
+                "patches_applied": {
+                    "Fix password reset links": "patches/contrib/change_pwd_page/reset-pw-route.patch"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "divesh.kumar",
+                    "homepage": "https://www.drupal.org/user/390770"
+                },
+                {
+                    "name": "er.pushpinderrana",
+                    "homepage": "https://www.drupal.org/user/1004418"
+                },
+                {
+                    "name": "gaurav.pahuja",
+                    "homepage": "https://www.drupal.org/user/1804170"
+                }
+            ],
+            "description": "Provides a separate page containing a form for the current user to change their password.",
+            "homepage": "https://www.drupal.org/project/change_pwd_page",
+            "support": {
+                "source": "http://cgit.drupalcode.org/change_pwd_page"
             }
         },
         {
@@ -8953,6 +9011,7 @@
     "aliases": [],
     "minimum-stability": "alpha",
     "stability-flags": {
+        "drupal/change_pwd_page": 10,
         "drupal/conditional_fields": 15,
         "drupal/flag": 15,
         "drupal/pantheon_advanced_page_cache": 15,

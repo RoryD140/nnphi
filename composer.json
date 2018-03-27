@@ -29,6 +29,7 @@
     "drupal/address": "1.1",
     "drupal/admin_toolbar": "^1.23",
     "drupal/allowed_formats": "^1.1",
+    "drupal/change_pwd_page": "^1.0@beta",
     "drupal/conditional_fields": "1.0-alpha2",
     "drupal/config_direct_save": "1.0",
     "drupal/config_ignore": "2.0",
@@ -144,6 +145,9 @@
       "drupal/panels": {
         "Add a hook to alter available blocks in the IPE": "https://www.drupal.org/files/issues/allow-alter-block-content-types-2915161-2.patch",
         "Pass context for block altering": "https://www.drupal.org/files/issues/panels-hook-blocks-alter-context-2886230-2.patch"
+      },
+      "drupal/change_pwd_page" : {
+        "Fix password reset links": "patches/contrib/change_pwd_page/reset-pw-route.patch"
       }
     }
   },
