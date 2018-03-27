@@ -1,0 +1,21 @@
+uuid: 69749755-f654-4fe5-bb96-0f9b719cb014
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_training_access_difficulty
+    - node.type.training
+  module:
+    - options
+id: node.training.field_training_access_difficulty
+field_name: field_training_access_difficulty
+entity_type: node
+bundle: training
+label: 'Access Difficulty'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

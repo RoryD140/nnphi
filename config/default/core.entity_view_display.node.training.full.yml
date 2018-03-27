@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_display.comment.training_review.default
     - core.entity_view_mode.node.full
     - field.field.node.training.field_related_trainings
+    - field.field.node.training.field_training_access_difficulty
     - field.field.node.training.field_training_categories
     - field.field.node.training.field_training_ceus_offered
     - field.field.node.training.field_training_competencies
@@ -27,7 +28,6 @@ dependencies:
     - field.field.node.training.field_training_reviews
     - field.field.node.training.field_training_source
     - field.field.node.training.field_training_state
-    - field.field.node.training.field_training_time_to_start
     - field.field.node.training.field_training_total_time
     - field.field.node.training.field_training_url
     - node.type.training
@@ -54,6 +54,13 @@ content:
     third_party_settings: {  }
     type: entity_reference_entity_view
     region: content
+  field_training_access_difficulty:
+    type: list_default
+    weight: 26
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
   field_training_ceus_offered:
     weight: 6
     label: above
@@ -138,7 +145,7 @@ content:
     type: text_default
     region: content
   field_training_occupations:
-    weight: 19
+    weight: 17
     label: above
     settings:
       link: false
@@ -146,7 +153,7 @@ content:
     type: entity_reference_label
     region: content
   field_training_proficiency:
-    weight: 21
+    weight: 19
     label: above
     settings:
       link: false
@@ -155,34 +162,34 @@ content:
     region: content
   field_training_review_content:
     type: ratings_field_formatter
-    weight: 24
+    weight: 22
     region: content
     label: above
     settings: {  }
     third_party_settings: {  }
   field_training_review_overall:
     type: ratings_field_formatter
-    weight: 25
+    weight: 23
     region: content
     label: above
     settings: {  }
     third_party_settings: {  }
   field_training_review_present:
     type: ratings_field_formatter
-    weight: 26
+    weight: 24
     region: content
     label: above
     settings: {  }
     third_party_settings: {  }
   field_training_review_relevance:
     type: ratings_field_formatter
-    weight: 27
+    weight: 25
     region: content
     label: above
     settings: {  }
     third_party_settings: {  }
   field_training_reviews:
-    weight: 22
+    weight: 20
     label: above
     settings:
       view_mode: default
@@ -191,7 +198,7 @@ content:
     type: comment_default
     region: content
   field_training_source:
-    weight: 20
+    weight: 18
     label: hidden
     settings:
       link: false
@@ -244,7 +251,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   review_login_message:
-    weight: 23
+    weight: 21
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -256,4 +263,3 @@ content:
 hidden:
   field_training_categories: true
   field_training_learning_outcomes: true
-  field_training_time_to_start: true

@@ -614,3 +614,16 @@ function nnphi_training_search_api_algolia_objects_alter(array &$objects, \Drupa
         $object['overall_rating_facet_value'] = floor($object['overall_rating_facet_value']);
     }
 }
+
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function nnphi_training_preprocess_field(&$variables)
+{
+    // Add difficulty level class to access training difficulty field
+    if ($variables["field_name"] === 'field_training_access_difficulty') {
+        $variables["attributes"]['class'][] = 'access-difficulty';
+        $variables["attributes"]['class'][] = 'access-difficulty-level-' . $variables["element"]["#items"]->getString();
+    }
+}
