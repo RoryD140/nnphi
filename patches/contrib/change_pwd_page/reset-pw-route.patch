@@ -1,0 +1,38 @@
+diff --git a/change_pwd_page.routing.yml b/change_pwd_page.routing.yml
+index 19ed243..301b9b3 100644
+--- a/change_pwd_page.routing.yml
++++ b/change_pwd_page.routing.yml
+@@ -6,13 +6,3 @@ change_pwd_page.change_password_form:
+   requirements:
+     _entity_access: 'user.update'
+     user: \d+
+-change_pwd_page.reset:
+-  path: '/user/reset/{uid}/{timestamp}/{hash}/new'
+-  defaults:
+-    _controller: '\Drupal\change_pwd_page\Controller\ChangePwdPageController::resetPass'
+-    _title: 'Reset password'
+-  requirements:
+-    _access: 'TRUE'
+-  options:
+-    _maintenance_access: TRUE
+-    no_cache: TRUE
+\ No newline at end of file
+diff --git a/src/Routing/RouteSubscriber.php b/src/Routing/RouteSubscriber.php
+index 1f3f0b7..db5181d 100644
+--- a/src/Routing/RouteSubscriber.php
++++ b/src/Routing/RouteSubscriber.php
+@@ -15,11 +15,11 @@ class RouteSubscriber extends RouteSubscriberBase {
+    * {@inheritdoc}
+    */
+   protected function alterRoutes(RouteCollection $collection) {
+-    // As Change Password page is separate form now so in order to do that, 
++    // As Change Password page is separate form now so in order to do that,
+     // override user.reset route with change_pwd_page.reset route to show the
+     // Change Password from instead of default.
+     if ($route = $collection->get('user.reset')) {
+-      $route->setPath('/user/reset/{uid}/{timestamp}/{hash}/new');
+-    }    
++      $route->setDefault('_controller', 'Drupal\change_pwd_page\Controller\ChangePwdPageController::resetPass');
++    }
+   }
+ }
