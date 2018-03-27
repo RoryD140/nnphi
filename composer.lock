@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2fc65a7ced3cae0abefa37f01a47a2bd",
+    "content-hash": "cb732c9d62dbd4e7cd1cc5d12df0ba6f",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3441,6 +3441,83 @@
                 "source": "http://cgit.drupalcode.org/votingapi",
                 "issues": "http://drupal.org/project/issues/votingapi"
             }
+        },
+        {
+            "name": "drupal/xmlsitemap",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/xmlsitemap",
+                "reference": "ade21a0e01d3273a4aa01aa6560c38a6d229fbfb"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "require-dev": {
+                "drupal/robotstxt": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha2+38-dev",
+                    "datestamp": "1510839785",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Dave Reid",
+                    "homepage": "https://www.drupal.org/user/53892"
+                },
+                {
+                    "name": "RenatoG",
+                    "homepage": "https://www.drupal.org/user/3326031"
+                },
+                {
+                    "name": "amateescu",
+                    "homepage": "https://www.drupal.org/user/729614"
+                },
+                {
+                    "name": "andrei.dincu",
+                    "homepage": "https://www.drupal.org/user/2628879"
+                },
+                {
+                    "name": "earnie",
+                    "homepage": "https://www.drupal.org/user/86710"
+                },
+                {
+                    "name": "juampynr",
+                    "homepage": "https://www.drupal.org/user/682736"
+                },
+                {
+                    "name": "paulmckibben",
+                    "homepage": "https://www.drupal.org/user/279003"
+                },
+                {
+                    "name": "tadityar",
+                    "homepage": "https://www.drupal.org/user/3094465"
+                },
+                {
+                    "name": "th_tushar",
+                    "homepage": "https://www.drupal.org/user/1835276"
+                }
+            ],
+            "description": "Creates an XML sitemap conforming to the <a href=\"http://sitemaps.org/\">sitemaps.org protocol</a>.",
+            "homepage": "https://www.drupal.org/project/xmlsitemap",
+            "support": {
+                "source": "http://cgit.drupalcode.org/xmlsitemap"
+            },
+            "time": "2018-02-28T03:32:03+00:00"
         },
         {
             "name": "easyrdf/easyrdf",
@@ -8888,7 +8965,8 @@
         "drupal/password_policy_characters": 15,
         "drupal/password_policy_length": 15,
         "drupal/search_api_algolia": 20,
-        "drupal/votingapi": 15
+        "drupal/votingapi": 15,
+        "drupal/xmlsitemap": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
