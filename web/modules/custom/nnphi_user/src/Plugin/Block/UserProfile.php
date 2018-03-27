@@ -97,7 +97,7 @@ class UserProfile extends BlockBase implements ContainerFactoryPluginInterface {
     $complete = TRUE;
     $profile_fields = [
       'user_picture',
-      'field_user_job_title',
+      'field_user_job_title_text',
       'field_user_zipcode',
       'field_user_interests',
       'field_user_setting',
