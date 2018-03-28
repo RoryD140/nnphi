@@ -9363,6 +9363,11 @@
         },
         "time": "2018-02-20T21:35:13+00:00",
         "type": "drupal-core",
+        "extra": {
+            "patches_applied": {
+                "SA-CORE-2018-002": "patches/core/SA-CORE-2018-002.patch"
+            }
+        },
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
