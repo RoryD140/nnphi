@@ -16,14 +16,16 @@
 //.page-entity-user-edit_form main,
 .page-user-register main,
 .page-user-login main,
-.page-user-pass main {
+.page-user-pass main,
+.page-change_pwd_page-change_password_form main {
   @extend .container;
 }
 
 //.page-entity-user-edit_form .layout-content,
 .page-user-register .layout-content,
 .page-user-login .layout-content,
-.page-user-pass .layout-content {
+.page-user-pass .layout-content,
+.page-change_pwd_page-change_password_form .layout-content{
   @extend .col-md-8;
   @extend .offset-md-2;
   margin-top: $padding-lg;
@@ -49,7 +51,8 @@
 .user-form .form-item,
 .user-register-form .form-item,
 .user-login-form .form-item,
-.user-pass .form-item {
+.user-pass .form-item,
+.change-pwd-form .form-item {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -71,7 +74,8 @@
 .user-form .form-item label,
 .user-register-form .form-item label,
 .user-login-form .form-item label,
-.user-pass .form-item label {
+.user-pass .form-item label,
+.change-pwd-form label{
   text-transform: uppercase;
   font-weight: bold;
   margin-bottom: 0; // overrides default label margin
@@ -82,7 +86,8 @@
 .user-form .form-item label.form-required,
 .user-register-form .form-item label.form-required,
 .user-login-form .form-item label.form-required,
-.user-pass .form-item label.form-required {
+.user-pass .form-item label.form-required,
+.change-pwd-form .form-item label.form-required{
   &:after {
     content: '*';
     position: absolute;
@@ -92,6 +97,7 @@
 .user-form .form-item input,
 .user-register-form .form-item input,
 .user-login-form .form-item input,
+.change-pwd-form .form-item input,
 .user-pass .form-item input {
   @extend %input-width;
   @extend .form-control;
@@ -107,12 +113,26 @@
 .user-form .form-submit,
 .user-register-form .form-submit,
 .user-login-form .form-submit,
-.user-pass .form-submit {
+.user-pass .form-submit,
+.change-pwd-form .form-submit {
   @extend .btn;
   @extend .btn-sm;
   @extend .btn-primary;
   &:hover {
     cursor: pointer;
+  }
+}
+
+
+// Slightly ugly, but keeps the buttons at top of password reset form on one line
+.page-change_pwd_page-change_password_form .block-local-tasks-block > ul {
+  align-items: center;
+  @include media-breakpoint-down(md) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  a {
+    white-space: normal;
   }
 }
 
@@ -292,10 +312,6 @@ select {
   }
 }
 
-.page-entity-user-edit_form #block-nnphi-local-tasks {
-  display: none;
-}
-
 .page-entity-user-edit_form .user-form {
   border: solid 1px $gray-light;
 }
@@ -320,6 +336,7 @@ select {
 
 .page-entity-user-edit_form .block-system-main-block form {
   padding: 2rem 2rem 3.5rem;
+  margin-left: $padding-sm; // align with message and nav links
 }
 
 .form-item-current-pass .description {

@@ -1,0 +1,8 @@
+change_pwd_page.change_password_form:
+  path: '/user/{user}/change-password'
+  defaults:
+    _form: '\Drupal\change_pwd_page\Form\ChangePasswordForm'
+    _title: 'Password Separate Form'
+  requirements:
+    _entity_access: 'user.update'
+    user: \d+
