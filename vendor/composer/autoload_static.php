@@ -3391,6 +3391,7 @@ class ComposerStaticInit1fbc8e18dabf8b3b55590abd199b9e85
         'Drupal\\Core\\Routing\\UrlGeneratorInterface' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Routing/UrlGeneratorInterface.php',
         'Drupal\\Core\\Routing\\UrlGeneratorTrait' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Routing/UrlGeneratorTrait.php',
         'Drupal\\Core\\Routing\\UrlMatcher' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Routing/UrlMatcher.php',
+        'Drupal\\Core\\Security\\RequestSanitizer' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Security/RequestSanitizer.php',
         'Drupal\\Core\\Serialization\\Yaml' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Serialization/Yaml.php',
         'Drupal\\Core\\Session\\AccountInterface' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Session/AccountInterface.php',
         'Drupal\\Core\\Session\\AccountProxy' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Session/AccountProxy.php',
