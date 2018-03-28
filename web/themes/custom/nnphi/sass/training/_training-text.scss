@@ -42,3 +42,14 @@ section.training-text {
 .training-text-objectives ul li {
   @extend %checkmark-list;
 }
+
+// Mimic checkmark list styles
+.training-competencies {
+  margin-bottom: $padding-md;
+  > div > div {
+    padding-left: 40px;
+    > div {
+      @extend %checkmark-list;
+    }
+  }
+}

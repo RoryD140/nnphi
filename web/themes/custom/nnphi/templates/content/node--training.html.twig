@@ -139,6 +139,11 @@
         {% endif %}
         <div class="training-text-objectives">
           {{ content.field_training_objectives }}
+          {% if content.field_training_competencies|render %}
+            <div class="training-competencies">
+              {{ content.field_training_competencies }}
+            </div>
+          {% endif %}
         </div>
       </div>
 
@@ -146,11 +151,6 @@
 
     <section class="training-terms">
       <div class="training-terms-row">
-        {% if content.field_training_competencies|render %}
-          <div class="training-competencies">
-            {{ content.field_training_competencies }}
-          </div>
-        {% endif %}
         {% if content.field_training_occupations|render %}
           <div class="training-occupations">
             {{ content.field_training_occupations }}
