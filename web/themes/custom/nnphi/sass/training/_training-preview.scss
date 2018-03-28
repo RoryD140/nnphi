@@ -9,10 +9,11 @@ $close-btn-size: 30px;
   background: #fff;
   width: 100vw;
   max-width: none;
-  max-height: none;
   font-size: $font-size-base; // Unset default qtip font size
   line-height: $line-height-base;
   box-shadow: $box-shadow;
+  max-height: 80vh;
+  overflow: scroll;
   @include media-breakpoint-up(md) {
     width: 50vw;
   }
@@ -94,7 +95,7 @@ $close-btn-size: 30px;
 .training-node-preview-bottom-left,
 .training-node-preview-bottom-right {
   @extend .col-xl-6; // The modal only takes up 50vw, so we want these to stack at most screen sizes
-  padding-bottom: $padding-md;
+  padding-bottom: $padding-sm;
 }
 
 .training-node-preview-btn {
