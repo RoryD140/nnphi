@@ -9,12 +9,9 @@ section.training-terms {
 }
 
 .training-terms-row > div {
-  @extend .col-md-4;
-  &.training-competencies {
-    @extend .col-md-3;
-  }
+  @extend .col-md-6;
   &.training-occupations {
-    @extend .col-md-5;
+    @extend .col-md-6;
   }
   @include media-breakpoint-down(sm) {
     margin-bottom: $padding-sm;
