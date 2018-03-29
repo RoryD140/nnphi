@@ -54,19 +54,33 @@
   }
 }
 
+
 .training-hero-btn a {
   @extend .btn;
   @extend .btn-primary;
   @extend .btn-arrow;
 }
 
-.search-back {
+%training-hero-top-element {
   font-size: $font-size-sm;
   text-transform: uppercase;
   padding-bottom: $padding-sm;
-  @include media-breakpoint-up(lg) {
+  @include media-breakpoint-up(xl) {
     position: absolute;
-    left: $padding-sm;
     top: -6rem; // puts this at top of training-hero, but allows us to left position relative to container
+  }
+}
+
+.search-back {
+  @extend %training-hero-top-element;
+  @include media-breakpoint-up(xl) {
+    left: $padding-sm;
+  }
+}
+
+.training-hero .social-share-links-wrapper {
+  @extend %training-hero-top-element;
+  @include media-breakpoint-up(xl) {
+    right: $padding-sm;
   }
 }

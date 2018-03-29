@@ -1,0 +1,40 @@
+.social-share-links-wrapper {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+h2.social-share-links-label {
+  display: inline-flex;
+  font-size: $font-size-xs;
+}
+
+ul.social-share-links {
+  @extend .list-unstyled;
+  @extend .list-inline;
+  display: flex;
+}
+
+.social-share-links svg {
+  width: 20px;
+  height: 20px;
+  fill: $green;
+  path {
+    fill: $green;
+  }
+  &:hover {
+    fill: darken($green, 10%);
+  }
+}
+
+.social-share-links a {
+  @include hover-focus-active {
+    text-decoration: none;
+  }
+}
+
+
+.social-share-links span {
+  font: 0/0 a;
+}
+

@@ -50,6 +50,12 @@
   font-size: $font-size-lg;
 }
 
+%details-heading {
+  font-family: $font-family-lato;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-18;
+}
+
 /* Styles used in CKEditor/ */
 .large-text {
   font-family: $font-family-work-sans;
