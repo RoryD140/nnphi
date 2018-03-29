@@ -14,9 +14,16 @@ $close-btn-size: 30px;
   box-shadow: $box-shadow;
   max-height: 80vh;
   overflow: scroll;
+
   @include media-breakpoint-up(md) {
     width: 50vw;
   }
+}
+
+
+.nnphi-qtip-wrapper.qtip::-webkit-scrollbar {
+  display: none;
+  background: transparent;
 }
 
 .nnphi-qtip-wrapper .qtip-content {
