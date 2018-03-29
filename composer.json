@@ -36,7 +36,7 @@
     "drupal/config_installer": "1.4",
     "drupal/config_split": "1.1",
     "drupal/console": "~1.0",
-    "drupal/core": "8.4.0",
+    "drupal/core": "8.4.5",
     "drupal/cshs": "1.0-beta4",
     "drupal/email_registration": "1.0-rc5",
     "drupal/flag": "4.0-alpha2",
@@ -59,7 +59,7 @@
     "moment/moment": "^2.18",
     "snipe/banbuilder": "^2.2",
     "tristen/tablesort": "5.0.2",
-    "webflo/drupal-core-strict": "8.4.0",
+    "webflo/drupal-core-strict": "8.4.5",
     "zachflower/indefinite-article": "^0.1.0"
   },
   "require-dev": {
@@ -149,6 +149,9 @@
       },
       "drupal/change_pwd_page" : {
         "Fix password reset links": "patches/contrib/change_pwd_page/reset-pw-route.patch"
+      },
+      "drupal/core" : {
+        "SA-CORE-2018-002": "patches/core/SA-CORE-2018-002.patch"
       }
     }
   },

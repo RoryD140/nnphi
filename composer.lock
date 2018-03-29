@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "80991b99b4f4824265d2437e93627e1d",
+    "content-hash": "72a267f2c4af2345e3dfae6d1c9de232",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2046,16 +2046,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "8.4.0",
+            "version": "8.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "d4be8e12d9e8b4db82ece760c632213247f56fa7"
+                "reference": "44a857df6f7ffd063cffed9a41767cdc50dd7474"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/d4be8e12d9e8b4db82ece760c632213247f56fa7",
-                "reference": "d4be8e12d9e8b4db82ece760c632213247f56fa7",
+                "url": "https://api.github.com/repos/drupal/core/zipball/44a857df6f7ffd063cffed9a41767cdc50dd7474",
+                "reference": "44a857df6f7ffd063cffed9a41767cdc50dd7474",
                 "shasum": ""
             },
             "require": {
@@ -2118,6 +2118,7 @@
                 "drupal/core-annotation": "self.version",
                 "drupal/core-assertion": "self.version",
                 "drupal/core-bridge": "self.version",
+                "drupal/core-class-finder": "self.version",
                 "drupal/core-datetime": "self.version",
                 "drupal/core-dependency-injection": "self.version",
                 "drupal/core-diff": "self.version",
@@ -2208,6 +2209,11 @@
                 "symfony/phpunit-bridge": "~3.2.8"
             },
             "type": "drupal-core",
+            "extra": {
+                "patches_applied": {
+                    "SA-CORE-2018-002": "patches/core/SA-CORE-2018-002.patch"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Drupal\\Core\\": "lib/Drupal/Core",
@@ -2229,7 +2235,7 @@
                 "GPL-2.0+"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2017-10-04T19:25:32+00:00"
+            "time": "2018-02-20T21:35:13+00:00"
         },
         {
             "name": "drupal/cshs",
@@ -3647,7 +3653,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/xmlsitemap"
             },
-            "time": "2018-02-28T03:32:03+00:00"
+            "time": "2018-02-28 03:32:03"
         },
         {
             "name": "easyrdf/easyrdf",
@@ -6570,16 +6576,16 @@
         },
         {
             "name": "webflo/drupal-core-strict",
-            "version": "8.4.0",
+            "version": "8.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webflo/drupal-core-strict.git",
-                "reference": "fa0bd8bde8245048f771a1b12de45241febdd6a8"
+                "reference": "48edf293a5ec1a607cab6c042588358f1c672530"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webflo/drupal-core-strict/zipball/fa0bd8bde8245048f771a1b12de45241febdd6a8",
-                "reference": "fa0bd8bde8245048f771a1b12de45241febdd6a8",
+                "url": "https://api.github.com/repos/webflo/drupal-core-strict/zipball/48edf293a5ec1a607cab6c042588358f1c672530",
+                "reference": "48edf293a5ec1a607cab6c042588358f1c672530",
                 "shasum": ""
             },
             "require": {
@@ -6662,10 +6668,10 @@
             "type": "metapackage",
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "description": "Locked core dependencies",
-            "time": "2017-10-04T20:01:55+00:00"
+            "time": "2018-02-21T18:00:42+00:00"
         },
         {
             "name": "webflo/drupal-finder",
