@@ -1,26 +1,29 @@
+{% set encoded_label = node.label()|e|url_encode %}
+{% set abs_url = url('entity.node.canonical', {'node': node.id()}, {'absolute': 'true'})%}
+
 <div class="social-share-links-wrapper">
     <h2 class="social-share-links-label">{{ 'Share This Training'|t }}</h2>
   <ul class="social-share-links">
     <li>
-      <a rel="nofollow" href="mailto:?subject={{ node.label()|e|url_encode }}&body={{ url('<front>') }}{{ url }}" target="_blank">
+      <a rel="nofollow" href="mailto:?subject={{ encoded_label }}&body={{abs_url}}" target="_blank">
         {% include base_path ~ directory ~ '/svg/envelope.svg' %}
         <span>{% trans %}Email{% endtrans %}</span>
       </a>
     </li>
     <li class="share-facebook">
-      <a rel="nofollow" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ url('<front>') }}{{ url }}">
+      <a rel="nofollow" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{abs_url}}">
         {% include base_path ~ directory ~ '/svg/facebook.svg' %}
         <span>{% trans %}Facebook{% endtrans %}</span>
       </a>
     </li>
     <li class="share-twitter">
-      <a rel="nofollow" href="https://twitter.com/share?text={{ node.label()|e|url_encode }}&url={{ url('<front>') }}{{ url }}" target="_blank" label="Click to share on Twitter">
+      <a rel="nofollow" href="https://twitter.com/share?text={{ encoded_label }}&url={{abs_url}}" target="_blank" label="{{  'Click to share on Twitter'|t}}">
         {% include base_path ~ directory ~ '/svg/twitter.svg' %}
         <span>{% trans %}Twitter{% endtrans %}</span>
       </a>
     </li>
     <li class="share-linkedin">
-      <a rel="nofollow" href="https://www.linkedin.com/shareArticle?mini=true&url={{ url('<front>') }}{{ url }}" target="_blank">
+      <a rel="nofollow" href="https://www.linkedin.com/shareArticle?mini=true&url={{abs_url}}" target="_blank">
         {% include base_path ~ directory ~ '/svg/linkedin.svg' %}
         <span>{% trans %}LinkedIn{% endtrans %}</span>
       </a>
