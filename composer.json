@@ -23,7 +23,7 @@
     }
   ],
   "require": {
-    "algolia/algoliasearch-client-php": "^1.25",
+    "algolia/algoliasearch-client-php": "^1.6.3",
     "composer/installers": "^1.0.20",
     "cweagans/composer-patches": "^1.0",
     "drupal-composer/drupal-scaffold": "^2.0.1",

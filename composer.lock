@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "fa5c0acf3e0aa243b0458c9899b75773",
+    "content-hash": "51b95be7e9742030faabf966ff64f865",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3638,7 +3638,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/xmlsitemap"
             },
-            "time": "2018-02-28T03:32:03+00:00"
+            "time": "2018-02-28 03:32:03"
         },
         {
             "name": "easyrdf/easyrdf",
