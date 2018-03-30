@@ -23,6 +23,7 @@
     }
   ],
   "require": {
+    "algolia/algoliasearch-client-php": "^1.25",
     "composer/installers": "^1.0.20",
     "cweagans/composer-patches": "^1.0",
     "drupal-composer/drupal-scaffold": "^2.0.1",
@@ -36,7 +37,7 @@
     "drupal/config_installer": "1.4",
     "drupal/config_split": "1.1",
     "drupal/console": "~1.0",
-    "drupal/core": "8.4.5",
+    "drupal/core": "8.5.1",
     "drupal/cshs": "1.0-beta4",
     "drupal/email_registration": "1.0-rc5",
     "drupal/flag": "4.0-alpha2",
@@ -51,7 +52,7 @@
     "drupal/password_policy_length": "3.0-alpha3",
     "drupal/pathauto": "1.0",
     "drupal/redis": "1.0-rc2",
-    "drupal/search_api_algolia": "1.x-dev#15a679a186cd186d995d5b06cc0b690e00b05031",
+    "drupal/search_api": "1.7",
     "drupal/simple_block": "1.0-beta1",
     "drupal/smart_trim": "1.0",
     "drupal/token": "1.0",
@@ -60,7 +61,7 @@
     "moment/moment": "^2.18",
     "snipe/banbuilder": "^2.2",
     "tristen/tablesort": "5.0.2",
-    "webflo/drupal-core-strict": "8.4.5",
+    "webflo/drupal-core-strict": "8.5.1",
     "zachflower/indefinite-article": "^0.1.0"
   },
   "require-dev": {
@@ -139,10 +140,8 @@
       ]
     },
     "patches": {
-      "drupal/search_api_algolia": {
-        "Map search_api index to algolia index": "patches/contrib/search_api_algolia/search_api_algolia-map_index-2898673-2.patch",
-        "Add search fields and facets": "patches/contrib/search_api_algolia/search_api_algolia-list_indexes.patch",
-        "Fix fatal error with Algolia exception": "https://www.drupal.org/files/issues/fatal_error_thrown_when-2883037-2.patch"
+      "drupal/page_manager": {
+        "Page manager broken on 8.5": "https://www.drupal.org/files/issues/2918564-22.patch"
       },
       "drupal/panels": {
         "Add a hook to alter available blocks in the IPE": "https://www.drupal.org/files/issues/allow-alter-block-content-types-2915161-2.patch",
@@ -150,9 +149,6 @@
       },
       "drupal/change_pwd_page" : {
         "Fix password reset links": "patches/contrib/change_pwd_page/reset-pw-route.patch"
-      },
-      "drupal/core" : {
-        "SA-CORE-2018-002": "patches/core/SA-CORE-2018-002.patch"
       }
     }
   },
