@@ -64,6 +64,7 @@ content:
 hidden:
   contact: true
   field_user_interests: true
+  field_user_job_title_text: true
   field_user_role: true
   field_user_setting: true
   field_user_username: true
