@@ -30,9 +30,7 @@
 }
 
 .training-details h2 {
-  font-family: $font-family-lato;
-  font-weight: $font-weight-bold;
-  font-size: $font-size-18;
+  @extend %details-heading;
 }
 
 .training-details-row > div.training-details-dates {

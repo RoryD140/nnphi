@@ -35,6 +35,8 @@ module:
   layout_discovery: 0
   link: 0
   menu_ui: 0
+  metatag: 0
+  metatag_open_graph: 0
   nnphi_bookmark: 0
   nnphi_curriculum: 0
   nnphi_general: 0
