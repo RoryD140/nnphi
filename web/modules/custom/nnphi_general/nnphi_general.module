@@ -30,6 +30,11 @@ function nnphi_general_block_content_view(array &$build, BlockContentInterface $
       }
     }
   }
+
+
+  if($block->bundle() === 'search_training') {
+    $build['#attached']['library'][] = 'nnphi_general/arrow';
+  }
 }
 
 /**

@@ -1,6 +1,6 @@
 .search-training-block {
   padding-top: $padding-lg;
-  padding-bottom: $padding-lg;
+  padding-bottom: $padding-lg - (2*$padding-md); // Accounts for down arrow button
   // Background added inline in twig template from image field
   background-size: cover;
   background-repeat: no-repeat;
@@ -47,4 +47,18 @@
   margin-top: $padding-md;
   text-align: center;
   @extend %white-text;
+}
+
+.down-arrow-scroll {
+  display: flex;
+  padding: $padding-md 0;
+  justify-content: center;
+  &:hover {
+    cursor: pointer;
+  }
+  svg {
+    fill: $green;
+    width: 35px;
+    height: 35px;
+  }
 }
