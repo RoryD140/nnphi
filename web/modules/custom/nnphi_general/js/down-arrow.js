@@ -7,7 +7,7 @@
       $('.down-arrow-scroll svg', context).once('down-arrow').each(function () {
         $(this).click(function () {
           var nextEl = $(this).closest('.search-training-block').next();
-          $('html, body', context).animate({
+          $('html, body').animate({
             scrollTop: $(nextEl).offset().top
           }, 500);
         });
