@@ -47,6 +47,13 @@
         </div>
       {% endif %}
 
+      <div class="down-arrow-scroll">
+        {% include base_path ~ directory ~ '/svg/arrow-circle-down.svg' %}
+      </div>
+
       </div>
   </div>
 </section>
+
+{#Need to render content so that libraries are attached#}
+{{ content|without('field_search_training_link', 'body', 'search_form', 'field_search_training_title', 'field_search_training_bg') }}
