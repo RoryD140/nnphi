@@ -4,6 +4,7 @@ module:
   allowed_formats: 0
   block: 0
   block_content: 0
+  block_content_extender: 0
   breakpoint: 0
   change_pwd_page: 0
   ckeditor: 0
@@ -14,10 +15,12 @@ module:
   config_filter: 0
   config_ignore: 0
   config_split: 0
+  config_update: 0
   contact: 0
   contextual: 0
   cshs: 0
   ctools: 0
+  ctools_block: 0
   datetime: 0
   dynamic_page_cache: 0
   editor: 0
@@ -48,6 +51,7 @@ module:
   options: 0
   page_cache: 0
   page_manager: 0
+  panelizer: 0
   panels: 0
   panels_ipe: 0
   pantheon_advanced_page_cache: 0
@@ -56,7 +60,6 @@ module:
   password_policy_length: 0
   path: 0
   pathauto: 0
-  quickedit: 0
   rdf: 0
   redis: 0
   search_api: 0

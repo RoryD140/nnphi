@@ -25,6 +25,7 @@ function nnphi_preprocess_block(&$variables) {
 function nnphi_preprocess_page(&$variables) {
 
   $show_hero = TRUE;
+  /** @var \Drupal\node\NodeInterface $node */
   $node = \Drupal::routeMatch()->getParameter('node');
   $homepage = \Drupal::service('path.matcher')->isFrontPage();
 
@@ -47,6 +48,11 @@ function nnphi_preprocess_page(&$variables) {
 
     if ($content_type === 'training') {
       $show_hero = FALSE;
+    }
+    if ($content_type === 'component_page') {
+      if ($node->hasField('field_component_page_show_header') && (int)$node->get('field_component_page_show_header')->getString !== 1) {
+        $show_hero = FALSE;
+      }
     }
   }
 

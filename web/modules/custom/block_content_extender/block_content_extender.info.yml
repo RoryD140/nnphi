@@ -1,0 +1,5 @@
+name: Block content extender
+type: module
+description: 'Allows plugins to extend the default behavior of content blocks'
+package: Custom
+core: 8.x

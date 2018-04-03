@@ -1,0 +1,4 @@
+services:
+  plugin.manager.block_content_extender:
+    class: Drupal\block_content_extender\BlockContentExtender\Manager
+    parent: default_plugin_manager
