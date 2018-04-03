@@ -67,16 +67,18 @@ class NewTrainings extends BlockBase implements ContainerFactoryPluginInterface 
     $account = $this->getContextValue('user');
     $time = $this->userData->get('nnphi_user', $account->id(), self::USER_DATA_KEY);
     $nids = [];
-    if ($time) {
-      $node_storage = $this->entityTypeManager->getStorage('node');
-      $nids = $node_storage->getQuery()
-        ->condition('type', 'training')
-        ->condition('status', NodeInterface::PUBLISHED)
-        ->condition('created', $time, '>')
-        ->range(0, 5)
-        ->sort('created', 'DESC')
-        ->execute();
+    $max_age = strtotime('-4 hours');
+    if (!$time || $time < $max_age) {
+      $time = $max_age;
     }
+    $node_storage = $this->entityTypeManager->getStorage('node');
+    $nids = $node_storage->getQuery()
+      ->condition('type', 'training')
+      ->condition('status', NodeInterface::PUBLISHED)
+      ->condition('created', $time, '>')
+      ->range(0, 5)
+      ->sort('created', 'DESC')
+      ->execute();
     if (empty($nids)) {
       $build['empty'] = [
         '#type' => 'markup',
