@@ -133,6 +133,13 @@ function nnphi_user_form_user_form_alter(&$form, FormStateInterface $form_state,
   $form['#after_build'][] = 'nnphi_user_register_form_after_build';
 
   $account = $form_state->getFormObject()->getEntity();
+
+  // Move the password description to the placeholder for clarity.
+  if (isset($form['account']['current_pass'])) {
+    $form['account']['current_pass']['#placeholder'] = t('Only required to update your email address');
+    unset($form['account']['current_pass']['#description']);
+  }
+
   if (!$account->isAnonymous()) {
 
     // Add "Cancel" button
