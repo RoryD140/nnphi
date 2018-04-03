@@ -1,7 +1,6 @@
 // Form uses same styles as header form
 .ais-search-box--input {
   @extend %training-search-input;
-  text-transform: uppercase; // The placeholder here isn't actually a placeholder
 }
 
 .ais-search-box {
