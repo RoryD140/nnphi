@@ -1,0 +1,117 @@
+uuid: 876cc94f-d94f-4e1b-b146-15fbae9ccf77
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.component_page.body
+    - field.field.node.component_page.field_component_page_show_header
+    - field.field.node.component_page.panelizer
+    - node.type.component_page
+  module:
+    - panelizer
+    - text
+    - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
+    displays:
+      default:
+        blocks:
+          dd9c9afe-41dc-4b3e-87cb-d339c493f82d:
+            id: 'entity_field:node:uid'
+            label: 'Authored by'
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: author
+              settings: {  }
+              third_party_settings: {  }
+              weight: 0
+              region: content
+            region: content
+            weight: 0
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+            uuid: dd9c9afe-41dc-4b3e-87cb-d339c493f82d
+          a7859a2c-e81f-4718-8f1a-e16af08dbe5c:
+            id: 'entity_field:node:created'
+            label: 'Authored on'
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: timestamp
+              settings:
+                date_format: medium
+                custom_date_format: ''
+                timezone: ''
+              third_party_settings: {  }
+              weight: 0
+              region: content
+            region: content
+            weight: 0
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+            uuid: a7859a2c-e81f-4718-8f1a-e16af08dbe5c
+          ca5a1a7e-db29-4b34-9a8d-16ff3d47dc78:
+            id: 'entity_field:node:body'
+            label: Body
+            provider: ctools_block
+            label_display: '0'
+            formatter:
+              label: hidden
+              type: text_default
+              settings: {  }
+              third_party_settings: {  }
+              weight: 0
+              region: content
+            region: content
+            weight: -10
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+            uuid: ca5a1a7e-db29-4b34-9a8d-16ff3d47dc78
+        id: panels_variant
+        label: Default
+        uuid: d14856b8-b4a6-4bda-9130-58c78f4c0500
+        weight: 0
+        layout: layout_onecol
+        layout_settings: {  }
+        page_title: '[node:title]'
+        storage_type: panelizer_default
+        storage_id: 'node:component_page:default:default'
+        builder: ipe
+        pattern: panelizer
+        static_context: {  }
+id: node.component_page.default
+targetEntityType: node
+bundle: component_page
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_component_page_show_header:
+    weight: 102
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  panelizer: true

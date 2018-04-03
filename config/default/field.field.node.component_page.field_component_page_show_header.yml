@@ -1,0 +1,23 @@
+uuid: b252644e-227f-48ff-9b63-d74bb276f38d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_component_page_show_header
+    - node.type.component_page
+id: node.component_page.field_component_page_show_header
+field_name: field_component_page_show_header
+entity_type: node
+bundle: component_page
+label: 'Show Header'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'Show header?'
+  off_label: 'Off'
+field_type: boolean

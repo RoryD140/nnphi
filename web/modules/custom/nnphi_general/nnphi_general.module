@@ -76,9 +76,6 @@ function nnphi_general_preprocess_html(&$variables) {
  * Implements hook_panels_ipe_blocks_alter().
  */
 function nnphi_general_panels_ipe_blocks_alter(array &$blocks = [], PanelsDisplayVariant $panels_display) {
-  if ($panels_display->getConfiguration()['storage_id'] !== 'homepage-panels_variant-0') {
-    return;
-  }
   $providers = [
     'nnphi_training',
     'block_content',

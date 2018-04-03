@@ -7,6 +7,7 @@ config:
   xdebug: true
   web_docroot: true
   drupal: true
+  drush: global:8.1.12
 proxy:
   mailhog:
     - mail.nnphi.lndo.site
