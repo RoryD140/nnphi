@@ -191,6 +191,9 @@ function nnphi_user_register_form_after_build($element) {
   if (isset($element['field_user_interests']['widget'])) {
     $element['field_user_interests']['widget']['add_more']['#value'] = t('Add another topic');
   }
+  if (isset($element['field_user_setting']['widget'])) {
+    $element['field_user_setting']['widget']['add_more']['#value'] = t('Add another CEU');
+  }
   return $element;
 }
 
