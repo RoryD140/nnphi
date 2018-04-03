@@ -278,3 +278,12 @@ function nnphi_user_entity_bundle_field_info_alter(&$fields, \Drupal\Core\Entity
 function nnphi_user_preprocess_user(&$variables) {
   $variables['username'] = $variables['user']->getDisplayName();
 }
+
+/**
+ * Implements hook_user_logout().
+ */
+function nnphi_user_user_logout($account) {
+  // Set the last logout time to be used for displaying the new trainings block.
+  $time = \Drupal::service('datetime.time')->getRequestTime();
+  \Drupal::service('user.data')->set('nnphi_user', $account->id(), \Drupal\nnphi_user\Plugin\Block\NewTrainings::USER_DATA_KEY, $time);
+}

@@ -87,6 +87,16 @@ variant_settings:
       uuid: 657c1738-6240-4ce2-b39d-28d362719666
       context_mapping:
         user: current_user
+    a072f0c3-0a0c-48e1-8011-01e8ea59b7e4:
+      id: user_new_trainings
+      label: 'New Trainings'
+      provider: nnphi_user
+      label_display: visible
+      region: right_column_first
+      weight: 0
+      uuid: a072f0c3-0a0c-48e1-8011-01e8ea59b7e4
+      context_mapping:
+        user: current_user
   id: panels_variant
   uuid: b0addbdc-161c-4208-953b-9d995687f4c5
   label: null
