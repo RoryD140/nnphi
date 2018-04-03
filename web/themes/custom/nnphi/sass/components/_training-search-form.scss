@@ -7,6 +7,9 @@
   background-size: 22px;
   @extend .form-control;
   margin-top: 0; // Overrides default form-text margin
+  &::placeholder {
+    text-transform: uppercase;
+  }
 }
 
 .training-search-form {
@@ -17,7 +20,6 @@
   }
   .training-search-input {
     @extend %training-search-input;
-    text-transform: uppercase;
   }
 }
 
