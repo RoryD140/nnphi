@@ -1,6 +1,7 @@
 // Dashboard blocks
 .block-user-profile,
 .block-bookmarked-trainings,
+.block-user-new-trainings,
 .block-user-training-suggestions {
   border: 1px solid $gray-light;
   margin-top: $padding-md;
@@ -8,6 +9,7 @@
 
 .block-user-profile h2,
 .block-bookmarked-trainings h2,
+.block-user-new-trainings h2,
 .block-user-training-suggestions h2 {
   padding: 1rem 0 1rem 1rem;
   text-transform: uppercase;
@@ -49,6 +51,11 @@
   background-image: $speech-bubble;
 }
 
+.block-user-new-trainings h2::before {
+  background-image: $pencil;
+}
+
+
 .block-user-profile h2 + a::after {
   content: '';
   width: 1rem;
@@ -61,6 +68,7 @@
 }
 
 .block-user-profile article,
+.block-user-new-trainings .block-content,
 .block-bookmarked-trainings .block-content {
   clear: both;
   border-top: 1px solid $gray-light;
