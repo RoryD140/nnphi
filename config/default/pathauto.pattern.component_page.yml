@@ -1,0 +1,22 @@
+uuid: 703deb19-be08-4034-a9fa-36b53800cfae
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: component_page
+label: 'Component Page'
+type: 'canonical_entities:node'
+pattern: '[node:menu-link]'
+selection_criteria:
+  ece84569-5a6c-42b8-95ef-d057cf64f9ae:
+    id: node_type
+    bundles:
+      component_page: component_page
+    negate: false
+    context_mapping:
+      node: node
+    uuid: ece84569-5a6c-42b8-95ef-d057cf64f9ae
+selection_logic: and
+weight: -5
+relationships: {  }

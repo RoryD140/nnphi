@@ -1,0 +1,134 @@
+<?php
+/**
+ * @file Drupal hooks for block_content_extender
+ */
+
+use Drupal\block_content\BlockContentInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+
+/**
+ * Alters blocks.
+ *
+ * @param $blocks
+ *
+ * @see \Drupal\Core\Block\BlockManager::alterInfo()
+ */
+function block_content_extender_block_alter(&$blocks) {
+  $extenders = \Drupal::service('plugin.manager.block_content_extender')->getDefinitions();
+  /** @var \Drupal\Core\Entity\EntityRepositoryInterface $repository */
+  $repository =  \Drupal::service('entity.repository');
+  if (empty($extenders)) {
+    return;
+  }
+  foreach ($blocks as $id => &$definition) {
+    if ($definition['id'] !== 'block_content') {
+      continue;
+    }
+    list($plugin_id, $bundle, $uuid) = explode(':', $definition['config_dependencies']['content'][0]);
+    $block_content = $repository->loadEntityByUuid('block_content', $uuid);
+    // If the user has marked the block reusable, change the block category to the user entered one.
+    $reusable = $block_content->reusable->value;
+    if ($reusable) {
+      if (!$block_content->get('category')->isEmpty()) {
+        $category = $block_content->category->value;
+      }
+      else {
+        $category = 'Custom';
+      }
+      $definition['category'] = $category;
+    }
+    foreach ($extenders as $extender_id => $extender_definition) {
+      if (in_array($bundle, $extender_definition['bundles'])) {
+        $definition['class'] = $extender_definition['class'];
+        continue 2;
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_field_widget_form_alter().
+ */
+function block_content_extender_field_widget_form_alter(&$element, \Drupal\Core\Form\FormStateInterface $form_state, $context) {
+  /** @var \Drupal\Core\Field\FieldDefinitionInterface $field_definition */
+  $field_definition = $context['items']->getFieldDefinition();
+  if ($field_definition->getName() !== 'category' || $field_definition->getTargetEntityTypeId() !== 'block_content') {
+    return;
+  }
+  // Hide the category field if the "reusable" checkbox is not checked.
+  $element['value']['#states'] = [
+    'visible' => [
+      [':input[name="reusable[value]"]' => ['checked' => TRUE]],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function block_content_extender_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  // Add suggestions based on the block bundle.
+  $content = $variables['elements']['content'];
+  if (isset($content['#block_content'])
+    and $content['#block_content'] instanceof BlockContentInterface) {
+    $suggestions[] = 'block__block_content__' . $content['#block_content']->bundle();
+  }
+}
+
+/**
+ * Implements hook_entity_base_field_info().
+ */
+function block_content_extender_entity_base_field_info(\Drupal\Core\Entity\EntityTypeInterface $entity_type) {
+  if ($entity_type->id() !== 'block_content') {
+    return;
+  }
+  $fields['reusable'] = BaseFieldDefinition::create('boolean')
+    ->setLabel(t('Reusable'))
+    ->setRevisionable(FALSE)
+    ->setTargetEntityTypeId('block_content')
+    ->setDescription(t('Whether or not the custom block is reusable.'))
+    ->setDefaultValue(TRUE)
+    ->setDisplayOptions('form', [
+      'type' => 'boolean_checkbox',
+      'settings' => [
+        'display_label' => TRUE,
+      ],
+      'weight' => 90,
+    ])
+    ->setDisplayConfigurable('form', TRUE);
+
+  $fields['category'] = BaseFieldDefinition::create('string')
+    ->setLabel(t('Category'))
+    ->setDescription(t('The category to place the block into.'))
+    ->setRevisionable(FALSE)
+    ->setTranslatable(TRUE)
+    ->setDefaultValue(t('Custom'))
+    ->setRequired(TRUE)
+    ->setTargetEntityTypeId('block_content')
+    ->setDisplayOptions('form', [
+      'type' => 'string_textfield',
+      'weight' => 91,
+    ])
+    ->setDisplayConfigurable('form', TRUE);
+
+  return $fields;
+}
+
+/**
+ * Implements hook_panels_ipe_blocks_alter().
+ */
+function block_content_extender_panels_ipe_blocks_alter(array &$blocks = array()) {
+  // For block_content blocks, only show them if they've been marked reusable.
+  /** @var \Drupal\Core\Entity\EntityRepositoryInterface $repository */
+  $repository =  \Drupal::service('entity.repository');
+  foreach ($blocks as $delta => $block) {
+    if ($block['provider'] !== 'block_content') {
+      continue;
+    }
+    list($plugin_id, $uuid) = explode(':', $block['plugin_id']);
+    $block_content = $repository->loadEntityByUuid('block_content', $uuid);
+    if ($block_content->get('reusable')->isEmpty()) {
+      unset($blocks[$delta]);
+    }
+  }
+}

@@ -407,10 +407,12 @@ select {
 }
 
 // Right align and unset weird default styles for "add more" wrapper
-#edit-field-user-interests-wrapper .clearfix {
-  margin-left: auto;
-  width: auto;
-  top: unset;
+#edit-field-user-interests-wrapper, #edit-field-user-setting-wrapper {
+  .clearfix {
+    margin-left: auto;
+    width: auto;
+    top: unset;
+  }
 }
 
 .user-form tbody .select-wrapper {
