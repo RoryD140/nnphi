@@ -5,6 +5,7 @@ namespace Drupal\nnphi_user\Plugin\Block;
 use Drupal\Core\Annotation\Translation;
 use Drupal\Core\Block\Annotation\Block;
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\node\NodeInterface;
@@ -89,6 +90,15 @@ class NewTrainings extends BlockBase implements ContainerFactoryPluginInterface 
       $build['content'] = $this->entityTypeManager->getViewBuilder('node')->viewMultiple($nodes, 'mini');
     }
     return $build;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheMaxAge() {
+    // In case a user is logged out due to inactivity,
+    // limit this to 4 hours (60*60*4).
+    return Cache::mergeMaxAges(14400, parent::getCacheMaxAge());
   }
 
 }
