@@ -133,6 +133,9 @@ class TrainingSuggestions extends BlockBase implements ContainerFactoryPluginInt
     $empty['link'] = [
       '#title' => $this->t('Complete your profile to view selected trainings'),
       '#type' => 'link',
+      '#attributes' => [
+        'class' => ['btn', 'btn-outline-primary', 'btn-sm'],
+       ],
       '#url' => Url::fromRoute('entity.user.edit_form', ['user' => $account->id()], ['query' => ['destination' => $this->redirectService->get()]]),
     ];
 
