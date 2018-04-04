@@ -162,10 +162,15 @@
 }
 
 .page-entity-user-canonical .training-bookmark article,
-.page-entity-user-canonical .block-user-training-suggestions article {
+.page-entity-user-canonical .block-user-training-suggestions article,
+.block-user-new-trainings article {
   display: inline;
   float: left;
   width: 80%;
+}
+
+.block-user-new-trainings article {
+  padding-left: 0; // The markup for each of the blocks is a bit different, and this gets them aligned
 }
 
 .page-entity-user-canonical .training-bookmark .training-node-teaser-top-left,
@@ -249,23 +254,23 @@
 
 // Suggested Trainings
 .page-entity-user-canonical .node-preview-disabled {
-  clear: both;
-  text-align: center;
+  //clear: both;
+  //text-align: center;
   margin-bottom: 1rem;
 }
 
-.page-entity-user-canonical .node-preview-disabled + a {
-  color: $green;
-  text-transform: uppercase;
-  clear: both;
-  display: block;
-  text-align: center;
-  margin-bottom: 1rem;
-}
+//.page-entity-user-canonical .node-preview-disabled + a {
+//  color: $green;
+//  text-transform: uppercase;
+//  clear: both;
+//  display: block;
+//  text-align: center;
+//  margin-bottom: 1rem;
+//}
 
-.node-preview-disabled h5 a {
-  color: $gray-light;
-}
+//.node-preview-disabled h5 a {
+//  color: $gray-light;
+//}
 
 .block-user-training-suggestions .btn-sm {
   display: flex;
