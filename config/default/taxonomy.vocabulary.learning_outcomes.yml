@@ -1,9 +1,0 @@
-uuid: a093be74-8dc1-468c-989d-1e847c74e51b
-langcode: en
-status: true
-dependencies: {  }
-name: 'Learning Outcomes'
-vid: learning_outcomes
-description: ''
-hierarchy: 0
-weight: 0

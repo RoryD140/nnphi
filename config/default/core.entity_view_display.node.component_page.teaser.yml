@@ -25,4 +25,6 @@ content:
   links:
     weight: 100
     region: content
-hidden: {  }
+hidden:
+  field_component_page_show_header: true
+  panelizer: true

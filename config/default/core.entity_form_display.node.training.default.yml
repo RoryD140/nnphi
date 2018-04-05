@@ -14,7 +14,6 @@ dependencies:
     - field.field.node.training.field_training_expiration
     - field.field.node.training.field_training_instructor
     - field.field.node.training.field_training_job_tasks
-    - field.field.node.training.field_training_learning_outcomes
     - field.field.node.training.field_training_level
     - field.field.node.training.field_training_objectives
     - field.field.node.training.field_training_occupations
@@ -65,12 +64,9 @@ content:
     region: content
   field_training_categories:
     weight: 26
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: content
   field_training_ceus_offered:
     weight: 18
@@ -99,12 +95,9 @@ content:
     region: content
   field_training_course_type:
     weight: 7
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: content
   field_training_description:
     weight: 10
@@ -142,15 +135,6 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
-  field_training_learning_outcomes:
-    weight: 27
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_training_level:
     weight: 16
     settings: {  }
@@ -176,12 +160,9 @@ content:
     region: content
   field_training_proficiency:
     weight: 17
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: content
   field_training_reviews:
     weight: 24
