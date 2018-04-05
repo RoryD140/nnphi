@@ -14,7 +14,6 @@ dependencies:
     - field.field.node.training.field_training_expiration
     - field.field.node.training.field_training_instructor
     - field.field.node.training.field_training_job_tasks
-    - field.field.node.training.field_training_learning_outcomes
     - field.field.node.training.field_training_level
     - field.field.node.training.field_training_objectives
     - field.field.node.training.field_training_occupations
@@ -135,15 +134,6 @@ content:
     region: content
   field_training_job_tasks:
     weight: 20
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
-  field_training_learning_outcomes:
-    weight: 27
     settings:
       match_operator: CONTAINS
       size: 60
