@@ -64,12 +64,9 @@ content:
     region: content
   field_training_categories:
     weight: 26
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: content
   field_training_ceus_offered:
     weight: 18
@@ -98,12 +95,9 @@ content:
     region: content
   field_training_course_type:
     weight: 7
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: content
   field_training_description:
     weight: 10
@@ -166,12 +160,9 @@ content:
     region: content
   field_training_proficiency:
     weight: 17
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: content
   field_training_reviews:
     weight: 24
