@@ -33,7 +33,7 @@ function block_content_extender_block_alter(&$blocks) {
         $category = $block_content->category->value;
       }
       else {
-        $category = 'Custom';
+        $category = t('Custom');
       }
       $definition['category'] = $category;
     }
@@ -56,11 +56,30 @@ function block_content_extender_field_widget_form_alter(&$element, \Drupal\Core\
     return;
   }
   // Hide the category field if the "reusable" checkbox is not checked.
+  $reusable = [':input[name="reusable[value]"]' => ['checked' => TRUE]];
   $element['value']['#states'] = [
     'visible' => [
-      [':input[name="reusable[value]"]' => ['checked' => TRUE]],
+      $reusable,
+    ],
+    'required' => [
+      $reusable,
     ],
   ];
+
+  $element['value']['#element_validate'][] = 'block_content_extender_block_form_validate';
+}
+
+/**
+ * Block category field validator.
+ */
+function block_content_extender_block_form_validate(&$element, \Drupal\Core\Form\FormStateInterface $form_state) {
+  // If the block is reusable, validate the user has entered a category.
+  $reusable = $form_state->getValue('reusable');
+  if (!empty($reusable['value']) && $reusable['value']) {
+    if (empty($element['#value'])) {
+      $form_state->setError($element, t('Reusable blocks must have a category.'));
+    }
+  }
 }
 
 /**
@@ -103,7 +122,7 @@ function block_content_extender_entity_base_field_info(\Drupal\Core\Entity\Entit
     ->setRevisionable(FALSE)
     ->setTranslatable(TRUE)
     ->setDefaultValue(t('Custom'))
-    ->setRequired(TRUE)
+    ->setRequired(FALSE)
     ->setTargetEntityTypeId('block_content')
     ->setDisplayOptions('form', [
       'type' => 'string_textfield',
