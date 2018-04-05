@@ -47,7 +47,7 @@
 
   <header role="banner" class="site-header">
     {# main nav goes here so it can slide in and push content down #}
-    {{ page.main_nav }}
+
     <div class="site-header-container">
       {% include (base_path ~ directory ~ '/templates/components/logo.html.twig') %}
       {% include (base_path ~ directory ~ '/templates/components/nav-close.html.twig')
@@ -58,6 +58,7 @@
 
     {{ page.header }}
     </div>
+    {{ page.main_nav }}
   </header>
 
   {{ page.primary_menu }}

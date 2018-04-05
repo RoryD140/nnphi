@@ -7,8 +7,33 @@
 
 .menu-btn-interior {
   position: relative;
-  height: 33px; // Dimensions per designs
-  width: 41px;
+  height: 24px;
+  width: 38px;
+}
+
+// Helper text
+.menu-helper-text,
+.menu-helper-text-open {
+  text-transform: uppercase;
+  font-size: $font-size-xs;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-top: 4px;
+}
+
+.menu-helper-text-open {
+  display: none;
+}
+
+.menu-btn-open {
+  .menu-helper-text-open {
+    display: inline-block;
+  }
+  .menu-helper-text {
+    display: none;
+  }
 }
 
 .menu-btn-interior span {

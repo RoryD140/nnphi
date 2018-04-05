@@ -8,6 +8,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Link;
 
 /**
  * Class SearchBlock
@@ -49,6 +50,9 @@ class SearchBlock extends BlockBase implements ContainerFactoryPluginInterface {
    * {@inheritdoc}
    */
   public function build() {
-    return $this->formBuilder->getForm('Drupal\nnphi_training\Form\SearchHeader');
+    $output = [];
+    $output['search_form'] = $this->formBuilder->getForm('Drupal\nnphi_training\Form\SearchHeader');
+    $output['search_link'] = Link::createFromRoute('Browse All Trainings', 'nnphi_training.instant_search', [], ['attributes' => ['class' => 'browse-link']])->toRenderable();
+    return $output;
   }
 }
