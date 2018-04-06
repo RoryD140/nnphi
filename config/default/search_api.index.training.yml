@@ -17,6 +17,7 @@ dependencies:
     - field.storage.node.field_training_review_overall
     - field.storage.node.field_training_expiration
     - field.storage.node.field_training_total_time
+    - field.storage.node.field_training_categories
     - search_api.server.algolia
   module:
     - taxonomy
@@ -142,6 +143,14 @@ field_settings:
     type: boolean
     configuration:
       field: overall_rating_facet_value
+      filter_only: 0
+      searchable: 0
+  topic_facet:
+    label: 'Topic areas facet'
+    property_path: facet_attribute
+    type: boolean
+    configuration:
+      field: topic_areas
       filter_only: 0
       searchable: 0
   title:
@@ -306,6 +315,16 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_training_total_time
+  topic_areas:
+    label: 'Topic Areas'
+    datasource_id: 'entity:node'
+    property_path: 'field_training_categories:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_training_categories
+      module:
+        - taxonomy
 datasource_settings:
   'entity:node':
     bundles:
@@ -323,7 +342,8 @@ processor_settings:
   facet_attribute: {  }
   searchable_attribute: {  }
 tracker_settings:
-  default: {  }
+  default:
+    indexing_order: fifo
 options:
   index_directly: false
   cron_limit: 50

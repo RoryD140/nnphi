@@ -120,6 +120,23 @@
         try {
           search.addWidget(
             instantsearch.widgets.refinementList({
+              container: '#topic-areas',
+              attributeName: 'topic_areas',
+              operator: 'or',
+              limit: 3,
+              showMore: true,
+              templates: {
+                header: Drupal.t('Topic Areas'),
+                item: refinementCheckbox
+              }
+            })
+          );
+        }
+        catch (err) {}
+
+        try {
+          search.addWidget(
+            instantsearch.widgets.refinementList({
               container: '#levels',
               attributeName: 'course_level',
               operator: 'or',
