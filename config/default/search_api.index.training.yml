@@ -153,6 +153,14 @@ field_settings:
       field: topic_areas
       filter_only: 0
       searchable: 0
+  cost_facet:
+    label: Cost
+    property_path: facet_attribute
+    type: boolean
+    configuration:
+      field: field_training_cost
+      filter_only: 0
+      searchable: 0
   title:
     label: Title
     datasource_id: 'entity:node'

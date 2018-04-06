@@ -249,6 +249,30 @@
         }
         catch (err) {}
 
+        try {
+          search.addWidget(
+            instantsearch.widgets.rangeSlider({
+              container: '#cost',
+              attributeName: 'field_training_cost',
+              min: 0,
+              templates: {
+                header: 'Price'
+              },
+              tooltips: {
+                format: function (rawValue) {
+                  if (rawValue === 0) {
+                    return Drupal.t('Free');
+                  }
+                  else {
+                    return '$' + Math.round(rawValue).toLocaleString();
+                  }
+                }
+              }
+            })
+          );
+        }
+        catch (err) {}
+
         // Attach Drupal.behaviors to the rendered content.
         search.on('render', function() {
           var $new_content = $('#hits').contents();

@@ -11,10 +11,10 @@ instant-search:
   version: VERSION
   css:
     base:
-      https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.css: { type: external, minified: true }
+      https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.3/dist/instantsearch.min.css: { type: external, minified: true }
       https://cdn.jsdelivr.net/qtip2/3.0.3/jquery.qtip.min.css: { type: external, minified: true}
   js:
-    https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.js: { type: external, minified: true }
+    https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.3/dist/instantsearch.min.js: { type: external, minified: true }
     https://cdn.jsdelivr.net/qtip2/3.0.3/jquery.qtip.min.js: {type: external, minified: true }
     js/search.js: {}
   dependencies:
