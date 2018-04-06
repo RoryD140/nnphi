@@ -18,7 +18,7 @@ class SurveyBlock extends BlockBase {
   public function build() {
     $build['iframe'] = [
       '#type' => 'inline_template',
-      '#template' => '<div class="embed-responsive"><iframe src="{{ url }}""></iframe></div> ',
+      '#template' => '<div class="embed-responsive"><iframe height="2000px" style="border: none" src="{{ url }}""></iframe></div> ',
       '#context' => [
         'url' => 'https://nnphi.az1.qualtrics.com/jfe/form/SV_4IA9bks2QpM5ua9',
       ],
