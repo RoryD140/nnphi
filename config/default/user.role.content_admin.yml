@@ -1,0 +1,37 @@
+uuid: 2e83f7e6-0ba1-4eb8-86ef-5c2eef950aa5
+langcode: en
+status: true
+dependencies: {  }
+id: content_admin
+label: 'Content Administrator'
+weight: 3
+is_admin: null
+permissions:
+  - 'access comments'
+  - 'access content overview'
+  - 'access files overview'
+  - 'access panels in-place editing'
+  - 'access taxonomy overview'
+  - 'access toolbar'
+  - 'administer comments'
+  - 'administer nodes'
+  - 'administer pages'
+  - 'administer panelizer node component_page content'
+  - 'administer panelizer node component_page layout'
+  - 'administer panelizer node component_page revert'
+  - 'administer taxonomy'
+  - 'administer users'
+  - 'bypass node access'
+  - 'create url aliases'
+  - 'edit own comments'
+  - 'enroll in curricula'
+  - 'flag bookmark'
+  - 'post comments'
+  - 'skip comment approval'
+  - 'unflag bookmark'
+  - 'use ipe with page manager'
+  - 'use text format basic_html'
+  - 'use text format full_html'
+  - 'use text format restricted_html'
+  - 'use text format review'
+  - 'view the administration theme'
