@@ -52,7 +52,7 @@ class SearchBlock extends BlockBase implements ContainerFactoryPluginInterface {
   public function build() {
     $output = [];
     $output['search_form'] = $this->formBuilder->getForm('Drupal\nnphi_training\Form\SearchHeader');
-    $output['search_link'] = Link::createFromRoute('Browse All Trainings', 'nnphi_training.instant_search', [], ['attributes' => ['class' => 'browse-link']])->toRenderable();
+    $output['search_link'] = Link::createFromRoute(t('Browse All Trainings'), 'nnphi_training.instant_search', [], ['attributes' => ['class' => 'browse-link']])->toRenderable();
     return $output;
   }
 }
