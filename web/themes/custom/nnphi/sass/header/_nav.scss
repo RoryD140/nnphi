@@ -1,6 +1,10 @@
 // Wrapper around main nav
 .site-header nav#block-nnphi-main-menu {
   background: $green-dark;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 110;
 }
 
 // Top level UL
@@ -11,11 +15,11 @@
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
-  // JS show/hide is done with height so it pushes content down.
+  // JS show/hide is done with height
   // Max-height is used because you can't animate height: auto
   max-height: 0;
   overflow: hidden;
-  transition: all 1s;
+  transition: all .4s;
   &.main-nav-open {
     // These are more or less arbitrary. Just have to be larger than the natural menu height
     max-height: 100vh;
