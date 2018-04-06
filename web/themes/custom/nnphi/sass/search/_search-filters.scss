@@ -78,3 +78,9 @@
 .training-filters .ais-clear-all a {
   color: $gray-text;
 }
+
+// Constrain cost range slider to match heading alignment
+.training-filters .ais-range-slider--body {
+  padding-left: 16px;
+  padding-right: 16px;
+}
