@@ -24,14 +24,6 @@ $config_directories = array(
 );
 
 /**
- * If there is a local settings file, then include it
- */
-$local_settings = __DIR__ . "/settings.local.php";
-if (file_exists($local_settings)) {
-  include $local_settings;
-}
-
-/**
  * Always install the 'standard' profile to stop the installer from
  * modifying settings.php.
  *
@@ -95,4 +87,13 @@ if (isset($_ENV['PANTHEON_ENVIRONMENT']) && php_sapi_name() != 'cli') {
     /** Replace www.example.com with your registered domain name */
     $primary_domain = 'www.phlearningnavigator.org';
   }
+}
+
+
+/**
+ * If there is a local settings file, then include it
+ */
+$local_settings = __DIR__ . "/settings.local.php";
+if (file_exists($local_settings)) {
+  include $local_settings;
 }
