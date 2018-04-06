@@ -27,7 +27,9 @@
   }
 }
 
-.site-header-container .training-search-form {
+.site-header-container .block-nnphi-training-search-block {
+  flex: 1 1 300px; // Somewhat arbitrary, but keeps the form at a reasonable width
+  position: relative;
   @include media-breakpoint-down(md) {
     // At smaller screens search form takes up 100% width
     flex: 1 1 100%;
@@ -36,7 +38,16 @@
   }
 }
 
-// Puts the menu button at the end of the flex container, i.e., the far right
+.site-header-container .browse-link {
+  position: absolute;
+  text-transform: uppercase;
+  font-size: $font-size-xs;
+  top: 100%;
+  left: 72px; // Matches padding on training search
+  color: $green;
+}
+
+  // Puts the menu button at the end of the flex container, i.e., the far right
 .site-header-container > .menu-btn {
   @include media-breakpoint-up(lg) {
     order: 2;
@@ -54,7 +65,7 @@
     order: 2;
   }
 
-  .site-header-container .training-search-form {
+  .site-header-container .block-nnphi-training-search-block {
     order: 3;
   }
 }
@@ -71,7 +82,7 @@
     order: 1;
   }
 
-  .site-header-container .training-search-form {
+  .site-header-container .block-nnphi-training-search-block {
     order: 2;
     flex-basis: 100%;
   }
