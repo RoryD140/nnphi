@@ -30,7 +30,7 @@
 
 #manage-bookmarks th,
 #manage-folders th {
-  font-family: $font-family-lato;
+  font-family: $font-family-libre-franklin;
 }
 
 #manage-folders .table td {
@@ -447,7 +447,7 @@ th[role='columnheader'] {
 .ui-widget.ui-widget-content {
   border: 0 solid $white;
   box-shadow: 2px 2px 40px 10px rgba(0,0,0,0.2);
-  font-family: $font-family-work-sans;
+  font-family: $font-family-proxima-nova;
 }
 
 // Close button.
