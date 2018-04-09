@@ -1,6 +1,7 @@
 module:
   address: 0
   admin_toolbar: 0
+  admin_toolbar_tools: 0
   allowed_formats: 0
   block: 0
   block_content: 0
@@ -21,6 +22,7 @@ module:
   ctools: 0
   ctools_block: 0
   datetime: 0
+  dblog: 0
   dynamic_page_cache: 0
   editor: 0
   email_registration: 0
