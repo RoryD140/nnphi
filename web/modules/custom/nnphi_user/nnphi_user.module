@@ -8,6 +8,7 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\nnphi_user\Plugin\Block\UserProfile;
 use Drupal\Core\Url;
+use Drupal\node\Entity\Node;
 use Drupal\user\UserInterface;
 use Drupal\Core\Session\UserSession;
 
@@ -165,6 +166,32 @@ function nnphi_user_form_user_form_alter(&$form, FormStateInterface $form_state,
       '#suffix' => '</p>',
       '#markup' => t('Already have an account? <a href="@login">Sign in</a> or <a href="@reset">reset your password</a>.', $t_args),
       '#weight' => -99,
+    ];
+    $form['header_top'] = [
+        '#type' => 'markup',
+        '#prefix' => '<h2>',
+        '#suffix' => '</h2>',
+        '#markup' => t('Find Easily. Learn Confidently. Apply Immediately.'),
+        '#weight' => -110,
+    ];
+    $form['header_mid'] = [
+        '#type' => 'markup',
+        '#prefix' => '<p>',
+        '#suffix' => '</p>',
+        '#markup' => t('Create a free Learning Navigator account for a personalized learning experience that allows you to quickly and easily find quality public health trainings.'),
+        '#weight' => -105,
+    ];
+
+    // 41 is NID for Privacy page, 40 is NID for terms and conditions page
+    $privacy_link = Node::load('41')->toLink()->toString();
+    $terms_link = Node::load('40')->toLink()->toString();
+
+    $form['footer'] = [
+        '#type' => 'markup',
+        '#prefix' => '<div class="registration-links-wrapper">',
+        '#suffix' => '</div>',
+        '#markup' => $privacy_link . ' | ' . $terms_link,
+        '#weight' => 200,
     ];
 
     $form['#cache']['contexts'][] = 'url.query_args';

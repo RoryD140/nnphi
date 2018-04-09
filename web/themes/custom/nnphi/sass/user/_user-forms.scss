@@ -222,11 +222,21 @@
 }
 
 // Hide the first column of table, which just says "user password" in each cell
-#password-policy-status tr td:first-of-type {
+// Hide second column with pass/fail status
+#password-policy-status tr td:first-of-type,
+#password-policy-status tr td:nth-of-type(2) {
   display: none;
 }
 
-// User picture
+#password-policy-status tr {
+  font-size: $font-size-sm;
+}
+
+.registration-links-wrapper {
+  margin-top: $padding-md;
+}
+
+  // User picture
 .image-widget {
   width: 80%;
   display: inherit;
@@ -343,9 +353,6 @@ select {
   display: block;
 }
 
-#password-policy-status table {
-  display: none;
-}
 
 .user-form .form-item input[type="file"] {
   border: solid 0 $gray-light;
