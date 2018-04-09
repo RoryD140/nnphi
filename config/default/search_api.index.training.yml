@@ -47,7 +47,7 @@ field_settings:
     type: boolean
     configuration:
       field: field_training_description
-      ranking: '1'
+      ranking: '2'
       unordered: 0
   objectives_attribute:
     label: 'Learning objectives'
@@ -55,7 +55,7 @@ field_settings:
     type: boolean
     configuration:
       field: training_objectives
-      ranking: '2'
+      ranking: '3'
       unordered: 0
   competencies_facet:
     label: Competencies
@@ -127,7 +127,7 @@ field_settings:
     type: boolean
     configuration:
       field: summary
-      ranking: '4'
+      ranking: '1'
       unordered: 0
   content_type_facet:
     label: 'Content type'
