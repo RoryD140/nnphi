@@ -135,6 +135,7 @@ class TrainingSuggestions extends BlockBase implements ContainerFactoryPluginInt
       '#type' => 'link',
       '#attributes' => [
         'class' => ['btn', 'btn-outline-primary', 'btn-sm'],
+        'data-no-alter' => TRUE // Used in nnphi_user.module to keep the link text from being altered
        ],
       '#url' => Url::fromRoute('entity.user.edit_form', ['user' => $account->id()], ['query' => ['destination' => $this->redirectService->get()]]),
     ];

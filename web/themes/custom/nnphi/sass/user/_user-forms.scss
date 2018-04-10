@@ -13,19 +13,19 @@
   }
 }
 
-//.page-entity-user-edit_form main,
 .page-user-register main,
 .page-user-login main,
 .page-user-pass main,
-.page-change_pwd_page-change_password_form main {
+.page-change_pwd_page-change_password_form main,
+.page-entity-user-edit_form main{
   @extend .container;
 }
 
-//.page-entity-user-edit_form .layout-content,
+.page-entity-user-edit_form .layout-content,
 .page-user-register .layout-content,
 .page-user-login .layout-content,
 .page-user-pass .layout-content,
-.page-change_pwd_page-change_password_form .layout-content{
+.page-change_pwd_page-change_password_form .layout-contentt {
   @extend .col-md-8;
   @extend .offset-md-2;
   margin-top: $padding-lg;
@@ -265,13 +265,6 @@ input[id^="edit-user-picture-"] {
   display: none;
 }
 
-//// Interests
-//.field-user-interests-values h4.label {
-//  text-transform: uppercase;
-//  font-weight: bold;
-//  margin-bottom: 0;
-//  font-size: 1rem;
-//}
 
 // Global select styles
 .select-wrapper {
@@ -313,40 +306,29 @@ select {
 }
 
 // User Edit Form
-.page-entity-user-edit_form h1 {
-  text-transform: none;
-  letter-spacing: 1px;
-  font-size: 2rem;
-  @include media-breakpoint-down(lg) {
-    margin: 2rem 3rem;
+// Adjust links at top so they can take up full width of form area
+.page-entity-user-edit_form .layout-content .block-local-tasks-block {
+  position: absolute;
+  left: 0;
+  top: 0;
+  ul {
+    display: flex;
+    justify-content: space-between;
+  }
+  li {
+    margin: 5px;
   }
 }
 
-.page-entity-user-edit_form .user-form {
-  border: solid 1px $gray-light;
+.page-entity-user-edit_form #password-policy-status {
+  display: none;
 }
 
-.page-entity-user-edit_form .block-system-main-block h2 {
-  border: solid 1px $gray-light;
-  padding: 1rem 2rem;
-  color: $blue;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin: 3rem 12rem 0 12rem;
-  @include media-breakpoint-down(lg) {
-    margin: 3rem 2rem 0 2rem;
-  }
-}
 
 .dashboard > .container:nth-of-type(2) {
   @include media-breakpoint-down(lg) {
     margin: 1rem 0;
   }
-}
-
-.page-entity-user-edit_form .block-system-main-block form {
-  padding: 2rem 2rem 3.5rem;
-  margin-left: $padding-sm; // align with message and nav links
 }
 
 .form-item-current-pass .description {
@@ -365,12 +347,20 @@ select {
   color: $green;
 }
 
+.user-form .form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  #button-divider {
+    flex: 0 0 100%;
+  }
+}
+
 .user-form .cancel {
   background-color: white;
   border: solid 1px $green;
   color: $green;
   float: right;
-  margin-left: 1rem;
 }
 
 //Interests is a heierarchical select element
