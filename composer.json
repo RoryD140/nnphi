@@ -58,6 +58,7 @@
     "drupal/smart_trim": "1.0",
     "drupal/token": "1.0",
     "drupal/votingapi": "3.0-alpha2",
+    "drupal/webform": "5.0-rc10",
     "drupal/xmlsitemap": "1.x.dev",
     "moment/moment": "^2.18",
     "snipe/banbuilder": "^2.2",

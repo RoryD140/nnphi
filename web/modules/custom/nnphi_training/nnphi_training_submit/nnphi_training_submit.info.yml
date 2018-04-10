@@ -1,0 +1,8 @@
+name: NNPHI Training Submit
+type: module
+description: 'Allows users to submit trainings.'
+package: NNPHI
+version: VERSION
+core: 8.x
+dependencies:
+  - webform
