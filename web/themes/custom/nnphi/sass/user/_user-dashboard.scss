@@ -254,23 +254,28 @@
 
 // Suggested Trainings
 .page-entity-user-canonical .node-preview-disabled {
-  //clear: both;
-  //text-align: center;
   margin-bottom: 1rem;
+  display: flex;
+  opacity: .5;
+  position: relative;
+  // Prevents clicking on links
+  &:after {
+    position: absolute;
+    pointer-events: all;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    &:hover {
+      cursor: none;
+    }
+  }
 }
 
-//.page-entity-user-canonical .node-preview-disabled + a {
-//  color: $green;
-//  text-transform: uppercase;
-//  clear: both;
-//  display: block;
-//  text-align: center;
-//  margin-bottom: 1rem;
-//}
-
-//.node-preview-disabled h5 a {
-//  color: $gray-light;
-//}
+.block-user-training-suggestions p {
+  margin-bottom: 0;
+}
 
 .block-user-training-suggestions .btn-sm {
   display: flex;

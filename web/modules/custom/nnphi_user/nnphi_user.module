@@ -64,6 +64,12 @@ function nnphi_user_preprocess_page(&$variables) {
  * Implements hook_link_alter().
  */
 function nnphi_user_link_alter(&$variables) {
+
+  // Prevent TrainingSuggestions link text from being altered
+  if(isset($variables['options']['attributes']['data-no-alter'])) {
+    return;
+  }
+
   /** @var \Drupal\Core\Url $url */
   $url = $variables['url'];
   if (!$url->isRouted()) {
