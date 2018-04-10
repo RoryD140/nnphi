@@ -10,13 +10,13 @@ id: submit_a_training
 title: 'Submit A Training'
 description: ''
 category: ''
-elements: "nominated_training_information:\n  '#type': fieldset\n  '#title': 'Nominated Training Information'\n  title_of_training:\n    '#type': textfield\n    '#title': 'Title of Training'\n  training_link:\n    '#type': webform_link\n    '#title': 'Training Link'\n    '#title__access': false\n  markup:\n    '#type': webform_markup\n    '#markup': \"<br />\\nWhat topic(s) does this training best fit? (Please reference priority topics above)\"\n  topic_1:\n    '#type': textfield\n    '#title': 'Topic 1'\n  topic_2:\n    '#type': textfield\n    '#title': 'Topic 2'\n  topic_3:\n    '#type': textfield\n    '#title': 'Topic 3 (Other, not listed above)'\n  topic_4:\n    '#type': textfield\n    '#title': 'Topic 4 (Other, not listed above)'\n  markup_01:\n    '#type': webform_markup\n    '#markup': 'As the nominator of this training, what is your contact information?'\n  first_name:\n    '#type': textfield\n    '#title': 'First Name'\n  last_name:\n    '#type': textfield\n    '#title': 'Last Name'\n  email:\n    '#type': email\n    '#title': Email\n  organization_name:\n    '#type': textfield\n    '#title': 'Your Organization/Company Name'\n  markup_02:\n    '#type': webform_markup\n    '#markup': 'Nominations can be submitted by anyone. Do you have contact information for the training producer?&nbsp;'\n  producer:\n    '#type': webform_radios_other\n    '#title': Producer\n    '#title_display': invisible\n    '#options':\n      'I am the the training producer and the right contact': 'I am the the training producer and the right contact'\n      'I don''t know': 'I don''t know'\n    '#other__option_label': 'I am listing contact info of the training producer'\n    '#other__placeholder': ''\n"
+elements: "nominated_training_information:\n  '#type': fieldset\n  '#title': 'Nominated Training Information'\n  title_of_training:\n    '#type': textfield\n    '#title': 'Title of Training'\n  training_link:\n    '#type': webform_link\n    '#title': 'Training Link'\n    '#title__access': false\n  markup_01:\n    '#type': webform_markup\n    '#markup': 'As the nominator of this training, what is your contact information?'\n  first_name:\n    '#type': textfield\n    '#title': 'First Name'\n  last_name:\n    '#type': textfield\n    '#title': 'Last Name'\n  email:\n    '#type': email\n    '#title': Email\n  organization_name:\n    '#type': textfield\n    '#title': 'Your Organization/Company Name'\n  markup_02:\n    '#type': webform_markup\n    '#markup': 'Nominations can be submitted by anyone. Do you have contact information for the training producer?&nbsp;'\n  producer:\n    '#type': webform_radios_other\n    '#title': Producer\n    '#title_display': invisible\n    '#options':\n      'I am the the training producer and the right contact': 'I am the the training producer and the right contact'\n      'I don''t know': 'I don''t know'\n    '#other__option_label': 'I am listing contact info of the training producer'\n    '#other__placeholder': ''\n  producer_contact_info:\n    '#type': textfield\n    '#title': 'Producer Contact Info'\n    '#access_create_roles': {  }\n    '#access_update_roles': {  }\n    '#access_view_roles':\n      - administrator\n      - content_admin\n"
 css: ''
 javascript: ''
 settings:
   ajax: false
   ajax_scroll_top: form
-  page: true
+  page: false
   page_submit_path: ''
   page_confirm_path: ''
   form_submit_once: false
@@ -72,9 +72,9 @@ settings:
   draft_auto_save: false
   draft_saved_message: ''
   draft_loaded_message: ''
-  confirmation_type: page
+  confirmation_type: message
   confirmation_title: ''
-  confirmation_message: ''
+  confirmation_message: 'Thank you for your submission.'
   confirmation_url: ''
   confirmation_attributes: {  }
   confirmation_back: true

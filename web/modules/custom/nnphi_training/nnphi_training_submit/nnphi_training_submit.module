@@ -4,6 +4,7 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\webform\WebformSubmissionInterface;
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter().
@@ -26,4 +27,23 @@ function nnphi_training_submit_producer_after_build($element) {
   $element['radios']['other']['#weight'] = 15;
   $element['other']['#access'] = FALSE;
   return $element;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function nnphi_training_submit_webform_submission_presave(WebformSubmissionInterface $submission) {
+  // Qualtrics keeps the "other" input a secondary field.
+  // If the user has selected that, move the submitted info
+  // into a second field and reset the producer field.
+  $producer_options = [
+    "I Don't Know",
+    'I am the the training producer and the right contact',
+    'I am listing contact info of the training producer',
+  ];
+  $producer_submission = $submission->getElementData('producer');
+  if (!in_array($producer_submission, $producer_options)) {
+    $submission->setElementData('producer_contact', $producer_submission);
+    $submission->setElementData('producer', 'I am listing contact info of the training producer');
+  }
 }
