@@ -7,3 +7,7 @@
 .layout-col-container .layout__region {
   @extend .col-lg-6;
 }
+
+.layout--onecol {
+  @extend .container;
+}

@@ -1,0 +1,21 @@
+.webform-submission-submit-a-training-form div.form-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: $padding-md;
+  align-items: flex-start;
+  &.js-form-type-radio {
+    margin-bottom: $padding-sm;
+    flex-direction: row;
+    .custom-radio {
+      margin: 0 .5rem 0 0;
+    }
+  }
+  label {
+    font-weight: bold;
+  }
+}
+
+.webform-submission-submit-a-training-form .form-actions input {
+  @extend .btn;
+  @extend .btn-primary;
+}

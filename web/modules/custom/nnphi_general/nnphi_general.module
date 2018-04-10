@@ -80,6 +80,7 @@ function nnphi_general_panels_ipe_blocks_alter(array &$blocks = [], PanelsDispla
     'nnphi_training',
     'block_content',
     'nnphi_general',
+    'webform',
   ];
   foreach ($blocks as $delta => $block) {
     if (!in_array($block['provider'], $providers) ) {
