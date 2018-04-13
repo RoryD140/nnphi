@@ -1,4 +1,4 @@
-.webform-submission-submit-a-training-form div.form-item {
+.webform-submission-form div.form-item {
   display: flex;
   flex-direction: column;
   margin-bottom: $padding-md;
@@ -15,7 +15,7 @@
   }
 }
 
-.webform-submission-submit-a-training-form .form-actions input {
+.webform-submission-form .form-actions input {
   @extend .btn;
   @extend .btn-primary;
 }
