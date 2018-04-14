@@ -1,0 +1,36 @@
+.webform-submission-form div.form-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: $padding-md;
+  align-items: flex-start;
+  &.js-form-type-radio {
+    margin-bottom: $padding-sm;
+    flex-direction: row;
+    .custom-radio {
+      margin: 0 .5rem 0 0;
+    }
+  }
+  label {
+    font-weight: bold;
+  }
+  div {
+    max-width: 100%;
+  }
+}
+
+
+.webform-submission-form .form-item input,
+.webform-submission-form textarea {
+  border: solid 2px $gray-light;
+  min-width: 33vw; // Keeps inputs and text areas the same size
+  max-width: 100%;
+  &:focus {
+    outline: none;
+    border-color: $purple;
+  }
+}
+
+.webform-submission-form .form-actions input {
+  @extend .btn;
+  @extend .btn-primary;
+}
