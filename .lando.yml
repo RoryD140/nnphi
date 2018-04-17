@@ -8,6 +8,7 @@ config:
   web_docroot: true
   drupal: true
   drush: global:8.1.12
+  php: '7.1'
 proxy:
   mailhog:
     - mail.nnphi.lndo.site

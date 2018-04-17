@@ -38,6 +38,8 @@ module:
   image: 0
   layout_discovery: 0
   link: 0
+  mailgun: 0
+  mailsystem: 0
   menu_ui: 0
   metatag: 0
   metatag_open_graph: 0
