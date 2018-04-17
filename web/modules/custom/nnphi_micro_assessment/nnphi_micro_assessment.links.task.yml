@@ -1,0 +1,4 @@
+nnphi_micro_assessment.node_results:
+  route_name: nnphi_micro_assessment.node_results
+  title: 'Results'
+  base_route: entity.node.canonical

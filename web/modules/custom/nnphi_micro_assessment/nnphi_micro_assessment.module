@@ -5,6 +5,8 @@
 
 use Drupal\node\NodeInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Cache\CacheableRedirectResponse;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_entity_extra_field_info().
@@ -29,6 +31,7 @@ function nnphi_micro_assessment_node_view_alter(array &$build, NodeInterface $no
   if ($node->bundle() !== 'micro_assessment' || $build['#view_mode'] !== 'full') {
     return;
   }
+
   $selected = \Drupal::request()->get('choice');
   if (null === $selected || !is_numeric($selected)) {
     $build['field_ma_correct_text']['#access'] = FALSE;
@@ -50,4 +53,125 @@ function nnphi_micro_assessment_node_view_alter(array &$build, NodeInterface $no
   }
   // Alter the cache to vary by the URL.
   $build['#cache']['contexts'][] = 'url.query_args:choice';
+}
+
+/**
+ * Implements hook_views_data().
+ */
+function nnphi_micro_assessment_views_data() {
+  $data = [];
+  $data['micro_assessment_response'] = [];
+  $data['micro_assessment_response']['table'] = [];
+  $data['micro_assessment_response']['table']['group'] = t('Micro Asessment Response Data');
+  $data['micro_assessment_response']['table']['join'] = [
+    'node_field_data' => [
+      'left_field' => 'nid',
+      'field' => 'nid',
+    ],
+  ];
+
+  $data['micro_assessment_response']['table']['base'] = array(
+    'field' => 'id',
+    'title' => t('Micro Assessment Responses'),
+    'help' => t('User responses to micro assessments.'),
+    'weight' => -10,
+  );
+
+  $data['micro_assessment_response']['nid'] = [
+    'title' => t('NID'),
+    'help' => t('Node ID of the micro assessment node'),
+    'field' => [
+      'id' => 'standard',
+    ],
+    'filter' => [
+      'id' => 'numeric',
+    ],
+    'argument' => [
+      'id' => 'numeric',
+    ],
+    'relationship' => [
+      'base' => 'node_field_data',
+      'base field' => 'nid',
+      'id' => 'standard',
+      'label' => t('Micro assessment node'),
+    ],
+  ];
+
+  $data['micro_assessment_response']['choice'] = [
+    'title' => t('Choice'),
+    'help' => t("The text of the user's choice."),
+    'field' => [
+      // ID of field handler plugin to use.
+      'id' => 'standard',
+    ],
+    'sort' => [
+      // ID of sort handler plugin to use.
+      'id' => 'standard',
+    ],
+    'filter' => [
+      // ID of filter handler plugin to use.
+      'id' => 'string',
+    ],
+    'argument' => [
+      // ID of argument handler plugin to use.
+      'id' => 'string',
+    ],
+  ];
+
+  $data['micro_assessment_response']['correct'] = [
+    'title' => t('Choice is correct'),
+    'help' => t('Whether the user answered correctly'),
+    'field' => [
+      'id' => 'boolean',
+    ],
+    'sort' => [
+      'id' => 'standard',
+    ],
+    'filter' => [
+      'id' => 'boolean',
+      'label' => t('Correct'),
+      'type' => 'yes-no',
+      'use_equal' => FALSE,
+    ],
+  ];
+
+  $data['micro_assessment_response']['uid'] = [
+    'title' => t('UID'),
+    'help' => t('The user ID of the user on which took the quiz.'),
+    'field' => [
+      'id' => 'standard',
+    ],
+    'filter' => [
+      'id' => 'numeric',
+    ],
+    'argument' => [
+      'id' => 'numeric',
+    ],
+    'relationship' => [
+      'title' => t('User'),
+      'help' => t('The user that took the quiz.'),
+      'base' => 'users_field_data',
+      'base field' => 'uid',
+      'id' => 'standard',
+    ],
+  ];
+
+  $data['micro_assessment_response']['timestamp'] = [
+    'title' => t('Timestamp'),
+    'help' => t('Date when the quiz was taken.'),
+    'field' => [
+      'id' => 'date',
+    ],
+    'argument' => [
+      'id' => 'date',
+    ],
+    'filter' => [
+      'id' => 'date',
+    ],
+    'sort' => [
+      'id' => 'date',
+    ],
+  ];
+
+  return $data;
 }
