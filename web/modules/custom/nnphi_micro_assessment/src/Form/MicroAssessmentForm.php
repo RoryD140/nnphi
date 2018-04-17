@@ -148,7 +148,7 @@ class MicroAssessmentForm extends FormBase {
     }
     return [
       '#type' => 'inline_template',
-      '#template' => $message,
+      '#template' => '<span class="result-message">' . $message . '</span>',
     ];
   }
 

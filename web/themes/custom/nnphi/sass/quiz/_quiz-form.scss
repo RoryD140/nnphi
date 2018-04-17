@@ -1,0 +1,31 @@
+.block-random-quiz {
+  max-width: 50vw;
+  padding-top: $padding-lg;
+  padding-bottom: $padding-lg;
+}
+
+.field-ma-question {
+  @extend .large-text;
+}
+
+.result-message {
+  @extend .large-text;
+  font-size: $font-size-md;
+}
+
+.micro-assessment-form .form-item-choice {
+  margin-bottom: $padding-sm;
+  display: flex;
+  align-items: center;
+  .custom-radio {
+    margin: 0 $padding-sm 0 0;
+  }
+  label {
+    margin: 0;
+  }
+}
+
+.micro-assessment-form .form-submit {
+  @extend .btn;
+  @extend .btn-primary;
+}

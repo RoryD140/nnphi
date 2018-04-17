@@ -4,7 +4,7 @@ status: true
 dependencies: {  }
 name: Review
 format: review
-weight: 0
+weight: -7
 filters:
   filter_autop:
     id: filter_autop

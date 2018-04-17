@@ -44,10 +44,10 @@ settings:
           items:
             - Source
   plugins:
-    language:
-      language_list: un
     stylescombo:
       styles: "p.large-text|Large Text\r\np.large-text-bold|Large Text Bold\r\np.all-caps-text|All Caps Text\r\np.green-links|Green Links Text"
+    language:
+      language_list: un
 image_upload:
   status: true
   scheme: public
