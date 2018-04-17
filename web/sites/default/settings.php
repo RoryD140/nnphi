@@ -40,9 +40,11 @@ $index = 'dev_TRAINING';
 $config['google_analytics.settings']['account'] = '';
 
 if (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
-  $json_text = file_get_contents($site_path . '/files/private/algolia.json');
-  $algolia_data = json_decode($json_text, TRUE);
-  $config['search_api.server.algolia']['backend_config']['api_key'] = $algolia_data['key'];
+  $json_text = file_get_contents($site_path . '/files/private/secrets.json');
+  $secrets = json_decode($json_text, TRUE);
+  if (isset($secrets['algolia_key'])) {
+    $config['search_api.server.algolia']['backend_config']['api_key'] = $secrets['algolia_key'];
+  }
   // Switch to the correct Algolia index.
   $index = 'dev_TRAINING';
   $indexes = [
@@ -55,6 +57,23 @@ if (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
     $config['search_api.index.training']['read_only'] = FALSE;
     $index = $indexes[$_ENV['PANTHEON_ENVIRONMENT']];
   }
+
+  $senders = [
+    'live' => 'noreply@phlearningnavigator.org',
+    'test' => 'test-noreply@phlearningnavigator.org',
+    'dev' => 'dev-noreply@phlearningnavigator.org'
+  ];
+  if (isset($senders[$_ENV['PANTHEON_ENVIRONMENT']])) {
+    $config['system.site']['mail'] = $senders[$_ENV['PANTHEON_ENVIRONMENT']];
+    if (isset($secrets['mailgun_key'])) {
+      $config['mailgun.settings']['api_key'] = $secrets['mailgun_key'];
+    }
+  }
+  else {
+    $config['system.site']['mail'] = 'dev-noreply@phlearningnavigator.org';
+    $config['mailsystem.settings']['defaults']['sender'] = 'php_mail';
+  }
+
 
   // Set Google Analytics ID on Prod
   if ($_ENV['PANTHEON_ENVIRONMENT'] === 'live') {
