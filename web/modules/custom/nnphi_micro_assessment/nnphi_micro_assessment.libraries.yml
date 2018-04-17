@@ -1,0 +1,9 @@
+random_quiz:
+  version: VERSION
+  js:
+    js/random_quiz.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - core/drupal.ajax

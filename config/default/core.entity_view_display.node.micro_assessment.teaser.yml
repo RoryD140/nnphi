@@ -12,45 +12,32 @@ dependencies:
     - field.field.node.micro_assessment.field_ma_selected_content
     - node.type.micro_assessment
   module:
-    - smart_trim
+    - panelizer
     - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
 id: node.micro_assessment.teaser
 targetEntityType: node
 bundle: micro_assessment
 mode: teaser
 content:
-  body:
-    label: hidden
-    type: smart_trim
-    weight: 0
-    settings:
-      trim_length: '600'
-      trim_type: chars
-      trim_suffix: ''
-      more_link: '0'
-      more_text: More
-      summary_handler: full
-      trim_options:
-        text: 0
-      more_class: more-link
-    third_party_settings: {  }
-    region: content
   field_ma_question:
     type: string
-    weight: 1
+    weight: 0
     region: content
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  form:
-    weight: 1
-    region: content
-    settings: {  }
-    third_party_settings: {  }
 hidden:
+  body: true
   field_ma_answers: true
   field_ma_correct_text: true
   field_ma_incorrect_text: true
   field_ma_selected_content: true
+  form: true
   links: true

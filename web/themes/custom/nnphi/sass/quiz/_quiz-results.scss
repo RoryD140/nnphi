@@ -1,0 +1,10 @@
+.page-nnphi_micro_assessment-node_results .views-element-container {
+  @extend .container;
+}
+
+.page-nnphi_micro_assessment-node_results .views-element-container table {
+  @extend .table;
+  thead th {
+    padding: .75rem; // match the normal td padding
+  }
+}

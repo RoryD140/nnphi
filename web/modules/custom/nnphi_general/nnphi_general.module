@@ -10,6 +10,7 @@ use \Drupal\block_content\BlockContentInterface;
 use \Drupal\Component\Utility\Html;
 use \Drupal\panels\Plugin\DisplayVariant\PanelsDisplayVariant;
 use \Drupal\Core\Render\Element\StatusMessages;
+use Drupal\Core\Database\Query\AlterableInterface;
 
 /**
  * Implements hook_ENTITY_TYPE_view().
@@ -81,6 +82,7 @@ function nnphi_general_panels_ipe_blocks_alter(array &$blocks = [], PanelsDispla
     'block_content',
     'nnphi_general',
     'webform',
+    'nnphi_micro_assessment',
   ];
   foreach ($blocks as $delta => $block) {
     if (!in_array($block['provider'], $providers) ) {
@@ -89,3 +91,9 @@ function nnphi_general_panels_ipe_blocks_alter(array &$blocks = [], PanelsDispla
   }
 }
 
+/**
+ * Implements hook_query_TAG_alter().
+ */
+function nnphi_general_query_sort_by_random_alter(AlterableInterface $query) {
+  $query->orderRandom();
+}

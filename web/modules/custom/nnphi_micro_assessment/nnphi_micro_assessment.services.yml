@@ -1,0 +1,5 @@
+services:
+  nnphi_micro_assessment.node_redirect:
+    class: Drupal\nnphi_micro_assessment\EventSubscriber\MicroAssessmentRedirectSubscriber
+    tags:
+      - {name: event_subscriber}

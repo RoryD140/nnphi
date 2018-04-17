@@ -1,0 +1,136 @@
+<?php
+/**
+ * @file nnphi_micro_assessment.install
+ */
+
+function nnphi_micro_assessment_schema() {
+  $schema = [];
+
+  $schema['micro_assessment_response'] = [
+    'description' => 'Holds user responses to micro assessments',
+    'fields' => [
+      'id' => [
+        'description' => 'The serial ID of the quiz response',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'nid' => [
+        'description' => 'The {node}.nid of the quiz',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'choice' => [
+        'description' => 'The choice the user selected',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'uid' => [
+        'description' => 'The {users}.uid of the user',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'correct' => [
+        'description' => 'Boolean indicating if the choice was correct',
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'timestamp' => array(
+        'description' => 'The Unix timestamp when the quiz was taken.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    ],
+    'indexes' => [
+      'nid' => ['nid'],
+    ],
+    'primary key' => [
+      'id',
+    ],
+  ];
+
+  return $schema;
+}
+
+/**
+ * Implements hook_update_N().
+ *
+ * Add a table for storing user quiz responses.
+ */
+function nnphi_micro_assessment_update_8000() {
+  $table = [
+    'description' => 'Holds user responses to micro assessments',
+    'fields' => [
+      'id' => [
+        'description' => 'The serial ID of the quiz response',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'nid' => [
+        'description' => 'The {node}.nid of the quiz',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'choice' => [
+        'description' => 'The choice the user selected',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'uid' => [
+        'description' => 'The {users}.uid of the user',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'correct' => [
+        'description' => 'Boolean indicating if the choice was correct',
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'timestamp' => array(
+        'description' => 'The Unix timestamp when the quiz was taken.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    ],
+    'foreign keys' => [
+      'user' => [
+        'table' => 'users',
+        'columns' => [
+          'uid' => 'uid',
+        ],
+      ],
+      'node' => [
+        'table' => 'node',
+        'columns' => [
+          'nid' => 'nid',
+        ],
+      ],
+    ],
+    'indexes' => [
+      'nid' => ['nid'],
+    ],
+    'primary key' => [
+      'id',
+    ],
+  ];
+  \Drupal::database()->schema()->createTable('micro_assessment_response', $table);
+}
