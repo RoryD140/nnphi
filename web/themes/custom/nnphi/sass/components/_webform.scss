@@ -22,11 +22,25 @@
 .webform-submission-form .form-item input,
 .webform-submission-form textarea {
   border: solid 2px $gray-light;
-  min-width: 33vw; // Keeps inputs and text areas the same size
+  width: 35vw; // Keeps inputs and text areas the same size
   max-width: 100%;
+  @include media-breakpoint-down(lg) {
+    width: 100%;
+  }
   &:focus {
     outline: none;
     border-color: $purple;
+  }
+}
+
+.webform-submission-form .js-form-type-textarea div {
+  width: 100%;
+}
+
+.webform-submission-form .select-wrapper {
+  width: 35vw;
+  @include media-breakpoint-down(lg) {
+    width: 100%;
   }
 }
 

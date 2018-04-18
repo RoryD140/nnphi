@@ -13,13 +13,13 @@ settings:
   allowed_values:
     -
       value: 1
-      label: 'Fast (< 3 minutes)'
+      label: '< 3 minutes'
     -
       value: 2
-      label: 'Medium (5-10 minutes)'
+      label: '3-5 minutes'
     -
       value: 3
-      label: 'Slow ( > 10 minutes)'
+      label: '> 5 minutes'
   allowed_values_function: ''
 module: options
 locked: false
