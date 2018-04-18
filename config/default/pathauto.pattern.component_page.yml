@@ -7,16 +7,16 @@ dependencies:
 id: component_page
 label: 'Component Page'
 type: 'canonical_entities:node'
-pattern: '[node:menu-link]'
+pattern: '/[node:menu-link:parent:url:path]/[node:title]'
 selection_criteria:
-  ece84569-5a6c-42b8-95ef-d057cf64f9ae:
+  34e42989-e87b-4f43-816d-8054b721cd60:
     id: node_type
     bundles:
       component_page: component_page
     negate: false
     context_mapping:
       node: node
-    uuid: ece84569-5a6c-42b8-95ef-d057cf64f9ae
+    uuid: 34e42989-e87b-4f43-816d-8054b721cd60
 selection_logic: and
 weight: -5
 relationships: {  }

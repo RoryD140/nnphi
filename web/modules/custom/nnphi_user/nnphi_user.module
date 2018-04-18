@@ -286,13 +286,15 @@ function nnphi_user_theme_suggestions_user(array $variables) {
  */
 function nnphi_user_user_format_name_alter(&$name, $account) {
   $user = \Drupal::entityTypeManager()->getStorage('user')->load($account->id());
-  if ($user->get('field_user_username')->isEmpty()) {
+  if ($user && $user->get('field_user_username')->isEmpty()) {
     if (!\Drupal::currentUser()->hasPermission('administer users')) {
       $name = t('PHLN Member');
     }
   }
   else {
-    $name = $user->get('field_user_username')->getString();
+    if ($user) {
+      $name = $user->get('field_user_username')->getString();
+    }
   }
 }
 
