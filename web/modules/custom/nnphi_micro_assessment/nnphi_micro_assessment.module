@@ -56,6 +56,57 @@ function nnphi_micro_assessment_node_view_alter(array &$build, NodeInterface $no
 }
 
 /**
+ * Implements hook_ENTITY_TYPE_delete().
+ */
+function nnphi_micro_assessment_node_delete(NodeInterface $node) {
+  if ($node->getType() !== 'micro_assessment') {
+    return;
+  }
+  try {
+    \Drupal::database()->delete('micro_assessment_response')
+      ->condition('nid', $node->id())
+      ->execute();
+  }
+  catch (\Exception $exception) {
+    \Drupal::logger('nnphi_micro_assessment')->error('Unable to delete micro assessment responses for node @nid',
+      ['@nid' => $node->id()]);
+  }
+}
+
+/**
+ * Implements hook_user_cancel().
+ */
+function nnphi_micro_assessment_user_cancel($edit, $account, $method) {
+  if ($method === 'user_cancel_reassign') {
+    try {
+      \Drupal::database()->update('nnphi_micro_assessment')
+        ->fields(['uid' => 0])
+        ->condition('uid', $account->id())
+        ->execute();
+    }
+    catch (\Exception $exception) {
+      \Drupal::logger('nnphi_micro_assessment')->error('Unable to delete micro assessment responses for user @name',
+        ['@nid' => $account->getAccountName()]);
+    }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete().
+ */
+function nnphi_micro_assessment_user_delete(\Drupal\user\UserInterface $user) {
+  try {
+    \Drupal::database()->delete('micro_assessment_response')
+      ->condition('uid', $user->id())
+      ->execute();
+  }
+  catch (\Exception $exception) {
+    \Drupal::logger('nnphi_micro_assessment')->error('Unable to delete micro assessment responses for user @name',
+      ['@nid' => $user->getAccountName()]);
+  }
+}
+
+/**
  * Implements hook_views_data().
  */
 function nnphi_micro_assessment_views_data() {
