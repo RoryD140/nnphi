@@ -1,0 +1,19 @@
+uuid: 3a9ac134-99df-48de-a946-3ce59e0719b7
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.steps_block
+    - field.storage.block_content.field_steps_block_title
+id: block_content.steps_block.field_steps_block_title
+field_name: field_steps_block_title
+entity_type: block_content
+bundle: steps_block
+label: 'Steps Block Title'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

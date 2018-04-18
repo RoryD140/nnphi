@@ -1,0 +1,33 @@
+uuid: 5ea40683-a594-4bee-82fa-0076f82242ae
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.steps_block
+    - field.field.block_content.steps_block.field_steps
+    - field.field.block_content.steps_block.field_steps_block_title
+  module:
+    - entity_reference_revisions
+id: block_content.steps_block.default
+targetEntityType: block_content
+bundle: steps_block
+mode: default
+content:
+  field_steps:
+    type: entity_reference_revisions_entity_view
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_steps_block_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

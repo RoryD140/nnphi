@@ -32,6 +32,10 @@ function nnphi_general_block_content_view(array &$build, BlockContentInterface $
     }
   }
 
+  if($block->bundle() === 'steps_block') {
+    $build['#attributes']['class'][] = 'steps-block';
+  }
+
 
   if($block->bundle() === 'search_training') {
     $build['#attached']['library'][] = 'nnphi_general/arrow';
