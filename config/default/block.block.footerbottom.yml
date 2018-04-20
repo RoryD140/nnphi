@@ -1,0 +1,24 @@
+uuid: 363f176f-aaef-434e-98a7-a941d98c1911
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer-bottom
+  module:
+    - system
+  theme:
+    - nnphi
+id: footerbottom
+theme: nnphi
+region: footer_bottom
+weight: 0
+provider: null
+plugin: 'system_menu_block:footer-bottom'
+settings:
+  id: 'system_menu_block:footer-bottom'
+  label: 'Footer Bottom'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+visibility: {  }
