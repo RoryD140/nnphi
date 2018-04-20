@@ -27,13 +27,14 @@
 #}
 
 {# The spaceless option and filter gets rid of spaces so that the URL actually works. #}
-<section{{ attributes.addClass('search-training-block') }} style="background-image: url('{% spaceless %}{{-content.field_search_training_bg-}}{% endspaceless %}');">
+<div{{ attributes.addClass('search-training-block') }}>
   <div class="search-training-block-interior">
     <div class="search-training-block-content">
       {% if content.field_search_training_title|render %}
         <h1>{{ content.field_search_training_title }}</h1>
       {% endif %}
       {{ content.search_form }}
+      <a href="{{ path('nnphi_training.instant_search') }}" class="browse-training-link">{{ 'Browse All Trainings'|t }}</a>
 
       {% if content.body|render %}
         <div class="search-training-block-text">
@@ -48,12 +49,12 @@
       {% endif %}
 
       <div class="down-arrow-scroll">
-        {% include base_path ~ directory ~ '/svg/arrow-circle-down.svg' %}
+        {% include base_path ~ directory ~ '/svg/arrow-down.svg' %}
       </div>
 
       </div>
   </div>
-</section>
+</div>
 
 {#Need to render content so that libraries are attached#}
 {{ content|without('field_search_training_link', 'body', 'search_form', 'field_search_training_title', 'field_search_training_bg') }}

@@ -52,11 +52,10 @@
       {% include (base_path ~ directory ~ '/templates/components/logo.html.twig') %}
       {% include (base_path ~ directory ~ '/templates/components/nav-close.html.twig')
         with {
-         'id': 'js-menu-btn'
-        }
-      %}
+        'id': 'js-menu-btn'
+      } %}
 
-    {{ page.header }}
+      {{ page.header }}
     </div>
     {{ page.main_nav }}
   </header>
@@ -104,20 +103,33 @@
           {{ page.footer_left }}
         </div>
         <div class="footer-mid-left">
-         {{ page.footer_mid_left }}
+          {{ page.footer_mid_left }}
         </div>
         <div class="footer-mid-right">
-         {{ page.footer_mid_right }}
+          {{ page.footer_mid_right }}
         </div>
         <div class="footer-right">
           {{ page.footer_right }}
           <h2>{{ 'Supported By'|t }}</h2>
           <a href="https://nnphi.org/">
-            <img src="{{ base_path ~ directory ~ '/images/phln-logo.png' }}" alt="{{ 'Public Health Learning Network Logo'|t }}" />
+            <img src="{{ base_path ~ directory ~ '/images/phln-logo.png' }}"
+                 alt="{{ 'Public Health Learning Network Logo'|t }}"/>
           </a>
         </div>
       </div>
     </div>
   </footer>
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="footer-bottom-left">
+          <div>{{ 'Copyright' }} {{ "now"|date('Y') }} {{ ' National Network of Public Health Institutes. All Rights Reserved.'|t }}</div>
+        </div>
+        <div class="footer-bottom-right">
+          {{ page.footer_bottom }}
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>{# /.layout-container #}

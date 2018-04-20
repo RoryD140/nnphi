@@ -25,7 +25,7 @@ class SearchHeader extends FormBase {
 
     $form['keys'] = [
       '#type' => 'textfield',
-      '#placeholder' => $this->t('Search for trainings'),
+      '#placeholder' => $this->t('Search'),
       '#title' => $this->t('Search for trainings'),
       '#title_display' => 'invisible',
       '#attributes' => [

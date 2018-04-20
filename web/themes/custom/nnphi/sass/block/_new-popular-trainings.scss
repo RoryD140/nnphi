@@ -1,13 +1,12 @@
 .new-popular-block {
-  background: linear-gradient($blue, $purple);
   padding-top: $padding-lg;
   padding-bottom: $padding-lg;
 }
 
 .new-popular-block h3 {
-  color: #fff;
   font-weight: 200;
   text-transform: uppercase;
+  color: $purple;
 }
 
 .new-popular-block-interior {
@@ -25,4 +24,21 @@
       padding-bottom: 0;
     }
   }
+}
+
+.new-popular-block .training-node-mini {
+  border: solid 3px $blue;
+}
+
+.new-popular-block .training-node-mini h5 a {
+  color: $blue;
+}
+
+.new-popular-block .search-training-block-link {
+  margin-top: $padding-md;
+}
+
+.new-popular-block .down-arrow-scroll polyline,
+.link-block .down-arrow-scroll polyline {
+  stroke: $purple;
 }

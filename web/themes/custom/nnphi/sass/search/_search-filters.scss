@@ -42,6 +42,8 @@
   font-weight: $font-weight-light;
   line-height: 1.4;
   margin-bottom: 10px;
+  position: relative; // For label and checkbox
+  padding-left: 20px; // Leave space for checkbox
   &:hover {
     cursor: pointer;
   }
@@ -57,11 +59,20 @@
   vertical-align: text-bottom;
   // Doing this instead of padding/margin so that it never wraps to its own line
   position: relative;
-  //left: 5px;
-  input[type='checkbox'] {
-    position: absolute; // ensure that the actual checkbox (not the styled one) doesn't affect layout
-  }
 }
+
+.training-filters label span.custom-checkbox {
+  position: absolute;
+  left: 0;
+  top: -10px;
+  display: inline-block;
+}
+
+.ais-refinement-list--count {
+  top: -3px; // Align these with top of filter label
+  left: 2px;
+}
+
 
 .training-filters .ais-star-rating--link:hover {
   text-decoration: none;
