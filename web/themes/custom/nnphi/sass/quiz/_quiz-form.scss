@@ -1,31 +1,86 @@
 .block-random-quiz {
-  max-width: 50vw;
-  padding-top: $padding-lg;
-  padding-bottom: $padding-lg;
+  background: linear-gradient(45deg, $blue, $purple);
+  padding-top: $padding-md;
+  padding-bottom: $padding-md;
+  text-align: center;
+  width: 100vw;
+  z-index: 99;
+  position: fixed;
+  bottom: 0;
+  transform: translateY(100%);
+  transition: transform .3s ease-in-out;
+}
+
+.block-random-quiz.active {
+  transform: translateY(0);
+}
+
+.block-random-quiz h2 {
+  color: #fff;
 }
 
 .field-ma-question {
   @extend .large-text;
+  color: #fff;
 }
 
 .result-message {
   @extend .large-text;
   font-size: $font-size-md;
+  color: #fff;
+}
+
+.js-webform-radios {
+  display: flex;
+  justify-content: center;
 }
 
 .micro-assessment-form .form-item-choice {
   margin-bottom: $padding-sm;
   display: flex;
   align-items: center;
+  padding-right: $padding-sm;
+  &:last-child {
+    padding-right: 0;
+  }
   .custom-radio {
     margin: 0 $padding-sm 0 0;
   }
   label {
     margin: 0;
+    color: #fff;
   }
 }
 
 .micro-assessment-form .form-submit {
   @extend .btn;
-  @extend .btn-primary;
+  @extend .btn-secondary;
+  color: $purple;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.micro-assessment-close-btn {
+  font: 0/0 a;
+  position: absolute;
+  top: 0;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  &:after,
+  &:before {
+    content: '';
+    background: #fff;
+    width: 2px;
+    height: 30px;
+    position: absolute;
+  }
+  &:after {
+    transform: rotateZ(45deg);
+  }
+  &:before {
+    transform: rotateZ(-45deg);
+  }
 }

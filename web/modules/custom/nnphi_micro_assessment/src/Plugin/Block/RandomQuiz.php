@@ -45,7 +45,7 @@ class RandomQuiz extends BlockBase implements ContainerFactoryPluginInterface {
     $build['#attached']['library'][] = 'nnphi_micro_assessment/random_quiz';
     $build['markup'] = [
       '#type' => 'inline_template',
-      '#template' => "<div id='$id' class='quiz-wrapper random-quiz'></div>",
+      '#template' => "<div id='$id' class='quiz-wrapper random-quiz'><span class='micro-assessment-close-btn'></span></div>",
     ];
     return $build;
   }
