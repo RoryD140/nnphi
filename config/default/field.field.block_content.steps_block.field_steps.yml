@@ -1,0 +1,33 @@
+uuid: e5dfe00c-5b09-4e4f-812e-7dc0215cc533
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.steps_block
+    - field.storage.block_content.field_steps
+    - paragraphs.paragraphs_type.step_link
+  module:
+    - entity_reference_revisions
+id: block_content.steps_block.field_steps
+field_name: field_steps
+entity_type: block_content
+bundle: steps_block
+label: Steps
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      step_link: step_link
+    target_bundles_drag_drop:
+      step_link:
+        enabled: true
+        weight: 3
+      instructor:
+        weight: 4
+        enabled: false
+field_type: entity_reference_revisions

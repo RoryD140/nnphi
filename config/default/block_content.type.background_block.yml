@@ -1,0 +1,8 @@
+uuid: f203ba46-e01f-4eb2-9694-024f5691592b
+langcode: en
+status: true
+dependencies: {  }
+id: background_block
+label: 'Background Block'
+revision: 0
+description: 'Title, subtitle, and optional icons and button'

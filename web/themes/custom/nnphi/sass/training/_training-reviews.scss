@@ -1,0 +1,9 @@
+.training-reviews {
+  @extend .container;
+}
+
+.training-reviews .form-actions input {
+  @extend .btn;
+  @extend .btn-primary;
+  margin-top: $padding-md;
+}

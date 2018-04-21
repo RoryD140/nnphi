@@ -1,0 +1,7 @@
+uuid: 67f9106b-4089-49b5-9095-624ce86584ca
+langcode: en
+status: true
+dependencies: {  }
+id: icon_and_text
+label: 'Icon and Text'
+behavior_plugins: {  }

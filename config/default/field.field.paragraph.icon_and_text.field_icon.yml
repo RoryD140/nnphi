@@ -1,17 +1,17 @@
-uuid: f8c01322-459c-4250-b372-d90b1ab9a9a0
+uuid: 40697e64-1f8f-4e90-ac05-25e3eef7d153
 langcode: en
 status: true
 dependencies:
   config:
-    - block_content.type.search_training
-    - field.storage.block_content.field_search_training_bg
+    - field.storage.paragraph.field_icon
+    - paragraphs.paragraphs_type.icon_and_text
   module:
     - image
-id: block_content.search_training.field_search_training_bg
-field_name: field_search_training_bg
-entity_type: block_content
-bundle: search_training
-label: 'Search Training BG'
+id: paragraph.icon_and_text.field_icon
+field_name: field_icon
+entity_type: paragraph
+bundle: icon_and_text
+label: Icon
 description: ''
 required: false
 translatable: false
@@ -19,12 +19,12 @@ default_value: {  }
 default_value_callback: ''
 settings:
   file_directory: '[date:custom:Y]-[date:custom:m]'
-  file_extensions: 'png jpg jpeg'
+  file_extensions: 'png gif jpg jpeg'
   max_filesize: ''
   max_resolution: ''
   min_resolution: ''
-  alt_field: false
-  alt_field_required: false
+  alt_field: true
+  alt_field_required: true
   title_field: false
   title_field_required: false
   default_image:

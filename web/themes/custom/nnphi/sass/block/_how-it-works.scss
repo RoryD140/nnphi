@@ -1,0 +1,119 @@
+.steps-block {
+  @include media-breakpoint-up(lg) {
+    position: relative;
+    // Stripes
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      background: #fff;
+      width: 5px;
+    }
+    &:before {
+      left: 25%;
+    }
+    &:after {
+      right: 25%;
+    }
+  }
+}
+
+// Reused in background block
+h2.field-steps-block-title {
+  @extend .all-caps-text;
+  width: 100vw;
+  padding: $padding-md;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 0;
+}
+
+.steps-block h2.field-steps-block-title {
+  background-color: #A9D2E7;
+}
+
+.field-steps .field-value {
+  width: 100vw;
+  padding-top: $padding-md;
+  padding-bottom: $padding-md;
+  &:first-child {
+    background: #7FBCDA;
+    .paragraph--type--step-link {
+      &:before {
+        content: '1';
+      }
+    }
+  }
+  &:nth-child(2) {
+    background: #54A5CE;
+    .paragraph--type--step-link {
+      &:before {
+        content: '2';
+      }
+    }
+  }
+  &:nth-child(3) {
+    background: #298FC2;
+    .paragraph--type--step-link {
+      &:before {
+        content: '3';
+      }
+    }
+  }
+}
+
+.paragraph--type--step-link {
+  @extend .col-md-6;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding-right: $padding-md;
+  padding-left: $padding-md;
+  align-items: center;
+  color: #fff;
+  p:last-of-type {
+    margin-bottom: 0; // keeps paragraphs center aligned
+  }
+  @include media-breakpoint-down(sm) {
+    flex-direction: column;
+    align-items: center;
+  }
+  &:before {
+    font-size: $font-size-md;
+    border: solid 2px #fff;
+    border-radius: 100vw;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+}
+
+.field-step-link-text {
+  flex: 1 1 auto;
+  @include media-breakpoint-up(md) {
+    padding-left: $padding-md;
+  }
+}
+
+
+.field-step-link {
+  flex: 0 1 20%;
+  text-align: center;
+}
+
+.field-step-link a {
+  @extend .btn;
+  @extend .btn-sm;
+  @extend .btn-outline-primary;
+  border-color: #fff;
+  color: #fff;
+  &:hover {
+    background: transparent;
+    text-decoration: none;
+  }
+}

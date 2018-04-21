@@ -1,14 +1,14 @@
-uuid: f892f216-ad38-4940-b592-35cf743aaa29
+uuid: 167d22fd-e795-4a68-b6f2-430400c15e70
 langcode: en
 status: true
 dependencies:
   module:
-    - block_content
     - file
     - image
-id: block_content.field_search_training_bg
-field_name: field_search_training_bg
-entity_type: block_content
+    - paragraphs
+id: paragraph.field_icon
+field_name: field_icon
+entity_type: paragraph
 type: image
 settings:
   uri_scheme: public

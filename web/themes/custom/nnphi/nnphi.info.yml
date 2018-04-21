@@ -13,6 +13,7 @@ regions:
   footer_mid_left: Footer Mid Left
   footer_mid_right: Footer Mid Right
   footer_right: Footer Right
+  footer_bottom: Footer Bottom
 
 libraries:
   - nnphi/base
