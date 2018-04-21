@@ -1,0 +1,7 @@
+{# Mimics the flag--bookmark template without requiring an actual flag element #}
+<div class="flag flag-bookmark action-flag">
+  <a href="{{ url }}">
+    {{ source(directory ~ '/svg/bookmark.svg') }}
+    <span class="bookmark-text">{{ text }}</span>
+  </a>
+</div>

@@ -266,11 +266,9 @@ function nnphi_training_node_view_alter(array &$build, NodeInterface $node, Enti
 
     if ($display->getComponent('flag_bookmark') && \Drupal::currentUser()->isAnonymous()) {
       $build['flag_bookmark'] = [
-        '#type' => 'link',
-        '#prefix' => '<div class="flag flag-bookmark">',
-        '#suffix' => '</div>',
-        '#url' => Url::fromRoute('user.register', [], ['query' => ['bookmark' => $node->id()]]),
-        '#title' => t('Add Bookmark'),
+        '#theme' => 'anonymous_flag',
+        '#url' => Url::fromRoute('user.register', [], ['query' => ['bookmark' => $node->id()]])->toString(),
+        '#text' => t('Add Bookmark'),
       ];
     }
 }
@@ -556,7 +554,13 @@ function nnphi_training_theme($existing, $type, $theme, $path)
             'variables' => ['url' => Url::fromRoute('nnphi_training.instant_search')->toString()],
             'template' => 'autocomplete-footer',
         ],
-
+        'anonymous_flag' => [
+            'variables' => [
+                'url' => '',
+                'text' => '',
+            ],
+          'template' => 'anonymous-flag',
+        ],
         'training_subtitle' => [
             'variables' => [
                 'text' => '',
