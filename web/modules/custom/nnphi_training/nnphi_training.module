@@ -256,13 +256,22 @@ function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayIn
  */
 function nnphi_training_node_view_alter(array &$build, NodeInterface $node, EntityViewDisplayInterface $display)
 {
-    if (!$display->getComponent('field_training_reviews')) {
-        return;
-    }
-    // Swap the comment lazy builder with a custom one so we can limit
-    // users from entering more than 1 review.
-    if (!empty($build['field_training_reviews'][0]['comment_form']['#lazy_builder'][0])) {
+    if ($display->getComponent('field_training_reviews')) {
+      // Swap the comment lazy builder with a custom one so we can limit
+      // users from entering more than 1 review.
+      if (!empty($build['field_training_reviews'][0]['comment_form']['#lazy_builder'][0])) {
         $build['field_training_reviews'][0]['comment_form']['#lazy_builder'][0] = 'nnphi_training.reviews.lazy_builders:renderForm';
+      }
+    }
+
+    if ($display->getComponent('flag_bookmark') && \Drupal::currentUser()->isAnonymous()) {
+      $build['flag_bookmark'] = [
+        '#type' => 'link',
+        '#prefix' => '<div class="flag flag-bookmark">',
+        '#suffix' => '</div>',
+        '#url' => Url::fromRoute('user.register', [], ['query' => ['bookmark' => $node->id()]]),
+        '#title' => t('Add Bookmark'),
+      ];
     }
 }
 
