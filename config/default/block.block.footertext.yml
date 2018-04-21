@@ -1,9 +1,9 @@
-uuid: 3d7be2ba-be61-4933-b801-012cdcd95a68
+uuid: 51c79352-8102-4073-adec-7d1f6990a475
 langcode: en
 status: true
 dependencies:
   content:
-    - 'block_content:basic:513b07f8-520f-41b3-b2b1-c9a574f0bfa6'
+    - 'block_content:basic:0372a223-80f1-41ff-b77d-1e6968774e8e'
   module:
     - block_content
   theme:
@@ -13,9 +13,9 @@ theme: nnphi
 region: footer_left
 weight: -8
 provider: null
-plugin: 'block_content:513b07f8-520f-41b3-b2b1-c9a574f0bfa6'
+plugin: 'block_content:0372a223-80f1-41ff-b77d-1e6968774e8e'
 settings:
-  id: 'block_content:513b07f8-520f-41b3-b2b1-c9a574f0bfa6'
+  id: 'block_content:0372a223-80f1-41ff-b77d-1e6968774e8e'
   label: 'Footer Text'
   provider: block_content
   label_display: '0'

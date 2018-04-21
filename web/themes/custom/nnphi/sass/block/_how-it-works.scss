@@ -90,6 +90,7 @@ h2.field-steps-block-title {
     align-items: center;
     justify-content: center;
     color: #fff;
+    flex: 0 0 3rem;
   }
 }
 
@@ -97,6 +98,7 @@ h2.field-steps-block-title {
   flex: 1 1 auto;
   @include media-breakpoint-up(md) {
     padding-left: $padding-md;
+    padding-right: $padding-md;
   }
 }
 
