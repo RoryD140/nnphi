@@ -1,0 +1,25 @@
+uuid: 3d7be2ba-be61-4933-b801-012cdcd95a68
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:513b07f8-520f-41b3-b2b1-c9a574f0bfa6'
+  module:
+    - block_content
+  theme:
+    - nnphi
+id: footertext
+theme: nnphi
+region: footer_left
+weight: -8
+provider: null
+plugin: 'block_content:513b07f8-520f-41b3-b2b1-c9a574f0bfa6'
+settings:
+  id: 'block_content:513b07f8-520f-41b3-b2b1-c9a574f0bfa6'
+  label: 'Footer Text'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

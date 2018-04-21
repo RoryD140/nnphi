@@ -1,9 +1,7 @@
 .search-training-block {
   padding-top: $padding-lg;
   padding-bottom: $padding-lg - (2*$padding-md); // Accounts for down arrow button
-  // Background added inline in twig template from image field
-  background-size: cover;
-  background-repeat: no-repeat;
+  background: linear-gradient(45deg, $blue, $purple);
 }
 
 .search-training-block-interior {
@@ -61,4 +59,11 @@
     width: 35px;
     height: 35px;
   }
+}
+
+.browse-training-link {
+  display: block;
+  text-align: center;
+  color: white;
+  text-decoration: underline;
 }

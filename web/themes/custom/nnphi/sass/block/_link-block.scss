@@ -2,25 +2,18 @@
   @extend .container;
   padding-top: $padding-lg;
   padding-bottom: $padding-lg;
+
 }
 
 .link-block-interior {
-  @extend .row;
+  display: flex;
+  flex-direction: column;
+  @extend .col-md-6;
+  @extend .offset-md-3;
 }
 
-.link-block-left {
-  @extend .col-md-7;
-  @include media-breakpoint-up(md) {
-    align-items: center;
-    display: flex;
-    justify-content: flex-end;
-  }
-}
-
-.link-block-right {
-  @extend .offset-md-1;
-  @extend .col-md-4;
-  display: flex; // Aligns the interior div to the left
+.link-block .body {
+  text-align: center;
 }
 
 .link-block-right-interior {

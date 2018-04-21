@@ -1,0 +1,29 @@
+uuid: 76fc13cf-be4f-41f9-a54b-bc113a6ef262
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_step_link_text
+    - paragraphs.paragraphs_type.step_link
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    full_html: full_html
+    basic_html: '0'
+    restricted_html: '0'
+    review: '0'
+    plain_text: '0'
+id: paragraph.step_link.field_step_link_text
+field_name: field_step_link_text
+entity_type: paragraph
+bundle: step_link
+label: 'Step Link Text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

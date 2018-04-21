@@ -83,3 +83,13 @@
   text-transform: uppercase;
   color: $green;
 }
+
+.large-text-blue {
+  @extend .large-text-bold;
+  color: $blue-dark;
+}
+
+.large-text-purple {
+  @extend .large-text-bold;
+  color: $purple;
+}

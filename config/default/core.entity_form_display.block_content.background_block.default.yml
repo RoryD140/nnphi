@@ -1,23 +1,25 @@
-uuid: 96ca4d5e-3acb-427b-89b9-65fb425ef36b
+uuid: 322861e6-1538-4098-b46c-1d5575e1988f
 langcode: en
 status: true
 dependencies:
   config:
-    - block_content.type.search_training
-    - field.field.block_content.search_training.body
-    - field.field.block_content.search_training.field_search_training_link
-    - field.field.block_content.search_training.field_search_training_title
+    - block_content.type.background_block
+    - field.field.block_content.background_block.body
+    - field.field.block_content.background_block.field_background_block_link
+    - field.field.block_content.background_block.field_icons
+    - field.field.block_content.background_block.field_steps_block_title
   module:
     - link
+    - paragraphs
     - text
-id: block_content.search_training.default
+id: block_content.background_block.default
 targetEntityType: block_content
-bundle: search_training
+bundle: background_block
 mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 2
+    weight: 92
     settings:
       rows: 9
       summary_rows: 3
@@ -32,16 +34,28 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_search_training_link:
-    weight: 3
+  field_background_block_link:
+    weight: 95
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
     region: content
-  field_search_training_title:
-    weight: 1
+  field_icons:
+    type: entity_reference_paragraphs
+    weight: 94
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
+  field_steps_block_title:
+    weight: 93
     settings:
       size: 60
       placeholder: ''
@@ -50,7 +64,7 @@ content:
     region: content
   info:
     type: string_textfield
-    weight: 0
+    weight: -5
     region: content
     settings:
       size: 60

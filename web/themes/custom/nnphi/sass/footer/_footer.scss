@@ -5,6 +5,12 @@
   margin-top: $padding-md;
 }
 
+// On homepage only, no border and no top margin, since it abutts a colored section
+.path-frontpage .site-footer {
+  margin-top: 0;
+  border-top: none;
+}
+
 .site-footer-container {
   @extend .container;
 }
@@ -36,5 +42,40 @@
   font-size: $font-size-18;
   @include media-breakpoint-down(md) {
     margin-top: $padding-md; // Gives padding between footer sections
+  }
+}
+
+.footer-bottom {
+  background: $purple;
+  color: #fff;
+  padding-top: $padding-sm;
+  padding-bottom: $padding-sm;
+  font-size: $font-size-sm;
+}
+
+.footer-bottom-left {
+  @extend .col-md-7;
+}
+
+.footer-bottom-right {
+  @extend .col-md-5;
+}
+
+.footer-bottom-right ul {
+  @extend .list-unstyled;
+  @extend .list-inline;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 0;
+  li {
+    padding-right: 35px;
+    &:last-child {
+      padding-right: 0;
+    }
+    a {
+      color: #fff;
+      text-transform: uppercase;
+    }
   }
 }

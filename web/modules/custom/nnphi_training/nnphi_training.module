@@ -343,6 +343,7 @@ function nnphi_training_form_comment_training_review_form_alter(&$form, \Drupal\
     $form['subject']['widget'][0]['value']['#title'] = t('Review title');
     $form['field_training_review_comment']['#after_build'][] = 'nnphi_training_review_comment_after_build';
     $form['#prefix'] = '<a id="comment-form"></a>';
+    unset($form['actions']['preview']); // Remove preview button
     // Reversing order of rating radio buttons to support 5-star theming.
     $vote_types = nnphi_training_review_rating_fields();
     foreach ($vote_types as $vote_type => $vote_field) {
