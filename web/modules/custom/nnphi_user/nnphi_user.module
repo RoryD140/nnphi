@@ -159,11 +159,14 @@ function nnphi_user_form_user_form_alter(&$form, FormStateInterface $form_state,
       ],
       '#prefix' => '<div id="button-divider"></div>',
     ];
+
+    // Override default submit text
+    $form['actions']['submit']['#value'] = t('Save Changes');
   }
   else {
-    $destination = \Drupal::destination()->getAsArray();
+    $query = \Drupal::request()->query;
     $t_args = [
-      '@login' => Url::fromRoute('user.login', [], ['query' => $destination])->toString(),
+      '@login' => Url::fromRoute('user.login', [], ['query' => $query->all()])->toString(),
       '@reset' => Url::fromRoute('user.pass')->toString(),
     ];
     $form['header'] = [
@@ -201,9 +204,6 @@ function nnphi_user_form_user_form_alter(&$form, FormStateInterface $form_state,
     ];
 
     $form['#cache']['contexts'][] = 'url.query_args';
-
-    // Override default submit text
-    $form['actions']['submit']['#value'] = t('Save Changes');
   }
 }
 
@@ -267,7 +267,9 @@ function nnphi_user_form_user_login_form_alter(&$form, FormStateInterface $form_
  */
 function _nnphi_user_user_login_form_submit($form, FormStateInterface $form_state) {
   // Set redirect to front page
-  $form_state->setRedirect('<front>');
+  if (!$form_state->get('custom_redirect')) {
+    $form_state->setRedirect('<front>');
+  }
   drupal_set_message(t('Log in successful.'), 'status');
 }
 

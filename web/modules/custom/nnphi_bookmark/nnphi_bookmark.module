@@ -3,6 +3,7 @@
 use Drupal\user\UserInterface;
 use Drupal\flag\FlaggingInterface;
 use Drupal\nnphi_bookmark\BookmarkFolderService;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_entity_extra_field_info().
@@ -113,4 +114,67 @@ function nnphi_bookmark_theme($existing, $type, $theme, $path) {
       'variables' => ['bookmarks' => '', 'folders' => ''],
     ],
   ];
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function nnphi_bookmark_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id !== 'user_register_form' && $form_id !== 'user_login_form') {
+    return;
+  }
+  $bookmark = \Drupal::request()->get('bookmark');
+  if (!$bookmark || !is_numeric($bookmark)) {
+    return;
+  }
+  $form['bookmark'] = [
+    '#type' => 'value',
+    '#value' => $bookmark,
+  ];
+  if ($form_id === 'user_login_form') {
+    $form['#submit'][] = 'nnphi_bookmark_user_form_submit';
+  }
+  else {
+    $form['actions']['submit']['#submit'][] = 'nnphi_bookmark_user_form_submit';
+  }
+}
+
+/**
+ * Login/register form submit callback.
+ */
+function nnphi_bookmark_user_form_submit(&$form, FormStateInterface $form_state) {
+  try {
+    // If a valid node was passed in the URL, bookmark it for the user
+    // and redirect them back to the node.
+    $account = \Drupal::currentUser();
+    $node = \Drupal::entityTypeManager()
+      ->getStorage('node')
+      ->load($form_state->getValue('bookmark'));
+    if (!$node) {
+      $form_state->set('custom_redirect', TRUE);
+      $form_state->setRedirectUrl($node->toUrl());
+      return TRUE;
+    }
+    /** @var \Drupal\flag\FlagServiceInterface $flagger */
+    $flagger = \Drupal::service('flag');
+    $flag = $flagger->getFlagById('bookmark');
+    $bundles = $flag->getBundles();
+    if (!empty($bundles) && !in_array($node->bundle(), $bundles)) {
+      return TRUE;
+    }
+    // Check if the node is already flagged.
+    if ($flag->isFlagged($node, $account)) {
+      $form_state->set('custom_redirect', TRUE);
+      $form_state->setRedirectUrl($node->toUrl());
+      return TRUE;
+    }
+    $flagger->flag($flag, $node, $account);
+    $form_state->set('custom_redirect', TRUE);
+    $form_state->setRedirectUrl($node->toUrl());
+  }
+  catch (\Exception $exception) {
+    watchdog_exception('nnphi_bookmark', $exception);
+    \Drupal::logger('nnphi_bookmark')->error('Unable to set bookmark @bid for user @uid: %err',
+      ['@bid' => $form_state->getValue('bookmark'), '@uid' => $account->id(), '%err' => $exception->getMessage()]);
+  }
 }
