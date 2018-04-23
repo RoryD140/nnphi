@@ -27,6 +27,10 @@
   @extend .col-md-2;
 }
 
+.footer-right img {
+  margin-bottom: $padding-sm;
+}
+
 .site-footer ul {
   @extend .list-unstyled;
   margin: 0;
