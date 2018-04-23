@@ -7,6 +7,7 @@ use Drupal\node\NodeInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Cache\CacheableRedirectResponse;
 use Drupal\Core\Url;
+use Drupal\panels\Plugin\DisplayVariant\PanelsDisplayVariant;
 
 /**
  * Implements hook_entity_extra_field_info().
@@ -225,4 +226,29 @@ function nnphi_micro_assessment_views_data() {
   ];
 
   return $data;
+}
+
+/**
+ * Implements hook_panels_ipe_blocks_alter().
+ */
+function nnphi_micro_assessment_panels_ipe_blocks_alter(array &$blocks, PanelsDisplayVariant $panels_display) {
+  // Only allow one quiz per panels display.
+  $quiz_allowed = TRUE;
+  $regions = $panels_display->getRegionAssignments();
+  foreach ($regions as $region) {
+    foreach ($region as $block_id => $block_definition) {
+      if ($block_definition->getPluginId() === 'random_quiz') {
+        $quiz_allowed = FALSE;
+        break 2;
+      }
+    }
+  }
+  if (!$quiz_allowed) {
+    foreach ($blocks as $delta => $block) {
+      if ($block['plugin_id'] === 'random_quiz') {
+        unset($blocks[$delta]);
+        break;
+      }
+    }
+  }
 }
