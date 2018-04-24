@@ -2,7 +2,7 @@ uuid: 70e16dcf-9a59-4ee3-8cf4-798542093faa
 langcode: en
 status: true
 dependencies: {  }
-name: Categories
+name: 'Topic Areas'
 vid: categories
 description: ''
 hierarchy: 0
