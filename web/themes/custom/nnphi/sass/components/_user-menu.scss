@@ -27,6 +27,11 @@ nav[id^=block-useraccountmenu] ul {
     a.register-link {
       // Will need to be abstracted if used elsewhere
       @include button-variant(#000, transparent, #000);
+      @include hover {
+        color: #fff;
+        background-color: #000;
+        border-color: #000;
+      }
     }
   }
 }

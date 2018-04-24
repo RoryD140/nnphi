@@ -23,10 +23,10 @@
 // Reused in background block
 h2.field-steps-block-title {
   @extend .all-caps-text;
+  color: #fff;
   width: 100vw;
   padding: $padding-md;
   text-align: center;
-  color: #fff;
   margin-bottom: 0;
 }
 
@@ -115,7 +115,9 @@ h2.field-steps-block-title {
   border-color: #fff;
   color: #fff;
   &:hover {
-    background: transparent;
+    background: #fff;
+    border-color: #fff;
+    color: $blue-dark;
     text-decoration: none;
   }
 }

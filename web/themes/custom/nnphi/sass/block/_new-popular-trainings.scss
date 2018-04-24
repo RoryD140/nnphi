@@ -28,6 +28,8 @@
 
 .new-popular-block .training-node-mini {
   border: solid 3px $blue;
+  border-radius: $border-radius-lg;
+  box-shadow: $green-dark 4px 4px 0;
 }
 
 .new-popular-block .training-node-mini h5 a {

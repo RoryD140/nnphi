@@ -66,4 +66,8 @@
   text-align: center;
   color: white;
   text-decoration: underline;
+  margin-top: $padding-sm;
+  &:hover {
+    color: darken(white, 10%);
+  }
 }
