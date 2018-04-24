@@ -92,8 +92,26 @@
               limit: 3,
               showMore: true,
               templates: {
-                header: Drupal.t('CEUS'),
+                header: Drupal.t('CE Credit'),
                 item: refinementCheckbox
+              }
+            })
+          );
+        }
+        catch (err) {}
+
+        try {
+          search.addWidget(
+            instantsearch.widgets.numericRefinementList({
+              container: '#length',
+              attributeName: 'length',
+              options: [
+                {end: 1, name: Drupal.t('<1 hour')},
+                {end: 2, name: Drupal.t('<2 hours')},
+                {start: 2, name: Drupal.t('+2 hours')}
+              ],
+              templates: {
+                header: Drupal.t('Length')
               }
             })
           );
@@ -109,7 +127,7 @@
               limit: 3,
               showMore: true,
               templates: {
-                header: Drupal.t('Course Types'),
+                header: Drupal.t('Format'),
                 item: refinementCheckbox
               }
             })
@@ -126,7 +144,7 @@
               limit: 3,
               showMore: true,
               templates: {
-                header: Drupal.t('Topic Areas'),
+                header: Drupal.t('Current Topic Areas'),
                 item: refinementCheckbox
               }
             })
@@ -143,40 +161,7 @@
               limit: 3,
               showMore: true,
               templates: {
-                header: Drupal.t('Levels'),
-                item: refinementCheckbox
-              }
-            })
-          );
-        }
-        catch (err) {}
-
-        try {
-          search.addWidget(
-            instantsearch.widgets.refinementList({
-              container: '#locations',
-              attributeName: 'field_training_state',
-              operator: 'or',
-              limit: 3,
-              showMore: true,
-              templates: {
-                header: Drupal.t('Related Location')
-              }
-            })
-          );
-        }
-        catch (err) {}
-
-        try {
-          search.addWidget(
-            instantsearch.widgets.refinementList({
-              container: '#competency',
-              attributeName: 'competencies',
-              operator: 'or',
-              limit: 3,
-              showMore: true,
-              templates: {
-                header: Drupal.t('Competency Terms'),
+                header: Drupal.t('Level'),
                 item: refinementCheckbox
               }
             })
@@ -210,7 +195,7 @@
               limit: 3,
               showMore: true,
               templates: {
-                header: Drupal.t('Specific Job Task Terms'),
+                header: Drupal.t('Job Task Terms'),
                 item: refinementCheckbox
               }
             })
@@ -242,7 +227,7 @@
                 andUp: Drupal.t('& Up')
               },
               templates: {
-                header: Drupal.t('Avg User Rating')
+                header: Drupal.t('Avg User Experience')
               }
             })
           );
