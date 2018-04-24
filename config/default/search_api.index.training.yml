@@ -84,7 +84,7 @@ field_settings:
   length_facet:
     label: Length
     property_path: facet_attribute
-    type: boolean
+    type: decimal
     configuration:
       field: field_training_module_length
       filter_only: 0
@@ -161,6 +161,14 @@ field_settings:
       field: field_training_cost
       filter_only: 0
       searchable: 0
+  topic_areas_attribute:
+    label: 'Topic Areas'
+    property_path: searchable_attribute
+    type: boolean
+    configuration:
+      field: topic_areas
+      ranking: '5'
+      unordered: 0
   title:
     label: Title
     datasource_id: 'entity:node'
@@ -319,7 +327,7 @@ field_settings:
     label: Length
     datasource_id: 'entity:node'
     property_path: field_training_total_time
-    type: string
+    type: decimal
     dependencies:
       config:
         - field.storage.node.field_training_total_time
