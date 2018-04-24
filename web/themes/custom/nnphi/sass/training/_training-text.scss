@@ -54,7 +54,14 @@ section.training-text {
   }
 }
 
-.training-text-overview .flag p {
+
+.training-text-overview .flag .flag-text {
   font-size: $font-size-sm;
   font-style: italic;
+  display: block;
+}
+
+// Only show flag text on full training display mode
+.flag-text {
+  display: none;
 }
