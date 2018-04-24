@@ -28,7 +28,8 @@
         $(window).scroll(function() {
 
           // Conditions
-          var scrollHalf = $(document).scrollTop() >= $(document).height()/2, // ensure we've scrolled halfway
+          // ensure we've scrolled halfof the available scrolling distance
+          var scrollHalf = $(document).scrollTop() >= ($(document).height() - $(window).height())/2,
               noCookie = !$.cookie('hide-quiz'),
               notDisabled = !$(that).hasClass('disabled'); // Ensures that this doesn't keep popping up on same page if cookies are disabled
           console.dir({
