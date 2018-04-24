@@ -10,7 +10,7 @@ id: node.training.field_training_course_type
 field_name: field_training_course_type
 entity_type: node
 bundle: training
-label: 'Training Type'
+label: Format
 description: ''
 required: false
 translatable: false
