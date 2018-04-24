@@ -32,11 +32,6 @@
           var scrollHalf = $(document).scrollTop() >= ($(document).height() - $(window).height())/2,
               noCookie = !$.cookie('hide-quiz'),
               notDisabled = !$(that).hasClass('disabled'); // Ensures that this doesn't keep popping up on same page if cookies are disabled
-          console.dir({
-            'scrollHalf': scrollHalf,
-            'noCookie': noCookie,
-            'notDisabled': notDisabled
-          });
 
           if(scrollHalf && noCookie && notDisabled) {
             slideIn();
