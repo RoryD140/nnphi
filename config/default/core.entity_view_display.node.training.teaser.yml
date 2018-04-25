@@ -19,7 +19,6 @@ dependencies:
     - field.field.node.training.field_training_objectives
     - field.field.node.training.field_training_occupations
     - field.field.node.training.field_training_proficiency
-    - field.field.node.training.field_training_review_content
     - field.field.node.training.field_training_review_overall
     - field.field.node.training.field_training_reviews
     - field.field.node.training.field_training_source
@@ -29,8 +28,15 @@ dependencies:
     - node.type.training
   module:
     - datetime
+    - panelizer
     - text
     - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
 id: node.training.teaser
 targetEntityType: node
 bundle: training

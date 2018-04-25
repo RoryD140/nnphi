@@ -7,7 +7,6 @@ dependencies:
     - core.entity_view_mode.comment.full
     - field.field.comment.training_review.field_training_review_comment
     - field.field.comment.training_review.field_training_review_overall
-    - field.field.comment.training_review.field_training_review_present
   module:
     - nnphi_training
     - text
