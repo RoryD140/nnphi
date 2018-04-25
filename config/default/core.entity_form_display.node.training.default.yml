@@ -20,8 +20,6 @@ dependencies:
     - field.field.node.training.field_training_proficiency
     - field.field.node.training.field_training_review_content
     - field.field.node.training.field_training_review_overall
-    - field.field.node.training.field_training_review_present
-    - field.field.node.training.field_training_review_relevance
     - field.field.node.training.field_training_reviews
     - field.field.node.training.field_training_source
     - field.field.node.training.field_training_state
@@ -251,7 +249,5 @@ content:
 hidden:
   field_training_review_content: true
   field_training_review_overall: true
-  field_training_review_present: true
-  field_training_review_relevance: true
   promote: true
   sticky: true

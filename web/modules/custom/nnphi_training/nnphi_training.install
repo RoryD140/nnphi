@@ -1,0 +1,18 @@
+<?php
+/**
+ * Schema and update hooks for nnphi_training.module
+ */
+
+/**
+ * Delete all existing votes.
+ */
+function nnphi_training_update_8000() {
+  // Delete all existing training reviews.
+  /** @var \Drupal\comment\CommentInterface $comment */
+  $comment_storage = \Drupal::entityTypeManager()->getStorage('comment');
+  $reviews = $comment_storage->loadByProperties(['comment_type' => 'training_review']);
+  $comment_storage->delete($reviews);
+  $vote_storage = \Drupal::entityTypeManager()->getStorage('vote');
+  $votes = $vote_storage->loadMultiple();
+  $vote_storage->delete($votes);
+}

@@ -5,10 +5,8 @@ dependencies:
   config:
     - comment.type.training_review
     - field.field.comment.training_review.field_training_review_comment
-    - field.field.comment.training_review.field_training_review_content
     - field.field.comment.training_review.field_training_review_overall
     - field.field.comment.training_review.field_training_review_present
-    - field.field.comment.training_review.field_training_review_relevance
   module:
     - allowed_formats
     - text
@@ -36,26 +34,8 @@ content:
         hide_guidelines: '1'
     type: text_textarea
     region: content
-  field_training_review_content:
-    weight: 3
-    settings: {  }
-    third_party_settings: {  }
-    type: options_buttons
-    region: content
   field_training_review_overall:
     weight: 2
-    settings: {  }
-    third_party_settings: {  }
-    type: options_buttons
-    region: content
-  field_training_review_present:
-    weight: 5
-    settings: {  }
-    third_party_settings: {  }
-    type: options_buttons
-    region: content
-  field_training_review_relevance:
-    weight: 4
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
@@ -77,4 +57,5 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_training_review_present: true

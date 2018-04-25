@@ -21,8 +21,6 @@ dependencies:
     - field.field.node.training.field_training_proficiency
     - field.field.node.training.field_training_review_content
     - field.field.node.training.field_training_review_overall
-    - field.field.node.training.field_training_review_present
-    - field.field.node.training.field_training_review_relevance
     - field.field.node.training.field_training_reviews
     - field.field.node.training.field_training_source
     - field.field.node.training.field_training_state
@@ -175,20 +173,6 @@ content:
     region: content
   field_training_review_overall:
     weight: 24
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: ratings_field_formatter
-    region: content
-  field_training_review_present:
-    weight: 26
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: ratings_field_formatter
-    region: content
-  field_training_review_relevance:
-    weight: 27
     label: above
     settings: {  }
     third_party_settings: {  }

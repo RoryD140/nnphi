@@ -11,7 +11,7 @@ id: comment.training_review.field_training_review_overall
 field_name: field_training_review_overall
 entity_type: comment
 bundle: training_review
-label: 'Overall Rating'
+label: 'Overall Experience'
 description: ''
 required: true
 translatable: false

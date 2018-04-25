@@ -19,6 +19,7 @@ use Drupal\comment\CommentInterface;
 use Drupal\votingapi\VoteInterface;
 use Drupal\node\NodeInterface;
 use Drupal\Core\Mail\MailFormatHelper;
+use Drupal\smart_trim\Truncate\TruncateHTML;
 
 /**
  * Implements hook_cron().
@@ -90,20 +91,6 @@ function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayIn
             $build['field_training_cost'][0]['#markup'] = t('Free');
         }
     }
-//  TODO: this should be a int field formatter.
-//  // Add classes to create star rating on overall rating field
-//  if( $display->getComponent('field_training_review_overall')) {
-//
-//    // Adds 'star' and (e.g.) 'star-5' classes to field
-//    if(isset($build['field_training_review_overall'][0]['#markup'])) {
-//
-//      // Round rating to whole number
-//      $rating = round($build['field_training_review_overall'][0]['#markup']);
-//
-//      $build['field_training_review_overall']['#attributes']['class'][] = 'training-node-star';
-//      $build['field_training_review_overall']['#attributes']['class'][] = 'star-' . $rating;
-//    }
-//  }
     // @see nnphi_training_entity_extra_field_info().
     if ($display->getComponent('review_login_message')) {
         $destination_url = $node->toUrl('canonical', ['fragment' => 'comment-form']);
@@ -337,18 +324,16 @@ function nnphi_training_entity_extra_field_info()
  */
 function nnphi_training_form_comment_training_review_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
 {
-    // Re-name the "subject" field.
-    $form['subject']['widget'][0]['value']['#title'] = t('Review title');
+    // Hide the "subject" field and default it to the node title.
+    /** @var CommentInterface $comment */
+    $comment = $form_state->getFormObject()->getEntity();
+    $truncate = new TruncateHTML();
+    $subject = $truncate->truncateChars($comment->getCommentedEntity()->label(), 55);
+    $form['subject']['widget'][0]['value']['#default_value'] = $subject;
+    $form['subject']['#access'] = FALSE;
     $form['field_training_review_comment']['#after_build'][] = 'nnphi_training_review_comment_after_build';
     $form['#prefix'] = '<a id="comment-form"></a>';
     unset($form['actions']['preview']); // Remove preview button
-    // Reversing order of rating radio buttons to support 5-star theming.
-    $vote_types = nnphi_training_review_rating_fields();
-    foreach ($vote_types as $vote_type => $vote_field) {
-        $options = $form[$vote_field]['widget']['#options'];
-        $reversed_options = array_reverse($options, TRUE);
-        $form[$vote_field]['widget']['#options'] = $reversed_options;
-    }
 }
 
 /**
@@ -361,21 +346,6 @@ function nnphi_training_review_comment_after_build($element)
     unset($element['widget'][0]['format']['format']['#type']);
     unset($element['widget'][0]['format']['#theme_wrappers']);
     return $element;
-}
-
-/**
- * A list of vote types and the node/comment fields.
- *
- * @return array
- */
-function nnphi_training_review_rating_fields()
-{
-    return [
-        'content_rating' => 'field_training_review_content',
-        'overall_rating' => 'field_training_review_overall',
-        'presentation_rating' => 'field_training_review_present',
-        'relevance_rating' => 'field_training_review_relevance',
-    ];
 }
 
 /**
@@ -400,51 +370,49 @@ function nnphi_training_comment_update(CommentInterface $comment)
     }
 }
 
-function nnphi_training_comment_update_insert(CommentInterface $comment)
-{
-    // Make sure it's a published review.
-    if ($comment->getTypeId() !== 'training_review' || !$comment->isPublished()) {
-        return;
+function nnphi_training_comment_update_insert(CommentInterface $comment) {
+  // Make sure it's a published review.
+  if ($comment->getTypeId() !== 'training_review' || !$comment->isPublished()) {
+    return;
+  }
+  $vote_storage = \Drupal::entityTypeManager()->getStorage('vote');
+  $entity = $comment->getCommentedEntity();
+  $vote_type = 'overall_rating';
+  $vote_field = 'field_training_review_overall';
+  $entity_id = $entity->id();
+  $uid = $comment->getOwnerId();
+  $time = $comment->getCreatedTime();
+  try {
+    /** @var \Drupal\votingapi\VoteInterface $vote */
+    // Update an existing vote if one exists.
+    $existing = $vote_storage->loadByProperties([
+      'entity_type' => 'node',
+      'entity_id' => $entity_id,
+      'user_id' => $uid,
+      'type' => $vote_type,
+    ]);
+    if ($existing) {
+      $vote = end($existing);
+    } else {
+      $vote = $vote_storage->create([
+        'type' => $vote_type,
+        'timestamp' => $time,
+      ]);
     }
-    $vote_storage = \Drupal::entityTypeManager()->getStorage('vote');
-    $entity = $comment->getCommentedEntity();
-    $vote_types = nnphi_training_review_rating_fields();
-    $entity_id = $entity->id();
-    $uid = $comment->getOwnerId();
-    $time = $comment->getCreatedTime();
-    foreach ($vote_types as $vote_type => $vote_field) {
-        try {
-            /** @var \Drupal\votingapi\VoteInterface $vote */
-            // Update an existing vote if one exists.
-            $existing = $vote_storage->loadByProperties([
-                'entity_type' => 'node',
-                'entity_id' => $entity_id,
-                'user_id' => $uid,
-                'type' => $vote_type,
-            ]);
-            if ($existing) {
-                $vote = end($existing);
-            } else {
-                $vote = $vote_storage->create([
-                    'type' => $vote_type,
-                    'timestamp' => $time,
-                ]);
-            }
-            $vote->setOwnerId($uid);
-            $vote->setValue($comment->{$vote_field}->value);
-            $vote->setVotedEntityType('node');
-            $vote->setVotedEntityId($entity_id);
-            $vote->setValueType('percent');
-            $valid = $vote->validate();
-            if ($valid->count() < 1) {
-                $vote->save();
-            }
-        } catch (Exception $exception) {
-            watchdog_exception('nnphi_training', $exception);
-            \Drupal::logger('nnphi_training')->error('Unable to save vote @type for node @id',
-                ['@type' => $vote_type, '@id' => $entity_id]);
-        }
+    $vote->setOwnerId($uid);
+    $vote->setValue($comment->{$vote_field}->value);
+    $vote->setVotedEntityType('node');
+    $vote->setVotedEntityId($entity_id);
+    $vote->setValueType('percent');
+    $valid = $vote->validate();
+    if ($valid->count() < 1) {
+      $vote->save();
     }
+  } catch (Exception $exception) {
+    watchdog_exception('nnphi_training', $exception);
+    \Drupal::logger('nnphi_training')->error('Unable to save vote @type for node @id',
+      ['@type' => $vote_type, '@id' => $entity_id]);
+  }
 }
 
 /**
@@ -495,32 +463,29 @@ function nnphi_training_vote_update(VoteInterface $vote)
  *
  * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
  */
-function nnphi_training_vote_update_insert(VoteInterface $vote)
-{
-    // Update the node with the vote result.
-    $vote_types = nnphi_training_review_rating_fields();
-    $vote_type = $vote->type->target_id;
-    if (!isset($vote_types[$vote_type])) {
-        return;
-    }
-    $value = \Drupal::database()->query("SELECT value FROM {votingapi_result}
+function nnphi_training_vote_update_insert(VoteInterface $vote) {
+  // Update the node with the vote result.
+  $vote_type = $vote->type->target_id;
+  if ($vote_type !== 'overall_rating') {
+    return;
+  }
+  $value = \Drupal::database()->query("SELECT value FROM {votingapi_result}
                                     WHERE entity_type = 'node'
                                     AND entity_id = :entity_id
                                     AND type = :vote_type
                                     AND function = 'vote_average'",
-        [':entity_id' => $vote->getVotedEntityId(), ':vote_type' => $vote_type])->fetchField();
-    $node = \Drupal::entityTypeManager()->getStorage('node')
-        ->load($vote->getVotedEntityId());
-    if ($node) {
-        try {
-            $node->{$vote_types[$vote_type]}->value = $value;
-            $node->save();
-        } catch (Exception $exception) {
-            watchdog_exception('nnphi_training', $exception);
-            \Drupal::logger('nnphi_training')->error('Unable to update training rating field @field',
-                ['@field' => $vote_types[$vote_type]]);
-        }
+    [':entity_id' => $vote->getVotedEntityId(), ':vote_type' => $vote_type])->fetchField();
+  $node = \Drupal::entityTypeManager()->getStorage('node')
+    ->load($vote->getVotedEntityId());
+  if ($node) {
+    try {
+      $node->field_training_review_overall->value = $value;
+      $node->save();
+    } catch (Exception $exception) {
+      watchdog_exception('nnphi_training', $exception);
+      \Drupal::logger('nnphi_training')->error('Unable to update training overall rating.');
     }
+  }
 }
 
 /**

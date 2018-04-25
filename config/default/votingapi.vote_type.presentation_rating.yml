@@ -1,8 +1,0 @@
-uuid: 43aef370-89c0-4bbb-9651-2bdd2939b6a6
-langcode: en
-status: true
-dependencies: {  }
-id: presentation_rating
-label: 'Presentation Rating'
-value_type: percent
-description: ''

@@ -5,10 +5,8 @@ dependencies:
   config:
     - comment.type.training_review
     - field.field.comment.training_review.field_training_review_comment
-    - field.field.comment.training_review.field_training_review_content
     - field.field.comment.training_review.field_training_review_overall
     - field.field.comment.training_review.field_training_review_present
-    - field.field.comment.training_review.field_training_review_relevance
   module:
     - nnphi_training
     - text
@@ -24,29 +22,8 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
-  field_training_review_content:
-    weight: 103
-    label: inline
-    settings: {  }
-    third_party_settings: {  }
-    type: ratings_field_formatter
-    region: content
   field_training_review_overall:
     weight: 102
-    label: inline
-    settings: {  }
-    third_party_settings: {  }
-    type: ratings_field_formatter
-    region: content
-  field_training_review_present:
-    weight: 105
-    label: inline
-    settings: {  }
-    third_party_settings: {  }
-    type: ratings_field_formatter
-    region: content
-  field_training_review_relevance:
-    weight: 104
     label: inline
     settings: {  }
     third_party_settings: {  }
@@ -57,4 +34,5 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_training_review_present: true
