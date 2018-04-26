@@ -6,6 +6,7 @@
 (function ($, Drupal) {
   Drupal.behaviors.slickSlider = {
     attach: function (context, settings) {
+
       $(context).find('.slick-slider').once('slick').slick({
         mobileFirst: true,
         slidesToShow: 1,
@@ -23,6 +24,12 @@
         ]
         }
       );
+
+      $(context).find('.training-vert-slider').once('vertical-slick').slick({
+        slidesToShow: 3,
+        vertical: true,
+        infinite: false
+      });
     }
   };
 })(jQuery, Drupal);

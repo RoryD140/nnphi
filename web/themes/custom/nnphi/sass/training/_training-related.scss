@@ -109,117 +109,114 @@ section.training-related {
 // Slider
 // Will need to abstract if teaser is used elsewhere
 // Lot of this is just pulled from the slick slider library, modified slightly
-.slick-slide.slick-active {
-  background: #fff;
-}
 
-// Replace default arrows with SVG
-.slick-arrow {
-  font: 0/0 a;
-  background: transparent;
-  // dimensions of background arrows
-  width: 42px;
-  height: 30px;
-  background-repeat: no-repeat;
-  border: none;
-  position: absolute;
-  bottom: -70px;
-  left: 50%;
-
-  // Transforms position arrows centered with 125% gap between them
-  &.slick-next {
-    background-image: $right-arrow-bg;
-    transform: translateX(100%);
-  }
-  &.slick-prev {
-    background-image: $left-arrow-bg;
-    transform: translateX(-150%);
-  }
-  &:hover {
-    cursor: pointer;
-  }
-  &:focus {
-    outline: none;
-  }
-}
-
-.slick-slider {
-  position: relative;
-  display: block;
-  box-sizing: border-box;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -ms-touch-action: pan-y;
-  touch-action: pan-y;
-  -webkit-tap-highlight-color: transparent;
-}
-.slick-list {
-  position: relative;
-  overflow: hidden;
-  display: block;
-  margin: 0;
-  padding: 0;
-
-  &:focus {
-    outline: none;
+  .slick-slide.slick-active {
+    background: #fff;
   }
 
-  &.dragging {
-    cursor: pointer;
-    cursor: hand;
-  }
-}
-.slick-slider .slick-track,
-.slick-slider .slick-list {
-  transform: translate3d(0, 0, 0);
-}
+  // Replace default arrows with SVG
+  .slick-arrow {
+    font: 0/0 a;
+    background: transparent;
+    // dimensions of background arrows
+    width: 42px;
+    height: 30px;
+    background-repeat: no-repeat;
+    border: none;
+    position: absolute;
+    bottom: -70px;
+    left: 50%;
 
-.slick-track {
-  position: relative;
-  left: 0;
-  top: 0;
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-
-  &:before,
-  &:after {
-    content: "";
-    display: table;
+    // Transforms position arrows centered with 125% gap between them
+    &.slick-next {
+      background-image: $right-arrow-bg;
+      transform: translateX(100%);
+    }
+    &.slick-prev {
+      background-image: $left-arrow-bg;
+      transform: translateX(-150%);
+    }
+    &:hover {
+      cursor: pointer;
+    }
+    &:focus {
+      outline: none;
+    }
   }
 
-  &:after {
-    clear: both;
-  }
-
-  .slick-loading & {
-    visibility: hidden;
-  }
-}
-.slick-slide {
-  float: left;
-  min-height: 1px;
-  width: 50vw;
-  padding-right: $grid-gutter-width-base;
-  padding-left: $grid-gutter-width-base;
-  display: none;
-  transition: all .3s ease-in-out; // For background transition
-  .slick-initialized & {
+  .slick-slider {
+    position: relative;
     display: block;
+    box-sizing: border-box;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
   }
-  .slick-loading & {
-    visibility: hidden;
-  }
-  .slick-vertical & {
+  .slick-list {
+    position: relative;
+    overflow: hidden;
     display: block;
-    height: auto;
-    border: 1px solid transparent;
+    margin: 0;
+    padding: 0;
+
+    &:focus {
+      outline: none;
+    }
+
+    &.dragging {
+      cursor: pointer;
+      cursor: hand;
+    }
   }
-}
-.slick-arrow.slick-hidden {
-  display: none;
-}
+  .slick-slider .slick-track,
+  .slick-slider .slick-list {
+    transform: translate3d(0, 0, 0);
+  }
+
+  .slick-track {
+    position: relative;
+    left: 0;
+    top: 0;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+
+    &:before,
+    &:after {
+      content: "";
+      display: table;
+    }
+
+    &:after {
+      clear: both;
+    }
+
+    .slick-loading & {
+      visibility: hidden;
+    }
+  }
+  .slick-slide {
+    float: left;
+    min-height: 1px;
+    width: 50vw;
+    padding-right: $grid-gutter-width-base;
+    padding-left: $grid-gutter-width-base;
+    display: none;
+    transition: all .3s ease-in-out; // For background transition
+    .slick-initialized & {
+      display: block;
+    }
+    .slick-loading & {
+      visibility: hidden;
+    }
+  }
+  .slick-arrow.slick-hidden {
+    display: none;
+  }
+

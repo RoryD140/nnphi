@@ -13,13 +13,14 @@
   @extend .container;
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: $padding-lg; // leaves room for scrolling arrows
 }
 
 .new-trainings-wrapper,
 .popular-trainings-wrapper {
   @extend .col-md-6;
   @include media-breakpoint-down(md) {
-    padding-bottom: $padding-md;
+    padding-bottom: $padding-lg;
     &:last-child {
       padding-bottom: 0;
     }
@@ -27,13 +28,40 @@
 }
 
 .new-popular-block .training-node-mini {
-  border: solid 3px $blue;
-  border-radius: $border-radius-lg;
-  box-shadow: $green-dark 4px 4px 0;
+  position: relative;
+  display: flex;
+  // Setting the height is kind of ugly, but slick slider seems to have a lot of trouble naturally calculating element heights
+  // and with two columns of these next to each other it looks nicer to keep everything the same height anyway
+  min-height: 8rem;
+  align-items: center;
+  @include media-breakpoint-down(md) {
+    min-height: 12rem;
+  }
+  // Slick slider uses the width and height to make calculations,
+  // but box shadows aren't included, so a normal box shadow causes rogue borders to show up at the top of the slick-track
+  // creating an inset pseudo element with the border and box shadow prevents this
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    border: solid 3px $blue;
+    border-radius: $border-radius-lg;
+    box-shadow: $green-dark 4px 4px 0;
+  }
+  &:focus {
+    outline: none;
+  }
 }
 
 .new-popular-block .training-node-mini h5 a {
   color: $blue;
+  // Allows links to be clicked even with a slider slide
+  position: relative;
+  z-index: 100;
 }
 
 .new-popular-block .search-training-block-link {
@@ -43,4 +71,29 @@
 .new-popular-block .down-arrow-scroll polyline,
 .link-block .down-arrow-scroll polyline {
   stroke: $purple;
+}
+
+
+// Vertical slider
+.new-popular-block .slick-track {
+  display: flex;
+  flex-direction: column;
+}
+
+.new-popular-block .slick-arrow {
+  background-image: $arrow-down-purple;
+  z-index: 999;
+}
+
+.new-popular-block .slick-arrow.slick-next {
+  bottom: -50px;
+  // These are 42px wide, but need to account for the box shadow to make it actually look centered
+  // (21px (half of this) minus 2px (half of box shadow)
+  transform: translateX(-19px);
+}
+
+.new-popular-block .slick-arrow.slick-prev {
+  // Seems weird to have the up arrow on these
+  // Override javascript
+  display: none !important;
 }
