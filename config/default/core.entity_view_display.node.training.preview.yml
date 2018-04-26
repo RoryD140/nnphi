@@ -19,10 +19,7 @@ dependencies:
     - field.field.node.training.field_training_objectives
     - field.field.node.training.field_training_occupations
     - field.field.node.training.field_training_proficiency
-    - field.field.node.training.field_training_review_content
     - field.field.node.training.field_training_review_overall
-    - field.field.node.training.field_training_review_present
-    - field.field.node.training.field_training_review_relevance
     - field.field.node.training.field_training_reviews
     - field.field.node.training.field_training_source
     - field.field.node.training.field_training_state
@@ -33,9 +30,16 @@ dependencies:
     - datetime
     - nnphi_training
     - options
+    - panelizer
     - smart_trim
     - text
     - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
 id: node.training.preview
 targetEntityType: node
 bundle: training
@@ -181,8 +185,6 @@ hidden:
   field_training_job_tasks: true
   field_training_occupations: true
   field_training_review_content: true
-  field_training_review_present: true
-  field_training_review_relevance: true
   field_training_reviews: true
   field_training_url: true
   links: true

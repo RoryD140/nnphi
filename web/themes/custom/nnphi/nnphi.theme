@@ -83,9 +83,6 @@ function nnphi_theme_suggestions_input_alter(&$suggestions, array $variables) {
 function nnphi_theme_suggestions_form_element_alter(array &$suggestions, array $variables, $hook) {
   $fields = [
     'field_training_review_overall',
-    'field_training_review_content',
-    'field_training_review_relevance',
-    'field_training_review_present',
   ];
   if (isset($variables['element']['#name']) && in_array($variables['element']['#name'], $fields)) {
       $suggestions[] = $hook . '__comment_training_review_radio';

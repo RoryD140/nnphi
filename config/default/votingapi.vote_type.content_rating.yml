@@ -1,8 +1,0 @@
-uuid: 0931db71-e035-4606-a494-7c182895231e
-langcode: en
-status: true
-dependencies: {  }
-id: content_rating
-label: 'Content Rating'
-value_type: percent
-description: ''

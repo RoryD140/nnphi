@@ -20,10 +20,7 @@ dependencies:
     - field.field.node.training.field_training_objectives
     - field.field.node.training.field_training_occupations
     - field.field.node.training.field_training_proficiency
-    - field.field.node.training.field_training_review_content
     - field.field.node.training.field_training_review_overall
-    - field.field.node.training.field_training_review_present
-    - field.field.node.training.field_training_review_relevance
     - field.field.node.training.field_training_reviews
     - field.field.node.training.field_training_source
     - field.field.node.training.field_training_state
@@ -37,8 +34,15 @@ dependencies:
     - link
     - nnphi_training
     - options
+    - panelizer
     - text
     - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
 id: node.training.full
 targetEntityType: node
 bundle: training
@@ -169,20 +173,6 @@ content:
   field_training_review_overall:
     type: ratings_field_formatter
     weight: 23
-    region: content
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-  field_training_review_present:
-    type: ratings_field_formatter
-    weight: 24
-    region: content
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-  field_training_review_relevance:
-    type: ratings_field_formatter
-    weight: 25
     region: content
     label: above
     settings: {  }

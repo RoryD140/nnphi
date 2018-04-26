@@ -9,7 +9,7 @@ id: node.training.field_training_review_overall
 field_name: field_training_review_overall
 entity_type: node
 bundle: training
-label: 'Overall Rating'
+label: 'Overall Experience'
 description: ''
 required: false
 translatable: false
