@@ -48,7 +48,6 @@ module:
   nnphi_general: 0
   nnphi_micro_assessment: 0
   nnphi_training: 0
-  nnphi_training_submit: 0
   nnphi_training_track: 0
   nnphi_user: 0
   node: 0
