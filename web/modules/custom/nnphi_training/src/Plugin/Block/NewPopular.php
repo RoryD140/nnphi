@@ -64,6 +64,9 @@ class NewPopular extends BlockBase implements ContainerFactoryPluginInterface {
    */
   public function build() {
     $output = [];
+
+    $output['#attached']['library'][] = 'nnphi_training/slider';
+
     $output['new'] = [
       'wrapper-open' => [
         '#type' => 'markup',
@@ -71,12 +74,12 @@ class NewPopular extends BlockBase implements ContainerFactoryPluginInterface {
       ],
       'header' => [
         '#type' => 'markup',
-        '#markup' => '<h3>' . $this->t('New Trainings') . '</h3>',
+        '#markup' => '<h3>' . $this->t('New Trainings') . '</h3><div class="training-vert-slider">',
       ],
       'nodes' => $this->getNewTrainings(),
       'wrapper-close' => [
         '#type' => 'markup',
-        '#markup' => '</div>',
+        '#markup' => '</div></div>',
       ],
     ];
     $output['popular'] = [
@@ -86,19 +89,19 @@ class NewPopular extends BlockBase implements ContainerFactoryPluginInterface {
       ],
       'header' => [
         '#type' => 'markup',
-        '#markup' => '<h3>' . $this->t('Popular Trainings') . '</h3>',
+        '#markup' => '<h3>' . $this->t('Popular Trainings') . '</h3><div class="training-vert-slider">',
       ],
       'nodes' => $this->getPopularTrainings(),
       'wrapper-close' => [
         '#type' => 'markup',
-        '#markup' => '</div></div>',
+        '#markup' => '</div></div></div>',
       ],
     ];
     return $output;
   }
 
   /**
-   * Get the 3 most recently created trainings and view them.
+   * Get the 10 most recently created trainings and view them.
    *
    * @return array
    */

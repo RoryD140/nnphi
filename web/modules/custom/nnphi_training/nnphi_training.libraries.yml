@@ -2,7 +2,7 @@ slider:
   version: VERSION
   js:
    js/slick-slider.min.js: {}
-   js/slick-slider-init.min.js: {}
+   js/slick-slider-init.js: {}
   dependencies:
    - core/jquery
    - core/jquery.once
