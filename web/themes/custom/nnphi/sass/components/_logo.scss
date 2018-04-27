@@ -14,6 +14,12 @@
     text-decoration: none;
     color: lighten($color, 10%);
   }
+  @include media-breakpoint-down(md) {
+    // Allows the logo to line up with hamburger icon
+    span:first-of-type {
+      line-height: 1;
+    }
+  }
 }
 
 .site-logo {

@@ -22,7 +22,7 @@
   transition: all .4s;
   &.main-nav-open {
     // These are more or less arbitrary. Just have to be larger than the natural menu height
-    max-height: 100vh;
+    max-height: 600vh;
     @include media-breakpoint-up(md) {
       max-height: 80vh;
     }

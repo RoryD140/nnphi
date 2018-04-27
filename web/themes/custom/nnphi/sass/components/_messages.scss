@@ -2,10 +2,14 @@
   @extend .container;
   margin-top: $padding-sm;
   margin-bottom: $padding-sm;
+  // Remove container padding so these line up with content
+  padding-right: 0;
+  padding-left: 0;
 }
 
 .messages-interior {
   padding: $padding-sm;
+  border-radius: $border-radius;
 }
 
 .messages-error .messages-interior {
