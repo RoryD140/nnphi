@@ -30,8 +30,11 @@ h2.field-steps-block-title {
   margin-bottom: 0;
 }
 
+
+$steps-base: lighten($blue, 10%);
+
 .steps-block h2.field-steps-block-title {
-  background-color: #A9D2E7;
+  background-color: $steps-base;
 }
 
 .field-steps .field-value {
@@ -39,7 +42,7 @@ h2.field-steps-block-title {
   padding-top: $padding-md;
   padding-bottom: $padding-md;
   &:first-child {
-    background: #7FBCDA;
+    background: darken($steps-base, 10%);
     .paragraph--type--step-link {
       &:before {
         content: '1';
@@ -47,7 +50,7 @@ h2.field-steps-block-title {
     }
   }
   &:nth-child(2) {
-    background: #54A5CE;
+    background: darken($steps-base, 20%);
     .paragraph--type--step-link {
       &:before {
         content: '2';
@@ -55,7 +58,7 @@ h2.field-steps-block-title {
     }
   }
   &:nth-child(3) {
-    background: #298FC2;
+    background: darken($steps-base, 30%);
     .paragraph--type--step-link {
       &:before {
         content: '3';
@@ -76,7 +79,7 @@ h2.field-steps-block-title {
   p:last-of-type {
     margin-bottom: 0; // keeps paragraphs center aligned
   }
-  @include media-breakpoint-down(sm) {
+  @include media-breakpoint-down(md) {
     flex-direction: column;
     align-items: center;
   }
@@ -96,9 +99,12 @@ h2.field-steps-block-title {
 
 .field-step-link-text {
   flex: 1 1 auto;
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(lg) {
     padding-left: $padding-md;
     padding-right: $padding-md;
+  }
+  @include media-breakpoint-down(md) {
+    text-align: center;
   }
 }
 
@@ -119,5 +125,8 @@ h2.field-steps-block-title {
     border-color: #fff;
     color: $blue-dark;
     text-decoration: none;
+  }
+  @include media-breakpoint-down(md) {
+    margin-top: $padding-sm;
   }
 }

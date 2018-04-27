@@ -1,5 +1,7 @@
-// Override for default hover style, per client request
-//.btn-primary:hover {
-//  background: $violet;
-//  border-color: $violet;
-//}
+.btn {
+  // Prevent buttons from causing horizontal overflow at small screen sizes
+  @include media-breakpoint-down(md) {
+    max-width: 90vw;
+    white-space: normal;
+  }
+}

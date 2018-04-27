@@ -29,6 +29,9 @@
 
 .footer-right img {
   margin-bottom: $padding-sm;
+  @include media-breakpoint-down(md) {
+    max-width: 180px; // Ensure that logos are same size
+  }
 }
 
 .site-footer ul {
@@ -72,6 +75,9 @@
   justify-content: flex-end;
   margin: 0;
   padding: 0;
+  @include media-breakpoint-down(md) {
+    justify-content: flex-start;
+  }
   li {
     padding-right: 35px;
     &:last-child {

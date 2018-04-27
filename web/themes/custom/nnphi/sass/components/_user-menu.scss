@@ -19,6 +19,36 @@ nav[id^=block-useraccountmenu] ul {
   }
 }
 
+// At small screen sizes this is placed inside dropdown, which is what these styles are for
+.site-header nav[id^=block-useraccountmenu] {
+  @include media-breakpoint-down(sm) {
+    display: none; // toggled with js
+  }
+  ul {
+    @include media-breakpoint-down(sm) {
+      padding-left: 20px;
+      padding-top: $padding-sm;
+    }
+  }
+  a {
+    @include media-breakpoint-down(sm) {
+      color: #fff;
+    }
+  }
+  a.register-link {
+    @include media-breakpoint-down(sm) {
+      color: #fff;
+      border-color: #fff;
+      &:hover {
+        background: #fff;
+        border-color: #fff;
+        color: $green-dark;
+      }
+    }
+  }
+
+}
+
 .site-footer nav[id^=block-useraccountmenu] ul {
   li {
     a {
