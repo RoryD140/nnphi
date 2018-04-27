@@ -1,0 +1,28 @@
+uuid: 9a59cdd5-8e1e-42af-874b-6d4c56c22f1e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.full
+    - field.field.media.file.field_media_file
+    - media.type.file
+_core:
+  default_config_hash: 9s0lWIanCnW5Xrrkmedxohs9F0yk4LO8ZcmVQ9xyuu4
+id: media.file.full
+targetEntityType: media
+bundle: file
+mode: full
+content:
+  name:
+    type: string
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: true
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_media_file: true
+  thumbnail: true
+  uid: true

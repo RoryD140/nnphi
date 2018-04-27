@@ -108,3 +108,29 @@ function nnphi_general_panels_ipe_blocks_alter(array &$blocks = [], PanelsDispla
 function nnphi_general_query_sort_by_random_alter(AlterableInterface $query) {
   $query->orderRandom();
 }
+
+/**
+ * Implements hook_link_alter().
+ */
+function nnphi_general_link_alter(&$variables) {
+  /** @var \Drupal\Core\Url $url */
+  $url = $variables['url'];
+  // If the media entity is a File, show the user the file path instead of
+  // the media entity path.
+  if ($url->isRouted() && $url->getRouteName() === 'entity.media.canonical') {
+    try {
+      /** @var \Drupal\media\MediaInterface $media */
+      $media = $variables['options']['entity'];
+      if ($media->bundle() === 'file') {
+        /** @var \Drupal\file\FileInterface $file */
+        $file = $media->get('field_media_file')->entity;
+        $url = \Drupal\Core\Url::fromUri(file_create_url($file->getFileUri()));
+        $variables['url'] = $url;
+      }
+    }
+    catch (\Exception $exception) {
+      watchdog_exception('nnphi_general', $exception);
+      \Drupal::logger('nnphi_general')->error('Unable to replace file URL for media @id', ['@id' => $media->id()]);
+    }
+  }
+}

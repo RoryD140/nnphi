@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - editor
+    - entity_embed
     - nnphi_general
 _core:
   default_config_hash: hewPmBgni9jlDK_IjLxUx1HsTbinK-hdl0lOwjbteIY
@@ -41,22 +42,9 @@ filters:
     status: true
     weight: -49
     settings:
-      allowed_html: '<a href hreflang> <em> <strong> <ul type> <ol start type> <li> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <img src alt data-entity-type data-entity-uuid data-align data-caption> <s> <blockquote> <iframe src allow allowfullscreen width height> <div class=""> <p class="large-text large-text-bold all-caps-text green-links large-text-blue large-text-purple">'
+      allowed_html: '<a href hreflang> <em> <strong> <ul type> <ol start type> <li> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <img src alt data-entity-type data-entity-uuid data-align data-caption> <s> <blockquote> <iframe src allow allowfullscreen width height> <div class=""> <p class="large-text large-text-bold all-caps-text green-links large-text-blue large-text-purple"> <drupal-entity data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button>'
       filter_html_help: true
       filter_html_nofollow: false
-  filter_html_image_secure:
-    id: filter_html_image_secure
-    provider: filter
-    status: false
-    weight: -41
-    settings: {  }
-  filter_url:
-    id: filter_url
-    provider: filter
-    status: false
-    weight: -42
-    settings:
-      filter_url_length: 72
   filter_autop:
     id: filter_autop
     provider: filter
@@ -69,9 +57,28 @@ filters:
     status: false
     weight: -44
     settings: {  }
+  filter_url:
+    id: filter_url
+    provider: filter
+    status: false
+    weight: -42
+    settings:
+      filter_url_length: 72
+  filter_html_image_secure:
+    id: filter_html_image_secure
+    provider: filter
+    status: false
+    weight: -41
+    settings: {  }
   filter_iframe:
     id: filter_iframe
     provider: nnphi_general
     status: true
     weight: -50
+    settings: {  }
+  entity_embed:
+    id: entity_embed
+    provider: entity_embed
+    status: true
+    weight: 0
     settings: {  }
