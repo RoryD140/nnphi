@@ -39,10 +39,17 @@
         });
 
 
-        $('.micro-assessment-close-btn', that).click(function(){
+        // Hide button sets cookie to prevent recurring popups
+        $('.micro-assessment-hide-btn', that).click(function(){
           $(that).removeClass('active').addClass('disabled');
           $.cookie('hide-quiz', true);
         });
+
+        // Close button just closes popup, no cookie
+        $('.micro-assessment-close-btn', that).click(function(){
+          $(that).removeClass('active').addClass('disabled');
+        });
+
       });
     }
   };
