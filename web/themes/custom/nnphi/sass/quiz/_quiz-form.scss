@@ -10,6 +10,9 @@
   left: 0;
   transform: translateY(100%);
   transition: transform .3s ease-in-out;
+  @include media-breakpoint-down(md) {
+    padding-top: $padding-lg; // Leaves room for close buttons
+  }
 }
 
 .block-random-quiz.active {
@@ -63,6 +66,18 @@
   @extend .btn;
   @extend .btn-secondary;
   color: $purple;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.micro-assessment-hide-btn {
+  color: #fff;
+  text-transform: uppercase;
+  position: absolute;
+  right: 25px;
+  top: 50px; // Height of close btn plus 10px
+  font-size: $font-size-xs;
   &:hover {
     cursor: pointer;
   }
