@@ -45,5 +45,5 @@ function nnphi_training_submit_webform_submission_presave(WebformSubmissionInter
   if (!in_array($producer_submission, $producer_options)) {
     $submission->setElementData('producer_contact', $producer_submission);
     $submission->setElementData('producer', 'I am listing contact info of the training producer');
+    }
   }
-}

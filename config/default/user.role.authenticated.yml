@@ -21,3 +21,4 @@ permissions:
   - 'unflag bookmark'
   - 'use text format basic_html'
   - 'use text format review'
+  - 'view media'

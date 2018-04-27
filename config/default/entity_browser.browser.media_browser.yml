@@ -1,0 +1,42 @@
+uuid: b8674291-5bd7-4491-b31b-82e8a8a26e5e
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.media_entity_browser
+  module:
+    - entity_browser_entity_form
+    - views
+name: media_browser
+label: 'Media Browser'
+display: iframe
+display_configuration:
+  width: 100%
+  height: '500'
+  link_text: 'Select entities'
+  auto_open: true
+selection_display: no_display
+selection_display_configuration: {  }
+widget_selector: tabs
+widget_selector_configuration: {  }
+widgets:
+  aaff7394-1677-4271-9d1e-321311bcc547:
+    settings:
+      view: media_entity_browser
+      view_display: entity_browser_1
+      submit_text: 'Select file'
+      auto_select: false
+    uuid: aaff7394-1677-4271-9d1e-321311bcc547
+    weight: 1
+    label: 'Select File'
+    id: view
+  f4afe1ee-f3ca-4c4d-8990-558a01874a72:
+    settings:
+      entity_type: media
+      bundle: file
+      form_mode: default
+      submit_text: 'Save file'
+    uuid: f4afe1ee-f3ca-4c4d-8990-558a01874a72
+    weight: 2
+    label: 'Upload File'
+    id: entity_form

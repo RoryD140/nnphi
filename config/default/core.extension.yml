@@ -26,6 +26,10 @@ module:
   dynamic_page_cache: 0
   editor: 0
   email_registration: 0
+  embed: 0
+  entity_browser: 0
+  entity_browser_entity_form: 0
+  entity_embed: 0
   entity_reference_revisions: 0
   field: 0
   field_ui: 0
@@ -36,10 +40,13 @@ module:
   help: 0
   history: 0
   image: 0
+  inline_entity_form: 0
   layout_discovery: 0
   link: 0
   mailgun: 0
   mailsystem: 0
+  media: 0
+  media_entity_browser: 0
   menu_ui: 0
   metatag: 0
   metatag_open_graph: 0
