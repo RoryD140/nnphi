@@ -164,9 +164,7 @@
     {% if content.field_training_reviews|render or content.review_login_message|render %}
       <section class="training-reviews">
         {{ content.field_training_reviews }}
-        {% if content.review_login_message|render %}
-          {{ content.review_login_message }}
-        {% endif %}
+        {{ content.review_login_message }}
       </section>
     {% endif %}
 

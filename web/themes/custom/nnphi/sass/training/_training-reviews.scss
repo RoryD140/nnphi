@@ -1,9 +1,38 @@
 .training-reviews {
   @extend .container;
+  padding-top: $padding-md;
 }
 
-.training-reviews .form-actions input {
+.training-reviews h2.training-subtitle {
+  margin-bottom: $padding-md;
+}
+
+.training-reviews .form-actions input,
+.review-login-btn {
   @extend .btn;
   @extend .btn-primary;
   margin-top: $padding-md;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.training-reviews .js-comment {
+  border: solid 2px $gray-light;
+  padding: $padding-md;
+  margin-bottom: $padding-md;
+}
+
+.training-reviews .js-comment .field {
+  &:not(:first-of-type) {
+    margin-top: $padding-md;
+  }
+}
+
+.training-reviews .js-comment p:last-of-type {
+  margin-bottom: 0;
+}
+
+.training-reviews .js-comment .field-label {
+  @extend .h4;
 }
