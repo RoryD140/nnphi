@@ -96,7 +96,7 @@ function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayIn
         $destination_url = $node->toUrl('canonical', ['fragment' => 'comment-form']);
         $build['review_login_message'] = [
             '#type' => 'link',
-            '#title' => t('Submit a Review'),
+            '#title' => t('Submit a Comment'),
             '#url' => Url::fromRoute('user.login', [], ['query' => ['destination' => $destination_url->toString()]]),
             '#access' => \Drupal::currentUser()->isAnonymous(),
             '#attributes' => [
