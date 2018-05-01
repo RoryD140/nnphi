@@ -1,59 +1,60 @@
-// Specificity to override default section padding
-.hero {
-  padding-top: 0;
-  padding-bottom: 10%;
-  background-image: url('/themes/custom/nnphi/svg/swirls.svg');
-  background-size: 136%;
-  background-repeat: no-repeat;
-  background-position: top;
-  margin: 5rem 0 3rem;
-  border-bottom: solid 1px $gray-light;
-  @include media-breakpoint-down(md) {
+.training-banner {
+  .hero {
     padding-top: 0;
-    padding-bottom: 0;
+    padding-bottom: 10%;
+    background-image: url('/themes/custom/nnphi/svg/swirls.svg');
+    background-size: 136%;
+    background-repeat: no-repeat;
+    background-position: top;
+    margin: 5rem 0 3rem;
+    border-bottom: solid 1px $gray-light;
+    @include media-breakpoint-down(md) {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
   }
-}
 
-.hero h1 {
-  color: $blue;
-  position: relative;
-  top: -2rem;
-  @include media-breakpoint-down(md) {
-    top: -3rem;
+  .hero h1 {
+    color: $blue;
+    position: relative;
+    top: -2rem;
+    @include media-breakpoint-down(md) {
+      top: -3rem;
+    }
   }
-}
 
-.hero-interior {
-  @extend .container;
-}
+  .hero-interior {
+    @extend .container;
+  }
 
-.hero-interior h1 {
-  color: $blue;
-  margin-bottom: 25px; // combines with line-heights to get correct spacing
-}
+  .hero-interior h1 {
+    color: $blue;
+    margin-bottom: 25px; // combines with line-heights to get correct spacing
+  }
 
-.hero-source {
-  font-family: $font-family-proxima-nova;
-  font-size: $font-size-lg;
-  color: $gray-text;
-  text-transform: uppercase;
-  margin-bottom: $padding-md;
-  line-height: 1.1; // Prevents unwanted spacing
-}
-
-.hero-subtitle {
-  font-family: $font-family-proxima-nova;
-  font-size: $font-size-md;
-  margin-bottom: 100px;
-  font-weight: $font-weight-light;
-  line-height: 1.1; // Prevents unwanted spacing
-  @include media-breakpoint-down(md) {
+  .hero-source {
+    font-family: $font-family-proxima-nova;
+    font-size: $font-size-lg;
+    color: $gray-text;
+    text-transform: uppercase;
     margin-bottom: $padding-md;
+    line-height: 1.1; // Prevents unwanted spacing
   }
-}
 
-.hero-btn a {
-  @extend .btn;
-  @extend .btn-primary;
-  @extend .btn-arrow;
+  .hero-subtitle {
+    font-family: $font-family-proxima-nova;
+    font-size: $font-size-md;
+    margin-bottom: 100px;
+    font-weight: $font-weight-light;
+    line-height: 1.1; // Prevents unwanted spacing
+    @include media-breakpoint-down(md) {
+      margin-bottom: $padding-md;
+    }
+  }
+
+  .hero-btn a {
+    @extend .btn;
+    @extend .btn-primary;
+    @extend .btn-arrow;
+  }
 }

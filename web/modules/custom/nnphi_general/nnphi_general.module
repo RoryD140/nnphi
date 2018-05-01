@@ -69,9 +69,21 @@ function nnphi_general_preprocess_html(&$variables) {
 
   // Use route to create an additional page class so that we can target specific
   // pages, e.g., page-user-register
-  $route = \Drupal::routeMatch()->getRouteName();
-  $variables['page_class'] = HTML::cleanCssIdentifier('page-' . $route, ['.' => '-']);
+  $route = \Drupal::routeMatch();
+  $route_name = $route->getRouteName();
+  $variables['attributes']['class'][]  = HTML::cleanCssIdentifier('page-' . $route_name, ['.' => '-']);
 
+  // If this is a training node or the training search page, add the class for the graphic header
+  // Otherwise it uses the gradient header
+  $node = $route->getParameter('node');
+
+  $banner_class = 'gradient-banner';
+
+  if(($node !== null && $node->getType() === 'training') || $route_name === 'nnphi_training.instant_search') {
+    $banner_class = 'training-banner';
+  }
+
+  $variables['attributes']['class'][] = $banner_class;
 
   // Set maintenance page title
   $maintenance_mode = \Drupal::state()->get('system.maintenance_mode');

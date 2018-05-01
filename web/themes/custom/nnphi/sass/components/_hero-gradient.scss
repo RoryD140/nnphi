@@ -1,0 +1,17 @@
+.gradient-banner {
+  .hero {
+    background: linear-gradient(45deg, $blue, $purple);
+    margin-bottom: $padding-md;
+  }
+
+  .hero-interior {
+    @extend .container;
+    padding-top: $padding-lg;
+    padding-bottom: $padding-lg;
+  }
+
+  .hero h1 {
+    color: #fff;
+    margin: 0;
+  }
+}
