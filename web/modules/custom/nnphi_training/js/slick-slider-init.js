@@ -28,7 +28,7 @@
       $(context).find('.training-vert-slider').once('vertical-slick').slick({
         slidesToShow: 3,
         vertical: true,
-        infinite: false
+        infinite: true
       });
     }
   };

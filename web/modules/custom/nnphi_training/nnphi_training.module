@@ -223,9 +223,9 @@ function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayIn
         // Set the strings for social share template
         $abs_url = URL::fromRoute('entity.node.canonical', ['node' => $node->id()], ['absolute' => TRUE]);
         $build['abs_url']['#markup'] = urlencode($abs_url->toString());
-        $build['email_subject']['#markup'] = t('Check out this training on the PHLN Learning Navigator: ') . $node->label();
+        $build['email_subject']['#markup'] = t('Check out this training on the Public Health Learning Navigator: ') . $node->label();
 
-        $email_body = t('I found this training on the PHLN Learning Navigator, and I thought you might find it useful: ');
+        $email_body = t('I found this training on the Public Health Learning Navigator, and I thought you might find it useful: ');
         $email_body .= '%0D%0A'; // <br /> symbol
         $email_body .= $node->label();
         $email_body .= $node->get('field_training_description')->getValue()[0]['summary'];

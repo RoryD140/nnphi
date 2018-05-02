@@ -2,7 +2,7 @@ nnphi_training.instant_search:
   path: '/training/search'
   defaults:
     _controller: '\Drupal\nnphi_training\Controller\InstantSearch::page'
-    _title: 'Browse Trainings'
+    _title: 'Training Search'
   requirements:
     _permission: 'access content'
 
