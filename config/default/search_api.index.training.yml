@@ -357,6 +357,7 @@ processor_settings:
   rendered_item: {  }
   facet_attribute: {  }
   searchable_attribute: {  }
+  entity_status: {  }
 tracker_settings:
   default:
     indexing_order: fifo
