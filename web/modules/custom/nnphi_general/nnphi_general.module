@@ -121,7 +121,7 @@ function nnphi_general_link_alter(&$variables) {
     try {
       /** @var \Drupal\media\MediaInterface $media */
       $media = $variables['options']['entity'];
-      if ($media->bundle() === 'file') {
+      if ($media !== null && $media->bundle() === 'file') {
         /** @var \Drupal\file\FileInterface $file */
         $file = $media->get('field_media_file')->entity;
         $url = \Drupal\Core\Url::fromUri(file_create_url($file->getFileUri()));

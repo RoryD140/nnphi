@@ -82,6 +82,7 @@ permissions:
   - 'edit webform twig'
   - 'enroll in curricula'
   - 'flag bookmark'
+  - 'never autoplay videos'
   - 'post comments'
   - 'skip comment approval'
   - 'unflag bookmark'

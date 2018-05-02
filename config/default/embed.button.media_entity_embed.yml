@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - media.type.embedded_video
     - media.type.file
   module:
     - entity_embed
@@ -15,10 +16,11 @@ type_id: entity
 type_settings:
   entity_type: media
   bundles:
+    - embedded_video
     - file
   display_plugins:
     - 'view_mode:media.full'
   entity_browser: media_browser
   entity_browser_settings:
-    display_review: false
+    display_review: true
 icon_uuid: null

@@ -1,0 +1,15 @@
+uuid: 952ef3cb-c17a-4a9e-a6fb-cd0ad38732c1
+langcode: en
+status: true
+dependencies:
+  module:
+    - video_embed_media
+id: embedded_video
+label: 'Embedded Video'
+description: 'Embeddable YouTube or Vimeo video'
+source: video_embed_field
+queue_thumbnail_downloads: false
+new_revision: false
+source_configuration:
+  source_field: field_media_video_embed_field
+field_map: {  }

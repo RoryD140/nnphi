@@ -16,6 +16,7 @@ permissions:
   - 'add bookmark folder entities'
   - 'enroll in curricula'
   - 'flag bookmark'
+  - 'never autoplay videos'
   - 'post comments'
   - 'search content'
   - 'unflag bookmark'
