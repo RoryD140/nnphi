@@ -47,7 +47,7 @@
     "drupal/google_analytics": "2.2",
     "drupal/inline_entity_form": "1.0-beta1",
     "drupal/mailgun": "1.0-beta1",
-    "drupal/media_entity_browser": "2.0-alpha1",
+    "drupal/media_entity_browser": "2.x-dev",
     "drupal/metatag": "1.5",
     "drupal/page_manager": "4.0-beta2",
     "drupal/panelizer": "4.0",
