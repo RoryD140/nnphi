@@ -4,3 +4,8 @@ defaults:
   formatter: mailgun_mail
 _core:
   default_config_hash: IhwTepsVwtbtbcT5GzQKhCXDCRvbk3MNkWqPiuiZ10s
+modules:
+  webform:
+    none:
+      formatter: webform_php_mail
+      sender: mailgun_mail
