@@ -18,3 +18,11 @@ services:
     hogfrom:
       - appserver
     portforward: true
+
+tooling:
+  deploy:
+    service: appserver
+    description: Run deploy script
+    cmd:
+      - php
+      - /app/web/private/scripts/deploy.php
