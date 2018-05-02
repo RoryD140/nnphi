@@ -47,4 +47,22 @@
 .webform-submission-form .form-actions input {
   @extend .btn;
   @extend .btn-primary;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.webform-submission-form div.js-form-type-webform-markup {
+  margin-bottom: 0; // Remove margin from markup, since it likely is above a form element with its own margin
+}
+
+// Radio options
+.webform-submission-form fieldset.webform-type-radios {
+  .js-webform-radios {
+    display: flex;
+    flex-direction: column;
+  }
+  input {
+    width: auto;
+  }
 }

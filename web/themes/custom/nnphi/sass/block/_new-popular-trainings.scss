@@ -32,7 +32,7 @@
   display: flex;
   // Setting the height is kind of ugly, but slick slider seems to have a lot of trouble naturally calculating element heights
   // and with two columns of these next to each other it looks nicer to keep everything the same height anyway
-  min-height: 8rem;
+  min-height: 11rem;
   align-items: center;
   @include media-breakpoint-down(md) {
     min-height: 12rem;
@@ -83,17 +83,16 @@
 .new-popular-block .slick-arrow {
   background-image: $arrow-down-purple;
   z-index: 999;
-}
-
-.new-popular-block .slick-arrow.slick-next {
-  bottom: -50px;
   // These are 42px wide, but need to account for the box shadow to make it actually look centered
   // (21px (half of this) minus 2px (half of box shadow)
   transform: translateX(-19px);
 }
 
+.new-popular-block .slick-arrow.slick-next {
+  bottom: -50px;
+}
+
 .new-popular-block .slick-arrow.slick-prev {
-  // Seems weird to have the up arrow on these
-  // Override javascript
-  display: none !important;
+  top: -5px;
+  transform: rotateZ(180deg) translateX(19px);
 }
