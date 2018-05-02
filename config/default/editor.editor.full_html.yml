@@ -38,6 +38,7 @@ settings:
             - Blockquote
             - DrupalImage
             - media_entity_embed
+            - video_test_button
         -
           name: 'Block Formatting'
           items:
@@ -49,10 +50,10 @@ settings:
             - ShowBlocks
             - Source
   plugins:
-    language:
-      language_list: un
     stylescombo:
       styles: "p.large-text|Large Text\r\np.large-text-bold|Large Text Bold\r\np.large-text-blue|Large Text Blue\r\np.large-text-purple|Large Text Purple\r\np.all-caps-text|All Caps Text\r\np.green-links|Green Links Text\r\n"
+    language:
+      language_list: un
 image_upload:
   status: true
   scheme: public

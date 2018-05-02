@@ -40,3 +40,13 @@ widgets:
     weight: 2
     label: 'Upload File'
     id: entity_form
+  f11e0249-8d81-4311-bb58-bfe6ad6e6bb8:
+    settings:
+      entity_type: media
+      bundle: embedded_video
+      form_mode: default
+      submit_text: 'Save entity'
+    uuid: f11e0249-8d81-4311-bb58-bfe6ad6e6bb8
+    weight: 3
+    label: 'Embed Video'
+    id: entity_form

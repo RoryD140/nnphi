@@ -45,11 +45,11 @@ filters:
     status: true
     weight: -45
     settings: {  }
-  filter_htmlcorrector:
-    id: filter_htmlcorrector
+  filter_html_escape:
+    id: filter_html_escape
     provider: filter
     status: false
-    weight: -41
+    weight: -44
     settings: {  }
   filter_autop:
     id: filter_autop
@@ -57,11 +57,11 @@ filters:
     status: false
     weight: -43
     settings: {  }
-  filter_html_escape:
-    id: filter_html_escape
+  filter_htmlcorrector:
+    id: filter_htmlcorrector
     provider: filter
     status: false
-    weight: -44
+    weight: -41
     settings: {  }
   filter_url:
     id: filter_url
