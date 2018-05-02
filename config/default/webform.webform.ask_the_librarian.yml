@@ -157,10 +157,10 @@ handlers:
       cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
-      from_mail: '[webform_submission:values:your_email:raw]'
+      from_mail: default
       from_options: {  }
-      from_name: 'NNPHI Ask the Librarian Submission'
-      subject: default
+      from_name: default
+      subject: 'NNPHI Ask the Librarian Submission'
       body: default
       excluded_elements: {  }
       ignore_access: false

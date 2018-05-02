@@ -72,6 +72,7 @@ if (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
   else {
     $config['system.site']['mail'] = 'dev-noreply@phlearningnavigator.org';
     $config['mailsystem.settings']['defaults']['sender'] = 'php_mail';
+    $config['mailsystem.settings']['modules']['webform']['none']['sender'] = 'php_mail';
   }
 
 
