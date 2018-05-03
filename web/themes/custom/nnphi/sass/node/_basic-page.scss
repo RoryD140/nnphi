@@ -11,7 +11,6 @@
   background-size: 100% auto;
   background-repeat: no-repeat;
   background-position: 0 100%;
-  margin-bottom: $padding-md;
 }
 
 .basic-page-node h1 {
@@ -21,7 +20,13 @@
   @extend .offset-md-2;
 }
 
-.basic-page-content {
+
+.page-node-type-publisher .block-system-main-block {
+  @extend .container;
+}
+
+.basic-page-content,
+.page-node-type-publisher .block-system-main-block article {
   @extend .col-md-8;
   @extend .offset-md-2;
 }
