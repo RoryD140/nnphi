@@ -1,6 +1,6 @@
 uuid: 1b288758-ead2-43b1-afd7-17dc59ddf531
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - system.menu.footer
@@ -12,7 +12,7 @@ _core:
   default_config_hash: kkISXE1LT2FJEoYnqCrCpeFB-2pmGmMxMklVk7rQcfg
 id: nnphi_footer
 theme: nnphi
-region: footer_mid_left
+region: content
 weight: -6
 provider: null
 plugin: 'system_menu_block:footer'

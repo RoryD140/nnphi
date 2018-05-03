@@ -10,8 +10,7 @@ regions:
   header: Header
   main_nav: Main Nav
   footer_left: Footer Left
-  footer_mid_left: Footer Mid Left
-  footer_mid_right: Footer Mid Right
+  footer_mid: Footer Middle
   footer_right: Footer Right
   footer_bottom: Footer Bottom
 

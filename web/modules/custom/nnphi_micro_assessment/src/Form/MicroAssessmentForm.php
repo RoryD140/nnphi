@@ -90,6 +90,7 @@ class MicroAssessmentForm extends FormBase {
         '#ajax' => [
           'wrapper' => $selector,
           'callback' => '::ajaxCallback',
+          'disable-refocus' => TRUE,
         ],
       ];
     }

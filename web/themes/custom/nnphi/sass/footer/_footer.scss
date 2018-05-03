@@ -18,9 +18,21 @@
 .footer-left {
   @extend .col-md-4;
 }
-.footer-mid-left,
-.footer-mid-right {
-  @extend .col-md-3;
+
+.footer-mid {
+  @extend .col-md-6;
+}
+
+.footer-mid nav > ul {
+  @extend .row;
+  > div {
+    @extend .col-md-6;
+    margin-bottom: $padding-sm;
+    li {
+      line-height: 1.2;
+      padding-bottom: $padding-sm/2;
+    }
+  }
 }
 
 .footer-right {
@@ -47,7 +59,7 @@
   text-transform: uppercase;
   color: $gray-text;
   font-size: $font-size-18;
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(sm) {
     margin-top: $padding-md; // Gives padding between footer sections
   }
 }

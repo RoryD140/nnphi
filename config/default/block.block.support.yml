@@ -1,6 +1,6 @@
 uuid: 96a2f825-84ee-45ef-9fbd-6e3ce8c8b37b
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - system.menu.support
@@ -10,7 +10,7 @@ dependencies:
     - nnphi
 id: support
 theme: nnphi
-region: footer_mid_right
+region: content
 weight: -7
 provider: null
 plugin: 'system_menu_block:support'
