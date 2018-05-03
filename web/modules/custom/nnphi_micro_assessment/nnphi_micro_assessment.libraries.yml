@@ -7,5 +7,3 @@ random_quiz:
     - core/jquery
     - core/jquery.once
     - core/drupal.ajax
-    - core/drupal.debounce
-    - core/jquery.cookie

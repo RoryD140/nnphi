@@ -3,28 +3,7 @@
   padding-top: $padding-md;
   padding-bottom: $padding-md;
   text-align: center;
-  width: 100vw;
-  z-index: 99;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  transform: translateY(100%);
-  transition: transform .3s ease-in-out;
-  @include media-breakpoint-down(md) {
-    padding-top: $padding-lg; // Leaves room for close buttons
-  }
 }
-
-.block-random-quiz.active {
-  transform: translateY(0);
-}
-
-// Makes this block not totally screw up the panels UI when it's placed
-.ui-droppable ~ .block-random-quiz {
-  position: relative;
-  width: 100%;
-}
-
 .block-random-quiz h2 {
   color: #fff;
 }
@@ -68,41 +47,5 @@
   color: $purple;
   &:hover {
     cursor: pointer;
-  }
-}
-
-.micro-assessment-hide-btn {
-  color: #fff;
-  text-transform: uppercase;
-  position: absolute;
-  right: 25px;
-  top: 50px; // Height of close btn plus 10px
-  font-size: $font-size-xs;
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-.micro-assessment-close-btn {
-  font: 0/0 a;
-  position: absolute;
-  top: 0;
-  right: 20px;
-  width: 40px;
-  height: 40px;
-  padding: 10px;
-  &:after,
-  &:before {
-    content: '';
-    background: #fff;
-    width: 2px;
-    height: 30px;
-    position: absolute;
-  }
-  &:after {
-    transform: rotateZ(45deg);
-  }
-  &:before {
-    transform: rotateZ(-45deg);
   }
 }
