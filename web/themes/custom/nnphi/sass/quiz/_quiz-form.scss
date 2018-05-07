@@ -17,6 +17,10 @@
   @extend .large-text;
   font-size: $font-size-md;
   color: #fff;
+  a {
+    color: #fff;
+    text-decoration: underline;
+  }
 }
 
 .js-webform-radios {
@@ -47,5 +51,6 @@
   color: $purple;
   &:hover {
     cursor: pointer;
+    color: darken($purple, 10%);
   }
 }
