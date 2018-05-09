@@ -5,6 +5,14 @@ nnphi_micro_assessment.random_quiz:
   requirements:
     _permission: 'access content'
 
+nnphi_micro_assessment.random_quiz_result:
+  path: '/assessment/random/{node}'
+  defaults:
+    _controller: '\Drupal\nnphi_micro_assessment\Controller\RandomQuiz::ajax'
+  requirements:
+    _permission: 'access content'
+
+
 nnphi_micro_assessment.node_results:
   path: '/node/{node}/quiz-results'
   defaults:
