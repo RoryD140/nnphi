@@ -100,7 +100,7 @@ if (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
     $config['social_auth_linkedin.settings']['client_secret'] = $secrets['linkedin_secret'];
   }
   if (isset($secrets['google_secret'])) {
-    $config['social_auth_google.settings']['client_secret'] = $secrets['linkedin_secret'];
+    $config['social_auth_google.settings']['client_secret'] = $secrets['google_secret'];
   }
 }
 else {
