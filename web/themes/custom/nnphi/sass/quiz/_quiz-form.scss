@@ -5,7 +5,7 @@
   text-align: center;
 }
 .block-random-quiz h2 {
-  color: #fff;
+  @extend %section-title-h2;
 }
 
 .random-quiz-form {
@@ -13,7 +13,7 @@
 }
 
 .field-ma-question {
-  font-size: $font-size-md;
+  font-size: $font-size-18;
   color: #fff;
   margin-bottom: $padding-md;
 }
