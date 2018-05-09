@@ -91,6 +91,17 @@ if (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
   $settings['redis.connection']['host']      = $_ENV['CACHE_HOST'];
   $settings['redis.connection']['port']      = $_ENV['CACHE_PORT'];
   $settings['redis.connection']['password']  = $_ENV['CACHE_PASSWORD'];
+
+  // Set up social login secrets.
+  if (isset($secrets['facebook_secret'])) {
+    $config['social_auth_facebook.settings']['app_secret'] = $secrets['facebook_secret'];
+  }
+  if (isset($secrets['linkedin_secret'])) {
+    $config['social_auth_linkedin.settings']['client_secret'] = $secrets['linkedin_secret'];
+  }
+  if (isset($secrets['google_secret'])) {
+    $config['social_auth_google.settings']['client_secret'] = $secrets['google_secret'];
+  }
 }
 else {
   // Enable the development config_split

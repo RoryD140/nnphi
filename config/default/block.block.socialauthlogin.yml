@@ -1,0 +1,26 @@
+uuid: 9d437160-2321-47e1-902e-dd19298334de
+langcode: en
+status: true
+dependencies:
+  module:
+    - social_auth
+    - system
+  theme:
+    - nnphi
+id: socialauthlogin
+theme: nnphi
+region: content
+weight: 0
+provider: null
+plugin: social_auth_login
+settings:
+  id: social_auth_login
+  label: 'Social Auth Login'
+  provider: social_auth
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: "/user/register\r\n/user/login"
+    negate: false
+    context_mapping: {  }
