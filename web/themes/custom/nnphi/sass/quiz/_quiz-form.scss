@@ -8,9 +8,14 @@
   color: #fff;
 }
 
+.random-quiz-form {
+  @extend .container;
+}
+
 .field-ma-question {
-  @extend .large-text;
+  font-size: $font-size-md;
   color: #fff;
+  margin-bottom: $padding-md;
 }
 
 .result-message {
@@ -22,12 +27,14 @@
 .js-webform-radios {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .micro-assessment-form .form-item-choice {
   margin-bottom: $padding-sm;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  text-align: left;
   padding-right: $padding-sm;
   &:last-child {
     padding-right: 0;
