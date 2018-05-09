@@ -29,14 +29,14 @@
 }
 
 .js-webform-radios {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: inline-flex;
+  flex-direction: column;
+  margin: 0 auto;
 }
 
 .micro-assessment-form .form-item-choice {
   margin-bottom: $padding-sm;
-  display: flex;
+  display: inline-flex;
   align-items: flex-start;
   text-align: left;
   padding-right: $padding-sm;
@@ -56,6 +56,8 @@
   @extend .btn;
   @extend .btn-secondary;
   color: $purple;
+  display: flex;
+  margin: 0 auto;
   &:hover {
     cursor: pointer;
     color: darken($purple, 10%);
