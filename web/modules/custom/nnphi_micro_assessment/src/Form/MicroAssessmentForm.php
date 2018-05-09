@@ -7,6 +7,7 @@ use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -91,6 +92,8 @@ class MicroAssessmentForm extends FormBase {
           'wrapper' => $selector,
           'callback' => '::ajaxCallback',
           'disable-refocus' => TRUE,
+          'url' => Url::fromRoute('nnphi_micro_assessment.random_quiz_result', ['node' => $node->id()]),
+          'options' => ['query' => ['selector' => $selector]],
         ],
       ];
     }
