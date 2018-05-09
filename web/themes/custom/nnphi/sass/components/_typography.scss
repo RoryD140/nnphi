@@ -93,3 +93,8 @@
   @extend .large-text-bold;
   color: $purple;
 }
+
+.primary-btn-wrapper a {
+  @extend .btn;
+  @extend .btn-primary;
+}
