@@ -8,6 +8,14 @@
   background: linear-gradient(45deg, $blue, $purple);
 }
 
+.block-random-quiz h2 {
+  @extend %section-title-h2;
+}
+
+.block-random-quiz.white-bg h2 {
+  color: $blue-dark;
+}
+
 .block-random-quiz.gradient-bg h2 {
   color: #fff;
 }
@@ -17,7 +25,7 @@
 }
 
 .field-ma-question {
-  font-size: $font-size-md;
+  font-size: $font-size-18;
   margin-bottom: $padding-md;
 }
 
