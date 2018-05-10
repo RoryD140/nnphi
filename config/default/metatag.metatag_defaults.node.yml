@@ -9,7 +9,7 @@ label: Content
 tags:
   title: '[node:title] | [site:name]'
   canonical_url: '[node:url]'
-  description: '[node:summary]'
+  description: '[node:summary][node:field_training_description:summary][node:body]'
   og_type: Training
   og_image: '[site:url]/themes/custom/nnphi/images/phln-logo.png'
   og_url: '[node:url]'

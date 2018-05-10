@@ -5,9 +5,11 @@ dependencies:
   config:
     - field.field.node.component_page.body
     - field.field.node.component_page.field_component_page_show_header
+    - field.field.node.component_page.field_metatags
     - field.field.node.component_page.panelizer
     - node.type.component_page
   module:
+    - metatag
     - panelizer
     - text
     - user
@@ -107,6 +109,13 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     type: boolean
+    region: content
+  field_metatags:
+    weight: 103
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_empty_formatter
     region: content
   links:
     weight: 100
