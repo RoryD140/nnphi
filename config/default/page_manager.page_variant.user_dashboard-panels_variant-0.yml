@@ -56,15 +56,6 @@ variant_settings:
       uuid: c1cc3dfa-fe21-4f48-ad99-88956662ba0e
       context_mapping:
         user: user
-    d7114569-1d3c-4e32-8c9a-6fda1806439c:
-      id: announcements
-      label: Announcements
-      provider: nnphi_user
-      label_display: visible
-      region: main_container
-      weight: 0
-      uuid: d7114569-1d3c-4e32-8c9a-6fda1806439c
-      context_mapping: {  }
     812e8df5-0ae9-4377-be02-a5099bfc07a3:
       id: 'block_content:95b0113b-a73c-457e-84c0-8ee801d10add'
       label: 'Homepage Librarian Link'
