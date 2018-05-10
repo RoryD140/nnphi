@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_display.comment.training_review.default
+    - field.field.node.training.field_metatags
     - field.field.node.training.field_related_trainings
     - field.field.node.training.field_training_access_difficulty
     - field.field.node.training.field_training_categories
@@ -31,6 +32,7 @@ dependencies:
     - datetime
     - entity_reference_revisions
     - link
+    - metatag
     - nnphi_training
     - options
     - panelizer
@@ -47,6 +49,13 @@ targetEntityType: node
 bundle: training
 mode: default
 content:
+  field_metatags:
+    weight: 31
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_empty_formatter
+    region: content
   field_related_trainings:
     weight: 3
     label: above

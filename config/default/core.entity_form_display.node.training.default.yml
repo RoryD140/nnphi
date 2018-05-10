@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.training.field_metatags
     - field.field.node.training.field_related_trainings
     - field.field.node.training.field_training_access_difficulty
     - field.field.node.training.field_training_categories
@@ -30,6 +31,7 @@ dependencies:
     - conditional_fields
     - datetime
     - link
+    - metatag
     - paragraphs
     - path
     - text
@@ -44,6 +46,12 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_metatags:
+    weight: 29
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_firehose
+    region: content
   field_related_trainings:
     weight: 22
     settings:
