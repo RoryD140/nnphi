@@ -12,10 +12,16 @@ section.training-related {
 
 .training-related .training-node-teaser {
   background: #fff;
-  padding: 30px 50px;
+  padding: 30px 10px;
   @include media-breakpoint-up(md) {
     background: transparentize(#fff, .7);
     height: 100%;
+    padding: 30px 50px;
+  }
+  @include media-breakpoint-down(sm) {
+    h3 {
+      word-break: break-word; // Keeps long titles from breaking container
+    }
   }
 }
 

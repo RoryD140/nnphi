@@ -22,6 +22,14 @@
         @extend .btn-outline-primary;
       }
     }
-
   }
+}
+
+
+// Keep panels tab tray from covering footer links
+
+#panels-ipe-tray#panels-ipe-tray {
+  width: auto;
+  left: 50%;
+  transform: translateX(-50%);
 }

@@ -30,7 +30,6 @@
   // Remove list style from all Subs
   li {
     list-style: none;
-
   }
   a {
     color: #fff;
@@ -45,7 +44,9 @@
 .main-nav > li.menu-item {
   @extend .col-md-4;
   padding-top: $padding-md;
-  padding-bottom: $padding-md;
+  &:last-child {
+    padding-bottom: $padding-md;
+  }
   &:first-child {
     @include media-breakpoint-down(sm) {
       margin-top: $padding-sm; // Leaves room for close button

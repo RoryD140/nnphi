@@ -12,6 +12,9 @@
 
 .training-hero.hero h1 {
   top: 0;
+  @include media-breakpoint-down(sm) {
+    word-break: break-word; // Keeps long titles from breaking container
+  }
 }
 
 .training-hero-interior {

@@ -1,0 +1,5 @@
+.page-system-403 #block-nnphi-content,
+.page-system-404 #block-nnphi-content {
+  @extend .container;
+  min-height: 20vh; // Keeps footer from floating up
+}
