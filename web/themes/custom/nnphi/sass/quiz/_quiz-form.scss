@@ -1,11 +1,23 @@
 .block-random-quiz {
-  background: linear-gradient(45deg, $blue, $purple);
   padding-top: $padding-md;
   padding-bottom: $padding-md;
   text-align: center;
 }
+
+.block-random-quiz.gradient-bg {
+  background: linear-gradient(45deg, $blue, $purple);
+}
+
 .block-random-quiz h2 {
   @extend %section-title-h2;
+}
+
+.block-random-quiz.white-bg h2 {
+  color: $blue-dark;
+}
+
+.block-random-quiz.gradient-bg h2 {
+  color: #fff;
 }
 
 .random-quiz-form {
@@ -14,17 +26,25 @@
 
 .field-ma-question {
   font-size: $font-size-18;
-  color: #fff;
   margin-bottom: $padding-md;
+}
+
+.block-random-quiz.gradient-bg .field-ma-question {
+  color: #fff;
 }
 
 .result-message {
   @extend .large-text;
   font-size: $font-size-md;
+  a {
+    text-decoration: underline;
+  }
+}
+
+.block-random-quiz.gradient-bg .result-message {
   color: #fff;
   a {
     color: #fff;
-    text-decoration: underline;
   }
 }
 
@@ -48,18 +68,28 @@
   }
   label {
     margin: 0;
-    color: #fff;
   }
 }
 
+.block-random-quiz.gradient-bg .micro-assessment-form .form-item-choice label {
+  color: #fff;
+}
+
+
 .micro-assessment-form .form-submit {
   @extend .btn;
-  @extend .btn-secondary;
-  color: $purple;
+  @extend .btn-primary;
   display: flex;
   margin: 0 auto;
   &:hover {
     cursor: pointer;
+  }
+}
+
+.block-random-quiz.gradient-bg .micro-assessment-form .form-submit {
+  @extend .btn-secondary;
+  color: $purple;
+  &:hover {
     color: darken($purple, 10%);
   }
 }
