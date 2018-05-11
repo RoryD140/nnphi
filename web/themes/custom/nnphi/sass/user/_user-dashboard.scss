@@ -196,6 +196,7 @@
 .flag-bookmark.action-unflag svg,
 .flag-bookmark.action-flag svg {
   width: 20px;
+  height: 30px; // IE requires SVG heights
 }
 
 .page-entity-user-canonical .flag-bookmark.action-unflag,
