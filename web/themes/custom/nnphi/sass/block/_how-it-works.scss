@@ -99,7 +99,7 @@ $steps-base: lighten($blue, 10%);
 }
 
 .field-step-link-text {
-  flex: 1 1 auto;
+  flex: 1 1 25%; // 25% value prevents IE from pushing buttons out of grid
   @include media-breakpoint-up(lg) {
     padding-left: $padding-md;
     padding-right: $padding-md;

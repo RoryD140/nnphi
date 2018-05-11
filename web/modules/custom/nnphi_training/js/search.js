@@ -3,7 +3,7 @@
   Drupal.behaviors.nnphiTrainingSearch = {
     attach: function (context, settings) {
       // Create a new template for the custom checkbox theming.
-      var refinementCheckbox = `<label class="{{cssClasses.label}}">
+      var refinementCheckbox = '<label class="{{cssClasses.label}}">
                                 <span class="custom-checkbox">
                                 <input type="checkbox"
                                        class="{{cssClasses.checkbox}}"
@@ -11,7 +11,7 @@
                                        {{#isRefined}}checked{{/isRefined}} /><span class="checkbox-target"></span></span>
                                     {{{highlighted}}}
                                 <span class="{{cssClasses.count}}">{{#helpers.formatNumber}}{{count}}{{/helpers.formatNumber}}</span>
-                              </label>`;
+                              </label>';
 
 
       $('#hits', context).once('search').each(function()  {
