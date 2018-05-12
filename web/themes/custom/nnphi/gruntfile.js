@@ -1,4 +1,9 @@
 module.exports = function(grunt) {
+
+
+    // Since we're compiling a module JS file with Babel, we need to set file paths relative to the gruntfile
+    const path = require('path');
+
     // Configuration goes here
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -71,7 +76,7 @@ module.exports = function(grunt) {
           options: {
             "presets": [
               [
-                "es2015",
+                path.resolve() + "/node_modules/babel-preset-es2015",
                 {
                   "modules": false,
                   "loose": true
@@ -79,13 +84,14 @@ module.exports = function(grunt) {
               ]
             ],
             "plugins": [
-              "transform-es2015-modules-strip"
+              path.resolve() + "/node_modules/babel-plugin-transform-es2015-modules-strip",
             ]
           },
 
 
           files: {
-            'scripts.js': 'dist/scripts.js'
+            'scripts.js': 'dist/scripts.js',
+            '../../../modules/custom/nnphi_training/js/search.min.js': '../../../modules/custom/nnphi_training/js/search.js', // Compile training search js
           }
         }
       },
@@ -118,5 +124,8 @@ module.exports = function(grunt) {
 
    // Sets up task so that typing "grunt compile" will compile CSS without watching
    grunt.registerTask('compile', ['sass', 'autoprefixer']);
+
+   // Just run JS Babel
+   grunt.registerTask('js', ['babel']);
 
 };
