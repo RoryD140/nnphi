@@ -1,3 +1,15 @@
-<a href="{{ path('nnphi_user.social_login', {'service': 'facebook'}, options) }}">{{ 'Facebook'|t }}</a>
-<a href="{{ path('nnphi_user.social_login', {'service': 'linkedin'}, options) }}">{{ 'LinkedIn'|t }}</a>
-<a href="{{ path('nnphi_user.social_login', {'service': 'google'}, options) }}">{{ 'Google'|t }}</a>
+<h3 class="social-login-header">{{ 'Or Log In With a Social Media Account'|t }}</h3>
+<div class="social-login">
+  <a href="{{ path('nnphi_user.social_login', {'service': 'facebook'}, options) }}">
+    {% include base_path ~ directory ~ '/svg/facebook-login.svg' %}
+    <span>{{ 'Facebook'|t }}</span>
+  </a>
+  <a href="{{ path('nnphi_user.social_login', {'service': 'linkedin'}, options) }}">
+    {% include base_path ~ directory ~ '/svg/linkedin-login.svg' %}
+    <span>{{ 'LinkedIn'|t }}</span>
+  </a>
+  <a href="{{ path('nnphi_user.social_login', {'service': 'google'}, options) }}">
+    {% include base_path ~ directory ~ '/svg/google-login.svg' %}
+    <span>{{ 'Google'|t }}</span>
+  </a>
+</div>

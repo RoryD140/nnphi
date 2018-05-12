@@ -191,6 +191,11 @@ function nnphi_user_form_user_form_alter(&$form, FormStateInterface $form_state,
         '#weight' => -105,
     ];
 
+    $form['social_auth'] = [
+        '#theme' => 'social_login',
+        '#weight' => -90
+    ];
+
     // 41 is NID for Privacy page, 40 is NID for terms and conditions page
     $privacy_link = Node::load('41')->toLink()->toString();
     $terms_link = Node::load('40')->toLink()->toString();
