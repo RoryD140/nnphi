@@ -5,3 +5,13 @@ nnphi_user.suggestions:
     _title: 'Suggested Trainings'
   requirements:
     _permission: 'access content'
+
+nnphi_user.social_login:
+  path: '/user/social/{service}'
+  defaults:
+    _controller: '\Drupal\nnphi_user\Controller\SocialLogin::login'
+    _title: 'Social Login'
+  requirements:
+    _user_is_logged_in: 'FALSE'
+  options:
+    no_cache: TRUE

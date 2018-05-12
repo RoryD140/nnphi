@@ -143,38 +143,70 @@ function nnphi_bookmark_form_alter(&$form, FormStateInterface $form_state, $form
  * Login/register form submit callback.
  */
 function nnphi_bookmark_user_form_submit(&$form, FormStateInterface $form_state) {
+  $account = \Drupal::currentUser();
+  $nid = $form_state->getValue('bookmark');
+  if (nnphi_bookmark_set_user_bookmark($account, $nid)) {
+    $redirect = \Drupal\Core\Url::fromRoute('entity.node.canonical', ['node' => $nid]);
+    $form_state->set('custom_redirect', TRUE);
+    $form_state->setRedirectUrl($redirect);
+  }
+}
+
+/**
+ * Implements hook_social_login_data().
+ */
+function nnphi_bookmark_social_login_data($service) {
+  $bookmark = \Drupal::request()->get('bookmark');
+  if (is_int((int)$bookmark)) {
+    return ['bookmark' => $bookmark];
+  }
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function nnphi_bookmark_user_login($account) {
+  /** @var \Drupal\social_api\SocialApiDataHandler $social_auth_storage */
+  $social_auth_storage = \Drupal::service('social_auth.data_handler');
+  $bookmark = $social_auth_storage->get('bookmark');
+  if (!$bookmark || !is_numeric($bookmark)) {
+    return;
+  }
+  if (nnphi_bookmark_set_user_bookmark($account, $bookmark)) {
+    $redirect = \Drupal\Core\Url::fromRoute('entity.node.canonical', ['node' => $bookmark]);
+    \Drupal::request()->query->set('destination', $redirect->toString());
+  }
+}
+
+function nnphi_bookmark_set_user_bookmark($account, $nid) {
   try {
     // If a valid node was passed in the URL, bookmark it for the user
     // and redirect them back to the node.
-    $account = \Drupal::currentUser();
+    /** @var \Drupal\node\NodeInterface $node */
     $node = \Drupal::entityTypeManager()
       ->getStorage('node')
-      ->load($form_state->getValue('bookmark'));
-    if (!$node) {
-      $form_state->set('custom_redirect', TRUE);
-      $form_state->setRedirectUrl($node->toUrl());
-      return TRUE;
+      ->load($nid);
+    if (!$node || !$node->isPublished()) {
+      return FALSE;
     }
     /** @var \Drupal\flag\FlagServiceInterface $flagger */
     $flagger = \Drupal::service('flag');
     $flag = $flagger->getFlagById('bookmark');
     $bundles = $flag->getBundles();
     if (!empty($bundles) && !in_array($node->bundle(), $bundles)) {
-      return TRUE;
+      return FALSE;
     }
     // Check if the node is already flagged.
     if ($flag->isFlagged($node, $account)) {
-      $form_state->set('custom_redirect', TRUE);
-      $form_state->setRedirectUrl($node->toUrl());
       return TRUE;
     }
     $flagger->flag($flag, $node, $account);
-    $form_state->set('custom_redirect', TRUE);
-    $form_state->setRedirectUrl($node->toUrl());
+    return TRUE;
   }
   catch (\Exception $exception) {
     watchdog_exception('nnphi_bookmark', $exception);
     \Drupal::logger('nnphi_bookmark')->error('Unable to set bookmark @bid for user @uid: %err',
-      ['@bid' => $form_state->getValue('bookmark'), '@uid' => $account->id(), '%err' => $exception->getMessage()]);
+      ['@bid' => $nid, '@uid' => $account->id(), '%err' => $exception->getMessage()]);
+    return FALSE;
   }
 }
