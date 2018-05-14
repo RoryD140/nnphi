@@ -5,3 +5,7 @@ nnphi_user.register:
   options:
       attributes:
         class: register-link
+nnphi_user.logout:
+  weight: 5
+  menu_name: account
+  class: Drupal\nnphi_user\Plugin\Menu\NnphiLoginLogoutMenuLink
