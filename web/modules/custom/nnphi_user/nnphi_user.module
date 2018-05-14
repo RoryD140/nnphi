@@ -284,8 +284,6 @@ function _nnphi_user_user_login_form_submit($form, FormStateInterface $form_stat
     $form_state->setRedirect('<front>');
   }
 
-  drupal_set_message(t('Sign in successful.'), 'status');
-
 }
 
 /**
