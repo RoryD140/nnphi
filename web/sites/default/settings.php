@@ -48,7 +48,7 @@ if (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
   // Switch to the correct Algolia index.
   $index = 'dev_TRAINING';
   $indexes = [
-    'live' => 'prod_TRAINING',
+    'live' => 'training',
     'test' => 'test_TRAINING',
     'dev' => 'dev_TRAINING',
   ];
