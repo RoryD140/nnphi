@@ -191,6 +191,11 @@ function nnphi_user_form_user_form_alter(&$form, FormStateInterface $form_state,
         '#weight' => -105,
     ];
 
+    $form['social_auth'] = [
+        '#theme' => 'social_login',
+        '#weight' => -90
+    ];
+
     // 41 is NID for Privacy page, 40 is NID for terms and conditions page
     $privacy_link = Node::load('41')->toLink()->toString();
     $terms_link = Node::load('40')->toLink()->toString();
@@ -242,9 +247,9 @@ function nnphi_user_register_form_after_build($element) {
  * Implements hook_form_FORM_ID_alter().
  */
 function nnphi_user_form_user_login_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  $destination = \Drupal::destination()->getAsArray();
+  $query = \Drupal::request()->query->all();
   $t_args = [
-    '@register' => Url::fromRoute('user.register', [], ['query' => $destination])->toString(),
+    '@register' => Url::fromRoute('user.register', [], ['query' => $query])->toString(),
     '@reset' => Url::fromRoute('user.pass')->toString(),
   ];
   $form['header'] = [
@@ -253,6 +258,11 @@ function nnphi_user_form_user_login_form_alter(&$form, FormStateInterface $form_
     '#suffix' => '</p>',
     '#markup' => t('<a href="@register">Register</a> | <a href="@reset">reset your password</a>', $t_args),
     '#weight' => -99,
+  ];
+
+  $form['social_auth'] = [
+    '#theme' => 'social_login',
+      '#weight' => -90,
   ];
 
   $form['#cache']['contexts'][] = 'url.query_args';
@@ -270,7 +280,13 @@ function _nnphi_user_user_login_form_submit($form, FormStateInterface $form_stat
   if (!$form_state->get('custom_redirect')) {
     $form_state->setRedirect('<front>');
   }
-  drupal_set_message(t('Log in successful.'), 'status');
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function nnphi_user_user_login($account) {
+  \Drupal::service('messenger')->addMessage(t('You’ve successfully logged in. Thank you for being a part of the Public Health Learning Navigator'));
 }
 
 /**
@@ -281,6 +297,26 @@ function nnphi_user_theme_suggestions_user(array $variables) {
   if (!empty($variables['elements']['#view_mode'])) {
     return ['user__' . $variables['elements']['#view_mode']];
   }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function nnphi_user_theme($existing, $type, $theme, $path) {
+  return [
+    'social_login' => [
+      'variables' => [],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function nnphi_user_preprocess_social_login(&$variables) {
+  // Pass any query arguments to the social auth links.
+  $variables['options'] = [];
+  $variables['options']['query'] = \Drupal::request()->query->all();
 }
 
 /**
