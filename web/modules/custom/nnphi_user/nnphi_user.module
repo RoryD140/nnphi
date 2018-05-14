@@ -262,6 +262,7 @@ function nnphi_user_form_user_login_form_alter(&$form, FormStateInterface $form_
 
   $form['social_auth'] = [
     '#theme' => 'social_login',
+      '#weight' => -90,
   ];
 
   $form['#cache']['contexts'][] = 'url.query_args';
