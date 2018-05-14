@@ -1,9 +1,14 @@
+// For changes to this file to take effect, you need to run "grunt js" from the nnphi theme.
+// For IE 11 and under, template literals (the refinementCheckbox below) don't work,
+// So this needs to run through Babel for cross-browser compatibility.
+// The library uses the search.min.js file, which is created when you run "grunt js"
+
 (function ($, Drupal) {
   'use strict'
   Drupal.behaviors.nnphiTrainingSearch = {
     attach: function (context, settings) {
       // Create a new template for the custom checkbox theming.
-      var refinementCheckbox = '<label class="{{cssClasses.label}}">
+      var refinementCheckbox = `<label class="{{cssClasses.label}}">
                                 <span class="custom-checkbox">
                                 <input type="checkbox"
                                        class="{{cssClasses.checkbox}}"
@@ -11,7 +16,7 @@
                                        {{#isRefined}}checked{{/isRefined}} /><span class="checkbox-target"></span></span>
                                     {{{highlighted}}}
                                 <span class="{{cssClasses.count}}">{{#helpers.formatNumber}}{{count}}{{/helpers.formatNumber}}</span>
-                              </label>';
+                              </label>`;
 
 
       $('#hits', context).once('search').each(function()  {

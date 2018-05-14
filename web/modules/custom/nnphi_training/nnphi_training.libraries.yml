@@ -16,7 +16,7 @@ instant-search:
   js:
     https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.3/dist/instantsearch.min.js: { type: external, minified: true }
     https://cdn.jsdelivr.net/qtip2/3.0.3/jquery.qtip.min.js: {type: external, minified: true }
-    js/search.js: {}
+    js/search.min.js: {}
   dependencies:
     - core/jquery
     - core/jquery.once
