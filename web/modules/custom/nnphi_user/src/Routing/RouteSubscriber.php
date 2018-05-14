@@ -18,6 +18,14 @@ class RouteSubscriber extends RouteSubscriberBase {
         if ($route = $collection->get('entity.user.edit_form')) {
             $route->setDefault('_title_callback','Drupal\nnphi_user\Controller\CustomUserController::userTitle');
         }
+
+        // Adjust page titles on login/register pages
+      if ($route = $collection->get('user.login')) {
+        $route->setDefault('_title', 'Sign In');
+      }
+      if ($route = $collection->get('user.register')) {
+        $route->setDefault('_title', 'Sign Up');
+      }
     }
 
 }
