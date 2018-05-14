@@ -1,0 +1,22 @@
+.social-login-header {
+  font-size: $font-size-18;
+}
+
+.social-login {
+  display: flex;
+  margin-bottom: $padding-sm;
+}
+
+.social-login a {
+  display: flex;
+  padding-right: $padding-sm/2;
+}
+
+.social-login svg {
+  width: 32px;
+  height: 32px;
+}
+
+.social-login span {
+  font: 0/0 a;
+}

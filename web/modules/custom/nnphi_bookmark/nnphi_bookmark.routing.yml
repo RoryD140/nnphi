@@ -62,4 +62,3 @@ nnphi_bookmark.delete_flagging:
   requirements:
     _permission: 'flag bookmark'
     _flagging_access: 'TRUE'
-
