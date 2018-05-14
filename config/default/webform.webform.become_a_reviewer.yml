@@ -16,7 +16,7 @@ javascript: ''
 settings:
   ajax: false
   ajax_scroll_top: form
-  page: true
+  page: false
   page_submit_path: ''
   page_confirm_path: ''
   form_submit_once: false
@@ -72,9 +72,9 @@ settings:
   draft_auto_save: false
   draft_saved_message: ''
   draft_loaded_message: ''
-  confirmation_type: page
+  confirmation_type: message
   confirmation_title: ''
-  confirmation_message: ''
+  confirmation_message: 'Thank you for your interest in becoming a reviewer. We will follow up with more information about next steps soon.'
   confirmation_url: ''
   confirmation_attributes: {  }
   confirmation_back: true

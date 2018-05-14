@@ -74,7 +74,7 @@ settings:
   draft_loaded_message: ''
   confirmation_type: message
   confirmation_title: ''
-  confirmation_message: "Thank you! Your message has been received.\r\n<div id=\"selenium-highlight\">&nbsp;</div>"
+  confirmation_message: '<div id="selenium-highlight">The Learning Librarian has received your message and will be in touch soon. If you need immediate assistance, contact&nbsp;<a href="mailto:training@nnphi.org">training@nnphi.org</a>.</div>'
   confirmation_url: ''
   confirmation_attributes: {  }
   confirmation_back: true
