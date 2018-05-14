@@ -60,7 +60,7 @@ class RegisterMenuLink extends MenuLinkDefault {
       return $this->t('Your Account');
     }
     else {
-      return $this->t('Register');
+      return $this->t('Sign Up');
     }
   }
 

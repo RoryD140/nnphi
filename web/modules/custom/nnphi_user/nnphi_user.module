@@ -41,9 +41,9 @@ function nnphi_user_preprocess_page(&$variables) {
   // Create custom title for user login pages so that it can be within
   // the layout-container in page.html.twig
   if($route === 'user.register') {
-    $variables['custom_title'] = t('Register');
+    $variables['custom_title'] = t('Sign Up');
   } elseif($route === 'user.login') {
-    $variables['custom_title'] = t('Log In');
+    $variables['custom_title'] = t('Sign In');
   } elseif($route === 'user.pass') {
     $variables['custom_title'] = t('Reset Your Password');
   } elseif ($route === 'nnphi_user.suggestions') {
@@ -256,7 +256,7 @@ function nnphi_user_form_user_login_form_alter(&$form, FormStateInterface $form_
     '#type' => 'markup',
     '#prefix' => '<p class="green-links">',
     '#suffix' => '</p>',
-    '#markup' => t('<a href="@register">Register</a> | <a href="@reset">reset your password</a>', $t_args),
+    '#markup' => t('<a href="@register">Sign Up</a> | <a href="@reset">reset your password</a>', $t_args),
     '#weight' => -99,
   ];
 
@@ -266,6 +266,9 @@ function nnphi_user_form_user_login_form_alter(&$form, FormStateInterface $form_
   ];
 
   $form['#cache']['contexts'][] = 'url.query_args';
+
+  // Change "Log In" to "Sign In"
+  $form["actions"]["submit"]['#value'] = t('Sign In');
 
   // Add submit handler to set redirect.
   $form['#submit'][] = '_nnphi_user_user_login_form_submit';
@@ -280,6 +283,7 @@ function _nnphi_user_user_login_form_submit($form, FormStateInterface $form_stat
   if (!$form_state->get('custom_redirect')) {
     $form_state->setRedirect('<front>');
   }
+
 }
 
 /**
@@ -287,6 +291,7 @@ function _nnphi_user_user_login_form_submit($form, FormStateInterface $form_stat
  */
 function nnphi_user_user_login($account) {
   \Drupal::service('messenger')->addMessage(t('You’ve successfully logged in. Thank you for being a part of the Public Health Learning Navigator'));
+
 }
 
 /**
