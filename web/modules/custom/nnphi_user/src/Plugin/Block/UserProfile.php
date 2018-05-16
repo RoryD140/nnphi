@@ -72,8 +72,6 @@ class UserProfile extends BlockBase implements ContainerFactoryPluginInterface {
       '#title' => $this->t('Edit'),
     ];
     $build['profile'] = $this->userViewer->view($account, 'profile');
-    CacheableMetadata::createFromObject($account)
-      ->applyTo($build);
     $edit_access = !self::accountIsComplete($account);
     /** @var \Drupal\Core\Routing\RedirectDestinationInterface $redirect_service */
     $build['edit_link'] = [
@@ -82,9 +80,6 @@ class UserProfile extends BlockBase implements ContainerFactoryPluginInterface {
       '#title' => $this->t('Complete Your Profile'),
       '#access' => $edit_access,
     ];
-    CacheableMetadata::createFromObject($account)
-      ->applyTo($build);
-    $build['#cache']['keys'] = ['user', 'user_profile', $account->id()];
     return $build;
   }
 
@@ -94,6 +89,11 @@ class UserProfile extends BlockBase implements ContainerFactoryPluginInterface {
    * @return bool
    */
   public static function accountIsComplete(AccountInterface $account) {
+    $id = $account->id();
+    $completed = &drupal_static(__FUNCTION__, []);
+    if (isset($completed[$id])) {
+      return $completed[$id];
+    }
     $complete = TRUE;
     $profile_fields = [
       'user_picture',
@@ -101,14 +101,14 @@ class UserProfile extends BlockBase implements ContainerFactoryPluginInterface {
       'field_user_zipcode',
       'field_user_interests',
       'field_user_setting',
-      'field_user_role',
     ];
     foreach ($profile_fields as $profile_field) {
       if ($account->get($profile_field)->isEmpty()) {
-        $complete = FALSE;
+         $complete = FALSE;
         break;
       }
     }
+    $completed[$id] = $complete;
     return $complete;
   }
 
