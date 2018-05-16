@@ -290,7 +290,7 @@ function nnphi_user_form_change_pwd_form_alter(&$form, \Drupal\Core\Form\FormSta
     ->getFormObject('user', 'default')
     ->setEntity($entity);
   $userForm = \Drupal::formBuilder()->getForm($formObject);
-  if (empty($form['account']['password_policy_status'])) {
+  if (empty($userForm['account']['password_policy_status'])) {
     return;
   }
   $form['account']['password_policy_status'] = $userForm['account']['password_policy_status'];
