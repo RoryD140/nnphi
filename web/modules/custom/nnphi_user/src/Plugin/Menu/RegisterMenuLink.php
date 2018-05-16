@@ -57,7 +57,7 @@ class RegisterMenuLink extends MenuLinkDefault {
    */
   public function getTitle() {
     if ($this->currentUser->isAuthenticated()) {
-      return $this->t('Your Account');
+      return $this->t('My Account');
     }
     else {
       return $this->t('Sign Up');
