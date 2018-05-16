@@ -4584,18 +4584,18 @@
     },
     {
         "name": "drupal/password_policy",
-        "version": "3.0.0-alpha3",
-        "version_normalized": "3.0.0.0-alpha3",
+        "version": "3.0.0-alpha4",
+        "version_normalized": "3.0.0.0-alpha4",
         "source": {
             "type": "git",
             "url": "https://git.drupal.org/project/password_policy",
-            "reference": "8.x-3.0-alpha3"
+            "reference": "8.x-3.0-alpha4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/password_policy-8.x-3.0-alpha3.zip",
-            "reference": "8.x-3.0-alpha3",
-            "shasum": "efe3ac404276ab2274b29393e55f6a4b7fb58681"
+            "url": "https://ftp.drupal.org/files/projects/password_policy-8.x-3.0-alpha4.zip",
+            "reference": "8.x-3.0-alpha4",
+            "shasum": "79997599fbce390e79eda0aba10f403324c48b99"
         },
         "require": {
             "drupal/core": "*",
@@ -4607,8 +4607,8 @@
                 "dev-3.x": "3.x-dev"
             },
             "drupal": {
-                "version": "8.x-3.0-alpha3",
-                "datestamp": "1488135183",
+                "version": "8.x-3.0-alpha4",
+                "datestamp": "1506649448",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Alpha releases are not covered by Drupal security advisories."
@@ -4618,7 +4618,7 @@
         "installation-source": "dist",
         "notification-url": "https://packages.drupal.org/8/downloads",
         "license": [
-            "GPL-2.0+"
+            "GPL-2.0-or-later"
         ],
         "authors": [
             {
@@ -4643,114 +4643,6 @@
             }
         ],
         "description": "Sets up constraints and expiration of passwords.",
-        "homepage": "https://www.drupal.org/project/password_policy",
-        "support": {
-            "source": "http://cgit.drupalcode.org/password_policy"
-        }
-    },
-    {
-        "name": "drupal/password_policy_characters",
-        "version": "3.0.0-alpha3",
-        "version_normalized": "3.0.0.0-alpha3",
-        "require": {
-            "drupal/core": "~8.0",
-            "drupal/password_policy": "self.version"
-        },
-        "type": "metapackage",
-        "extra": {
-            "branch-alias": {
-                "dev-3.x": "3.x-dev"
-            },
-            "drupal": {
-                "version": "8.x-3.0-alpha3",
-                "datestamp": "1488135183",
-                "security-coverage": {
-                    "status": "not-covered",
-                    "message": "Alpha releases are not covered by Drupal security advisories."
-                }
-            }
-        },
-        "notification-url": "https://packages.drupal.org/8/downloads",
-        "license": [
-            "GPL-2.0+"
-        ],
-        "authors": [
-            {
-                "name": "AohRveTPV",
-                "homepage": "https://www.drupal.org/user/2760115"
-            },
-            {
-                "name": "deekayen",
-                "homepage": "https://www.drupal.org/user/972"
-            },
-            {
-                "name": "miglius",
-                "homepage": "https://www.drupal.org/user/18741"
-            },
-            {
-                "name": "nerdstein",
-                "homepage": "https://www.drupal.org/user/1557710"
-            },
-            {
-                "name": "shrop",
-                "homepage": "https://www.drupal.org/user/14767"
-            }
-        ],
-        "description": "Identifies the number of specific character type in a password.",
-        "homepage": "https://www.drupal.org/project/password_policy",
-        "support": {
-            "source": "http://cgit.drupalcode.org/password_policy"
-        }
-    },
-    {
-        "name": "drupal/password_policy_length",
-        "version": "3.0.0-alpha3",
-        "version_normalized": "3.0.0.0-alpha3",
-        "require": {
-            "drupal/core": "~8.0",
-            "drupal/password_policy": "self.version"
-        },
-        "type": "metapackage",
-        "extra": {
-            "branch-alias": {
-                "dev-3.x": "3.x-dev"
-            },
-            "drupal": {
-                "version": "8.x-3.0-alpha3",
-                "datestamp": "1488135183",
-                "security-coverage": {
-                    "status": "not-covered",
-                    "message": "Alpha releases are not covered by Drupal security advisories."
-                }
-            }
-        },
-        "notification-url": "https://packages.drupal.org/8/downloads",
-        "license": [
-            "GPL-2.0+"
-        ],
-        "authors": [
-            {
-                "name": "AohRveTPV",
-                "homepage": "https://www.drupal.org/user/2760115"
-            },
-            {
-                "name": "deekayen",
-                "homepage": "https://www.drupal.org/user/972"
-            },
-            {
-                "name": "miglius",
-                "homepage": "https://www.drupal.org/user/18741"
-            },
-            {
-                "name": "nerdstein",
-                "homepage": "https://www.drupal.org/user/1557710"
-            },
-            {
-                "name": "shrop",
-                "homepage": "https://www.drupal.org/user/14767"
-            }
-        ],
-        "description": "Sets up a character length constraint for passwords.",
         "homepage": "https://www.drupal.org/project/password_policy",
         "support": {
             "source": "http://cgit.drupalcode.org/password_policy"

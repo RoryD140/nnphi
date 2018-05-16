@@ -207,7 +207,6 @@ class ManageBookmarkFolders extends FormBase {
   }
 
   public static function foldersPreRender($element) {
-    $element['#header'][0]['data-sort-method'] = 'none';
     foreach (Element::children($element) as $fid) {
       $element[$fid]['#attributes']['v-model.lazy'] = 'checkedFolders';
     }

@@ -430,9 +430,6 @@ th[role='columnheader'] {
 .table-wrapper,
 #manage-folders #folder-ui {
   overflow: visible;
-  @include media-breakpoint-down(md) {
-    overflow: auto;
-  }
 }
 
 .ui-dialog input[type='checkbox'].form-checkbox {
@@ -560,10 +557,6 @@ th[role='columnheader'] {
 // Cancel button.
 .ui-dialog-buttonset .form-submit + button {
   @extend .btn-outline-primary;
-}
-
-#manage-folders #folder-ui {
-  overflow: auto;
 }
 
 // Combine folders.

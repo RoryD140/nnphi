@@ -15,4 +15,5 @@ function nnphi_training_update_8000() {
   $vote_storage = \Drupal::entityTypeManager()->getStorage('vote');
   $votes = $vote_storage->loadMultiple();
   $vote_storage->delete($votes);
+  return TRUE;
 }

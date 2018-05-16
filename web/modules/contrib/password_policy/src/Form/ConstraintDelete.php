@@ -92,14 +92,14 @@ class ConstraintDelete extends ConfirmFormBase {
     $form['#title'] = $this->getQuestion($id, $cached_values);
 
     $form['#attributes']['class'][] = 'confirmation';
-    $form['description'] = array('#markup' => $this->getDescription());
-    $form[$this->getFormName()] = array('#type' => 'hidden', '#value' => 1);
+    $form['description'] = ['#markup' => $this->getDescription()];
+    $form[$this->getFormName()] = ['#type' => 'hidden', '#value' => 1];
 
     // By default, render the form using theme_confirm_form().
     if (!isset($form['#theme'])) {
       $form['#theme'] = 'confirm_form';
     }
-    $form['actions'] = array('#type' => 'actions');
+    $form['actions'] = ['#type' => 'actions'];
     $form['actions'] += $this->actions($form, $form_state);
     return $form;
   }
@@ -125,9 +125,9 @@ class ConstraintDelete extends ConfirmFormBase {
     /** @var \Drupal\password_policy\Entity\PasswordPolicy $password_policy */
     $password_policy = $cached_values['password_policy'];
     $context = $password_policy->getConstraint($id);
-    return $this->t('Are you sure you want to delete the @label constraint?', array(
+    return $this->t('Are you sure you want to delete the @label constraint?', [
       '@label' => $context['id'],
-    ));
+    ]);
   }
 
   /**
@@ -152,16 +152,16 @@ class ConstraintDelete extends ConfirmFormBase {
    *   A set of actions associated with this form.
    */
   protected function actions(array $form, FormStateInterface $form_state) {
-    return array(
-      'submit' => array(
+    return [
+      'submit' => [
         '#type' => 'submit',
         '#value' => $this->getConfirmText(),
-        '#submit' => array(
-          array($this, 'submitForm'),
-        ),
-      ),
+        '#submit' => [
+          [$this, 'submitForm'],
+        ],
+      ],
       'cancel' => ConfirmFormHelper::buildCancelLink($this, $this->getRequest()),
-    );
+    ];
   }
 
 }

@@ -71,7 +71,7 @@ class PasswordHistory extends PasswordConstraintBase implements ContainerFactory
 
     // Query for users hashes.
     $hashes = Database::getConnection()->select('password_policy_history', 'pph')
-      ->fields('pph', array('pass_hash'))
+      ->fields('pph', ['pass_hash'])
       ->condition('uid', $user_context['uid'])
       ->execute()
       ->fetchAll();
@@ -103,12 +103,12 @@ class PasswordHistory extends PasswordConstraintBase implements ContainerFactory
    * {@inheritdoc}
    */
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
-    $form['history_repeats'] = array(
+    $form['history_repeats'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Number of allowed repeated passwords'),
       '#description' => 'A value of 0 represents no allowed repeats',
       '#default_value' => $this->getConfiguration()['history_repeats'],
-    );
+    ];
     return $form;
   }
 
@@ -132,7 +132,7 @@ class PasswordHistory extends PasswordConstraintBase implements ContainerFactory
    * {@inheritdoc}
    */
   public function getSummary() {
-    return $this->t('Number of allowed repeated passwords: @number-repeats', array('@number-repeats' => $this->configuration['history_repeats']));
+    return $this->t('Number of allowed repeated passwords: @number-repeats', ['@number-repeats' => $this->configuration['history_repeats']]);
   }
 
 }

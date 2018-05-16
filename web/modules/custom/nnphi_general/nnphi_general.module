@@ -131,6 +131,9 @@ function nnphi_general_link_alter(&$variables) {
   // If the media entity is a File, show the user the file path instead of
   // the media entity path.
   if ($url->isRouted() && $url->getRouteName() === 'entity.media.canonical') {
+    if (!isset($variables['options']['entity'])) {
+      return;
+    }
     try {
       /** @var \Drupal\media\MediaInterface $media */
       $media = $variables['options']['entity'];

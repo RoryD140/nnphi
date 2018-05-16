@@ -11,28 +11,28 @@ use Drupal\simpletest\WebTestBase;
  */
 class PasswordPolicyInterfaceTest extends WebTestBase {
 
-  public static $modules = array(
+  public static $modules = [
     'password_policy',
     'password_policy_length',
     'password_policy_character_types',
     'node',
-  );
+  ];
 
   /**
    * Test failing password and verify it fails.
    */
   public function testOwnUserPasswords() {
     // Create user with permission to create policy.
-    $user1 = $this->drupalCreateUser(array(
+    $user1 = $this->drupalCreateUser([
       'administer site configuration',
       'administer users',
       'administer permissions',
-    ));
+    ]);
 
     $this->drupalLogin($user1);
 
     // Create role.
-    $rid = $this->drupalCreateRole(array());
+    $rid = $this->drupalCreateRole([]);
 
     // Set role for user.
     $edit = [
@@ -65,7 +65,7 @@ class PasswordPolicyInterfaceTest extends WebTestBase {
     $this->drupalPostForm(NULL, $edit, 'Finish');
 
     // Try failing password on form submit.
-    $edit = array();
+    $edit = [];
     $edit['current_pass'] = $user1->pass_raw;
     $edit['pass[pass1]'] = '111';
     $edit['pass[pass2]'] = '111';
@@ -74,7 +74,7 @@ class PasswordPolicyInterfaceTest extends WebTestBase {
     $this->assertText('The password does not satisfy the password policies');
 
     // Try passing password on form submit.
-    $edit = array();
+    $edit = [];
     $edit['current_pass'] = $user1->pass_raw;
     $edit['pass[pass1]'] = '111111';
     $edit['pass[pass2]'] = '111111';

@@ -96,24 +96,24 @@ class PasswordCharacter extends PasswordConstraintBase {
    * {@inheritdoc}
    */
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
-    $form['character_count'] = array(
+    $form['character_count'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Number of characters'),
       '#required' => TRUE,
       '#default_value' => $this->getConfiguration()['character_count'],
-    );
-    $form['character_type'] = array(
+    ];
+    $form['character_type'] = [
       '#type' => 'select',
       '#title' => $this->t('Character type'),
       '#required' => TRUE,
-      '#options' => array(
+      '#options' => [
         'uppercase' => 'Uppercase',
         'lowercase' => 'Lowercase',
         'numeric' => 'Numeric',
         'special' => 'Special Character',
-      ),
+      ],
       '#default_value' => $this->getConfiguration()['character_type'],
-    );
+    ];
     return $form;
   }
 
@@ -138,7 +138,7 @@ class PasswordCharacter extends PasswordConstraintBase {
    * {@inheritdoc}
    */
   public function getSummary() {
-    return $this->t('Password must contain @characters @character-type characters', array('@character-type' => $this->configuration['character_type'], '@characters' => $this->configuration['character_count']));
+    return $this->t('Password must contain @characters @character-type characters', ['@character-type' => $this->configuration['character_type'], '@characters' => $this->configuration['character_count']]);
   }
 
 }
