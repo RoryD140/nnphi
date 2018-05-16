@@ -21,6 +21,7 @@ permissions:
   - 'administer blocks'
   - 'administer comments'
   - 'administer media'
+  - 'administer menu'
   - 'administer nodes'
   - 'administer pages'
   - 'administer panelizer node component_page content'
