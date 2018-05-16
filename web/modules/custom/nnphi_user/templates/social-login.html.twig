@@ -1,15 +1,15 @@
 <h3 class="social-login-header">{{ 'Or Log In With a Social Media Account'|t }}</h3>
 <div class="social-login">
   <a href="{{ path('nnphi_user.social_login', {'service': 'facebook'}, options) }}">
-    {% include base_path ~ directory ~ '/svg/facebook-login.svg' %}
+    {% include base_path ~ directory ~ '/svg/facebook-login.svg' ignore missing %}
     <span>{{ 'Facebook'|t }}</span>
   </a>
   <a href="{{ path('nnphi_user.social_login', {'service': 'linkedin'}, options) }}">
-    {% include base_path ~ directory ~ '/svg/linkedin-login.svg' %}
+    {% include base_path ~ directory ~ '/svg/linkedin-login.svg' ignore missing %}
     <span>{{ 'LinkedIn'|t }}</span>
   </a>
   <a href="{{ path('nnphi_user.social_login', {'service': 'google'}, options) }}">
-    {% include base_path ~ directory ~ '/svg/google-login.svg' %}
+    {% include base_path ~ directory ~ '/svg/google-login.svg' ignore missing %}
     <span>{{ 'Google'|t }}</span>
   </a>
 </div>
