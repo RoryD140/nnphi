@@ -7,7 +7,7 @@ dependencies:
     - field.field.user.user.field_last_password_reset
     - field.field.user.user.field_password_expiration
     - field.field.user.user.field_user_interests
-    - field.field.user.user.field_user_role
+    - field.field.user.user.field_user_job_title_text
     - field.field.user.user.field_user_setting
     - field.field.user.user.field_user_username
     - field.field.user.user.field_user_work_setting
@@ -65,7 +65,6 @@ hidden:
   contact: true
   field_user_interests: true
   field_user_job_title_text: true
-  field_user_role: true
   field_user_setting: true
   field_user_username: true
   field_user_work_setting: true
