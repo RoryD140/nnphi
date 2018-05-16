@@ -559,10 +559,6 @@ th[role='columnheader'] {
   @extend .btn-outline-primary;
 }
 
-#manage-folders #folder-ui {
-  overflow: auto;
-}
-
 // Combine folders.
 .manage-bookmark-folders .merge-folders {
   padding: 0 2rem 0 1rem;
