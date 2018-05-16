@@ -169,6 +169,20 @@
   @extend %input-width;
 }
 
+// Fix for change password page
+.page-change_pwd_page-change_password_form {
+  .password-strength {
+    width: 100%;
+    @include media-breakpoint-up(md) {
+      padding-left: 20%;
+    }
+  }
+
+  .password-strength__meter {
+    margin: 1rem 0;
+  }
+}
+
 .password-strength__indicator {
   background: linear-gradient(to right, $green, $green 80%, $red);
   &.is-strong {

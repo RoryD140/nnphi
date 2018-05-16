@@ -430,9 +430,6 @@ th[role='columnheader'] {
 .table-wrapper,
 #manage-folders #folder-ui {
   overflow: visible;
-  @include media-breakpoint-down(md) {
-    overflow: auto;
-  }
 }
 
 .ui-dialog input[type='checkbox'].form-checkbox {
