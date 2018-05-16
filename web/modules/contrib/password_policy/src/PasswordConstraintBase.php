@@ -51,16 +51,16 @@ abstract class PasswordConstraintBase extends PluginBase implements PasswordCons
    * {@inheritdoc}
    */
   public function defaultConfiguration() {
-    return array();
+    return [];
   }
 
   /**
    * {@inheritdoc}
    */
   public function getConfiguration() {
-    return array(
+    return [
       'id' => $this->getPluginId(),
-    ) + $this->configuration;
+    ] + $this->configuration;
   }
 
   /**
@@ -75,7 +75,7 @@ abstract class PasswordConstraintBase extends PluginBase implements PasswordCons
    * {@inheritdoc}
    */
   public function calculateDependencies() {
-    return array();
+    return [];
   }
 
 }

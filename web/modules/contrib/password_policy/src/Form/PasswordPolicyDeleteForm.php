@@ -15,7 +15,7 @@ class PasswordPolicyDeleteForm extends EntityConfirmFormBase {
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return $this->t('Are you sure you want to delete the %name policy?', array('%name' => $this->entity->label()));
+    return $this->t('Are you sure you want to delete the %name policy?', ['%name' => $this->entity->label()]);
   }
 
   /**

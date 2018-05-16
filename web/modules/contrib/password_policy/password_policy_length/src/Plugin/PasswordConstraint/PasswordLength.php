@@ -54,17 +54,17 @@ class PasswordLength extends PasswordConstraintBase {
    * {@inheritdoc}
    */
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
-    $form['character_length'] = array(
+    $form['character_length'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Number of characters'),
       '#default_value' => $this->getConfiguration()['character_length'],
-    );
-    $form['character_operation'] = array(
+    ];
+    $form['character_operation'] = [
       '#type' => 'select',
       '#title' => $this->t('Operation'),
-      '#options' => array('minimum' => 'Minimum length', 'maximum' => 'Maximum length'),
+      '#options' => ['minimum' => 'Minimum length', 'maximum' => 'Maximum length'],
       '#default_value' => $this->getConfiguration()['character_operation'],
-    );
+    ];
     return $form;
   }
 
@@ -98,7 +98,7 @@ class PasswordLength extends PasswordConstraintBase {
         $operation = 'at most';
         break;
     }
-    return $this->t('Password character length of @operation @characters', array('@operation' => $operation, '@characters' => $this->configuration['character_length']));
+    return $this->t('Password character length of @operation @characters', ['@operation' => $operation, '@characters' => $this->configuration['character_length']]);
   }
 
 }

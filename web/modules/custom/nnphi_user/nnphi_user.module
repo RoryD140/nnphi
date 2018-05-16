@@ -126,7 +126,7 @@ function nnphi_user_form_user_form_alter(&$form, FormStateInterface $form_state,
     '#title' => t('Suggest interests'),
     '#description' => t("Don't see your interest listed? Please enter it here."),
   ];
-  
+
   $form['actions']['submit']['#submit'][] = 'nnphi_user_register_form_submit';
 
   $form['#after_build'][] = 'nnphi_user_register_form_after_build';
@@ -276,6 +276,22 @@ function _nnphi_user_user_login_form_submit($form, FormStateInterface $form_stat
     $form_state->setRedirect('<front>');
   }
 
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nnphi_user_form_change_pwd_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  $entity = \Drupal::entityTypeManager()
+    ->getStorage('user')
+    ->load(\Drupal::currentUser()->id());
+
+  $formObject = \Drupal::entityTypeManager()
+    ->getFormObject('user', 'default')
+    ->setEntity($entity);
+  $userForm = \Drupal::formBuilder()->getForm($formObject);
+  $form['account']['password_policy_status'] = $userForm['account']['password_policy_status'];
+  $debug = TRUE;
 }
 
 /**

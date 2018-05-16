@@ -18,11 +18,11 @@ class PasswordHistoryTests extends WebTestBase {
    */
   public function testHistoryConstraint() {
     // Create user with permission to create policy.
-    $user1 = $this->drupalCreateUser(array(
+    $user1 = $this->drupalCreateUser([
       'administer site configuration',
       'administer users',
       'administer permissions',
-    ));
+    ]);
     $this->drupalLogin($user1);
 
     $user2 = $this->drupalCreateUser();

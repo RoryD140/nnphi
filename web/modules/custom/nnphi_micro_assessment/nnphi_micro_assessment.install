@@ -68,7 +68,7 @@ function nnphi_micro_assessment_schema() {
  */
 function nnphi_micro_assessment_update_8000() {
   if (\Drupal::database()->schema()->tableExists('micro_assessment_response')) {
-    return;
+    return TRUE;
   }
   $table = [
     'description' => 'Holds user responses to micro assessments',

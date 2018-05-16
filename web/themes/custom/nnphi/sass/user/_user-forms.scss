@@ -147,7 +147,8 @@
 }
 
 .user-form .password-suggestions,
-.user-register-form .password-suggestions {
+.user-register-form .password-suggestions,
+.change-pwd-form .password-suggestions {
   display: none !important; // Overrides javascript inline style. We're using password_policy for password suggestions
 }
 

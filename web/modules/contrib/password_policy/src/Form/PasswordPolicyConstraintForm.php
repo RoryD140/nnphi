@@ -93,19 +93,19 @@ class PasswordPolicyConstraintForm extends FormBase {
       '#markup' => '<h2>Policy Constraints</h2>',
     ];
 
-    $form['items'] = array(
+    $form['items'] = [
       '#type' => 'markup',
       '#prefix' => '<div id="configured-constraints">',
       '#suffix' => '</div>',
       '#theme' => 'table',
-      '#header' => array(
+      '#header' => [
         'plugin_id' => $this->t('Plugin Id'),
         'summary' => $this->t('Summary'),
         'operations' => $this->t('Operations'),
-      ),
+      ],
       '#rows' => $this->renderRows($cached_values),
       '#empty' => $this->t('No constraints have been configured.'),
-    );
+    ];
 
     return $form;
   }
@@ -138,7 +138,7 @@ class PasswordPolicyConstraintForm extends FormBase {
     ], ['query' => [FormBuilderInterface::AJAX_FORM_REQUEST => TRUE]]);
     $content['submit']['#attached']['drupalSettings']['ajax'][$content['submit']['#id']]['url'] = $url->toString();
     $response = new AjaxResponse();
-    $response->addCommand(new OpenModalDialogCommand($this->t('Configure Required Context'), $content, array('width' => '700')));
+    $response->addCommand(new OpenModalDialogCommand($this->t('Configure Required Context'), $content, ['width' => '700']));
     return $response;
   }
 
@@ -154,7 +154,7 @@ class PasswordPolicyConstraintForm extends FormBase {
   public function renderRows($cached_values) {
     /** @var \Drupal\password_policy\Entity\PasswordPolicy $policy */
     $policy = $cached_values['password_policy'];
-    $configured_conditions = array();
+    $configured_conditions = [];
     foreach ($policy->getConstraints() as $row => $constraint) {
       /** @var \Drupal\password_policy\PasswordConstraintInterface $instance */
       $instance = $this->manager->createInstance($constraint['id'], $constraint);
@@ -162,18 +162,18 @@ class PasswordPolicyConstraintForm extends FormBase {
       $operations = $this->getOperations('entity.password_policy.constraint',
         ['machine_name' => $cached_values['id'], 'constraint_id' => $row]);
 
-      $build = array(
+      $build = [
         '#type' => 'operations',
         '#links' => $operations,
-      );
+      ];
 
-      $configured_conditions[] = array(
+      $configured_conditions[] = [
         'plugin_id' => $instance->getPluginId(),
         'summary' => $instance->getSummary(),
         'operations' => [
           'data' => $build,
         ],
-      );
+      ];
     }
     return $configured_conditions;
   }
@@ -189,37 +189,37 @@ class PasswordPolicyConstraintForm extends FormBase {
    * @return array
    *   Set of operations associated with a constraint.
    */
-  protected function getOperations($route_name_base, array $route_parameters = array()) {
+  protected function getOperations($route_name_base, array $route_parameters = []) {
     $edit_url = new Url($route_name_base . '.edit', $route_parameters);
     $route_parameters['id'] = $route_parameters['constraint_id'];
     unset($route_parameters['constraint_id']);
     $delete_url = new Url($route_name_base . '.delete', $route_parameters);
     $operations = [];
 
-    $operations['edit'] = array(
+    $operations['edit'] = [
       'title' => $this->t('Edit'),
       'url' => $edit_url,
       'weight' => 10,
-      'attributes' => array(
-        'class' => array('use-ajax'),
+      'attributes' => [
+        'class' => ['use-ajax'],
         'data-dialog-type' => 'modal',
         'data-dialog-options' => Json::encode([
           'width' => 700,
         ]),
-      ),
-    );
-    $operations['delete'] = array(
+      ],
+    ];
+    $operations['delete'] = [
       'title' => $this->t('Delete'),
       'url' => $delete_url,
       'weight' => 100,
-      'attributes' => array(
-        'class' => array('use-ajax'),
+      'attributes' => [
+        'class' => ['use-ajax'],
         'data-dialog-type' => 'modal',
         'data-dialog-options' => Json::encode([
           'width' => 700,
         ]),
-      ),
-    );
+      ],
+    ];
     return $operations;
   }
 

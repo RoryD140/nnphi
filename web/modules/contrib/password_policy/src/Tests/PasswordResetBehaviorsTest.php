@@ -131,12 +131,12 @@ class PasswordResetBehaviorsTest extends WebTestBase {
     // Workaround for webtest sometimes returning an extra leading value in the
     // route base path.  Does not seem to ever happen on local testing, only on
     // Jenkins simpletest runner. E.g. /checkout/user, not /user.
-    $user_edit_url = $user2->toUrl('edit-form')->toString();
-    $pos = strpos($user_edit_url, '/user');
+    $current_url = urldecode($this->getUrl());
+    $pos = strpos($current_url, '/user');
     if ($pos !== 0) {
-      $user_edit_url = substr($user_edit_url, $pos);
+      $current_url = substr($current_url, $pos);
     }
-    $this->assertEqual($user_edit_url, '/user/' . $user2->id() . '/edit', "User should be sent back to their account form instead of the node");
+    $this->assertEqual($current_url, '/user/' . $user2->id() . '/edit', "User should be sent back to their account form instead of the node");
 
     // Change password.
     $this->drupalGet("user/" . $user2->id() . "/edit");
@@ -155,12 +155,12 @@ class PasswordResetBehaviorsTest extends WebTestBase {
     // Workaround for webtest sometimes returning an extra leading value in the
     // route base path.  Does not seem to ever happen on local testing, only on
     // Jenkins simpletest runner.  E.g. /checkout/node, not /node.
-    $node_url = $node->toUrl()->toString();
-    $pos = strpos($node_url, '/node');
+    $current_url = urldecode($this->getUrl());
+    $pos = strpos($current_url, '/node');
     if ($pos !== 0) {
-      $node_url = substr($node_url, $pos);
+      $current_url = substr($current_url, $pos);
     }
-    $this->assertEqual($node_url, '/node/' . $node->id(), "User should have access to the node now");
+    $this->assertEqual($current_url, '/node/' . $node->id(), "User should have access to the node now");
     $this->drupalLogout();
   }
 

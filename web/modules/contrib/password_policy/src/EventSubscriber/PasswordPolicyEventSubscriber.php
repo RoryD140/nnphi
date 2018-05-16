@@ -28,11 +28,11 @@ class PasswordPolicyEventSubscriber implements EventSubscriberInterface {
       $route_name = \Drupal::request()->attributes->get(RouteObjectInterface::ROUTE_NAME);
 
       // system/ajax.
-      $ignored_routes = array(
+      $ignored_routes = [
         'entity.user.edit_form',
         'system.ajax',
         'user.logout',
-      );
+      ];
 
       $user_expired = FALSE;
       if ($user->get('field_password_expiration')->get(0)) {
@@ -44,7 +44,7 @@ class PasswordPolicyEventSubscriber implements EventSubscriberInterface {
 
       // TODO - Consider excluding admins here.
       if ($user_expired and !in_array($route_name, $ignored_routes)) {
-        $url = new Url('entity.user.edit_form', array('user' => $user->id()));
+        $url = new Url('entity.user.edit_form', ['user' => $user->id()]);
         $url = $url->setAbsolute(TRUE)->toString();
         $event->setResponse(new RedirectResponse($url));
         drupal_set_message('Your password has expired, please update it', 'error');
@@ -57,7 +57,7 @@ class PasswordPolicyEventSubscriber implements EventSubscriberInterface {
    */
   static public function getSubscribedEvents() {
     // TODO - Evaluate if there is a better place to add this check.
-    $events[KernelEvents::REQUEST][] = array('checkForUserPasswordExpiration');
+    $events[KernelEvents::REQUEST][] = ['checkForUserPasswordExpiration'];
     return $events;
   }
 

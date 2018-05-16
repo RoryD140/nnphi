@@ -11,33 +11,33 @@ use Drupal\simpletest\WebTestBase;
  */
 class PasswordManualResetTest extends WebTestBase {
 
-  public static $modules = array('password_policy', 'node');
+  public static $modules = ['password_policy', 'node'];
 
   /**
    * Test manual password reset.
    */
   public function testManualPasswordReset() {
     // Create user with permission to create policy.
-    $user1 = $this->drupalCreateUser(array());
+    $user1 = $this->drupalCreateUser([]);
 
     // Create new admin user.
-    $user2 = $this->drupalCreateUser(array(
+    $user2 = $this->drupalCreateUser([
       'manage password reset',
       'administer users',
       'administer permissions',
-    ));
+    ]);
     $this->drupalLogin($user2);
 
     // Create new role.
-    $rid = $this->drupalCreateRole(array());
+    $rid = $this->drupalCreateRole([]);
 
     // Update user 1 by adding role.
-    $edit = array();
+    $edit = [];
     $edit['roles[' . $rid . ']'] = $rid;
     $this->drupalPostForm("user/" . $user1->id() . "/edit", $edit, t('Save'));
 
     // Force reset users of new role.
-    $edit = array();
+    $edit = [];
     $edit['roles[' . $rid . ']'] = $rid;
     $this->drupalPostForm("admin/config/security/password-policy/reset", $edit, t('Save'));
 
@@ -51,18 +51,18 @@ class PasswordManualResetTest extends WebTestBase {
    */
   public function testExcludeMyself() {
     // Create new admin user.
-    $user1 = $this->drupalCreateUser(array(
+    $user1 = $this->drupalCreateUser([
       'manage password reset',
       'administer users',
       'administer permissions',
-    ));
+    ]);
     $this->drupalLogin($user1);
 
     // Create new role.
-    $rid = $this->drupalCreateRole(array());
+    $rid = $this->drupalCreateRole([]);
 
     // Update user 1 by adding role.
-    $edit = array();
+    $edit = [];
     $edit['roles[' . $rid . ']'] = $rid;
     $this->drupalPostForm("user/" . $user1->id() . "/edit", $edit, t('Save'));
 
