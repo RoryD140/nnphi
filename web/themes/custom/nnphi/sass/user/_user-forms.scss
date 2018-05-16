@@ -444,3 +444,12 @@ select {
   background-color: $gray-light;
   margin-bottom: 1rem;
 }
+
+// User password reset page
+.page-user-reset form.user-pass-reset {
+  @extend .container;
+  .form-submit {
+    @extend .btn;
+    @extend .btn-primary;
+  }
+}
