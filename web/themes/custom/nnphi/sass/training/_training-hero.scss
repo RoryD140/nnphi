@@ -8,6 +8,9 @@
   @include media-breakpoint-down(sm) {
     background-position: 50% 26rem;
   }
+  @include media-breakpoint-down(xs) {
+    background-position: 50% 30rem;
+  }
 }
 
 .training-hero.hero h1 {
