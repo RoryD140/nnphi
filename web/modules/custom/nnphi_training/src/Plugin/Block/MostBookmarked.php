@@ -72,7 +72,7 @@ class MostBookmarked extends BlockBase implements ContainerFactoryPluginInterfac
       '#type' => 'html_tag',
       '#tag' => 'h2',
       '#attributes' => ['class' => ['training-subtitle']],
-      '#value' => $this->t('Most Bookmarked Trainings'),
+      '#value' => $this->t('Most Bookmarked Training'),
     ];
 
     $build['nodes'] = [

@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * @Block(
  *   id = "user_new_trainings",
- *   admin_label = @Translation("New trainings"),
+ *   admin_label = @Translation("New training"),
  *   category = @Translation("User"),
  *   context = {
  *   "user" = @ContextDefinition("entity:user", label = @Translation("User"))

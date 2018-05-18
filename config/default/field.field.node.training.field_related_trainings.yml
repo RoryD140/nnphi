@@ -9,7 +9,7 @@ id: node.training.field_related_trainings
 field_name: field_related_trainings
 entity_type: node
 bundle: training
-label: 'Related Trainings'
+label: 'Related Training'
 description: ''
 required: false
 translatable: false

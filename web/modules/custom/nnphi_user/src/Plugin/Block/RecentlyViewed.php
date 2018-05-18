@@ -71,7 +71,7 @@ class RecentlyViewed extends BlockBase implements ContainerFactoryPluginInterfac
     if (empty($result)) {
       $build['empty'] = [
         '#type' => 'markup',
-        '#markup' => $this->t('You have not viewed any trainings recently.'),
+        '#markup' => $this->t('You have not viewed any training recently.'),
       ];
 
       return $build;
@@ -95,7 +95,7 @@ class RecentlyViewed extends BlockBase implements ContainerFactoryPluginInterfac
       '#type' => 'html_tag',
       '#tag' => 'h2',
       '#attributes' => ['class' => ['training-subtitle']],
-      '#value' => $this->t('Recently Viewed Trainings'),
+      '#value' => $this->t('Recently Viewed Training'),
     ];
 
     $build['nodes'] = [

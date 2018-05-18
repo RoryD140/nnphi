@@ -108,7 +108,7 @@ class BookmarkFolderViewBuilder extends EntityViewBuilder {
         ->applyTo($build);
     }
     $build['breadcrumbs'] = [
-      '#title' => $this->t('Bookmarked Trainings'),
+      '#title' => $this->t('Bookmarked Training'),
       '#type' => 'link',
       '#url' => Url::fromRoute('nnphi_bookmark.user_list', ['user' => $user_id]),
       '#prefix' => '<div class="breadcrumbs">',
@@ -144,7 +144,7 @@ class BookmarkFolderViewBuilder extends EntityViewBuilder {
   protected function getEmptyContent() {
     return [
       '#type' => 'markup',
-      '#markup' => $this->t('You have not saved any trainings in this folder.'),
+      '#markup' => $this->t('You have not saved any training in this folder.'),
     ];
   }
 

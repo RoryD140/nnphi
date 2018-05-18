@@ -61,7 +61,7 @@ class TrainingSuggestions extends ControllerBase {
   protected function emptyContent() {
     return [
       '#type' => 'markup',
-      '#markup' => '<p>' . $this->t('There are no suggested trainings available. Please check back again later.') . '</p>',
+      '#markup' => '<p>' . $this->t('There is no suggested training available. Please check back again later.') . '</p>',
     ];
   }
 }
