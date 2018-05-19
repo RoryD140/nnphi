@@ -234,7 +234,7 @@ function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayIn
         $email_body .= $abs_url->toString();
         $email_body .= '%0D%0A';
         $email_body .= '%0D%0A';
-        $email_body.= t('To find more quality online trainings, visit ');
+        $email_body.= t('To find more quality online training, visit ');
         $email_body.= URL::fromRoute('<front>', [], ['absolute' => TRUE])->toString();
         $email_body.= '.';
         $build['email_body']['#markup'] = $email_body;

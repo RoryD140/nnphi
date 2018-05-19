@@ -47,7 +47,7 @@ function nnphi_user_preprocess_page(&$variables) {
   } elseif($route === 'user.pass') {
     $variables['custom_title'] = t('Reset Your Password');
   } elseif ($route === 'nnphi_user.suggestions') {
-    $variables['custom_title'] = t('Suggested Trainings');
+    $variables['custom_title'] = t('Suggested Training');
   } elseif ($route === 'nnphi_bookmark.user_list') {
     $variables['custom_title'] = t('Bookmarks');
   } elseif ($route === 'entity.user.canonical') {

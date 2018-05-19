@@ -6,7 +6,7 @@
         $bookmark.remove();
         var $bookmarks_wrapper = $('.training-bookmarks');
         if ($bookmarks_wrapper.html().length < 1) {
-          $bookmarks_wrapper.html(Drupal.t('You have not bookmarked any trainings.'));
+          $bookmarks_wrapper.html(Drupal.t('You have not bookmarked any training.'));
         }
       }
     }

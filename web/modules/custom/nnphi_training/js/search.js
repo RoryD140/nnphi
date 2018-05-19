@@ -31,7 +31,7 @@
         search.addWidget(
           instantsearch.widgets.searchBox({
             container: '#search-box',
-            placeholder: Drupal.t('Search for trainings')
+            placeholder: Drupal.t('Search for training')
           })
         );
 

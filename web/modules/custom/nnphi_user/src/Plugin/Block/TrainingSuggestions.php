@@ -131,7 +131,7 @@ class TrainingSuggestions extends BlockBase implements ContainerFactoryPluginInt
     ];
 
     $empty['link'] = [
-      '#title' => $this->t('Complete your profile to view selected trainings'),
+      '#title' => $this->t('Complete your profile to view selected training'),
       '#type' => 'link',
       '#attributes' => [
         'class' => ['btn', 'btn-outline-primary', 'btn-sm'],
@@ -169,7 +169,7 @@ class TrainingSuggestions extends BlockBase implements ContainerFactoryPluginInt
   protected function emptyContent(AccountInterface $account) {
     return [
       '#type' => 'markup',
-      '#markup' => '<p>' . $this->t('There are no suggested trainings available. Please check back again later.') . '</p>',
+      '#markup' => '<p>' . $this->t('There is no suggested training available. Please check back again later.') . '</p>',
     ];
   }
 }

@@ -2,7 +2,7 @@ nnphi_user.suggestions:
   path: '/user/{user}/training-suggestions'
   defaults:
     _controller: '\Drupal\nnphi_user\Controller\TrainingSuggestions::user'
-    _title: 'Suggested Trainings'
+    _title: 'Suggested Training'
   requirements:
     _permission: 'access content'
 

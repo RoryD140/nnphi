@@ -74,7 +74,7 @@ class NewPopular extends BlockBase implements ContainerFactoryPluginInterface {
       ],
       'header' => [
         '#type' => 'markup',
-        '#markup' => '<h3>' . $this->t('New Trainings') . '</h3><div class="training-vert-slider">',
+        '#markup' => '<h3>' . $this->t('New Training') . '</h3><div class="training-vert-slider">',
       ],
       'nodes' => $this->getNewTrainings(),
       'wrapper-close' => [
@@ -89,7 +89,7 @@ class NewPopular extends BlockBase implements ContainerFactoryPluginInterface {
       ],
       'header' => [
         '#type' => 'markup',
-        '#markup' => '<h3>' . $this->t('Popular Trainings') . '</h3><div class="training-vert-slider">',
+        '#markup' => '<h3>' . $this->t('Popular Training') . '</h3><div class="training-vert-slider">',
       ],
       'nodes' => $this->getPopularTrainings(),
       'wrapper-close' => [
