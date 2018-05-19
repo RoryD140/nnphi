@@ -1,15 +1,15 @@
 .background-block {
   background-color: $green-dark;
-  padding-bottom: $padding-lg;
+  padding-bottom: $padding-md;
 }
 
 .background-block  h2.field-steps-block-title {
-  padding-top: $padding-lg;
+  padding-top: $padding-md;
 }
 
 .background-block .body {
   @extend .container;
-  margin: 0 auto $padding-lg auto;
+  margin: 0 auto $padding-sm auto;
   text-align: center;
   color: #fff;
 }

@@ -9,7 +9,7 @@
     background-position: 50% 26rem;
   }
   @include media-breakpoint-down(xs) {
-    background-position: 50% 30rem;
+    background: none;
   }
 }
 

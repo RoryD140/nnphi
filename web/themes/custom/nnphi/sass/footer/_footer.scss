@@ -39,10 +39,17 @@
   @extend .col-md-2;
 }
 
+.footer-right a {
+  @include media-breakpoint-down(md) {
+    display: flex;
+  }
+}
+
 .footer-right img {
   margin-bottom: $padding-sm;
   @include media-breakpoint-down(md) {
     max-width: 180px; // Ensure that logos are same size
+    width: 180px;
   }
 }
 
