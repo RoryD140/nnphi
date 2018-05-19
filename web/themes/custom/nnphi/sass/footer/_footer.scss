@@ -42,6 +42,7 @@
 .footer-right a {
   @include media-breakpoint-down(md) {
     display: flex;
+    align-items: flex-start;
   }
 }
 
