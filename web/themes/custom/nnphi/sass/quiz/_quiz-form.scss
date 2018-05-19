@@ -10,6 +10,11 @@
 
 .block-random-quiz h2 {
   @extend %section-title-h2;
+  margin-top: 0;
+}
+
+.block-random-quiz.block-random-quiz h2 {
+  padding-top: 0;
 }
 
 .block-random-quiz.white-bg h2 {
