@@ -173,3 +173,35 @@ handlers:
       return_path: ''
       sender_mail: ''
       sender_name: ''
+  email_1:
+    id: email
+    label: 'Response Email'
+    handler_id: email_1
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:email:raw]'
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: default
+      from_options: {  }
+      from_name: default
+      subject: 'Thank You for Your Interest in Becoming a Learning Navigator Reviewer.'
+      body: "<p>Dear Colleague,</p>\n\n<p>We thank you for your interest in becoming a Learning Navigator reviewer. Reviewers are essential to ensuring that the public health workforce has access to quality training. We will be in touch in touch to invite you to participate in upcoming review cycle opportunities. In the meantime, you can learn more by visiting the Reviewer Portal.</p>\n\n<p>Your partner in quality learning,</p>\n\n<p>The Public Heath Learning Navigator Team</p>\n\n<p><a href=\"https://www.phlearningnavigator.org/\">www.phlearningnavigator.org</a><br />\n<a href=\"mailto:training@nnphi.org\">training@nnphi.org</a></p>"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
