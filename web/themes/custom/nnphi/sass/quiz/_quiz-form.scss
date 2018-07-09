@@ -62,18 +62,44 @@
 .micro-assessment-form .form-item-choice {
   margin-bottom: $padding-sm;
   display: inline-flex;
-  align-items: flex-start;
+  align-items: center;
   text-align: left;
   padding-right: $padding-sm;
+  position: relative;
   &:last-child {
     padding-right: 0;
   }
   .custom-radio {
     margin: 0 $padding-sm 0 0;
   }
+  // Labels are what's actually being clicked on, but because of the markup the radio-target
+  // needs the styling
   label {
-    margin: 0;
+    // margin/padding ensures this covers the whole area we want clicked
+    // 30px is width of the pseudo checkmark & padding
+    margin: 0 0 0 -30px;
+    padding-left: 30px;
+    width: 100%;
+    position: relative;
+    z-index: 999;
+    &:hover {
+      cursor: pointer;
+    }
   }
+
+  .radio-target:before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -5px;
+    right: 0;
+    bottom: -2px;
+  }
+}
+
+.micro-assessment-form .form-radio:checked+span.radio-target:before {
+  border: solid 1px $green;
+  border-radius: $border-radius;
 }
 
 .block-random-quiz.gradient-bg .micro-assessment-form .form-item-choice label {
