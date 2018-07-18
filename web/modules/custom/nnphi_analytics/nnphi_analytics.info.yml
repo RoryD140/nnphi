@@ -1,0 +1,7 @@
+name: 'NNPHI Analytics'
+type: module
+description: 'Custom Google Analytics functions for NNPHI'
+core: 8.x
+package: 'Custom'
+dependencies:
+  - google_analytics

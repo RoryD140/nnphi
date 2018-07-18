@@ -1,0 +1,35 @@
+webform-analytics:
+  version: VERSION
+  js:
+    js/webform-analytics.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+
+training-analytics:
+  version: VERSION
+  js:
+    js/training-analytics.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+
+quiz-analytics:
+  version: VERSION
+  js:
+    js/quiz-analytics.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+
+training-search-analytics:
+  version: VERSION
+  js:
+    js/training-search-analytics.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once

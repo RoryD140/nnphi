@@ -145,14 +145,16 @@ class MicroAssessmentForm extends FormBase {
       '@url' => $content->toUrl()->toString(),
     ];
     if ($this->choiceIsCorrect($choice, $node)) {
+      $correct_class= 'quiz-correct-answer';
       $message = t('Right answer! Learn more <a href="@url">here.</a>', $t_args);
     }
     else {
+      $correct_class= 'quiz-incorrect-answer';
       $message = t("Sorry! That's not the right answer. Learn more <a href='@url'>here.</a>", $t_args);
     }
     return [
       '#type' => 'inline_template',
-      '#template' => '<span class="result-message">' . $message . '</span>',
+      '#template' => '<span class="result-message ' . $correct_class . '">' . $message . '</span>',
     ];
   }
 
