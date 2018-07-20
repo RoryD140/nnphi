@@ -100,6 +100,7 @@ class ComposerStaticInit1fbc8e18dabf8b3b55590abd199b9e85
         'L' => 
         array (
             'League\\OAuth2\\Client\\' => 21,
+            'League\\Csv\\' => 11,
         ),
         'I' => 
         array (
@@ -355,6 +356,10 @@ class ComposerStaticInit1fbc8e18dabf8b3b55590abd199b9e85
             1 => __DIR__ . '/..' . '/league/oauth2-facebook/src',
             2 => __DIR__ . '/..' . '/league/oauth2-google/src',
             3 => __DIR__ . '/..' . '/league/oauth2-linkedin/src',
+        ),
+        'League\\Csv\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/csv/src',
         ),
         'Interop\\Container\\' => 
         array (
@@ -4090,6 +4095,20 @@ class ComposerStaticInit1fbc8e18dabf8b3b55590abd199b9e85
         'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/ConsoleColor.php',
         'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/InvalidStyleException.php',
         'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/JakubOnderka/PhpConsoleHighlighter/Highlighter.php',
+        'League\\Csv\\AbstractCsv' => __DIR__ . '/..' . '/league/csv/src/AbstractCsv.php',
+        'League\\Csv\\Config\\Controls' => __DIR__ . '/..' . '/league/csv/src/Config/Controls.php',
+        'League\\Csv\\Config\\Output' => __DIR__ . '/..' . '/league/csv/src/Config/Output.php',
+        'League\\Csv\\Exception\\InvalidRowException' => __DIR__ . '/..' . '/league/csv/src/Exception/InvalidRowException.php',
+        'League\\Csv\\Modifier\\MapIterator' => __DIR__ . '/..' . '/league/csv/src/Modifier/MapIterator.php',
+        'League\\Csv\\Modifier\\QueryFilter' => __DIR__ . '/..' . '/league/csv/src/Modifier/QueryFilter.php',
+        'League\\Csv\\Modifier\\RowFilter' => __DIR__ . '/..' . '/league/csv/src/Modifier/RowFilter.php',
+        'League\\Csv\\Modifier\\StreamFilter' => __DIR__ . '/..' . '/league/csv/src/Modifier/StreamFilter.php',
+        'League\\Csv\\Modifier\\StreamIterator' => __DIR__ . '/..' . '/league/csv/src/Modifier/StreamIterator.php',
+        'League\\Csv\\Plugin\\ColumnConsistencyValidator' => __DIR__ . '/..' . '/league/csv/src/Plugin/ColumnConsistencyValidator.php',
+        'League\\Csv\\Plugin\\ForbiddenNullValuesValidator' => __DIR__ . '/..' . '/league/csv/src/Plugin/ForbiddenNullValuesValidator.php',
+        'League\\Csv\\Plugin\\SkipNullValuesFormatter' => __DIR__ . '/..' . '/league/csv/src/Plugin/SkipNullValuesFormatter.php',
+        'League\\Csv\\Reader' => __DIR__ . '/..' . '/league/csv/src/Reader.php',
+        'League\\Csv\\Writer' => __DIR__ . '/..' . '/league/csv/src/Writer.php',
         'League\\OAuth2\\Client\\Exception\\HostedDomainException' => __DIR__ . '/..' . '/league/oauth2-google/src/Exception/HostedDomainException.php',
         'League\\OAuth2\\Client\\Grant\\AbstractGrant' => __DIR__ . '/..' . '/league/oauth2-client/src/Grant/AbstractGrant.php',
         'League\\OAuth2\\Client\\Grant\\AuthorizationCode' => __DIR__ . '/..' . '/league/oauth2-client/src/Grant/AuthorizationCode.php',

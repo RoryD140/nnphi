@@ -66,6 +66,7 @@
     "drupal/social_auth_linkedin": "2.0-beta1",
     "drupal/token": "1.0",
     "drupal/video_embed_field": "2.0",
+    "drupal/views_data_export": "1.0-beta1",
     "drupal/votingapi": "3.0-alpha2",
     "drupal/webform": "5.0-rc11",
     "drupal/xmlsitemap": "1.x.dev",
@@ -160,6 +161,9 @@
       },
       "drupal/change_pwd_page" : {
         "Fix password reset links": "patches/contrib/change_pwd_page/reset-pw-route.patch"
+      },
+      "drupal/views_data_export": {
+        "Enable batch export" : "https://www.drupal.org/files/issues/2789531-116.patch"
       }
     }
   },

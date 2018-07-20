@@ -19,6 +19,7 @@ module:
   contact: 0
   contextual: 0
   cshs: 0
+  csv_serialization: 0
   ctools: 0
   ctools_block: 0
   datetime: 0
@@ -71,8 +72,10 @@ module:
   path: 0
   pathauto: 0
   rdf: 0
+  rest: 0
   search_api: 0
   search_api_algolia: 0
+  serialization: 0
   shortcut: 0
   smart_trim: 0
   social_api: 0
@@ -89,6 +92,7 @@ module:
   user: 0
   video_embed_field: 0
   video_embed_media: 0
+  views_data_export: 0
   votingapi: 0
   webform: 0
   webform_ui: 0
