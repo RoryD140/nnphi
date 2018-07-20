@@ -7,5 +7,8 @@ _core:
 id: global
 label: Global
 tags:
-  canonical_url: '[current-page:url]'
   title: '[current-page:title] | [site:name]'
+  canonical_url: '[current-page:url]'
+  og_image_height: 540px
+  og_image_width: 980px
+  og_image: '[site:url]sites/default/files/2018-07/quality-seal-share.png'

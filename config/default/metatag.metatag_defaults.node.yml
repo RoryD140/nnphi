@@ -10,9 +10,11 @@ tags:
   title: '[node:title] | [site:name]'
   canonical_url: '[node:url]'
   description: '[node:summary][node:field_training_description:summary][node:body]'
-  og_type: Training
-  og_image: '[site:url]/themes/custom/nnphi/images/phln-logo.png'
-  og_url: '[node:url]'
-  og_description: "[node:field_training_description]\t"
   og_site_name: '[site:name]'
+  og_image_height: 540px
+  og_type: Training
   og_title: '[node:title]'
+  og_image_width: 980px
+  og_image: '[site:url]sites/default/files/2018-07/quality-seal-share.png'
+  og_description: "[node:field_training_description]\t"
+  og_url: '[node:url]'
