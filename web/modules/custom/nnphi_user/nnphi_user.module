@@ -377,3 +377,22 @@ function nnphi_user_user_logout($account) {
   $time = \Drupal::service('datetime.time')->getRequestTime();
   \Drupal::service('user.data')->set('nnphi_user', $account->id(), \Drupal\nnphi_user\Plugin\Block\NewTrainings::USER_DATA_KEY, $time);
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function nnphi_user_preprocess_views_view(&$variables)
+{
+
+  // Moves feed icon to top of view if present
+  if($variables['id'] === 'user_admin_people' && !isset($variables['feed_icons'])) {
+    return;
+  }
+
+  // This bit of ugliness creates a button out of the feed icon
+  // We're doing it this way instead of using the #link render element because the link element requires a URL object,
+  // And the feed icon as it stands just has a string URL.
+  $variables['header']['download_icon']['#markup'] = '<a href="' . $variables['feed_icons'][0]['#url'] .'" class="button button--primary button--small">' . t('Download User List') . '</a>';
+  unset($variables['feed_icons']);
+
+}
