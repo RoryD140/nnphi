@@ -54,6 +54,7 @@ return array(
     'PhpParser\\' => array($vendorDir . '/nikic/php-parser/lib/PhpParser'),
     'Masterminds\\' => array($vendorDir . '/masterminds/html5/src'),
     'League\\OAuth2\\Client\\' => array($vendorDir . '/league/oauth2-client/src', $vendorDir . '/league/oauth2-facebook/src', $vendorDir . '/league/oauth2-google/src', $vendorDir . '/league/oauth2-linkedin/src'),
+    'League\\Csv\\' => array($vendorDir . '/league/csv/src'),
     'Interop\\Container\\' => array($vendorDir . '/container-interop/container-interop/src/Interop/Container'),
     'IndefiniteArticle\\' => array($vendorDir . '/zachflower/indefinite-article/src'),
     'Http\\Promise\\' => array($vendorDir . '/php-http/promise/src'),
