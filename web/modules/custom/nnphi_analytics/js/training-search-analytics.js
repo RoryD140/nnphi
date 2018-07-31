@@ -13,6 +13,15 @@ if(typeof ga !== 'undefined') {
             eventLabel: $('.training-search-input', this).val()
           });
         });
+        // Form on actual search page
+        $('.ais-search-box .ais-search-box--input').once('training-on-page-search').blur(function () {
+          ga('send', {
+            hitType: 'event',
+            eventCategory: 'Search Term Entered',
+            eventAction: 'click',
+            eventLabel: $(this).val()
+          });
+        });
       }
     };
   })(jQuery, Drupal, ga);
