@@ -6,12 +6,20 @@ dependencies:
     - field.storage.node.field_training_objectives
     - node.type.training
   module:
+    - allowed_formats
     - text
+third_party_settings:
+  allowed_formats:
+    full_html: '0'
+    basic_html: '0'
+    restricted_html: '0'
+    review: '0'
+    plain_text: '0'
 id: node.training.field_training_objectives
 field_name: field_training_objectives
 entity_type: node
 bundle: training
-label: 'Learning Objectives'
+label: 'What You''ll Learn'
 description: ''
 required: false
 translatable: false

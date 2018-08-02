@@ -289,6 +289,8 @@ function nnphi_training_form_node_form_alter(&$form, \Drupal\Core\Form\FormState
     // Remove the JS that hides the summary.
     $attached = array_search('text/drupal.text', $form['field_training_description']['widget'][0]['summary']['#attached']['library']);
     unset($form['field_training_description']['widget'][0]['summary']['#attached']['library'][$attached]);
+  // Re-name "what you'll learn" in the form.
+  $form['field_training_objectives']['widget'][0]['#title'] = t("What You'll Learn (Learning objectives)");
 }
 
 

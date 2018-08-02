@@ -10,7 +10,7 @@ id: node.training.field_training_occupations
 field_name: field_training_occupations
 entity_type: node
 bundle: training
-label: 'Occupation or Community Practice Terms'
+label: 'Related Occupations'
 description: 'Occupations or community practice'
 required: false
 translatable: false
