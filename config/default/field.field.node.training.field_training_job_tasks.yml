@@ -10,7 +10,7 @@ id: node.training.field_training_job_tasks
 field_name: field_training_job_tasks
 entity_type: node
 bundle: training
-label: 'Specific Job Task Terms'
+label: 'Related Job Tasks'
 description: ''
 required: false
 translatable: false
