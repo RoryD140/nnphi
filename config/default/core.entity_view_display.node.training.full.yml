@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_display.comment.training_review.default
     - core.entity_view_mode.node.full
+    - field.field.node.training.field_metatags
     - field.field.node.training.field_related_trainings
     - field.field.node.training.field_training_access_difficulty
     - field.field.node.training.field_training_categories
@@ -14,6 +15,7 @@ dependencies:
     - field.field.node.training.field_training_course_type
     - field.field.node.training.field_training_description
     - field.field.node.training.field_training_expiration
+    - field.field.node.training.field_training_expiration_date
     - field.field.node.training.field_training_instructor
     - field.field.node.training.field_training_job_tasks
     - field.field.node.training.field_training_level
@@ -59,7 +61,7 @@ content:
     region: content
   field_training_access_difficulty:
     type: list_default
-    weight: 26
+    weight: 23
     region: content
     label: above
     settings: {  }
@@ -106,15 +108,15 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
-  field_training_expiration:
+  field_training_expiration_date:
+    type: datetime_default
     weight: 12
+    region: content
     label: hidden
     settings:
       timezone_override: ''
       format_type: training_date
     third_party_settings: {  }
-    type: datetime_default
-    region: content
   field_training_instructor:
     type: entity_reference_revisions_entity_view
     weight: 5
@@ -172,7 +174,7 @@ content:
     third_party_settings: {  }
   field_training_review_overall:
     type: ratings_field_formatter
-    weight: 23
+    weight: 22
     region: content
     label: above
     settings: {  }
@@ -250,4 +252,6 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_metatags: true
   field_training_categories: true
+  field_training_expiration: true
