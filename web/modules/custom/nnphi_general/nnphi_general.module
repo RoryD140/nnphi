@@ -12,6 +12,7 @@ use \Drupal\panels\Plugin\DisplayVariant\PanelsDisplayVariant;
 use \Drupal\Core\Render\Element\StatusMessages;
 use Drupal\Core\Database\Query\AlterableInterface;
 use Drupal\block\Entity\Block;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_ENTITY_TYPE_view().
@@ -173,5 +174,15 @@ function nnphi_general_theme_suggestions_menu_alter(array &$suggestions, array $
     $block = Block::load($hook);
     $region = $block->getRegion();
     $suggestions[] = $variables['theme_hook_original'] . '__' . $region . '__' . $hook;
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function nnphi_general_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Add honeypot protection to all Webforms.
+  if (isset($form['#webform_id'])) {
+    honeypot_add_form_protection($form, $form_state, ['honeypot']);
   }
 }
