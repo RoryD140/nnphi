@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.mini
+    - field.field.node.training.field_metatags
     - field.field.node.training.field_related_trainings
     - field.field.node.training.field_training_access_difficulty
     - field.field.node.training.field_training_categories
@@ -13,6 +14,7 @@ dependencies:
     - field.field.node.training.field_training_course_type
     - field.field.node.training.field_training_description
     - field.field.node.training.field_training_expiration
+    - field.field.node.training.field_training_expiration_date
     - field.field.node.training.field_training_instructor
     - field.field.node.training.field_training_job_tasks
     - field.field.node.training.field_training_level
@@ -97,15 +99,15 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
-  field_training_expiration:
+  field_training_expiration_date:
+    type: datetime_default
     weight: 10
+    region: content
     label: above
     settings:
       format_type: medium
       timezone_override: ''
     third_party_settings: {  }
-    type: datetime_default
-    region: content
   field_training_instructor:
     type: entity_reference_revisions_entity_view
     weight: 4
@@ -139,7 +141,7 @@ content:
     type: text_default
     region: content
   field_training_occupations:
-    weight: 18
+    weight: 16
     label: hidden
     settings:
       link: false
@@ -147,7 +149,7 @@ content:
     type: entity_reference_label
     region: content
   field_training_proficiency:
-    weight: 20
+    weight: 18
     label: hidden
     settings:
       link: false
@@ -156,13 +158,13 @@ content:
     region: content
   field_training_review_overall:
     type: ratings_field_formatter
-    weight: 21
+    weight: 19
     region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
   field_training_source:
-    weight: 19
+    weight: 17
     label: hidden
     settings:
       link: false
@@ -215,8 +217,10 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_metatags: true
   field_training_access_difficulty: true
   field_training_categories: true
+  field_training_expiration: true
   field_training_review_content: true
   field_training_reviews: true
   review_login_message: true

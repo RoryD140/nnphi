@@ -102,8 +102,8 @@
           <div class="training-details-dates">
             {# <nobr> keeps hyphenated dates from line breaking at hyphens #}
             <div>{{ 'Date Added to Navigator'|t }} <span><nobr>{{  node.getCreatedTime()|format_date('training_date') }}</nobr></span></div>
-            {% if content.field_training_expiration|render %}
-              <div>{{ 'Expires'|t }} <span>{{ content.field_training_expiration }}</span></div>
+            {% if content.field_training_expiration_date|render %}
+              <div>{{ 'Expires'|t }} <span>{{ content.field_training_expiration_date }}</span></div>
             {% endif %}
           </div>
           {% if content.field_training_state|render %}

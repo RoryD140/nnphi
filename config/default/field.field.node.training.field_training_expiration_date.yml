@@ -1,0 +1,21 @@
+uuid: 6cf74095-30b9-42fc-a1ee-17c4f6f257b7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_training_expiration_date
+    - node.type.training
+  module:
+    - datetime
+id: node.training.field_training_expiration_date
+field_name: field_training_expiration_date
+entity_type: node
+bundle: training
+label: Expiration
+description: 'Date for archiving the Training or scheduling it for review'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

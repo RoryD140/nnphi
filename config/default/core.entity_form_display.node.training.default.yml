@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.training.field_training_course_type
     - field.field.node.training.field_training_description
     - field.field.node.training.field_training_expiration
+    - field.field.node.training.field_training_expiration_date
     - field.field.node.training.field_training_instructor
     - field.field.node.training.field_training_job_tasks
     - field.field.node.training.field_training_level
@@ -47,13 +48,13 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_metatags:
-    weight: 29
+    weight: 25
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
     region: content
   field_related_trainings:
-    weight: 22
+    weight: 20
     settings:
       match_operator: CONTAINS
       size: 60
@@ -62,19 +63,19 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_training_access_difficulty:
-    weight: 28
+    weight: 24
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_training_categories:
-    weight: 26
+    weight: 23
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_training_ceus_offered:
-    weight: 18
+    weight: 16
     settings:
       match_operator: CONTAINS
       size: 60
@@ -83,7 +84,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_training_competencies:
-    weight: 19
+    weight: 17
     settings:
       match_operator: CONTAINS
       size: 60
@@ -113,7 +114,7 @@ content:
     third_party_settings: {  }
     type: text_textarea_with_summary
     region: content
-  field_training_expiration:
+  field_training_expiration_date:
     weight: 11
     settings: {  }
     third_party_settings: {  }
@@ -132,7 +133,7 @@ content:
     third_party_settings: {  }
     region: content
   field_training_job_tasks:
-    weight: 20
+    weight: 18
     settings:
       match_operator: CONTAINS
       size: 60
@@ -141,7 +142,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_training_level:
-    weight: 16
+    weight: 14
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -155,7 +156,7 @@ content:
     type: text_textarea
     region: content
   field_training_occupations:
-    weight: 21
+    weight: 19
     settings:
       match_operator: CONTAINS
       size: 60
@@ -164,13 +165,13 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_training_proficiency:
-    weight: 17
+    weight: 15
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_training_reviews:
-    weight: 24
+    weight: 22
     settings: {  }
     third_party_settings: {  }
     type: comment_default
@@ -191,7 +192,7 @@ content:
     type: options_select
     region: content
   field_training_total_time:
-    weight: 15
+    weight: 13
     settings:
       placeholder: ''
     third_party_settings:
@@ -233,7 +234,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 23
+    weight: 21
     region: content
     third_party_settings: {  }
   title:
@@ -254,6 +255,7 @@ content:
     region: content
     third_party_settings: {  }
 hidden:
+  field_training_expiration: true
   field_training_review_content: true
   field_training_review_overall: true
   promote: true

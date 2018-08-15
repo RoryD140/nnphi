@@ -1,0 +1,20 @@
+uuid: e0916a1d-3919-44aa-a1bb-bf524a7cd289
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - node
+id: node.field_training_expiration_date
+field_name: field_training_expiration_date
+entity_type: node
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

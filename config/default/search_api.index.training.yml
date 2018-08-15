@@ -15,7 +15,7 @@ dependencies:
     - field.storage.node.field_training_level
     - field.storage.node.field_training_source
     - field.storage.node.field_training_review_overall
-    - field.storage.node.field_training_expiration
+    - field.storage.node.field_training_expiration_date
     - field.storage.node.field_training_total_time
     - field.storage.node.field_training_categories
     - search_api.server.algolia
@@ -318,11 +318,11 @@ field_settings:
   expiration:
     label: Expiration
     datasource_id: 'entity:node'
-    property_path: field_training_expiration
+    property_path: field_training_expiration_date
     type: date
     dependencies:
       config:
-        - field.storage.node.field_training_expiration
+        - field.storage.node.field_training_expiration_date
   length:
     label: Length
     datasource_id: 'entity:node'
