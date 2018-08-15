@@ -86,8 +86,8 @@
       {# From nnphi_training.module #}
       {{ content.subtitle }}
 
-      {% if content.field_training_expiration|render %}
-        <div class="training-node-preview-expires">{{ 'Expires'|t }} <span>{{ content.field_training_expiration }}</span></div>
+      {% if content.field_training_expiration_date|render %}
+        <div class="training-node-preview-expires">{{ 'Expires'|t }} <span>{{ content.field_training_expiration_date }}</span></div>
       {% endif %}
       {% if content.field_training_total_time|render %}
         <div class="training-node-preview-expires">{{ 'Length'|t }} <span>{{ content.field_training_total_time }}</span></div>
