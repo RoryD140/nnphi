@@ -385,7 +385,7 @@ function nnphi_user_preprocess_views_view(&$variables)
 {
 
   // Moves feed icon to top of view if present
-  if($variables['id'] === 'user_admin_people' && !isset($variables['feed_icons'])) {
+  if($variables['id'] !== 'user_admin_people' || !isset($variables['feed_icons'])) {
     return;
   }
 
