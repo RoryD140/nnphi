@@ -49,3 +49,18 @@
 .training-details .module-length > span {
   font-weight: $font-weight-bold;
 }
+
+.access-difficulty:hover .time-to-start-hover {
+  display: inline-block;
+}
+
+.time-to-start-hover {
+  display: none;
+  font-size: $font-size-sm;
+  position: absolute;
+  top: 105%;
+  background: $green;
+  color: #fff;
+  padding: $padding-sm;
+  z-index: 99;
+}
