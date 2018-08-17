@@ -82,7 +82,7 @@
     </div>
     <div class="training-node-teaser-top-right">
       {{ content.field_training_source }}
-      {{ node.getCreatedTime()|format_date('training_date') }}
+      {{ content.field_training_published_date }}
     </div>
     {% if content.field_training_expiration_date|render %}
       <div class="training-node-teaser-expires">{{ 'Expires'|t }} <span>{{ content.field_training_expiration_date }}</span></div>

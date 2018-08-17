@@ -12,7 +12,6 @@ dependencies:
     - field.field.node.training.field_training_cost
     - field.field.node.training.field_training_course_type
     - field.field.node.training.field_training_description
-    - field.field.node.training.field_training_expiration
     - field.field.node.training.field_training_expiration_date
     - field.field.node.training.field_training_instructor
     - field.field.node.training.field_training_job_tasks
@@ -20,6 +19,7 @@ dependencies:
     - field.field.node.training.field_training_objectives
     - field.field.node.training.field_training_occupations
     - field.field.node.training.field_training_proficiency
+    - field.field.node.training.field_training_published_date
     - field.field.node.training.field_training_review_overall
     - field.field.node.training.field_training_reviews
     - field.field.node.training.field_training_source
@@ -48,13 +48,13 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_metatags:
-    weight: 25
+    weight: 26
     settings: {  }
     third_party_settings: {  }
     type: metatag_firehose
     region: content
   field_related_trainings:
-    weight: 20
+    weight: 21
     settings:
       match_operator: CONTAINS
       size: 60
@@ -63,34 +63,28 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_training_access_difficulty:
-    weight: 24
+    weight: 25
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_training_categories:
-    weight: 23
+    weight: 24
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_training_ceus_offered:
-    weight: 16
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    weight: 17
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: content
   field_training_competencies:
-    weight: 17
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    weight: 18
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: content
   field_training_cost:
     weight: 5
@@ -115,7 +109,7 @@ content:
     type: text_textarea_with_summary
     region: content
   field_training_expiration_date:
-    weight: 11
+    weight: 12
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
@@ -133,22 +127,19 @@ content:
     third_party_settings: {  }
     region: content
   field_training_job_tasks:
-    weight: 18
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    weight: 19
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: content
   field_training_level:
-    weight: 14
+    weight: 15
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_training_objectives:
-    weight: 12
+    weight: 13
     settings:
       rows: 5
       placeholder: ''
@@ -156,22 +147,25 @@ content:
     type: text_textarea
     region: content
   field_training_occupations:
-    weight: 19
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
-  field_training_proficiency:
-    weight: 15
+    weight: 20
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
+  field_training_proficiency:
+    weight: 16
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_training_published_date:
+    weight: 11
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
   field_training_reviews:
-    weight: 22
+    weight: 23
     settings: {  }
     third_party_settings: {  }
     type: comment_default
@@ -192,7 +186,7 @@ content:
     type: options_select
     region: content
   field_training_total_time:
-    weight: 13
+    weight: 14
     settings:
       placeholder: ''
     third_party_settings:
@@ -234,7 +228,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 21
+    weight: 22
     region: content
     third_party_settings: {  }
   title:
@@ -255,7 +249,6 @@ content:
     region: content
     third_party_settings: {  }
 hidden:
-  field_training_expiration: true
   field_training_review_content: true
   field_training_review_overall: true
   promote: true

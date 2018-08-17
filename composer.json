@@ -71,7 +71,6 @@
     "drupal/votingapi": "3.0-alpha2",
     "drupal/webform": "5.0-rc11",
     "drupal/xmlsitemap": "1.x.dev",
-    "moment/moment": "^2.18",
     "snipe/banbuilder": "^2.2",
     "tristen/tablesort": "5.0.2",
     "webflo/drupal-core-strict": "8.5.6",

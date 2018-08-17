@@ -13,7 +13,6 @@ dependencies:
     - field.field.node.training.field_training_cost
     - field.field.node.training.field_training_course_type
     - field.field.node.training.field_training_description
-    - field.field.node.training.field_training_expiration
     - field.field.node.training.field_training_expiration_date
     - field.field.node.training.field_training_instructor
     - field.field.node.training.field_training_job_tasks
@@ -21,6 +20,7 @@ dependencies:
     - field.field.node.training.field_training_objectives
     - field.field.node.training.field_training_occupations
     - field.field.node.training.field_training_proficiency
+    - field.field.node.training.field_training_published_date
     - field.field.node.training.field_training_review_overall
     - field.field.node.training.field_training_reviews
     - field.field.node.training.field_training_source
@@ -123,15 +123,6 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
-  field_training_expiration:
-    weight: 12
-    label: hidden
-    settings:
-      timezone_override: ''
-      format_type: training_date
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
   field_training_expiration_date:
     weight: 32
     label: above
@@ -188,6 +179,15 @@ content:
       link: false
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
+  field_training_published_date:
+    weight: 33
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
     region: content
   field_training_review_content:
     weight: 25

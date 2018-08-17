@@ -34,11 +34,6 @@ autocomplete:
     - core/jquery.once
     - core/drupalSettings
 
-moment:
-  version: 2.18.1
-  js:
-    /libraries/moment/min/moment.min.js: {minified: true}
-
 training-page:
   version: VERSION
   js:

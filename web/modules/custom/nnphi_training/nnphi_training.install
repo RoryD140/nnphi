@@ -6,7 +6,9 @@
 /**
  * Delete all existing votes.
  */
-function nnphi_training_update_8000() {
+function nnphi_training_update_8001() {
+  // Returning to clear this incorrectly named update function.
+  return TRUE;
   // Delete all existing training reviews.
   /** @var \Drupal\comment\CommentInterface $comment */
   $comment_storage = \Drupal::entityTypeManager()->getStorage('comment');

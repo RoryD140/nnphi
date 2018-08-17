@@ -1,0 +1,21 @@
+uuid: 20cb559c-3fb1-41ca-8b47-22569d6819ae
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_training_published_date
+    - node.type.training
+  module:
+    - datetime
+id: node.training.field_training_published_date
+field_name: field_training_published_date
+entity_type: node
+bundle: training
+label: 'Published Date'
+description: 'Date to display this training was published.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

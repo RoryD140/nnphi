@@ -12,7 +12,7 @@ field_name: field_training_expiration_date
 entity_type: node
 bundle: training
 label: Expiration
-description: 'Date for archiving the Training or scheduling it for review'
+description: 'Date for archiving the Training or scheduling it for review. Leave this blank to set for 5 years after the training published date.'
 required: false
 translatable: false
 default_value: {  }
