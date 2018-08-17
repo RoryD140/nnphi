@@ -20,6 +20,7 @@ use Drupal\votingapi\VoteInterface;
 use Drupal\node\NodeInterface;
 use Drupal\Core\Mail\MailFormatHelper;
 use Drupal\smart_trim\Truncate\TruncateHTML;
+use Drupal\Core\Datetime\DrupalDateTime;
 
 /**
  * Implements hook_cron().
@@ -463,6 +464,23 @@ function nnphi_training_vote_update(VoteInterface $vote)
 }
 
 /**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function nnphi_training_node_presave(NodeInterface $node) {
+  if (!$node->getType() === 'training' ||
+    !$node->get('field_training_expiration_date')->isEmpty() ||
+    $node->get('field_training_published_date')->isEmpty()
+  ) {
+    return;
+  }
+  // Set the expiration date to the published date + 5 years.
+  /** @var DrupalDateTime $date */
+  $date = $node->field_training_published_date->date;
+  $date->modify('+5 years');
+  $node->set('field_training_expiration_date', $date->format('Y-m-d'));
+}
+
+/**
  * Combined callback for vote result updates/inserts.
  * @param \Drupal\votingapi\VoteInterface $vote
  *
@@ -547,7 +565,6 @@ function nnphi_training_theme($existing, $type, $theme, $path)
 function nnphi_training_preprocess_nnphi_training_search_page(&$variables)
 {
     $variables['#attached']['library'][] = 'nnphi_training/instant-search';
-    $variables['#attached']['library'][] = 'nnphi_training/moment';
     $variables['#attached']['drupalSettings']['trainingSearch'] = nnphi_training_search_js_settings();
 }
 
@@ -610,10 +627,19 @@ function nnphi_training_search_api_algolia_objects_alter(array &$objects, \Drupa
     // The instantsearch star widget only works with integers,
     // floor the rating value so "x stars & up" works correctly.
     foreach ($objects as &$object) {
-        if (!isset($object['overall_rating_facet_value'])) {
-            continue;
-        }
+      if (isset($object['overall_rating_facet_value'])) {
         $object['overall_rating_facet_value'] = floor($object['overall_rating_facet_value']);
+      }
+      if (isset($object['created'])) {
+        // Get the object's node.
+        /** @var NodeInterface $node */
+        $node = $items[$object['objectID']]->getOriginalObject()->getValue();
+        if ($node->hasField('field_training_published_date') && !$node->get('field_training_published_date')->isEmpty()) {
+          /** @var DrupalDateTime $date */
+          $date = $node->field_training_published_date->date;
+          $object['created_formatted'] = \Drupal::service('date.formatter')->format($date->getTimestamp(), 'training_date');
+        }
+      }
     }
 }
 

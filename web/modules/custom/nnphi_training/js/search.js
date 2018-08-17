@@ -306,7 +306,6 @@
         }
       }
       item.headline = this.getTrainingString(headline);
-      item.date = moment.unix(item.created).format('MM-DD-YY');
       if (item.url.indexOf('/') === 0){
         item.url = item.url.substring(1);
       }

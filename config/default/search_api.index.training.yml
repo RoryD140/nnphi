@@ -18,6 +18,7 @@ dependencies:
     - field.storage.node.field_training_expiration_date
     - field.storage.node.field_training_total_time
     - field.storage.node.field_training_categories
+    - field.storage.node.field_training_published_date
     - search_api.server.algolia
   module:
     - taxonomy
@@ -276,11 +277,6 @@ field_settings:
         - field.storage.node.field_training_source
       module:
         - node
-  created:
-    label: Created
-    datasource_id: 'entity:node'
-    property_path: created
-    type: integer
   summary:
     label: 'Description » Summary'
     datasource_id: 'entity:node'
@@ -341,6 +337,14 @@ field_settings:
         - field.storage.node.field_training_categories
       module:
         - taxonomy
+  created:
+    label: 'Published Date'
+    datasource_id: 'entity:node'
+    property_path: field_training_published_date
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_training_published_date
 datasource_settings:
   'entity:node':
     bundles:
@@ -354,10 +358,10 @@ datasource_settings:
 processor_settings:
   add_url: {  }
   aggregated_field: {  }
+  entity_status: {  }
   rendered_item: {  }
   facet_attribute: {  }
   searchable_attribute: {  }
-  entity_status: {  }
 tracker_settings:
   default:
     indexing_order: fifo
