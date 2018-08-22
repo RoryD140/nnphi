@@ -467,7 +467,7 @@ function nnphi_training_vote_update(VoteInterface $vote)
  * Implements hook_ENTITY_TYPE_presave().
  */
 function nnphi_training_node_presave(NodeInterface $node) {
-  if (!$node->getType() === 'training' ||
+  if ($node->getType() !== 'training' ||
     !$node->get('field_training_expiration_date')->isEmpty() ||
     $node->get('field_training_published_date')->isEmpty()
   ) {
