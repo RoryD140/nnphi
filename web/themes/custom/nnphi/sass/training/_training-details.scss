@@ -59,8 +59,12 @@
   font-size: $font-size-sm;
   position: absolute;
   top: 105%;
-  background: $green;
+  background: $gray-dark;
   color: #fff;
-  padding: $padding-sm;
+  padding: $padding-sm/2;
   z-index: 99;
+  min-width: 15rem;
+  em {
+    display: inline;
+  }
 }
