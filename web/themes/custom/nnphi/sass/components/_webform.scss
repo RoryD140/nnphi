@@ -66,3 +66,17 @@
     width: auto;
   }
 }
+
+
+.custom-radio + label {
+  // margin/padding ensures this covers the whole area we want clicked
+  // 30px is width of the pseudo checkmark & padding
+  margin: 0 0 0 -30px;
+  padding-left: 30px;
+  width: 100%;
+  position: relative;
+  z-index: 999;
+  &:hover {
+    cursor: pointer;
+  }
+}

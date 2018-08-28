@@ -219,6 +219,7 @@ hidden:
   field_metatags: true
   field_training_access_difficulty: true
   field_training_categories: true
+  field_training_published_date: true
   field_training_review_content: true
   field_training_reviews: true
   review_login_message: true
