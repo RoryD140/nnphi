@@ -5,6 +5,9 @@
 
 (function ($, Drupal) {
   'use strict'
+  // Initialize a seed to shuffle results consistently for the
+  // the time the user is on the page.
+  var trainingShuffleSeed = Math.floor(Math.random() * Math.floor(100));
   Drupal.behaviors.nnphiTrainingSearch = {
     attach: function (context, settings) {
       // Create a new template for the custom checkbox theming.
@@ -24,6 +27,9 @@
           appId: settings.trainingSearch.app_id,
           apiKey: settings.trainingSearch.api_key,
           indexName: settings.trainingSearch.index,
+          searchParameters: {
+            getRankingInfo: true
+          },
           urlSync: true
         });
 
@@ -45,6 +51,18 @@
             templates: {
               empty: Drupal.t('No results'),
               item: hitTemplate
+            },
+            transformItems: function (items) {
+              if (items.length) {
+                // Check the ranking data to see if search parameters have been entered.
+                var item = items[0];
+                // If there are no filters or word matches, shuffle the results
+                // using the seed generated on page load.
+                if (item._rankingInfo.filters === 0 && item._rankingInfo.words === 0) {
+                  return Drupal.behaviors.nnphiTrainingSearch.shuffle(items, trainingShuffleSeed);
+                }
+              }
+              return items;
             },
             transformData: {
               item: function(item) {
@@ -323,6 +341,35 @@
      */
     getTrainingString: function(items) {
       return items.join(' ');
+    },
+
+    /**
+     * Predictably shuffle an array.
+     *
+     * From: https://github.com/yixizhang/seed-shuffle/
+     *
+     * @param array
+     * @param seed
+     * @returns {Array}
+     */
+    shuffle: function shuffle(array, seed) {
+      let currentIndex = array.length, temporaryValue, randomIndex;
+      seed = seed || 1;
+      let random = function() {
+        var x = Math.sin(seed++) * 10000;
+        return x - Math.floor(x);
+      };
+      // While there remain elements to shuffle...
+      while (0 !== currentIndex) {
+        // Pick a remaining element...
+        randomIndex = Math.floor(random() * currentIndex);
+        currentIndex -= 1;
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
+      return array;
     }
 
   };
