@@ -129,8 +129,8 @@
               container: '#length',
               attributeName: 'length',
               options: [
-                {end: 1, name: Drupal.t('<1 hour')},
-                {end: 2, name: Drupal.t('<2 hours')},
+                {end: 1, name: Drupal.t('<=1 hour')},
+                {end: 2, name: Drupal.t('<=2 hours')},
                 {start: 2, name: Drupal.t('+2 hours')}
               ],
               templates: {
