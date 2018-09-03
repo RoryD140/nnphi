@@ -140,4 +140,36 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
-handlers: {  }
+handlers:
+  submit_a_training_email:
+    id: email
+    label: 'Submit a Training Email'
+    handler_id: submit_a_training_email
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:email:raw]'
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: default
+      from_options: {  }
+      from_name: default
+      subject: 'Thank you for Nominating a Training to the Learning Navigator'
+      body: "<p>Dear Colleague,<br />\n<br />\nThank you for your training nomination(s)! Your submissions are essential to ensuring the public health workforce has access to quality training. Your nominated training has been added to the queue. If you are the training developer, you will be notified upon completion of the review process (please note, this may take up 4 months, depending on the number of nominations we have received). If you have any questions, don&#39;t hesitate to ask us.</p>\n\n<p>Your partner in quality learning,<br />\nThe Public Heath Learning Navigator Team<br />\n<a href=\"http://www.phlearningnavigator.org/\" rel=\"noreferrer nofollow\" target=\"_blank\">www.phlearningnavigator.org</a><br />\n<a href=\"mailto:training@nnphi.org\">training@nnphi.org</a></p>\n\n<h3>&nbsp;</h3>"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
