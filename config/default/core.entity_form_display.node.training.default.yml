@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.training_browser
     - field.field.node.training.field_metatags
     - field.field.node.training.field_related_trainings
     - field.field.node.training.field_training_access_difficulty
@@ -31,6 +32,7 @@ dependencies:
     - comment
     - conditional_fields
     - datetime
+    - entity_browser
     - link
     - metatag
     - paragraphs
@@ -56,11 +58,15 @@ content:
   field_related_trainings:
     weight: 21
     settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+      entity_browser: training_browser
+      field_widget_display: label
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      open: false
+      field_widget_display_settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: entity_browser_entity_reference
     region: content
   field_training_access_difficulty:
     weight: 25
