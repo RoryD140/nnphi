@@ -16,6 +16,7 @@ permissions:
   - 'access panels in-place editing'
   - 'access taxonomy overview'
   - 'access toolbar'
+  - 'access user profiles'
   - 'access webform overview'
   - 'access webform submission log'
   - 'administer blocks'
