@@ -22,7 +22,7 @@ variant_settings:
       weight: 0
       uuid: b0fb62af-2300-4205-9e50-77fc6b2ac977
       context_mapping:
-        user: current_user
+        user: user
   id: panels_variant
   uuid: a05ad5d1-209a-4876-a837-1bac42ad062a
   label: null
