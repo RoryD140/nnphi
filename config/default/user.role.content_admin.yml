@@ -16,6 +16,7 @@ permissions:
   - 'access panels in-place editing'
   - 'access taxonomy overview'
   - 'access toolbar'
+  - 'access training_browser entity browser pages'
   - 'access user profiles'
   - 'access webform overview'
   - 'access webform submission log'
