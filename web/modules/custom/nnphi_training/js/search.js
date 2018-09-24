@@ -49,7 +49,7 @@
             container: '#hits',
             showMoreLabel: Drupal.t('Load More'),
             templates: {
-              empty: Drupal.t('No results'),
+              empty: Drupal.t('Nothing on that topic yet, but you can ask the <a href="@librarian">Navigator’s Learning Librarian</a> for recommendations or <a href="@training">nominate a training</a> to be reviewed.', {'@librarian': '/librarian', '@training': '/nominate-training'}),
               item: hitTemplate
             },
             transformItems: function (items) {
