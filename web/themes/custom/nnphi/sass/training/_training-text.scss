@@ -65,3 +65,17 @@ section.training-text {
 .flag-text {
   display: none;
 }
+
+.training-text .flag-bookmark a,
+.training-teaser-link-wrapper .flag-bookmark a {
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    span {
+      color: $green;
+    }
+    polygon {
+      stroke: $green;
+    }
+  }
+}
