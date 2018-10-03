@@ -262,6 +262,38 @@ function nnphi_training_node_view_alter(array &$build, NodeInterface $node, Enti
         '#text' => t('Add Bookmark'),
       ];
     }
+
+    if ($node->getType() === 'training' && $build['#view_mode'] === 'full') {
+      $selected_trainings = [];
+      // Get trainings that have already been explicitly referenced.
+      if (!$node->get('field_related_trainings')->isEmpty()) {
+        $selected_trainings = array_column($node->get('field_related_trainings')->getValue(), 'target_id');
+      }
+      // Query for training nodes that reference this one, excluding
+      // those that have already been selected in the field.
+      $query = \Drupal::entityQuery('node')
+        ->condition('type', 'training')
+        ->condition('field_related_trainings', $node->id())
+        ->condition('status', NodeInterface::PUBLISHED);
+      if (!empty($selected_trainings)) {
+        $query->condition('nid', $selected_trainings, 'NOT IN');
+      }
+      $nids = $query->execute();
+      if (!empty($nids)) {
+        // Append the related nodes to the field, and re-view it.
+        foreach ($nids as $vid => $nid) {
+          $node->field_related_trainings[] = $nid;
+        }
+        $related_field = $node->get('field_related_trainings');
+        $related_field = \Drupal::entityTypeManager()->getViewBuilder('node')
+          ->viewField($related_field, $build['#view_mode']);
+        // Replace the original field with the updated build.
+        // A little less efficient than just adding items to the build,
+        // but works better if field_related_trainings is empty.
+        $build['field_related_trainings'] = $related_field;
+      }
+    }
+
 }
 
 /**
@@ -478,6 +510,40 @@ function nnphi_training_node_presave(NodeInterface $node) {
   $date = $node->field_training_published_date->date;
   $date->modify('+5 years');
   $node->set('field_training_expiration_date', $date->format('Y-m-d'));
+}
+
+function nnphi_training_node_clear_related_cache(NodeInterface $node) {
+  // Since we are virtually relating back any nodes that this
+  // training references, clear their render cache so that
+  // component can be rebuilt.
+  $referenced_training_ids = array_column($node->get('field_related_trainings')->getValue(), 'target_id');
+  if (empty($referenced_training_ids)) {
+    return;
+  }
+  // Build array of tags.
+  $tags = [];
+  foreach ($referenced_training_ids as $id) {
+    $tags[] = 'node:' . $id;
+  }
+  \Drupal\Core\Cache\Cache::invalidateTags($tags);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert().
+ */
+function nnphi_training_node_insert(NodeInterface $node) {
+  if ($node->getType() === 'training') {
+    nnphi_training_node_clear_related_cache($node);
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update().
+ */
+function nnphi_training_node_update(NodeInterface $node) {
+  if ($node->getType() === 'training') {
+    nnphi_training_node_clear_related_cache($node);
+  }
 }
 
 /**
