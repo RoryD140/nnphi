@@ -64,6 +64,7 @@ module.exports = function(grunt) {
             'js/src/header.js',
             'js/src/scripts.js',
             'js/src/bootstrap/dropdown.js',
+            'js/src/bootstrap/tooltip.js',
             'js/src/bootstrap/util.js'
           ],
           dest: 'dist/scripts.js'

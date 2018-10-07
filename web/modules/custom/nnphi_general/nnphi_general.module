@@ -48,6 +48,31 @@ function nnphi_general_block_content_view(array &$build, BlockContentInterface $
 
   if($block->bundle() === 'search_training') {
     $build['#attached']['library'][] = 'nnphi_general/arrow';
+
+    // Add a nbsp; between the last two words to prevent orphans at small screens
+    if(isset($build['field_search_training_link'])) {
+
+      /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $link_item */
+     $link_item =  $build['field_search_training_link']['#items']->first();
+
+     // Add nbsp; between last two words in link title
+     $link_title = $link_item->__get('title');
+     $link_title_array = explode(' ', $link_title);
+
+     // Split array into last two words and rest of array
+     $first_array = array_slice($link_title_array, 0, -2);
+     $last_two_words = array_slice($link_title_array, -2, 2, true);
+     // Recombine with &nbsp; between last two words
+     $title = implode(' ', [
+         implode(' ', $first_array),
+         implode( '&nbsp;', $last_two_words)
+     ]);
+
+     // Actual #link render element filters out html markup, so we're using plain #markup
+     $build['field_search_training_link'] = [
+         '#markup' => '<a href="' . $link_item->getUrl()->toString() . '">' . $title . '</a>'
+     ];
+    }
   }
 }
 

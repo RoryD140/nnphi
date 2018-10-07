@@ -4,6 +4,8 @@ base:
     theme:
       style.css: {}
   js:
+    # Required for bootstrap tooltip
+    https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js: {type: external, minified: true}
     scripts.js: {}
   dependencies:
     - core/jquery
