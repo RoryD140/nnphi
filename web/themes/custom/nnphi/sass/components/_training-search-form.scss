@@ -11,6 +11,11 @@
   &::placeholder {
     text-transform: uppercase;
   }
+  @include media-breakpoint-down(sm) {
+    // Ensure that placeholder text fits on small screens
+    padding-left: 60px;
+    font-size: .9rem;
+  }
 }
 
 .training-search-form {

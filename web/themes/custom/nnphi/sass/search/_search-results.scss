@@ -52,6 +52,9 @@
   .training-teaser-link-wrapper {
     text-align: left;
   }
+  @include media-breakpoint-down(sm) {
+    padding: $padding-sm;
+  }
 }
 
 

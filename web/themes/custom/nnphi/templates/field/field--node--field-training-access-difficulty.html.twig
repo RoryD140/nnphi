@@ -53,7 +53,7 @@
   {% endif %}
 {% else %}
   <div{{ attributes }}>
-    <h2 {{ title_attributes.addClass('training-subtitle') }}>{{ label }}</h2>
+    <h2 {{ title_attributes.addClass('training-subtitle') }} data-toggle="tooltip" data-html="true" data-trigger="click hover focus" data-placement="top" title="{% trans %}Time it takes for <em>new users</em> to register, enroll, &/or complete a pre-test before starting training.{% endtrans %}">{{ label }} {% include base_path ~ directory ~ '/svg/info-circle.svg' %}</h2>
     {% if multiple %}
       <div>
     {% endif %}
@@ -62,7 +62,6 @@
         {{ item.content }}
       </div>
     {% endfor %}
-        <p class="time-to-start-hover">{% trans %}Time it takes for <em>new users</em> to register, enroll, &/or complete a pre-test before starting training.{% endtrans %}</p>
     {% if multiple %}
       </div>
     {% endif %}
