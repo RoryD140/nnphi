@@ -17,7 +17,6 @@
       $('[data-toggle="tooltip"]',context).once('tooltip').each(function() {
         $(this).tooltip();
       });
-
     }
   };
 })(jQuery, Drupal);
