@@ -8,6 +8,52 @@
   border-top: solid 1px $gray-light;
   padding-left: 0; // padding is on actual filters so borders look right
   padding-right: 0;
+  @include media-breakpoint-down(md) {
+    &:not(.active) {
+      display: none; // Toggled with JS
+    }
+  }
+}
+
+.training-search-mobile-toggle {
+  display: none;
+  @include media-breakpoint-down(md) {
+    display: flex;
+  }
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-sm;
+
+  align-items: center; // centers SVG
+  margin-bottom: $padding-md;
+  margin-left: 30px; // Aligns with search box below
+  svg {
+    width: 20px;
+    height: 20px;
+    margin-left: $padding-sm;
+  }
+
+  .toggle-hide,
+  .toggle-show {
+    align-items: center;
+  }
+
+  .toggle-show {
+    display: inline-flex;
+  }
+
+  .toggle-hide {
+    display: none;
+  }
+
+  &.active {
+    .toggle-hide {
+      display: inline-flex;
+    }
+    .toggle-show {
+      display: none;
+    }
+  }
 }
 
 // The inner divs (the ones targeted here) get display: none if they're empty,

@@ -11,10 +11,10 @@
         {{ created_formatted }}
       </div>
     </div>
-    <h3>{{{  _highlightResult.title.value }}}</h3>
+    <h3>{{{ _highlightResult.title.value }}}</h3>
     {% endraw %}
     {% raw %}
-    {{{  _highlightResult.summary.value }}}
+      {{{  _highlightResult.summary.value }}}
     {% endraw %}
     <div class="training-teaser-link-wrapper">
       <a data-nid="{{ '{{ nid }}' }}" href="#" class="training-preview-link">{{ 'Preview'|t }}</a>
@@ -25,6 +25,16 @@
 
 <div class="training-search-container">
   <div class="row">
+    <button class="training-search-mobile-toggle">
+      <span class="toggle-show">
+        {{ 'Show Search Filters'|t }}
+        {% include base_path ~  '/themes/custom/nnphi/svg/plus.svg' ignore missing %}
+      </span>
+      <span class="toggle-hide">
+        {{ 'Hide Search Filters'|t }}
+        {% include base_path ~  '/themes/custom/nnphi/svg/minus.svg' ignore missing %}
+      </span>
+    </button>
     <div class="training-filters">
       <h2>{{ 'Refine By'|t }}</h2>
       <div id="ceus"></div>
