@@ -49,7 +49,7 @@ function nnphi_analytics_preprocess_page(&$variables)
 {
   $variables['#attached']['library'][] = 'nnphi_analytics/training-search-analytics';
 
-//  if($variables['is_front'] === TRUE) {
+  if($variables['is_front'] === TRUE) {
     $variables['#attached']['library'][] = 'nnphi_analytics/personalize-analytics';
-//  }
+  }
 }
