@@ -33,3 +33,12 @@ training-search-analytics:
     - core/drupal
     - core/jquery
     - core/jquery.once
+
+personalize-analytics:
+  version: VERSION
+  js:
+    js/personalize-analytics.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once

@@ -48,4 +48,8 @@ function nnphi_analytics_node_view(array &$build, NodeInterface $node, EntityVie
 function nnphi_analytics_preprocess_page(&$variables)
 {
   $variables['#attached']['library'][] = 'nnphi_analytics/training-search-analytics';
+
+//  if($variables['is_front'] === TRUE) {
+    $variables['#attached']['library'][] = 'nnphi_analytics/personalize-analytics';
+//  }
 }
