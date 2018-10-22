@@ -5,3 +5,19 @@
     white-space: normal;
   }
 }
+
+.btn-primary {
+  @include hover-focus-active {
+    background-color: $purple;
+    border-color: $purple;
+  }
+}
+
+.btn-secondary {
+  color: $purple;
+  @include hover-focus-active {
+    background-color: $purple;
+    border-color: $purple;
+    color: #fff;
+  }
+}
