@@ -117,8 +117,4 @@
 
 .block-random-quiz.gradient-bg .micro-assessment-form .form-submit {
   @extend .btn-secondary;
-  color: $purple;
-  &:hover {
-    color: darken($purple, 10%);
-  }
 }
