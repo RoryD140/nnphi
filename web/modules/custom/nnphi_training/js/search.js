@@ -436,5 +436,13 @@
       });
     }
   }
+
+  // Mobile search toggles
+  $('.training-search-mobile-toggle').once('search-toggle').each(function() {
+    $(this).click(function(){
+      $(this).toggleClass('active');
+      $('.training-filters').toggleClass('active');
+    });
+  });
   
 })(jQuery, Drupal);
