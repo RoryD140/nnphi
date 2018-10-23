@@ -210,9 +210,7 @@ function nnphi_training_node_view(array &$build, Node $node, EntityViewDisplayIn
     if ($view_mode === 'full') {
 
         // Attach the training page javascript library.
-        if (!$node->get('field_related_trainings')->isEmpty()) {
-            $build['#attached']['library'][] = 'nnphi_training/slider';
-        }
+        $build['#attached']['library'][] = 'nnphi_training/slider';
 
         $build['#attached']['library'][] = 'nnphi_training/training-page';
 
